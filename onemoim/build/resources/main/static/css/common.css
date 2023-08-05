@@ -1,0 +1,29 @@
+@font-face {
+    font-family: Hana2-Light;
+    src: url('../assets/fonts/Hana2-Light.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Hana2-Regular;
+    src: url('../assets/fonts/Hana2-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Hana2-Bold;
+    src: url('../assets/fonts/Hana2-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+body {
+    font-family: Hana2-Light, sans-serif;
+    font-size: 12px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: Hana2-Bold, sans-serif;
+}
