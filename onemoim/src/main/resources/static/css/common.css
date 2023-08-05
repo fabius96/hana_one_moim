@@ -1,4 +1,11 @@
 @font-face {
+    font-family: Hana2-Light;
+    src: url('../assets/fonts/Hana2-Light.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
     font-family: Hana2-Regular;
     src: url('../assets/fonts/Hana2-Regular.ttf') format('truetype');
     font-weight: normal;
@@ -13,7 +20,7 @@
 }
 
 body {
-    font-family: Hana2-Regular, sans-serif;
+    font-family: Hana2-Light, sans-serif;
     font-size: 12px;
 }
 
