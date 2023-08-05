@@ -1,0 +1,55 @@
+.footer {
+    flex-shrink: 0;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    background: #f1fffe;
+    padding: 0 50px; /* 좌우 패딩 */
+}
+
+.footer-content {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* 로고, 아이콘, 텍스트 사이의 간격 */
+}
+
+.footer-logo {
+    width: 25px;
+    height: 28.85px;
+    object-fit: cover;
+    margin-right: 20px;
+}
+
+.footer-icon {
+    width: 15px;
+    height: 15px;
+    object-fit: cover;
+    margin-left: 5px; /* 아이콘 간격 */
+    vertical-align: middle; /* text와 아이콘 높낮이 맞춤 */
+}
+
+.footer-text {
+    font-weight: 100;
+    text-align: left;
+    color: #000;
+}
+
+.footer-text span {
+    font-size: 12px;
+    font-weight: 100;
+    text-align: left;
+    color: #000;
+}
+
+.footer-text .spacer {
+    font-size: 5px;
+}
+
+.footer-text .divider {
+    font-size: 12px;
+    margin: 0 5px; /* 구분자 양옆 간격 */
+}

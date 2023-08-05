@@ -1,37 +1,12 @@
-.header {
-    font-family: Hana2-Bold, sans-serif;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-left: 50px;
-    padding-right: 50px;
-    background: #fff;
-    border-bottom: 1px solid #008375;
+body {
+    display: flex; /* footer 바닥 고정 */
+    flex-direction: column; /* footer 바닥 고정 */
+    min-height: 100vh; /* footer 바닥 고정 */
 }
-.logo-container {
-    display: flex;
-    align-items: center;
-    gap: 10px; /* 로고와 텍스트 사이의 간격 */
-}
-.header img {
-    width: 25px;
-    height: 28.85px;
-    object-fit: cover;
-}
-.header p {
-    font-size: 20px;
-    font-weight: 700;
-    color: #000;
-}
-.header .start-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 75px;
-    height: 30px;
-    border-radius: 5px;
-    background: #008375;
-    color: #fff;
-    font-size: 12px;
-    font-weight: 700;
+
+/*
+ flex-grow : 1, flex-shrink : 0, flex-basis : auto
+ */
+.except-footer {
+    flex: 1 0 auto;
 }
