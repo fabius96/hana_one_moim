@@ -8,9 +8,16 @@ import org.springframework.web.servlet.ModelAndView;
 public class MemberController {
 
     @GetMapping(value = "/signin")
-    public ModelAndView showBeforeLoginMain() {
+    public ModelAndView showSignin() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("signin");
+        return modelAndView;
+    }
+
+    @GetMapping(value = "/signup")
+    public ModelAndView showSignup() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("signup");
         return modelAndView;
     }
 }

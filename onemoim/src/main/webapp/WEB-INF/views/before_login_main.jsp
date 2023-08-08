@@ -25,7 +25,7 @@
                     하나원모임은 모임의 순간을 기록하고 추억할 수 있는 갤러리형 커뮤니티 기반의 모임통장 서비스입니다.<br/>
                     하나원모임을 통해 연인, 가족, 친구들과 새로운 추억을 만들어보세요.
                 </p>
-                <a href="signin" class="start-button-link">
+                <a href="signin" class="link-button">
                     <div class="button-container">
                         <p class="button-text">시작하기</p>
                     </div>

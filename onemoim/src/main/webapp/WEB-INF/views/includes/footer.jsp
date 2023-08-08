@@ -16,10 +16,10 @@
         <span>CONTACT </span>
         <span class="spacer"> </span>
         <span class="divider">|</span>
-        <a href="https://github.com/fabius96/hana_one_moim">
+        <a href="https://github.com/fabius96/hana_one_moim" class="link-button">
             <span><img src="img/github.png" alt="Github Icon" class="footer-icon github"/></span>
         </a>
-        <a href="mailto:jy0511_@naver.com">
+        <a href="mailto:jy0511_@naver.com" class="link-button">
             <span><img src="img/mail.png" alt="Mail Icon" class="footer-icon mail"/></span>
         </a>
     </p>
