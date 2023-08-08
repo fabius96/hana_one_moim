@@ -32,6 +32,15 @@ h1, h2, h3, h4, h5, h6 {
     font-family: Hana2-Bold, sans-serif;
 }
 
+a {
+    text-decoration: none;
+}
+
+.start-button-link {
+    text-decoration: none;
+    color: inherit;
+}
+
 .except-footer {
     flex: 1 0 auto;
 }

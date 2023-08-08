@@ -12,12 +12,16 @@
     <img src="img/hana_logo.png" alt="Hana Logo" class="footer-logo"/>
 
     <p class="footer-text">
-        <span>COPYRIGHT | ⓒ 2023 Jaeyoung Kim. All rights Reserved.</span><br /><br />
+        <span>COPYRIGHT | ⓒ 2023 Jaeyoung Kim. All rights Reserved.</span><br/><br/>
         <span>CONTACT </span>
         <span class="spacer"> </span>
         <span class="divider">|</span>
-        <span><img src="img/github.png" alt="Github Icon" class="footer-icon github"/></span>
-        <span><img src="img/mail.png" alt="Mail Icon" class="footer-icon mail"/></span>
+        <a href="https://github.com/fabius96/hana_one_moim">
+            <span><img src="img/github.png" alt="Github Icon" class="footer-icon github"/></span>
+        </a>
+        <a href="mailto:jy0511_@naver.com">
+            <span><img src="img/mail.png" alt="Mail Icon" class="footer-icon mail"/></span>
+        </a>
     </p>
 </div>
 </body>

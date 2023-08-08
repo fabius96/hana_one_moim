@@ -1,8 +1,4 @@
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
+
 
 .main-container {
     position: relative;
@@ -126,6 +122,3 @@ body {
     object-fit: cover;
 }
 
-.except-footer {
-    flex: 1 0 auto;
-}
