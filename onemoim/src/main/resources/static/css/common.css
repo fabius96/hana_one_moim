@@ -22,8 +22,16 @@
 body {
     font-family: Hana2-Light, sans-serif;
     font-size: 12px;
+
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 h1, h2, h3, h4, h5, h6 {
     font-family: Hana2-Bold, sans-serif;
+}
+
+.except-footer {
+    flex: 1 0 auto;
 }
