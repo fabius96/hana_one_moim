@@ -13,4 +13,11 @@ public class MainController {
         modelAndView.setViewName("before_login_main");
         return modelAndView;
     }
+
+    @GetMapping(value = "/after_login_main")
+    public ModelAndView showAfterLoginMain() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("after_login_main");
+        return modelAndView;
+    }
 }

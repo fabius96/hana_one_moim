@@ -4,15 +4,14 @@
 <html>
 <head>
     <meta charset="UTF-8">
-
     <link rel="stylesheet" href="/css/common.css">
     <link rel="stylesheet" href="/css/header_before_login.css">
     <title>header_before_login</title>
     <style>
-
     </style>
 </head>
 <body>
+
 <div class="header">
     <a href="/" class="link-button">
         <div class="logo-container">
@@ -24,5 +23,6 @@
         <div class="start-button">시작하기</div>
     </a>
 </div>
+
 </body>
 </html>
