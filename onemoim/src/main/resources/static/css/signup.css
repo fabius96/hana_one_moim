@@ -1,0 +1,206 @@
+.main-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #fff;
+    padding: 60px
+}
+
+.signup-container {
+    width: 480px;
+    height: 800px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+    border: 0.5px solid #777;
+}
+
+.character-image {
+    width: 84.47px;
+    height: 100px;
+    position: absolute;
+    left: 74.25px;
+    top: 10.25px;
+    object-fit: cover;
+}
+
+.title {
+    position: absolute;
+    left: 182px;
+    top: 47px;
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.green-text {
+    color: #008375;
+}
+
+.red-text {
+    color: #d60037;
+}
+
+.login-text {
+    width: 182px;
+    height: 42px;
+    position: absolute;
+    left: 75px;
+    top: 122px;
+    font-size: 12px;
+    font-weight: 500;
+    text-align: left;
+    color: #000;
+}
+
+.link-text {
+    color: #009591;
+}
+
+.id-input, .zip-code-input, .email-input, .auth-code-input {
+    width: 225px;
+    height: 30px;
+    position: absolute;
+    left: 75px;
+    overflow: hidden;
+    border: 0.5px solid #777;
+}
+
+.input-field {
+    width: 100%;
+    height: 100%;
+    padding: 5px 10px;
+    border: 0.5px solid #777;
+    box-sizing: border-box;
+    font-size: 12px;
+    outline: none;
+}
+
+.id-input {
+    top: 175px;
+}
+
+.common-button {
+    background: #008375;
+    width: 100px;
+    height: 30px;
+    position: absolute;
+    left: 305px;
+    overflow: hidden;
+}
+
+#double-check-button {
+    top: 175px;
+}
+
+.button-text {
+    color: #fff;
+    font-size: 14px;
+    font-family: Hana2-Regular, sans-serif;
+
+    border: none;
+    background: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    -webkit-appearance: none; /* 웹킷 기반 브라우저(예: Chrome, Safari)에서 기본 스타일 제거 */
+    -moz-appearance: none; /* 파이어폭스에서 기본 스타일 제거 */
+    appearance: none; /* 표준 속성 */
+
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.password-input, .password-re-enter, .simple-password-input, .phone-number-input, .address-input, .detail-address-input {
+    width: 330px;
+    height: 30px;
+    position: absolute;
+    left: 75px;
+    overflow: hidden;
+    border: 0.5px solid #777;
+}
+
+.password-input {
+    top: 225px;
+}
+
+.password-re-enter {
+    top: 275px;
+}
+
+.simple-password-input {
+    top: 325px;
+}
+
+.date-of-birth-input, .personal-id-number-input {
+    width: 150px;
+    height: 30px;
+    position: absolute;
+    overflow: hidden;
+    border: 0.5px solid #777;
+}
+
+.date-of-birth-input {
+    left: 75px;
+    top: 375px;
+}
+
+.personal-id-number-input {
+    left: 255px;
+    top: 375px;
+}
+
+.hyphen {
+    position: absolute;
+    left: 237px;
+    top: 382px;
+}
+
+.phone-number-input {
+    top: 425px;
+}
+
+.zip-code-input, #find-zip-code-button {
+    top: 475px;
+}
+
+.address-input {
+    top: 525px;
+}
+
+.detail-address-input {
+    top: 575px;
+}
+
+.email-input, #send-auth-mail-button {
+    top: 625px;
+}
+
+.auth-code-input, #check-auth-code-button {
+    top: 675px;
+}
+
+.signup-button {
+    background: #008375;
+    top: 730px;
+    width: 330px;
+    height: 50px;
+    position: absolute;
+    left: 75px;
+    overflow: hidden;
+}
+
+/* lable 숨기기 */
+.hidden-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}

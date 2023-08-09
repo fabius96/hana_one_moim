@@ -16,6 +16,15 @@
     border: 0.5px solid #777;
 }
 
+.character-image {
+    width: 74.66px;
+    height: 100px;
+    position: absolute;
+    left: 89.25px;
+    top: 10.25px;
+    object-fit: cover;
+}
+
 .title {
     position: absolute;
     left: 182px;
@@ -26,21 +35,12 @@
     text-align: center;
 }
 
-.title-part1, .title-part3 {
+.green-text {
     color: #008375;
 }
 
-.title-part2 {
+.red-text {
     color: #d60037;
-}
-
-.image-star {
-    width: 74.66px;
-    height: 100px;
-    position: absolute;
-    left: 89.25px;
-    top: 10.25px;
-    object-fit: cover;
 }
 
 .member-text {
@@ -51,12 +51,7 @@
     top: 122px;
 }
 
-.normal-text {
-    font-size: 12px;
-    font-weight: 500;
-}
-
-.highlight-text {
+.link-text {
     color: #009591;
     font-weight: 500;
 }
@@ -68,6 +63,16 @@
     left: 75px;
     overflow: hidden;
     border: 0.5px solid #777;
+}
+
+.input-field {
+    width: 100%;
+    height: 100%;
+    padding: 5px 10px;
+    border: 0.5px solid #777;
+    box-sizing: border-box;
+    font-size: 12px;
+    outline: none;
 }
 
 .password-input {
@@ -87,15 +92,6 @@
     color: #777;
 }
 
-.input-field {
-    width: 100%;
-    height: 100%;
-    padding: 5px 10px;
-    border: 0.5px solid #777;
-    box-sizing: border-box;
-    font-size: 12px;
-    outline: none;
-}
 /* 포커스 시 테두리 색상 변경 */
 :focus {
      border-color: #007BFF;

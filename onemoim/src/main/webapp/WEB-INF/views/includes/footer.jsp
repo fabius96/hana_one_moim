@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/css/common.css">
     <link rel="stylesheet" href="/css/footer.css">
 </head>
+
 <body>
 <div class="footer-container">
     <img src="img/hana_logo.png" alt="Hana Logo" class="footer-logo"/>
@@ -25,4 +26,5 @@
     </p>
 </div>
 </body>
+
 </html>

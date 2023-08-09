@@ -15,16 +15,16 @@
     <div class="main-container">
         <div class="container">
             <p class="title">
-                <span class="title-part1">하나 </span>
-                <span class="title-part2">원</span><span class="title-part3">모임</span>
+                <span class="green-text">하나 </span>
+                <span class="red-text">원</span><span class="green-text">모임</span>
             </p>
 
-            <img src="img/character1.png" class="image-star">
+            <img src="img/character1.png" class="character-image">
 
             <p class="member-text">
-                <span class="normal-text">아직 회원이 아니신가요? </span>
-                <a href="signup" class="link-button">
-                    <span class="highlight-text">회원가입</span>
+                <span>아직 회원이 아니신가요? </span>
+                <a href="signup">
+                    <span class="link-text">회원가입</span>
                 </a>
             </p>
 
@@ -35,7 +35,7 @@
                 </div>
 
                 <div class="password-input">
-                    <label for="memberPassword" class="hidden-label">id :</label>
+                    <label for="memberPassword" class="hidden-label">password :</label>
                     <input type="password" placeholder="비밀번호 입력" id="memberPassword" name="memberPassword"
                            class="input-field">
                 </div>
