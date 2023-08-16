@@ -31,13 +31,13 @@
             <form>
                 <div class="id-input">
                     <label for="memberId" class="hidden-label">id :</label>
-                    <input type="text" placeholder="아이디 입력" id="memberId" name="memberId" class="input-field">
+                    <input type="text" placeholder="아이디 입력" id="memberId" name="memberId" class="input-field" required>
                 </div>
 
                 <div class="password-input">
                     <label for="memberPassword" class="hidden-label">password :</label>
                     <input type="password" placeholder="비밀번호 입력" id="memberPassword" name="memberPassword"
-                           class="input-field">
+                           class="input-field" required>
                 </div>
                 <div class="login-button">
                     <button type="submit" class="button-text">로그인</button>
@@ -54,5 +54,6 @@
 
 </div>
 <jsp:include page="includes/footer.jsp"/>
+<script src="/js/signin.js"></script>
 </body>
 </html>
