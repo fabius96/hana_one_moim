@@ -32,7 +32,7 @@ public class MemberController {
         return modelAndView;
     }
 
-    @GetMapping("/api/checkLoginId")
+    @GetMapping("/api/member/login_id/check")
     @ResponseBody
     public boolean checkLoginId(@RequestParam String loginId) {
         return memberService.isLoginIdExist(loginId);

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/css/common.css">
     <link rel="stylesheet" href="/css/signup.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
 
 <body>
@@ -84,7 +85,7 @@
                     <label for="zipCode" class="hidden-label">zip-code :</label>
                     <input type="text" placeholder="우편번호 입력" id="zipCode" name="zipCode" class="input-field" required>
                 </div>
-                <div class="common-button" id="find-zip-code-button">
+                <div class="common-button" id="find-zip-code-button" onclick="findZipCode()">
                     <button type="submit" class="button-text">우편번호 찾기</button>
                 </div>
 
@@ -128,6 +129,7 @@
 
 <jsp:include page="includes/footer.jsp"/>
 <script src="/js/signup.js"></script>
+
 </body>
 
 </html>
