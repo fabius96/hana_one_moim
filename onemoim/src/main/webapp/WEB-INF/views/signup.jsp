@@ -7,6 +7,7 @@
     <title>signup</title>
     <link rel="stylesheet" href="/css/common.css">
     <link rel="stylesheet" href="/css/signup.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -27,25 +28,25 @@
 
             <form>
                 <div class="id-input">
-                    <label for="memberId" class="hidden-label">id :</label>
-                    <input type="text" placeholder="아이디 입력 (6~20자리)" id="memberId" name="memberId" class="input-field"
+                    <label for="loginId" class="hidden-label">id :</label>
+                    <input type="text" placeholder="아이디 입력 (6~20자리)" id="loginId" name="loginId" class="input-field"
                            required>
                 </div>
                 <div class="common-button" id="double-check-button">
-                    <button type="submit" class="button-text">중복확인</button>
+                    <button type="button" class="button-text">중복확인</button>
                 </div>
 
                 <div class="password-input">
-                    <label for="memberPassword" class="hidden-label">password :</label>
-                    <input type="password" placeholder="비밀번호 입력 (숫자, 문자, 특수문자 포함 8~20자리)" id="memberPassword"
-                           name="memberPassword"
+                    <label for="password" class="hidden-label">password :</label>
+                    <input type="password" placeholder="비밀번호 입력 (숫자, 문자, 특수문자 포함 8~20자리)" id="password"
+                           name="password"
                            class="input-field" required>
                 </div>
 
                 <div class="password-re-enter">
-                    <label for="memberPasswordReEnter" class="hidden-label">password-re :</label>
-                    <input type="password" placeholder="비밀번호 재입력" id="memberPasswordReEnter"
-                           name="memberPasswordReEnter"
+                    <label for="passwordReEnter" class="hidden-label">password-re :</label>
+                    <input type="password" placeholder="비밀번호 재입력" id="passwordReEnter"
+                           name="passwordReEnter"
                            class="input-field" required>
                 </div>
 

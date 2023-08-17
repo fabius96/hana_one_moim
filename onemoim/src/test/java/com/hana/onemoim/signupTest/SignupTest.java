@@ -1,4 +1,4 @@
-package com.hana.onemoim;
+package com.hana.onemoim.signupTest;
 
 import com.hana.onemoim.member.service.MemberService;
 import org.assertj.core.api.Assertions;
@@ -7,17 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class OnemoimApplicationTests {
-	@Autowired
-	private MemberService memberService;
-	@Test
-	void contextLoads() {
-	}
+public class SignupTest {
 
+    @Autowired
+    private MemberService memberService;
 
-	@Test
-	void a() {
-		String loginId = "11";
-		Assertions.assertThat(memberService.isLoginIdExist(loginId)).isTrue();
-	}
+    @Test
+    private void a() {
+        String loginId = "11";
+        Assertions.assertThat(memberService.isLoginIdExist(loginId)).isTrue();
+    }
 }
