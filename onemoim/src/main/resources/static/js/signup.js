@@ -1,5 +1,5 @@
 // id input validator
-document.getElementById("loginId").addEventListener("invalid", function(event) {
+document.getElementById("loginId").addEventListener("invalid", function (event) {
     if (event.target.validity.valueMissing) {
         event.target.setCustomValidity("아이디를 입력하세요.");
     } else {
@@ -8,7 +8,7 @@ document.getElementById("loginId").addEventListener("invalid", function(event) {
 });
 
 // password input validator
-document.getElementById("password").addEventListener("invalid", function(event) {
+document.getElementById("password").addEventListener("invalid", function (event) {
     if (event.target.validity.valueMissing) {
         event.target.setCustomValidity("비밀번호를 입력하세요.");
     } else {
@@ -17,12 +17,12 @@ document.getElementById("password").addEventListener("invalid", function(event) 
 });
 
 // loginId exists check
-$(document).ready(function() {
-    $("#double-check-button").click(function(event) {
+$(document).ready(function () {
+    $("#double-check-button").click(function (event) {
         event.preventDefault(); // form submit 방지
         let loginId = $("#loginId").val();
-        $.get("/api/member/login_id/check", { loginId: loginId }, function(data) {
-            if(data) {
+        $.get("/api/member/login_id/check", {loginId: loginId}, function (data) {
+            if (data) {
                 alert("이미 사용중인 아이디입니다.");
             } else {
                 alert("사용 가능한 아이디입니다.");
@@ -32,8 +32,8 @@ $(document).ready(function() {
 });
 
 // password <-> passwordReEnter check
-$(document).ready(function() {
-    $('form').submit(function(event) {
+$(document).ready(function () {
+    $('form').submit(function (event) {
         var password = $('#password').val();
         var passwordReEnter = $('#passwordReEnter').val();
 
@@ -48,7 +48,7 @@ $(document).ready(function() {
 // zip_code finder
 function findZipCode() {
     new daum.Postcode({
-        oncomplete: function(data) {
+        oncomplete: function (data) {
             // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
             // 각 주소의 노출 규칙에 따라 주소를 조합한다.
@@ -64,14 +64,14 @@ function findZipCode() {
             }
 
             // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
-            if(data.userSelectedType === 'R'){
+            if (data.userSelectedType === 'R') {
                 // 법정동명이 있을 경우 추가한다. (법정리는 제외)
                 // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
                     extraAddr += data.bname;
                 }
                 // 건물명이 있고, 공동주택일 경우 추가한다.
-                if(data.buildingName !== '' && data.apartment === 'Y'){
+                if (data.buildingName !== '' && data.apartment === 'Y') {
                     extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
                 }
             }
@@ -83,4 +83,33 @@ function findZipCode() {
             document.getElementById("detailAddress").focus();
         }
     }).open();
+}
+
+let $email = $('#email');
+let $authCode = $('#authCode');
+
+$('#send-auth-mail-button').click(function () {
+    $.ajax({
+        type: "POST",
+        url: "/api/mail/confirm",
+        data: {
+            "email": $email.val()
+        },
+        success: function (data) {
+            alert("해당 이메일로 인증번호 발송이 완료되었습니다.")
+            console.log("data : " + data);
+            chkEmailConfirm(data);
+        }
+    });
+});
+
+// 이메일 인증번호 체크 함수
+function chkEmailConfirm(data) {
+    $authCode.off("keyup").on("keyup", function () {  // .off()를 사용하여 이전 리스너를 제거
+        if (data != $authCode.val()) { //
+            alert('인증번호가 일치하지 않습니다.');
+        } else { // 아니면 중복아님
+            alert('인증번호가 확인되었습니다.');
+        }
+    });
 }

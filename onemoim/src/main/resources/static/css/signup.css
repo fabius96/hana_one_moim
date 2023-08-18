@@ -9,7 +9,7 @@
 
 .signup-container {
     width: 480px;
-    height: 800px;
+    height: 850px;
     position: relative;
     overflow: hidden;
     border-radius: 5px;
@@ -113,7 +113,7 @@
     height: 100%;
 }
 
-.password-input, .password-re-enter, .simple-password-input, .phone-number-input, .address-input, .detail-address-input {
+.password-input, .password-re-enter, .simple-password-input, .name-input, .phone-number-input, .address-input, .detail-address-input {
     width: 330px;
     height: 30px;
     position: absolute;
@@ -134,6 +134,10 @@
     top: 325px;
 }
 
+.name-input {
+    top: 375px;
+}
+
 .date-of-birth-input, .personal-id-number-input {
     width: 150px;
     height: 30px;
@@ -144,47 +148,47 @@
 
 .date-of-birth-input {
     left: 75px;
-    top: 375px;
+    top: 425px;
 }
 
 .personal-id-number-input {
     left: 255px;
-    top: 375px;
+    top: 425px;
 }
 
 .hyphen {
     position: absolute;
     left: 237px;
-    top: 382px;
+    top: 432px;
 }
 
 .phone-number-input {
-    top: 425px;
-}
-
-.zip-code-input, #find-zip-code-button {
     top: 475px;
 }
 
-.address-input {
+.zip-code-input, #find-zip-code-button {
     top: 525px;
 }
 
-.detail-address-input {
+.address-input {
     top: 575px;
 }
 
-.email-input, #send-auth-mail-button {
+.detail-address-input {
     top: 625px;
 }
 
-.auth-code-input, #check-auth-code-button {
+.email-input, #send-auth-mail-button {
     top: 675px;
+}
+
+.auth-code-input, #check-auth-code-button {
+    top: 725px;
 }
 
 .signup-button {
     background: #008375;
-    top: 730px;
+    top: 780px;
     width: 330px;
     height: 50px;
     position: absolute;

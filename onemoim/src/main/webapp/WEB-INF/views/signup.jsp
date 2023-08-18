@@ -58,6 +58,13 @@
                            class="input-field" required>
                 </div>
 
+                <div class="name-input">
+                    <label for="name" class="hidden-label">name :</label>
+                    <input type="text" placeholder="이름" id="name"
+                           name="name"
+                           class="input-field" required>
+                </div>
+
                 <div class="date-of-birth-input">
                     <label for="dateOfBirth" class="hidden-label">date-of-birth :</label>
                     <input type="text" placeholder="생년원일 입력" id="dateOfBirth"
@@ -108,7 +115,7 @@
                     <input type="text" placeholder="이메일주소 입력" id="email" name="email" class="input-field" required>
                 </div>
                 <div class="common-button" id="send-auth-mail-button">
-                    <button type="submit" class="button-text">인증메일 발송</button>
+                    <button type="button" class="button-text">인증메일 발송</button>
                 </div>
 
                 <div class="auth-code-input">
@@ -116,7 +123,7 @@
                     <input type="text" placeholder="인증코드 입력" id="authCode" name="authCode" class="input-field" required>
                 </div>
                 <div class="common-button" id="check-auth-code-button">
-                    <button type="submit" class="button-text">인증코드 확인</button>
+                    <button type="button" class="button-text">인증코드 확인</button>
                 </div>
 
                 <div class="signup-button">
