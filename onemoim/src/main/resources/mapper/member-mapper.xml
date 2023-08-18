@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hana.onemoim.member.mapper.MemberMapper">
+
+    <!-- 아이디 중복 확인 -->
+    <select id="countMemberByLoginId" resultType="int">
+        SELECT COUNT(*)
+        FROM member
+        WHERE login_id = #{loginId}
+    </select>
+
+    <!-- 회원가입  -->
+    <insert id="insertMember" parameterType="com.hana.onemoim.member.dto.SignupMemberDto">
+        INSERT INTO member
+        (login_id, gender_code, name, email, date_of_birth,
+         phone_number, password, simple_password, personal_id_number,
+         address, detail_address, zip_code)
+        values (#{loginId}, #{genderCode}, #{name}, #{email}, TO_DATE(#{dateOfBirth}, 'YYYYMMDD'),
+                #{phoneNumber}, #{password}, #{simplePassword}, #{personalIdNumber},
+                #{address}, #{detailAddress}, #{zipCode})
+    </insert>
+</mapper>

@@ -15,3 +15,14 @@ document.getElementById("memberPassword").addEventListener("invalid", function(e
         event.target.setCustomValidity(""); // 기본 메시지로 재설정
     }
 });
+
+// 회원가입 성공 alert
+document.addEventListener("DOMContentLoaded", function(event) {
+    // 현재 URL에서 'signupSuccess=true' 쿼리 매개변수 확인
+    const urlParams = new URLSearchParams(window.location.search);
+    const signupSuccess = urlParams.get('signupSuccess');
+
+    if (signupSuccess === "true") {
+        alert('회원가입이 완료되었습니다.');
+    }
+});

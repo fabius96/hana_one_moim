@@ -105,10 +105,12 @@ $('#send-auth-mail-button').click(function () {
 
 // 이메일 인증번호 체크 함수
 function chkEmailConfirm(data) {
-    $authCode.off("keyup").on("keyup", function () {  // .off()를 사용하여 이전 리스너를 제거
-        if (data != $authCode.val()) { //
+    $('#check-auth-code-button').on('click', function() {
+        const userEnteredCode = $('#authCode').val();
+
+        if (data != userEnteredCode) {
             alert('인증번호가 일치하지 않습니다.');
-        } else { // 아니면 중복아님
+        } else {
             alert('인증번호가 확인되었습니다.');
         }
     });

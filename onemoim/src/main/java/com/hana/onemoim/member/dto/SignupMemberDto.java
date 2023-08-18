@@ -5,12 +5,10 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class signupMemberDto {
+public class SignupMemberDto {
     private String loginId;
-    // ::TODO gender_code, 입력받은 personalIdNumber에 비즈니스 로직 추가 필요
-//    gender_code    NUMBER NOT NULL,
+    private int genderCode;
     private String name;
-    // ::TODO 입력 받은 후 형변환 필요
     private String dateOfBirth;
     private String phoneNumber;
     private String email;

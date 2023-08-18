@@ -27,7 +27,7 @@
                 </a>
             </p>
 
-            <form>
+            <form action="/signup" method="post">
                 <div class="id-input">
                     <label for="loginId" class="hidden-label">id :</label>
                     <input type="text" placeholder="아이디 입력 (6~20자리)" id="loginId" name="loginId" class="input-field"
@@ -67,7 +67,7 @@
 
                 <div class="date-of-birth-input">
                     <label for="dateOfBirth" class="hidden-label">date-of-birth :</label>
-                    <input type="text" placeholder="생년원일 입력" id="dateOfBirth"
+                    <input type="text" placeholder="생년원일 입력 (8자리)" id="dateOfBirth"
                            name="dateOfBirth"
                            class="input-field" required>
                 </div>
@@ -83,7 +83,7 @@
 
                 <div class="phone-number-input">
                     <label for="phoneNumber" class="hidden-label">phone-number :</label>
-                    <input type="text" placeholder="휴대전화 번호 입력('-'제외 11자리 입력)" id="phoneNumber"
+                    <input type="text" placeholder="휴대전화 번호 입력 ('-'제외 11자리 입력)" id="phoneNumber"
                            name="phoneNumber"
                            class="input-field" required>
                 </div>
@@ -93,7 +93,7 @@
                     <input type="text" placeholder="우편번호 입력" id="zipCode" name="zipCode" class="input-field" required>
                 </div>
                 <div class="common-button" id="find-zip-code-button" onclick="findZipCode()">
-                    <button type="submit" class="button-text">우편번호 찾기</button>
+                    <button type="button" class="button-text">우편번호 찾기</button>
                 </div>
 
                 <div class="address-input">

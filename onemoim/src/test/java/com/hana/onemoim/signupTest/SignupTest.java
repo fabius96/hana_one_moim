@@ -1,6 +1,6 @@
 package com.hana.onemoim.signupTest;
 
-import com.hana.onemoim.member.service.MemberService;
+import com.hana.onemoim.member.service.MemberServiceImpl;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +10,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class SignupTest {
 
     @Autowired
-    private MemberService memberService;
+    private MemberServiceImpl memberServiceImpl;
 
     @Test
     private void a() {
         String loginId = "11";
-        Assertions.assertThat(memberService.isLoginIdExist(loginId)).isTrue();
+        Assertions.assertThat(memberServiceImpl.isLoginIdExist(loginId)).isTrue();
     }
 }

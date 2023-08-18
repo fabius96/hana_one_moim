@@ -1,19 +1,16 @@
 package com.hana.onemoim.member.service;
 
-import com.hana.onemoim.member.mapper.MemberMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.hana.onemoim.member.dto.SignupMemberDto;
 
-@Service
-public class MemberService {
-    private final MemberMapper memberMapper;
+import java.sql.Date;
 
-    @Autowired
-    public MemberService(MemberMapper memberMapper) {
-        this.memberMapper = memberMapper;
-    }
+public interface MemberService {
+    // 아이디 중복 확인
+    boolean isLoginIdExist(String loginId);
 
-    public boolean isLoginIdExist(String loginId) {
-        return memberMapper.countMemberByLoginId(loginId) > 0;
-    }
+    // 회원가입
+    void signupMember(SignupMemberDto signupMemberDto);
+
+    // 성별 코드 분류
+    int classifyGender(String personalIdNumber);
 }
