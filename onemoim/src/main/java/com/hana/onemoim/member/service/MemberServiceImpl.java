@@ -1,5 +1,6 @@
 package com.hana.onemoim.member.service;
 
+import com.hana.onemoim.member.dto.MemberDto;
 import com.hana.onemoim.member.dto.SignupMemberDto;
 import com.hana.onemoim.member.mapper.MemberMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +38,11 @@ public class MemberServiceImpl implements MemberService {
         } else {
             return 11; // 여자
         }
+    }
+
+    // 로그인
+    public MemberDto signin(String loginId, String password){
+        MemberDto memberDto = memberMapper.findMemberByLoginIdAndPassword(loginId, password);
+        return memberDto;
     }
 }

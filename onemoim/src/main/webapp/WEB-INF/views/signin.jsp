@@ -7,6 +7,7 @@
     <title>signin</title>
     <link rel="stylesheet" href="/css/common.css">
     <link rel="stylesheet" href="/css/signin.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <div class="except-footer">
@@ -28,10 +29,10 @@
                 </a>
             </p>
 
-            <form>
+            <form action="/signin" method="post">
                 <div class="id-input">
-                    <label for="memberId" class="hidden-label">id :</label>
-                    <input type="text" placeholder="아이디 입력" id="memberId" name="memberId" class="input-field" required>
+                    <label for="loginId" class="hidden-label">id :</label>
+                    <input type="text" placeholder="아이디 입력" id="loginId" name="loginId" class="input-field" required>
                 </div>
 
                 <div class="password-input">

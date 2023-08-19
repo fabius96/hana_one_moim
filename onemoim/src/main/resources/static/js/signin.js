@@ -1,5 +1,5 @@
 // id input validator
-document.getElementById("memberId").addEventListener("invalid", function(event) {
+document.getElementById("loginId").addEventListener("invalid", function(event) {
     if (event.target.validity.valueMissing) {
         event.target.setCustomValidity("아이디를 입력하세요.");
     } else {
@@ -25,4 +25,27 @@ document.addEventListener("DOMContentLoaded", function(event) {
     if (signupSuccess === "true") {
         alert('회원가입이 완료되었습니다.');
     }
+});
+
+// 로그인
+$(document).ready(function() {
+    $('form').on('submit', function(e) {
+        e.preventDefault();
+
+        var formData = $(this).serialize();
+
+        $.ajax({
+            url: '/signin',
+            type: 'POST',
+            data: formData,
+            dataType: 'json',
+            success: function(response) {
+                if (response.status === 'error') {
+                    alert(response.message);
+                } else {
+                    window.location.href = '/after_login_main';
+                }
+            }
+        });
+    });
 });

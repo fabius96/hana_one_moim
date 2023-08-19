@@ -1,5 +1,6 @@
 package com.hana.onemoim.member.service;
 
+import com.hana.onemoim.member.dto.MemberDto;
 import com.hana.onemoim.member.dto.SignupMemberDto;
 
 import java.sql.Date;
@@ -13,4 +14,7 @@ public interface MemberService {
 
     // 성별 코드 분류
     int classifyGender(String personalIdNumber);
+
+    // 로그인
+    MemberDto signin(String loginId, String password);
 }
