@@ -143,7 +143,6 @@
 .menu-container {
     display: flex;
     justify-content: space-between;
-    width: 1440px;
     height: 150px;
     position: relative;
     overflow: hidden;
@@ -159,6 +158,14 @@
     align-items: center;
     margin-left: 100px;
     margin-right: 100px;
+}
+
+#first-menu {
+    margin-left: 200px;
+}
+
+#last-menu {
+    margin-right: 200px;
 }
 
 .menu-title {

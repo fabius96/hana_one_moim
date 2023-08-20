@@ -42,7 +42,7 @@
     </div>
 
     <div class="menu-container">
-        <div class="menu">
+        <div class="menu" id="first-menu">
             <a href="/" class="link-button">
                 <p class="menu-title">계좌조회</p>
                 <p class="menu-describe">계좌정보 거래내역 조회</p>
@@ -60,7 +60,7 @@
                 <p class="menu-describe">모임원들과 함께!</p>
             </a>
         </div>
-        <div class="menu">
+        <div class="menu" id="last-menu">
             <a href="/" class="link-button">
                 <p class="menu-title">오픈뱅킹</p>
                 <p class="menu-describe">내 모든 계좌를 한 눈에</p>

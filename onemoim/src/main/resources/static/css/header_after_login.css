@@ -40,26 +40,26 @@ p, a {
 }
 
 .menu-view {
-    left: 745px;
+    left: 995px;
 }
 
 .menu-transfer {
-    left: 865px;
+    left: 1115px;
 }
 
 .menu-products {
-    left: 985px;
+    left: 1235px;
 }
 
 .menu-moim {
-    left: 1125px;
+    left: 1375px;
 }
 
 .logout-text {
     width: 120px;
     height: 36px;
     position: absolute;
-    left: 1225px;
+    left: 1475px;
     top: 24px;
     font-size: 12px;
 }
