@@ -67,7 +67,7 @@ public class MemberController {
     }
 
     // 로그아웃
-    @DeleteMapping("/api/member/logout")
+    @GetMapping("/api/member/logout")
     public String logout(HttpSession httpSession){
         httpSession.removeAttribute("loggedInMember");
         return "redirect:/signin";
