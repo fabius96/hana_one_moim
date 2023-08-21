@@ -23,7 +23,7 @@
 }
 
 p, a {
-    font-family: Hana2-Regular, sans-serif;
+    font-family: Hana2-Medium, sans-serif;
 }
 
 .title {
@@ -56,10 +56,15 @@ p, a {
 }
 
 .logout-text {
+    font-family: Hana2CM, sans-serif;
     width: 120px;
     height: 36px;
     position: absolute;
     left: 1475px;
     top: 24px;
     font-size: 12px;
+}
+
+.member-name{
+    text-decoration: underline;
 }

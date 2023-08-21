@@ -27,25 +27,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }
 });
 
-// 로그인
-$(document).ready(function() {
-    $('form').on('submit', function(e) {
-        e.preventDefault();
-
-        var formData = $(this).serialize();
-
-        $.ajax({
-            url: '/signin',
-            type: 'POST',
-            data: formData,
-            dataType: 'json',
-            success: function(response) {
-                if (response.status === 'error') {
-                    alert(response.message);
-                } else {
-                    window.location.href = '/after_login_main';
-                }
-            }
-        });
-    });
+document.addEventListener("DOMContentLoaded", function() {
+    var errorMessage = document.getElementById("error-message").value;
+    if (errorMessage) {
+        alert(errorMessage);
+    }
 });

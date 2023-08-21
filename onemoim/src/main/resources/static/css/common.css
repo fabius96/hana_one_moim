@@ -13,6 +13,20 @@
 }
 
 @font-face {
+    font-family: Hana2CM;
+    src: url('../assets/fonts/Hana2CM.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Hana2-Medium;
+    src: url('../assets/fonts/Hana2-Medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
     font-family: Hana2-Bold;
     src: url('../assets/fonts/Hana2-Bold.ttf') format('truetype');
     font-weight: bold;

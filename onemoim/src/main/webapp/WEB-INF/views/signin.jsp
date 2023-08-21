@@ -10,9 +10,9 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
+<input type="hidden" id="error-message" value="${errorMessage}" />
 <div class="except-footer">
     <jsp:include page="includes/header_before_login.jsp"/>
-
     <div class="main-container">
         <div class="container">
             <p class="title">
@@ -51,9 +51,8 @@
             </div>
         </div>
     </div>
-
-
 </div>
+
 <jsp:include page="includes/footer.jsp"/>
 <script src="/js/signin.js"></script>
 </body>

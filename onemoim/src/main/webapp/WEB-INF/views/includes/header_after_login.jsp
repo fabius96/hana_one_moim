@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
+<!-- scriptlet -->
+<jsp:include page="scriptlet/header_after_login_scriptlet.jsp"/>
+<% String name = (String) request.getAttribute("name");%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +24,13 @@
     <a href="/" class="menu-text menu-transfer">이체</a>
     <a href="/" class="menu-text menu-products">금융상품</a>
     <a href="/" class="menu-text menu-moim">모임</a>
-    <p class="logout-text">김재영 님 <a href="/">로그아웃</a></p>
+    <p class="logout-text">
+        <% if (name != null && !name.equals("Unknown")) { %>
+        <a href="/" class="member-name"><%= name %> 님</a> <a href="/api/member/logout">로그아웃</a>
+        <% } else {  %>
+        <a href="signin">로그인</a>
+        <% } %>
+    </p>
 </div>
 
 </body>

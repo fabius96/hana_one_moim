@@ -7,17 +7,13 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class MainController {
 
-    @GetMapping(value = {"/before_login_main", "/"})
-    public ModelAndView showBeforeLoginMain() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("before_login_main");
-        return modelAndView;
+    @GetMapping({"/before_login_main", "/"})
+    public String showBeforeLoginMain() {
+        return "before_login_main";
     }
 
-    @GetMapping(value = "/after_login_main")
-    public ModelAndView showAfterLoginMain() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("after_login_main");
-        return modelAndView;
+    @GetMapping("/after_login_main")
+    public String showAfterLoginMain() {
+        return "after_login_main";
     }
 }
