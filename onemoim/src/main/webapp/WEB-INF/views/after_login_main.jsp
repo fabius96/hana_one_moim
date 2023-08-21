@@ -21,7 +21,7 @@
                     <span>새로운 모임을 만들고 </span><br/>
                     <span>친구들과 추억을 나눠보세요</span>
                 </p>
-                <p class="hash-tag">#가족 #학교, 동아리 #취미, 동호회 #스터디 #회사, 팀</p>
+                <p class="hash-tag">#가족  #학교, 동아리  #취미, 동호회  #스터디  #회사, 팀</p>
             </div>
 
             <div class="create-group-button">

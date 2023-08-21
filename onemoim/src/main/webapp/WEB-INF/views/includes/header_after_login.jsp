@@ -20,9 +20,9 @@
             <p class="title">하나원모임</p>
         </div>
     </a>
-    <a href="/" class="menu-text menu-view">조회</a>
+    <a href="account_info_hana" class="menu-text menu-view">조회</a>
     <a href="/" class="menu-text menu-transfer">이체</a>
-    <a href="/" class="menu-text menu-products">금융상품</a>
+    <a href="account_product_list" class="menu-text menu-products">금융상품</a>
     <a href="/" class="menu-text menu-moim">모임</a>
     <p class="logout-text">
         <% if (name != null && !name.equals("Unknown")) { %>
