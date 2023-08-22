@@ -41,12 +41,21 @@ $(document).ready(function () {
             $(".essential-terms-container .checkbox-toggle").attr("src", "img/checkbox_full.png");
         }
     });
+
     // 선택 약관 모두 체크하기
     $("#check-all-optional").on("click", function () {
         if (allOptionalChecked()) {
             $(".optional-terms-container .checkbox-toggle").attr("src", "img/checkbox_empty.png");
         } else {
             $(".optional-terms-container .checkbox-toggle").attr("src", "img/checkbox_full.png");
+        }
+    });
+
+    // form 제출 시 필수 약관 체크 확인
+    $("form").on("submit", function (event) {
+        if (!allEssentialChecked()) {
+            alert("모든 필수 약관에 동의해주세요.");
+            event.preventDefault();  // form 제출 중단
         }
     });
 });

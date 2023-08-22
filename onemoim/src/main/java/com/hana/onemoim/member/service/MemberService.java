@@ -3,8 +3,6 @@ package com.hana.onemoim.member.service;
 import com.hana.onemoim.member.dto.MemberDto;
 import com.hana.onemoim.member.dto.SignupMemberDto;
 
-import java.sql.Date;
-
 public interface MemberService {
     // 아이디 중복 확인
     boolean isLoginIdExist(String loginId);

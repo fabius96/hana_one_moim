@@ -6,10 +6,6 @@ import com.hana.onemoim.member.mapper.MemberMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-
 @Service
 public class MemberServiceImpl implements MemberService {
     private final MemberMapper memberMapper;

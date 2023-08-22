@@ -2,6 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hana.onemoim.member.mapper.MemberMapper">
 
+    <resultMap id="memberDto" type="com.hana.onemoim.member.dto.MemberDto">
+        <result column="member_id" property="memberId"/>
+        <result column="login_id" property="loginId"/>
+        <result column="gender_code" property="genderCode"/>
+        <result column="name" property="name"/>
+        <result column="email" property="email"/>
+        <result column="date_of_birth" property="dateOfBirth"/>
+        <result column="phone_number" property="phoneNumber"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="modified_at" property="modifiedAt"/>
+        <result column="password" property="password"/>
+        <result column="simple_password" property="simplePassword"/>
+        <result column="personal_id_number" property="personalIdNumber"/>
+        <result column="zip_code" property="zipCode"/>
+        <result column="address" property="address"/>
+        <result column="detail_address" property="detailAddress"/>
+    </resultMap>
+
     <!-- 아이디 중복 확인 -->
     <select id="countMemberByLoginId" resultType="int">
         SELECT COUNT(*)
@@ -20,7 +38,7 @@
                 #{address}, #{detailAddress}, #{zipCode})
     </insert>
 
-    <select id="findMemberByLoginIdAndPassword" resultType="com.hana.onemoim.member.dto.MemberDto">
+    <select id="findMemberByLoginIdAndPassword" resultMap="memberDto">
         SELECT *
         FROM member
         WHERE login_id = #{loginId}

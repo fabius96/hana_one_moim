@@ -34,7 +34,6 @@ public class MemberController {
     @PostMapping("/signin")
     public ModelAndView signin(String loginId, String memberPassword, HttpSession httpSession) {
         MemberDto memberDto = memberService.signin(loginId, memberPassword);
-        System.out.println(memberDto);
         ModelAndView modelAndView = new ModelAndView();
 
         if (memberDto != null) {
