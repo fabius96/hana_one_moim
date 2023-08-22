@@ -1,0 +1,200 @@
+.main-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.content-wrapper {
+    position: relative;
+    width: 540px;
+}
+
+.page-name {
+    position: absolute;
+    font-family: Hana2-Bold, sans-serif;
+    font-size: 24px;
+    padding-bottom: 20px;
+}
+
+.box-container {
+    width: 100%;
+    height: 690px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+    border: 0.5px solid #777;
+    margin-top: 70px; /* 여기에서 상단 여백을 100px로 설정 */
+}
+
+.header-text {
+    font-family: Hana2-Bold, sans-serif;
+    position: absolute;
+    left: 30px;
+    top: 5px;
+    font-size: 20px;
+    text-align: left;
+    color: #000;
+}
+
+.sub-text {
+    font-family: Hana2-Medium, sans-serif;
+    position: absolute;
+    left: 30px;
+    top: 75px;
+    font-size: 18px;
+    text-align: left;
+    color: #000;
+}
+
+.essential-terms-container, .optional-terms-container {
+    width: 100%;
+    position: absolute;
+    left: 30px;
+}
+
+.essential-terms-container img, .optional-terms-container img {
+    cursor: pointer;
+    width: 12px;
+    height: 12px;
+    object-fit: cover;
+}
+
+.essential-terms-titles p, .optional-terms-titles p {
+    font-family: Hana2-Medium, sans-serif;
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+.essential-terms {
+    position: absolute;
+    font-family: Hana2-Bold, sans-serif;
+    font-size: 18px;
+    top: 120px;
+}
+
+.essential-terms-title1 {
+    top: 160px;
+    position: absolute;
+    left: 2px;
+    display: flex;
+    align-items: center;
+}
+
+
+.essential-terms-title2 {
+    top: 185px;
+    position: absolute;
+    left: 2px;
+    display: flex;
+    align-items: center;
+}
+
+.essential-terms-title3 {
+    top: 210px;
+    position: absolute;
+    left: 2px;
+    display: flex;
+    align-items: center;
+}
+
+.essential-terms-title4 {
+    top: 235px;
+    position: absolute;
+    left: 2px;
+    display: flex;
+    align-items: center;
+}
+
+.essential-terms-title5 {
+    top: 260px;
+    position: absolute;
+    left: 2px;
+    display: flex;
+    align-items: center;
+}
+
+.essential-terms-title6 {
+    top: 285px;
+    position: absolute;
+    left: 2px;
+    display: flex;
+    align-items: center;
+}
+
+.essential-terms-title7 {
+    top: 310px;
+    position: absolute;
+    left: 2px;
+    display: flex;
+    align-items: center;
+}
+
+.optional-terms {
+    position: absolute;
+    font-family: Hana2-Bold, sans-serif;
+    font-size: 18px;
+    top: 345px;
+}
+
+.optional-terms-title1 {
+    top: 385px;
+    position: absolute;
+    left: 2px;
+    display: flex;
+    align-items: center;
+}
+
+.essential-terms-box, .optional-terms-box, .submit-box {
+    cursor: pointer;
+    width: 330px;
+    height: 50px;
+    position: absolute;
+    left: 105px;
+    overflow: hidden;
+}
+
+.essential-terms-box p, .optional-terms-box p, .submit-box p {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    width: 100%; /* 전체 box를 차지하도록 설정 */
+    height: 42px;
+    position: absolute;
+    top: 4px;
+    left: unset;
+    font-size: 14px;
+    color: #fff;
+}
+
+.essential-terms-box p {
+    font-family: Hana2-Medium, sans-serif;
+    color: #2e354f;
+}
+
+
+.checkbox-img {
+    cursor: pointer;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    object-fit: cover;
+}
+
+.essential-terms-box {
+    background: #ffffff;
+    top: 470px;
+    border: 1px solid #2e354f;
+}
+
+.optional-terms-box {
+    background: #2e354f;
+    top: 530px;
+}
+
+.submit-box {
+    background: #008375;
+    top: 590px;
+}

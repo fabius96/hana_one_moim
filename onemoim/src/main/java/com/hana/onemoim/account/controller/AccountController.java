@@ -2,6 +2,8 @@ package com.hana.onemoim.account.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class AccountController {
@@ -14,7 +16,16 @@ public class AccountController {
 
     // 금융상품
     @GetMapping("/account_product_list")
-    public String showAccountProductList(){
+    public String showAccountProductList() {
         return "account_product_list";
+    }// 금융상품
+
+    // 금융상품 개설
+    @GetMapping("/account_opening")
+    public ModelAndView openAccount(@RequestParam String productname){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("productName", productname);
+        modelAndView.setViewName("account_opening");
+        return modelAndView;
     }
 }
