@@ -42,6 +42,6 @@ public class AccountController {
                               @RequestParam String simplePassword,
                               @RequestParam String accountNickname) {
         accountService.openAccount(memberId, simplePassword, accountNickname);
-        return "account_info_hana";
+        return "redirect:/account_info_hana?accountOpenSuccess=true";
     }
 }

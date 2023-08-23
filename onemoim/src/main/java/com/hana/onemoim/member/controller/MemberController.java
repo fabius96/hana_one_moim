@@ -25,7 +25,7 @@ public class MemberController {
     }
 
 
-    @GetMapping( "/signin")
+    @GetMapping("/signin")
     public String showSignin() {
         return "signin";
     }
@@ -53,9 +53,15 @@ public class MemberController {
 
     // 회원가입
     @PostMapping("/signup")
-    public String registerMember(SignupMemberDto signupMemberDto) {
+    public ModelAndView registerMember(SignupMemberDto signupMemberDto) {
         memberService.signupMember(signupMemberDto);
-        return "redirect:/signin?signupSuccess=true";
+        return new ModelAndView("signup-ok");
+    }
+
+    // 회원가입 완료 페이지
+    @GetMapping("/signup-ok")
+    public String showSignupOk() {
+        return "signup-ok";
     }
 
     // 아이디 중복 확인
@@ -67,7 +73,7 @@ public class MemberController {
 
     // 로그아웃
     @GetMapping("/api/member/logout")
-    public String logout(HttpSession httpSession){
+    public String logout(HttpSession httpSession) {
         httpSession.removeAttribute("loggedInMember");
         return "redirect:/signin";
     }

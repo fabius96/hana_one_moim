@@ -11,10 +11,10 @@
 </head>
 
 <body>
-
-<div class="except-footer">
-    <jsp:include page="includes/header_after_login.jsp"/>
-</div>
+    <div class="except-footer">
+        <jsp:include page="includes/header_after_login.jsp"/>
+    </div>
     <jsp:include page="includes/footer.jsp"/>
+    <script src="/js/account_info_hana.js"></script>
 </body>
 </html>
