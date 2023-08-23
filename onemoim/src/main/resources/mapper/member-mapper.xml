@@ -33,7 +33,7 @@
         (login_id, gender_code, name, email, date_of_birth,
          phone_number, password, simple_password, personal_id_number,
          address, detail_address, zip_code)
-        values (#{loginId}, #{genderCode}, #{name}, #{email}, TO_DATE(#{dateOfBirth}, 'YYYYMMDD'),
+        values (#{loginId}, #{genderCode}, #{name}, #{email}, TO_DATE(#{dateOfBirth}, 'YYMMDD'),
                 #{phoneNumber}, #{password}, #{simplePassword}, #{personalIdNumber},
                 #{address}, #{detailAddress}, #{zipCode})
     </insert>

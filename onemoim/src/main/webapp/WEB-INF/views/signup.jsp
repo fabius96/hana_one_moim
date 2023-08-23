@@ -67,7 +67,7 @@
 
                 <div class="date-of-birth-input">
                     <label for="dateOfBirth" class="hidden-label">date-of-birth :</label>
-                    <input type="text" placeholder="생년원일 입력 (8자리)" id="dateOfBirth"
+                    <input type="text" placeholder="생년원일 입력 (6자리)" id="dateOfBirth"
                            name="dateOfBirth"
                            class="input-field" required>
                 </div>
