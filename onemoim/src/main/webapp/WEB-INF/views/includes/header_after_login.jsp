@@ -14,13 +14,13 @@
 <body>
 
 <div class="header">
-    <a href="after_login_main" class="link-button">
+    <a href="/account/after-login-main" class="link-button">
         <div class="logo-container">
-            <img src="img/hana_logo.png" alt="하나금융로고"/>
+            <img src="<%= request.getContextPath() %>/img/hana_logo.png" alt="하나금융로고"/>
             <p class="title">하나원모임</p>
         </div>
     </a>
-    <a href="/account_info_hana" class="menu-text menu-view">조회</a>
+    <a href="/account/account-info-hana" class="menu-text menu-view">조회</a>
     <a href="/" class="menu-text menu-transfer">이체</a>
     <a href="/account_product_list" class="menu-text menu-products">금융상품</a>
     <a href="/" class="menu-text menu-moim">모임</a>
@@ -28,7 +28,7 @@
         <% if (name != null && !name.equals("Unknown")) { %>
         <a href="/" class="member-name"><%= name %> 님</a> <a href="/api/member/logout">로그아웃</a>
         <% } else {  %>
-        <a href="signin">로그인</a>
+        <a href="/signin">로그인</a>
         <% } %>
     </p>
 </div>

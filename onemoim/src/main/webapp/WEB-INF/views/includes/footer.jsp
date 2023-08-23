@@ -10,7 +10,7 @@
 
 <body>
 <div class="footer-container">
-    <img src="img/hana_logo.png" alt="Hana Logo" class="footer-logo"/>
+    <img src="<%= request.getContextPath() %>/img/hana_logo.png" alt="Hana Logo" class="footer-logo"/>
 
     <p class="footer-text">
         <span>COPYRIGHT | ⓒ 2023 Jaeyoung Kim. All rights Reserved.</span><br/><br/>
@@ -18,10 +18,10 @@
         <span class="spacer"> </span>
         <span class="divider">|</span>
         <a href="https://github.com/fabius96/hana_one_moim" class="link-button">
-            <span><img src="img/github.png" alt="Github Icon" class="footer-icon github"/></span>
+            <span><img src="<%= request.getContextPath() %>/img/github.png" alt="Github Icon" class="footer-icon github"/></span>
         </a>
         <a href="mailto:jy0511_@naver.com" class="link-button">
-            <span><img src="img/mail.png" alt="Mail Icon" class="footer-icon mail"/></span>
+            <span><img src="<%= request.getContextPath() %>/img/mail.png" alt="Mail Icon" class="footer-icon mail"/></span>
         </a>
     </p>
 </div>

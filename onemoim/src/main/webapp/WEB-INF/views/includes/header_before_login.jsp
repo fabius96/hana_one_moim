@@ -15,7 +15,7 @@
 <div class="header">
     <a href="/" class="link-button">
         <div class="logo-container">
-            <img src="img/hana_logo.png" alt="하나금융로고"/>
+            <img src="<%= request.getContextPath() %>/img/hana_logo.png" alt="하나금융로고"/>
             <p>하나원모임</p>
         </div>
     </a>

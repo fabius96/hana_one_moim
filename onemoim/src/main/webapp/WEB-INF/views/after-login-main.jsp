@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <title>after_login_main</title>
     <link rel="stylesheet" href="/css/common.css">
-    <link rel="stylesheet" href="/css/after_login_main.css">
+    <link rel="stylesheet" href="/css/after-login-main.css">
 </head>
 <body>
 
@@ -16,7 +16,7 @@
 
         <div class="sub-container">
             <div class="container">
-                <img src="img/main.png"/>
+                <img src="<%= request.getContextPath() %>/img/main.png"/>
                 <p class="slogan">
                     <span>새로운 모임을 만들고 </span><br/>
                     <span>친구들과 추억을 나눠보세요</span>
@@ -43,7 +43,7 @@
 
     <div class="menu-container">
         <div class="menu" id="first-menu">
-            <a href="/" class="link-button">
+            <a href="/account/account-info-hana" class="link-button">
                 <p class="menu-title">계좌조회</p>
                 <p class="menu-describe">계좌정보 거래내역 조회</p>
             </a>

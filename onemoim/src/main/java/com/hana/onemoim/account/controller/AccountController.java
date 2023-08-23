@@ -15,10 +15,16 @@ public class AccountController {
         this.accountService = accountService;
     }
 
+    // 로그인 후 메인
+    @GetMapping("/account/after-login-main")
+        public String showAfterLoginMain(){
+        return "after-login-main";
+    }
+
     // 계좌조회 - 하나은행
-    @GetMapping("/account_info_hana")
+    @GetMapping("/account/account-info-hana")
     public String showAccountInfoHana() {
-        return "account_info_hana";
+        return "/account/account-info-hana";
     }
 
     // 금융상품
@@ -42,6 +48,12 @@ public class AccountController {
                               @RequestParam String simplePassword,
                               @RequestParam String accountNickname) {
         accountService.openAccount(memberId, simplePassword, accountNickname);
-        return "redirect:/account_info_hana?accountOpenSuccess=true";
+        return "/account/account-opening-ok";
+    }
+
+    // 금융상품 개설 성공
+    @GetMapping("/account/account-opening-ok")
+    public String showAccountOpeningOk(){
+        return "/account/account-opening-ok";
     }
 }
