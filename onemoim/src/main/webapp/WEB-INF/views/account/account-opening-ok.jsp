@@ -27,10 +27,10 @@
         </div>
         <div class="button-container">
             <button type="button" class="inquiry-button">
-                <a href="/account-info-hana" class="button-text">계좌조회</a>
+                <a href="${pageContext.request.contextPath}/account/account-info-hana" class="button-text">계좌조회</a>
             </button>
             <button type="button" class="main-button">
-                <a href="/account/after-login-main" class="button-text">메인</a>
+                <a href="${pageContext.request.contextPath}/account/after-login-main" class="button-text">메인</a>
             </button>
         </div>
     </div>

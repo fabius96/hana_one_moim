@@ -20,7 +20,7 @@
                 <span class="red-text">원</span><span class="green-text">모임</span>
             </p>
 
-            <img src="img/character1.png" class="character-image">
+            <img src="<%= request.getContextPath() %>/img/character1.png" class="character-image">
 
             <p class="member-text">
                 <span>아직 회원이 아니신가요? </span>
@@ -46,7 +46,7 @@
             </form>
 
             <div class="kakao-login-button">
-                <img src="img/speech-bubble.png" class="icon-image">
+                <img src="<%= request.getContextPath() %>/img/speech-bubble.png" class="icon-image">
                 <p class="button-text">카카오 로그인</p>
             </div>
         </div>

@@ -4,6 +4,7 @@ import com.hana.onemoim.account.dto.AccountDto;
 import com.hana.onemoim.account.mapper.AccountMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Random;
 
 @Service
@@ -39,5 +40,12 @@ public class AccountServiceImpl implements AccountService {
         }
 
         return accountNumber.toString();
+    }
+
+    // 전체계좌조회
+
+    @Override
+    public List<AccountDto> findAllAccount(String personalIdNumber) {
+        return accountMapper.selectAccountByPersonalIdNumber(personalIdNumber);
     }
 }

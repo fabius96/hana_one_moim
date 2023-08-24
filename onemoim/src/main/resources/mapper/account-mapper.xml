@@ -2,6 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hana.onemoim.account.mapper.AccountMapper">
 
+    <resultMap id="accountDto" type="com.hana.onemoim.account.dto.AccountDto">
+        <result column="account_number" property="accountNumber"/>
+        <result column="bank_code" property="bankCode"/>
+        <result column="account_status_code" property="accountStatusCode"/>
+        <result column="account_type_code" property="accountTypeCode"/>
+        <result column="balance" property="balance"/>
+        <result column="openbankig_registered" property="openbankingRegistered"/>
+        <result column="account_nickname" property="accountNickname"/>
+    </resultMap>
+
     <!-- 계좌개설  -->
     <insert id="insertAccount" parameterType="com.hana.onemoim.account.dto.AccountDto">
         INSERT INTO member_account_info
@@ -10,4 +20,14 @@
         values (#{accountNumber}, #{memberId}, #{bankCode}, #{accountStatusCode},
                 #{accountTypeCode}, #{accountPassword},#{accountNickname})
     </insert>
+
+    <!-- 전체계좌조회 -->
+    <select id="selectAccountByPersonalIdNumber" parameterType="String" resultMap="accountDto">
+        SELECT *
+        FROM member_account_info
+        WHERE member_id IN (
+            SELECT member_id
+            FROM member
+            WHERE personal_id_number = #{personalIdNumber})
+    </select>
 </mapper>

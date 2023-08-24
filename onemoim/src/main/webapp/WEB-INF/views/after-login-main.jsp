@@ -43,7 +43,7 @@
 
     <div class="menu-container">
         <div class="menu" id="first-menu">
-            <a href="/account/account-info-hana" class="link-button">
+            <a href="${pageContext.request.contextPath}/account-info-hana" class="link-button">
                 <p class="menu-title">계좌조회</p>
                 <p class="menu-describe">계좌정보 거래내역 조회</p>
             </a>

@@ -1,11 +1,16 @@
 package com.hana.onemoim.account.controller;
 
+import com.hana.onemoim.account.dto.AccountDto;
 import com.hana.onemoim.account.service.AccountService;
+import com.hana.onemoim.member.dto.MemberDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 public class AccountController {
@@ -23,8 +28,20 @@ public class AccountController {
 
     // 계좌조회 - 하나은행
     @GetMapping("/account/account-info-hana")
-    public String showAccountInfoHana() {
-        return "/account/account-info-hana";
+    public ModelAndView showAccountInfoHana(HttpSession httpSession) {
+        ModelAndView modelAndView = new ModelAndView("signin");
+        MemberDto memberDto = (MemberDto)httpSession.getAttribute("loggedInMember");
+
+        if(memberDto==null){
+            return modelAndView;
+        }
+        modelAndView.setViewName("account/account-info-hana");
+        List<AccountDto> accountDtoList = accountService.findAllAccount(memberDto.getPersonalIdNumber());
+        for(AccountDto accountDto : accountDtoList){
+            System.out.println(accountDto.getAccountNickname());
+        }
+        modelAndView.addObject("accounts", accountDtoList);
+        return modelAndView;
     }
 
     // 금융상품
