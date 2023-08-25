@@ -68,7 +68,27 @@
     outline: none;
     transition: background-color 0.2s;
     color: #ffffff;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 30px;
 }
+
+.account-nickname-text {
+    flex: 1; /* 남은 공간을 모두 차지하도록 설정 */
+    display: inline-block;
+}
+
+.button-img {
+    width: 15px;
+    height: 10px;
+    object-fit: cover;
+
+    margin-right: 10px;
+    margin-top: 1px;
+}
+
 
 .accordion-button:hover {
     background-color: #2e354f;

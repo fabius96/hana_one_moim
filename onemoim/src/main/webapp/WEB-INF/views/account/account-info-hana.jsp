@@ -12,7 +12,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
-<body>
+<body data-context-path="${pageContext.request.contextPath}">
 <div class="except-footer">
     <jsp:include page="../includes/header_after_login.jsp"/>
 
@@ -32,7 +32,8 @@
                             <button class="accordion-button" type="button"
                                     onclick="toggleCustomAccordion('collapse${status.index}')" aria-expanded="true"
                                     aria-controls="collapse${status.index}">
-                                    ${account.accountNickname}
+                                <span class="account-nickname-text"> ${account.accountNickname}</span>
+                                <img src="${pageContext.request.contextPath}/img/arrow_under.png" class="button-img">
                             </button>
                         </h2>
                         <div id="collapse${status.index}" class="accordion-collapse collapse"
@@ -41,8 +42,12 @@
                                 <p><span class="account-number">${account.accountNumber}</span></p>
                                 <div class="accordion-body-right">
                                     <p class="money">${account.balance}원</p>
-                                    <button class="transaction-button"><a href="${pageContext.request.contextPath}/account/account-transfer-hana" class="button-text">이체</a></button>
-                                    <button class="history-button"><a href="${pageContext.request.contextPath}/account/account-transaction" class="button-text">거래내역</a></button>
+                                    <button class="transaction-button"><a
+                                            href="${pageContext.request.contextPath}/account/account-transfer-hana"
+                                            class="button-text">이체</a></button>
+                                    <button class="history-button"><a
+                                            href="${pageContext.request.contextPath}/account/account-transaction"
+                                            class="button-text">거래내역</a></button>
                                 </div>
                             </div>
                         </div>

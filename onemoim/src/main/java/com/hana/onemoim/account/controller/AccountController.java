@@ -37,9 +37,6 @@ public class AccountController {
         }
         modelAndView.setViewName("account/account-info-hana");
         List<AccountDto> accountDtoList = accountService.findAllAccount(memberDto.getPersonalIdNumber());
-        for(AccountDto accountDto : accountDtoList){
-            System.out.println(accountDto.getAccountNickname());
-        }
         modelAndView.addObject("accounts", accountDtoList);
         return modelAndView;
     }
