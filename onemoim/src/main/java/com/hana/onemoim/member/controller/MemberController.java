@@ -35,6 +35,7 @@ public class MemberController {
     public ModelAndView signin(String loginId, String memberPassword, HttpSession httpSession) {
         MemberDto memberDto = memberService.signin(loginId, memberPassword);
         ModelAndView modelAndView = new ModelAndView();
+        httpSession.getAttribute("destination");
 
         if (memberDto != null) {
             httpSession.setAttribute("loggedInMember", memberDto);

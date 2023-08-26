@@ -40,3 +40,20 @@ function formatAccountNumber(accountNumber) {
         accountNumber.substring(9);
 }
 
+// DOM 숫자 포맷 적용
+$(document).ready(function() {
+    // .money 엘리먼트들을 순회
+    $(".money").each(function() {
+        // 현재 엘리먼트의 텍스트 값을 가져와 숫자만 추출
+        let currentBalance = $(this).text().replace(/[^\d]/g, '');
+
+        // 포맷팅된 숫자를 다시 설정
+        $(this).text(formatNumberWithCommas(currentBalance) + '원');
+    });
+});
+
+// 숫자 포맷 함수
+function formatNumberWithCommas(number) {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+

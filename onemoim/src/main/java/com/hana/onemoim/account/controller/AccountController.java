@@ -4,6 +4,7 @@ import com.hana.onemoim.account.dto.AccountDto;
 import com.hana.onemoim.account.service.AccountService;
 import com.hana.onemoim.member.dto.MemberDto;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,7 +23,7 @@ public class AccountController {
 
     // 로그인 후 메인
     @GetMapping("/account/after-login-main")
-        public String showAfterLoginMain(){
+    public String showAfterLoginMain() {
         return "after-login-main";
     }
 
@@ -30,11 +31,12 @@ public class AccountController {
     @GetMapping("/account/account-info-hana")
     public ModelAndView showAccountInfoHana(HttpSession httpSession) {
         ModelAndView modelAndView = new ModelAndView("signin");
-        MemberDto memberDto = (MemberDto)httpSession.getAttribute("loggedInMember");
+        MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
 
-        if(memberDto==null){
+        if (memberDto == null) {
             return modelAndView;
         }
+
         modelAndView.setViewName("account/account-info-hana");
         List<AccountDto> accountDtoList = accountService.findAllAccount(memberDto.getPersonalIdNumber());
         modelAndView.addObject("accounts", accountDtoList);
@@ -49,9 +51,9 @@ public class AccountController {
 
     // 금융상품 개설페이지
     @GetMapping("/account_opening")
-    public ModelAndView openAccount(@RequestParam String productname) {
+    public ModelAndView openAccount(@RequestParam String productName) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("productName", productname);
+        modelAndView.addObject("productName", productName);
         modelAndView.setViewName("account_opening");
         return modelAndView;
     }
@@ -67,7 +69,22 @@ public class AccountController {
 
     // 금융상품 개설 성공
     @GetMapping("/account/account-opening-ok")
-    public String showAccountOpeningOk(){
+    public String showAccountOpeningOk() {
         return "/account/account-opening-ok";
+    }
+
+    // 계좌이체(하나은행)
+    @GetMapping("/account/account-transfer-hana")
+    public ModelAndView showAccountTransferHana(HttpSession httpSession) {
+        ModelAndView modelAndView = new ModelAndView("signin");
+        MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
+
+        if (memberDto != null) {
+            List<AccountDto> accountDtoList = accountService.findAllAccount(memberDto.getPersonalIdNumber());
+            modelAndView.addObject("accounts", accountDtoList);
+            modelAndView.setViewName("account/account-transfer-hana");
+        }
+
+        return modelAndView;
     }
 }

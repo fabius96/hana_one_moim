@@ -43,13 +43,13 @@
 
     <div class="menu-container">
         <div class="menu" id="first-menu">
-            <a href="${pageContext.request.contextPath}/account-info-hana" class="link-button">
+            <a href="${pageContext.request.contextPath}/account/account-info-hana" class="link-button">
                 <p class="menu-title">계좌조회</p>
                 <p class="menu-describe">계좌정보 거래내역 조회</p>
             </a>
         </div>
         <div class="menu">
-            <a href="/" class="link-button">
+            <a href="${pageContext.request.contextPath}/account/account-transfer-hana" class="link-button">
                 <p class="menu-title">계좌이체</p>
                 <p class="menu-describe">계좌이체부터 회비납부까지!</p>
             </a>

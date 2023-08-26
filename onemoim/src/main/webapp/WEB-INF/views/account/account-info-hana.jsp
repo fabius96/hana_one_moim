@@ -42,9 +42,10 @@
                                 <p><span class="account-number">${account.accountNumber}</span></p>
                                 <div class="accordion-body-right">
                                     <p class="money">${account.balance}원</p>
-                                    <button class="transaction-button"><a
-                                            href="${pageContext.request.contextPath}/account/account-transfer-hana"
-                                            class="button-text">이체</a></button>
+                                    <button class="transaction-button">
+                                        <a href="${pageContext.request.contextPath}/account/account-transfer-hana?accountNumber=${account.accountNumber}"
+                                           class="button-text">이체</a>
+                                    </button>
                                     <button class="history-button"><a
                                             href="${pageContext.request.contextPath}/account/account-transaction"
                                             class="button-text">거래내역</a></button>

@@ -1,0 +1,67 @@
+// 드롭다운
+$(document).ready(function() {
+    // 초기 설정: 선택된 계좌 값이 있다면 해당 값을 설정
+    if ($('.selected-account').length) {
+        updateDropdownValue($('.selected-account'), 'account');
+    }
+
+    // 드롭다운 클릭 시 동작: 메뉴를 토글하고 화살표 방향을 변경
+    $('body').on('click', '.dropdown-container', function() {
+        const contextPath = document.body.getAttribute('data-context-path');
+        const arrowImg = $(this).find('.dropdown-arrow');
+        $(this).find('.dropdown-menu').toggle();
+
+        if ($(this).find('.dropdown-menu').is(':visible')) {
+            arrowImg.attr('src', contextPath + '/img/arrow_upper.png');
+        } else {
+            arrowImg.attr('src', contextPath + '/img/arrow_under.png');
+        }
+    });
+
+    // 드롭다운 항목 클릭 시 동작: 드롭다운 타입을 확인하고 값을 업데이트
+    $('body').on('click', '.dropdown-item', function() {
+        const dropdownType = $(this).closest('.dropdown-container').data('dropdown');
+        updateDropdownValue(this, dropdownType);
+    });
+});
+
+// 드롭다운 값을 업데이트하는 함수
+function updateDropdownValue(element, dropdownType) {
+    let parentDropdown = $(element).closest('.dropdown-container');
+
+    // 계좌 타입의 드롭다운일 경우
+    if (dropdownType === "account") {
+        const selectedBalance = $(element).data('balance');
+        $('.money').text(formatNumberWithCommas(selectedBalance) + '원');
+        let accountNumber = $(element).find('.account-number').text().trim();
+        parentDropdown.find('.dropdown-title').text(accountNumber);
+    }
+    // 은행 타입의 드롭다운일 경우
+    else if (dropdownType === "bank") {
+        let bankName = $(element).text().trim();
+        parentDropdown.find('.dropdown-title').text(bankName);
+    }
+}
+
+// 숫자 포맷 함수
+function formatNumberWithCommas(number) {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+// 계좌번호 포맷 생성 및 적용
+document.addEventListener('DOMContentLoaded', function () {
+    let accountNumbers = document.querySelectorAll('.account-number');
+    accountNumbers.forEach(element => {
+        let formattedNumber = formatAccountNumber(element.textContent.trim());
+        element.textContent = formattedNumber;
+    });
+});
+
+function formatAccountNumber(accountNumber) {
+    if (accountNumber.length !== 14) {
+        return accountNumber;
+    }
+    return accountNumber.substring(0, 3) + "  -  " +
+        accountNumber.substring(3, 9) + "  -  " +
+        accountNumber.substring(9);
+}
