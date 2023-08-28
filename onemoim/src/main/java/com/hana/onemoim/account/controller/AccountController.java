@@ -1,11 +1,13 @@
 package com.hana.onemoim.account.controller;
 
 import com.hana.onemoim.account.dto.AccountDto;
+import com.hana.onemoim.account.dto.AccountTransferDto;
 import com.hana.onemoim.account.service.AccountService;
 import com.hana.onemoim.member.dto.MemberDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -73,7 +75,7 @@ public class AccountController {
         return "/account/account-opening-ok";
     }
 
-    // 계좌이체(하나은행)
+    // 계좌이체(하나은행) 페이지 조회
     @GetMapping("/account/account-transfer-hana")
     public ModelAndView showAccountTransferHana(HttpSession httpSession) {
         ModelAndView modelAndView = new ModelAndView("signin");
@@ -83,8 +85,21 @@ public class AccountController {
             List<AccountDto> accountDtoList = accountService.findAllAccount(memberDto.getPersonalIdNumber());
             modelAndView.addObject("accounts", accountDtoList);
             modelAndView.setViewName("account/account-transfer-hana");
+            System.out.println(memberDto.getSimplePassword());
         }
 
         return modelAndView;
+    }
+
+    // 계좌이체
+    @PostMapping("/account/account-transfer-hana")
+    public String accountTransfer(@ModelAttribute AccountTransferDto accountTransferDto){
+//        String accountNumber = accountTransferDto.getAccountNumber();
+//        String accountPassword = accountTransferDto.getAccountPassword();
+//        int amount  = accountTransferDto.getAmount();
+//        String otherAccountNumber = accountTransferDto.getOtherAccountNumber();
+//        String memo = accountTransferDto.getMemo();
+        accountService.accountTransfer(accountTransferDto);
+        return "/account/account-transfer-ok";
     }
 }

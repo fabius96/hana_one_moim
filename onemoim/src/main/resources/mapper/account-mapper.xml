@@ -16,18 +16,38 @@
     <insert id="insertAccount" parameterType="com.hana.onemoim.account.dto.AccountDto">
         INSERT INTO member_account_info
         (account_number, member_id, bank_code, account_status_code, account_type_code,
-         account_password,account_nickname)
+         account_password, account_nickname)
         values (#{accountNumber}, #{memberId}, #{bankCode}, #{accountStatusCode},
-                #{accountTypeCode}, #{accountPassword},#{accountNickname})
+                #{accountTypeCode}, #{accountPassword}, #{accountNickname})
     </insert>
 
     <!-- 전체계좌조회 -->
     <select id="selectAccountByPersonalIdNumber" parameterType="String" resultMap="accountDto">
         SELECT *
         FROM member_account_info
-        WHERE member_id IN (
-            SELECT member_id
-            FROM member
-            WHERE personal_id_number = #{personalIdNumber})
+        WHERE member_id IN (SELECT member_id
+                            FROM member
+                            WHERE personal_id_number = #{personalIdNumber})
+    </select>
+
+    <!-- 계좌이체(출금) -->
+    <update id="updateAccountBalance" parameterType="com.hana.onemoim.account.dto.AccountTransferDto">
+        UPDATE member_account_info
+        SET balance = balance - #{amount}
+        WHERE account_number = #{accountNumber}
+    </update>
+
+    <!-- 계좌이체(입금) -->
+    <update id="updateAccountBalanceDeposit" parameterType="com.hana.onemoim.account.dto.AccountTransferDto">
+        UPDATE member_account_info
+        SET balance = balance + #{amount}
+        WHERE account_number = #{otherAccountNumber}
+    </update>
+
+    <!-- 잔액조회 -->
+    <select id="selectBalance" parameterType="com.hana.onemoim.account.dto.AccountTransferDto" resultType="int">
+        SELECT balance
+        FROM member_account_info
+        WHERE account_number = #{accountNumber}
     </select>
 </mapper>

@@ -24,7 +24,7 @@
 
             <p class="member-text">
                 <span>아직 회원이 아니신가요? </span>
-                <a href="signup">
+                <a href="${pageContext.request.contextPath}/signup">
                     <span class="link-text">회원가입</span>
                 </a>
             </p>

@@ -1,6 +1,7 @@
 package com.hana.onemoim.account.service;
 
 import com.hana.onemoim.account.dto.AccountDto;
+import com.hana.onemoim.account.dto.AccountTransferDto;
 
 import java.util.List;
 
@@ -11,4 +12,7 @@ public interface AccountService {
 
     // 전체 계좌 조회
     List<AccountDto> findAllAccount(String personalIdNumber);
+
+    // 계좌이체
+    void accountTransfer(AccountTransferDto accountTransferDto);
 }
