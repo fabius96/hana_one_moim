@@ -43,9 +43,9 @@ public class AccountController {
     }
 
     // 금융상품
-    @GetMapping("/account_product_list")
+    @GetMapping("/account/account-product-list")
     public String showAccountProductList() {
-        return "account_product_list";
+        return "/account/account-product-list";
     }// 금융상품
 
     // 금융상품 개설페이지

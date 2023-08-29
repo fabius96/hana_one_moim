@@ -1,6 +1,9 @@
 .main-container {
-    padding-left: 120px;
+    padding-left: 50px;
     padding-bottom: 50px;
+
+    max-width: 1200px;   /* max-width 추가 */
+    margin: 0 auto;     /* 중앙 정렬 */
 }
 
 .page-name {
@@ -29,11 +32,11 @@
 }
 
 .sub-container {
-    padding-left: 50px;
+    padding-left:15px;
 }
 
 .product-list {
-    width: 1400px;
+    width: 1050px;
     position: relative;
     overflow: hidden;
 }
@@ -41,15 +44,16 @@
 .product-item {
     height: 100px;
     position: relative;
+
+    border-bottom: 0.5px solid #777777;
 }
 
 .product-info {
-    width: 1275px;
+    width: 900px;
     height: 70px;
     position: relative;
 
     padding-bottom: 20px;
-    border-bottom: 0.5px solid #777777;
 }
 
 .product-name {
@@ -80,6 +84,6 @@
     font-size: 16px;
     text-align: center;
     position: absolute;
-    left: 1150px;
+    left: 920px;
     top: 30%;
 }

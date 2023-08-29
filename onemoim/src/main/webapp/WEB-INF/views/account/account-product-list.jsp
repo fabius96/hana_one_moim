@@ -4,15 +4,15 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>account_product_list</title>
+    <title>금융상품</title>
     <link rel="stylesheet" href="/css/common.css">
-    <link rel="stylesheet" href="/css/account_product_list.css">
+    <link rel="stylesheet" href="/css/account-product-list.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
 <div class="except-footer">
-    <jsp:include page="includes/header_after_login.jsp"/>
+    <jsp:include page="../includes/header_after_login.jsp"/>
 
     <div class="main-container">
         <p class="page-name">금융상품</p>
@@ -82,7 +82,7 @@
 
     </div>
 </div>
-<jsp:include page="includes/footer.jsp"/>
-<script src="/js/account_product_list.js"></script>
+<jsp:include page="../includes/footer.jsp"/>
+<script src="/js/account-product-list.js"></script>
 </body>
 </html>
