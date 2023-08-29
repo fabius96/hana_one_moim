@@ -94,12 +94,13 @@ public class AccountController {
     // 계좌이체
     @PostMapping("/account/account-transfer-hana")
     public String accountTransfer(@ModelAttribute AccountTransferDto accountTransferDto){
-//        String accountNumber = accountTransferDto.getAccountNumber();
-//        String accountPassword = accountTransferDto.getAccountPassword();
-//        int amount  = accountTransferDto.getAmount();
-//        String otherAccountNumber = accountTransferDto.getOtherAccountNumber();
-//        String memo = accountTransferDto.getMemo();
         accountService.accountTransfer(accountTransferDto);
+        return "/account/account-transfer-ok";
+    }
+
+    // 계좌이체 완료 페이지 조회
+    @GetMapping("/account/account-transfer-ok")
+    public String showAccountTransferOk(){
         return "/account/account-transfer-ok";
     }
 }
