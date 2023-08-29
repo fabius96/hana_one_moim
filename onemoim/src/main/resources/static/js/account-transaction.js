@@ -8,8 +8,15 @@ $(document).ready(function () {
 
 // 초기 설정: 선택된 계좌 값이 있다면 해당 값을 설정
 function initializeDropdown() {
-    if ($('.selected-account').length) {
-        updateDropdownValue($('.selected-account'), 'account');
+    const selectedAccount = $('.selected-account');
+
+    if (selectedAccount.length) {
+        updateDropdownValue(selectedAccount, 'account');
+
+        // 선택된 계좌 번호로 거래 내역 가져오기
+        const rawAccountNumber = selectedAccount.find('.account-number').text().trim();
+        const selectedAccountNumber = cleanAccountNumber(rawAccountNumber);
+        fetchAccountTransactions(selectedAccountNumber);
     }
 }
 

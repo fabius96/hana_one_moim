@@ -115,6 +115,7 @@ public class AccountController {
         return modelAndView;
     }
 
+    // 계좌이체 내역 조회
     @GetMapping("/api/account/get-account-transaction")
     @ResponseBody
     public List<MemberTransactionDto> getAccountTransaction(AccountDto accountDto){

@@ -1,6 +1,6 @@
 $(document).ready(function() {
     // 약관 클릭 이벤트
-    $(".optional-terms-title p").on("click", function() {
+    $(".optional-terms-title1 p").on("click", function() {
         $("#modal-electronic-transactions8").fadeIn();
     });
 

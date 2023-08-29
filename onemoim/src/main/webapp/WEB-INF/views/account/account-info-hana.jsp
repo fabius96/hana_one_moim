@@ -47,8 +47,8 @@
                                            class="button-text">이체</a>
                                     </button>
                                     <button class="history-button"><a
-                                            href="${pageContext.request.contextPath}/account/account-transaction"
-                                            class="button-text">거래내역</a></button>
+                                            href="${pageContext.request.contextPath}/account/account-transaction?accountNumber=${account.accountNumber}"
+                                            class="button-text">거래내역</a>
                                 </div>
                             </div>
                         </div>
