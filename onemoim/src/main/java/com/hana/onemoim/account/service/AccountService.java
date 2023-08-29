@@ -2,6 +2,7 @@ package com.hana.onemoim.account.service;
 
 import com.hana.onemoim.account.dto.AccountDto;
 import com.hana.onemoim.account.dto.AccountTransferDto;
+import com.hana.onemoim.account.dto.MemberTransactionDto;
 
 import java.util.List;
 
@@ -15,4 +16,7 @@ public interface AccountService {
 
     // 계좌이체
     void accountTransfer(AccountTransferDto accountTransferDto);
+
+    // 거래내역 조회
+    List<MemberTransactionDto> findTransactionByAccountNumber(AccountDto accountDto);
 }

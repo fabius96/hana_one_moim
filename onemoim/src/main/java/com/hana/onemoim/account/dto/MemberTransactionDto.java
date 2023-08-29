@@ -3,8 +3,6 @@ package com.hana.onemoim.account.dto;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.sql.Date;
-
 @Getter
 @Setter
 public class MemberTransactionDto {
@@ -14,6 +12,6 @@ public class MemberTransactionDto {
     private int transactionTypeCode;
     private int transactionAmount;
     private int balanceAfterTransaction;
-    private Date transactionTime;
+    private String transactionTime;
     private String memo;
 }

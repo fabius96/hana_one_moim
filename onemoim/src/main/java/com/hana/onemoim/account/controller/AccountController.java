@@ -2,13 +2,11 @@ package com.hana.onemoim.account.controller;
 
 import com.hana.onemoim.account.dto.AccountDto;
 import com.hana.onemoim.account.dto.AccountTransferDto;
+import com.hana.onemoim.account.dto.MemberTransactionDto;
 import com.hana.onemoim.account.service.AccountService;
 import com.hana.onemoim.member.dto.MemberDto;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
@@ -84,7 +82,6 @@ public class AccountController {
             List<AccountDto> accountDtoList = accountService.findAllAccount(memberDto.getPersonalIdNumber());
             modelAndView.addObject("accounts", accountDtoList);
             modelAndView.setViewName("account/account-transfer-hana");
-            System.out.println(memberDto.getSimplePassword());
         }
 
         return modelAndView;
@@ -101,5 +98,32 @@ public class AccountController {
     @GetMapping("/account/account-transfer-ok")
     public String showAccountTransferOk(){
         return "/account/account-transfer-ok";
+    }
+
+    // 거래내역 조회 페이지 조회
+    @GetMapping("/account/account-transaction")
+    public ModelAndView showAccountTransaction(HttpSession httpSession){
+        ModelAndView modelAndView = new ModelAndView("signin");
+        MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
+
+        if (memberDto != null) {
+            List<AccountDto> accountDtoList = accountService.findAllAccount(memberDto.getPersonalIdNumber());
+            modelAndView.addObject("accounts", accountDtoList);
+            modelAndView.setViewName("account/account-transaction");
+        }
+
+        return modelAndView;
+    }
+
+    @GetMapping("/api/account/get-account-transaction")
+    @ResponseBody
+    public List<MemberTransactionDto> getAccountTransaction(AccountDto accountDto){
+        System.out.println(accountDto.getAccountNumber());
+        List<MemberTransactionDto> memberTransactionDtoList =
+                accountService.findTransactionByAccountNumber(accountDto);
+        for(MemberTransactionDto dto : memberTransactionDtoList){
+            System.out.println(dto.getTransactionTypeCode());
+        }
+        return memberTransactionDtoList;
     }
 }

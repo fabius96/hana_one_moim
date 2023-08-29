@@ -82,12 +82,23 @@ public class AccountServiceImpl implements AccountService {
 
     private void createTransaction(AccountTransferDto accountTransferDto, int transactionType, int balanceAfterTransaction) {
         MemberTransactionDto transactionDto = new MemberTransactionDto();
-        transactionDto.setAccountNumber(accountTransferDto.getAccountNumber());
-        transactionDto.setOtherAccountNumber(accountTransferDto.getOtherAccountNumber());
+        if (transactionType == 50) {
+            transactionDto.setAccountNumber(accountTransferDto.getOtherAccountNumber());
+            transactionDto.setOtherAccountNumber(accountTransferDto.getAccountNumber());
+        } else {
+            transactionDto.setAccountNumber(accountTransferDto.getAccountNumber());
+            transactionDto.setOtherAccountNumber(accountTransferDto.getOtherAccountNumber());
+        }
         transactionDto.setTransactionTypeCode(transactionType);  // 거래 유형 설정
         transactionDto.setTransactionAmount(accountTransferDto.getAmount());  // 거래 금액 설정
         transactionDto.setBalanceAfterTransaction(balanceAfterTransaction);  // 거래 후 잔액 설정
         transactionDto.setMemo(accountTransferDto.getMemo());
         transactionMapper.insertTransaction(transactionDto); // 거래 기록 삽입
+    }
+
+    // 거래내역조회
+    @Override
+    public List<MemberTransactionDto> findTransactionByAccountNumber(AccountDto accountDto) {
+        return transactionMapper.selectTransactionByAccountNumber(accountDto);
     }
 }
