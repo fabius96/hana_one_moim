@@ -1,4 +1,4 @@
-package com.hana.onemoim.transaction.dto;
+package com.hana.onemoim.account.dto;
 
 import lombok.Getter;
 import lombok.Setter;

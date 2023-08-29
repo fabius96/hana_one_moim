@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>account_info_hana</title>
+    <title>계좌이체성공</title>
     <link rel="stylesheet" href="/css/common.css">
     <link rel="stylesheet" href="/css/account-opening-ok.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

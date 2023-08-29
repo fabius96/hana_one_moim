@@ -1,6 +1,6 @@
-package com.hana.onemoim.transaction.mapper;
+package com.hana.onemoim.account.mapper;
 
-import com.hana.onemoim.transaction.dto.MemberTransactionDto;
+import com.hana.onemoim.account.dto.MemberTransactionDto;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

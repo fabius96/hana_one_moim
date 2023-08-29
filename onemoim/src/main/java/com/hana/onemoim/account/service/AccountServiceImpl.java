@@ -3,8 +3,8 @@ package com.hana.onemoim.account.service;
 import com.hana.onemoim.account.dto.AccountDto;
 import com.hana.onemoim.account.dto.AccountTransferDto;
 import com.hana.onemoim.account.mapper.AccountMapper;
-import com.hana.onemoim.transaction.dto.MemberTransactionDto;
-import com.hana.onemoim.transaction.mapper.TransactionMapper;
+import com.hana.onemoim.account.dto.MemberTransactionDto;
+import com.hana.onemoim.account.mapper.TransactionMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
