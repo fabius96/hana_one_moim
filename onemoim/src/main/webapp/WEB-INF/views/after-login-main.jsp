@@ -21,7 +21,7 @@
                     <span>새로운 모임을 만들고 </span><br/>
                     <span>친구들과 추억을 나눠보세요</span>
                 </p>
-                <p class="hash-tag">#가족  #학교, 동아리  #취미, 동호회  #스터디  #회사, 팀</p>
+                <p class="hash-tag">#가족 #학교, 동아리 #취미, 동호회 #스터디 #회사, 팀</p>
             </div>
 
             <div class="create-group-button">
@@ -30,7 +30,7 @@
 
             <div class="boxes-container">
                 <div class="big-link-button" id="link-button-group">
-                    <button type="submit" class="link-button-text" id="link-button-text-group">모임</button>
+                    <button type="button" class="link-button-text" id="link-button-text-group" onclick="location.href='${pageContext.request.contextPath}/gathering/gathering-info'">모임</button>
                 </div>
 
                 <div class="big-link-button" id="link-button-openbanking">
@@ -55,7 +55,7 @@
             </a>
         </div>
         <div class="menu">
-            <a href="/" class="link-button">
+            <a href="${pageContext.request.contextPath}/gathering/gathering-info" class="link-button">
                 <p class="menu-title">모임</p>
                 <p class="menu-describe">모임원들과 함께!</p>
             </a>

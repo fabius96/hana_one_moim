@@ -23,7 +23,7 @@
     <a href="/account/account-info-hana" class="menu-text menu-view">조회</a>
     <a href="/account/account-transfer-hana" class="menu-text menu-transfer">이체</a>
     <a href="/account/account-product-list" class="menu-text menu-products">금융상품</a>
-    <a href="/" class="menu-text menu-moim">모임</a>
+    <a href="/gathering/gathering-info" class="menu-text menu-moim">모임</a>
     <p class="logout-text">
         <% if (name != null && !name.equals("Unknown")) { %>
         <a href="/" class="member-name"><%= name %> 님</a> <a href="/api/member/logout">로그아웃</a>
