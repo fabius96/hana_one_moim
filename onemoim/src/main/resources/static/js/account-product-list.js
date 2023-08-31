@@ -2,6 +2,6 @@
 $(document).ready(function() {
     $('.open-button').click(function() {
         var productName = $(this).data('product-name');
-        window.location.href = '/account_opening?productName=' + encodeURIComponent(productName);
+        window.location.href = '/account/account-opening?productName=' + encodeURIComponent(productName);
     });
 });

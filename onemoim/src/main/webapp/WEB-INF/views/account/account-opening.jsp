@@ -7,19 +7,19 @@
     <meta charset="UTF-8">
     <title>account_info_hana</title>
     <link rel="stylesheet" href="/css/common.css">
-    <link rel="stylesheet" href="/css/account_opening.css">
+    <link rel="stylesheet" href="/css/account-opening.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
-<body>
+<body data-context-path="${pageContext.request.contextPath}">
 
 <div class="except-footer">
-    <jsp:include page="includes/header_after_login.jsp"/>
+    <jsp:include page="../includes/header_after_login.jsp"/>
 
     <div class="main-container">
         <div class="content-wrapper">
             <p class="page-name">통장개설</p>
-            <form action="/account_opening" method="post">
+            <form action="/account/account-opening" method="post">
 
                 <input type="hidden" name="memberId" value="${loggedInMember.memberId}"/>
                 <input type="hidden" name="simplePassword" value="${loggedInMember.simplePassword}"/>
@@ -36,31 +36,38 @@
                         <p class="essential-terms">필수약관</p>
                         <div class="essential-terms-titles">
                             <div class="essential-terms-title1">
-                                <img src="img/checkbox_empty.png" class="checkbox-toggle" alt="checkbox_empty"/>
+                                <img src="${pageContext.request.contextPath}/img/checkbox_empty.png"
+                                     class="checkbox-toggle" alt="checkbox_empty"/>
                                 <p>[필수]전자금융거래 기본약관</p>
                             </div>
                             <div class="essential-terms-title2">
-                                <img src="img/checkbox_empty.png" class="checkbox-toggle" alt="checkbox_empty"/>
+                                <img src="${pageContext.request.contextPath}/img/checkbox_empty.png"
+                                     class="checkbox-toggle" alt="checkbox_empty"/>
                                 <p>[필수]개인(신용)정보 수집, 이용 동의서[비여신 금융거래]</p>
                             </div>
                             <div class="essential-terms-title3">
-                                <img src="img/checkbox_empty.png" class="checkbox-toggle" alt="checkbox_empty"/>
+                                <img src="${pageContext.request.contextPath}/img/checkbox_empty.png"
+                                     class="checkbox-toggle" alt="checkbox_empty"/>
                                 <p>[필수]KBC 올크레딧 서비스 이용약관(신상정보서비스)</p>
                             </div>
                             <div class="essential-terms-title4">
-                                <img src="img/checkbox_empty.png" class="checkbox-toggle" alt="checkbox_empty"/>
+                                <img src="${pageContext.request.contextPath}/img/checkbox_empty.png"
+                                     class="checkbox-toggle" alt="checkbox_empty"/>
                                 <p>[필수]하나은행 통장 상품 설명서</p>
                             </div>
                             <div class="essential-terms-title5">
-                                <img src="img/checkbox_empty.png" class="checkbox-toggle" alt="checkbox_empty"/>
+                                <img src="${pageContext.request.contextPath}/img/checkbox_empty.png"
+                                     class="checkbox-toggle" alt="checkbox_empty"/>
                                 <p>[필수]하나은행 통장 특약</p>
                             </div>
                             <div class="essential-terms-title6">
-                                <img src="img/checkbox_empty.png" class="checkbox-toggle" alt="checkbox_empty"/>
+                                <img src="${pageContext.request.contextPath}/img/checkbox_empty.png"
+                                     class="checkbox-toggle" alt="checkbox_empty"/>
                                 <p>[필수]개인정보 제3자 제공 동의서</p>
                             </div>
                             <div class="essential-terms-title7">
-                                <img src="img/checkbox_empty.png" class="checkbox-toggle" alt="checkbox_empty"/>
+                                <img src="${pageContext.request.contextPath}/img/checkbox_empty.png"
+                                     class="checkbox-toggle" alt="checkbox_empty"/>
                                 <p>[필수]고유식별정보 수집, 이용 동의서</p>
                             </div>
                         </div>
@@ -69,7 +76,8 @@
                         <p class="optional-terms">선택약관</p>
                         <div class="optional-terms-titles">
                             <div class="optional-terms-title1">
-                                <img src="img/checkbox_empty.png" class="checkbox-toggle" alt="checkbox_empty"/>
+                                <img src="${pageContext.request.contextPath}/img/checkbox_empty.png"
+                                     class="checkbox-toggle" alt="checkbox_empty"/>
                                 <p>[선택]개인(신용)정보 수집, 이용, 제공 동의서[상품서비스 안내 등]</p>
                             </div>
                         </div>
@@ -90,15 +98,15 @@
     </div>
 
 </div>
-<jsp:include page="includes/account_opening_modal1.jsp"/>
-<jsp:include page="includes/account_opening_modal2.jsp"/>
-<jsp:include page="includes/account_opening_modal3.jsp"/>
-<jsp:include page="includes/account_opening_modal4.jsp"/>
-<jsp:include page="includes/account_opening_modal5.jsp"/>
-<jsp:include page="includes/account_opening_modal6.jsp"/>
-<jsp:include page="includes/account_opening_modal7.jsp"/>
-<jsp:include page="includes/account_opening_modal8.jsp"/>
-<jsp:include page="includes/footer.jsp"/>
-<script src="/js/account_opening.js"></script>
+<jsp:include page="../includes/account-opening-modal1.jsp"/>
+<jsp:include page="../includes/account-opening-modal2.jsp"/>
+<jsp:include page="../includes/account-opening-modal3.jsp"/>
+<jsp:include page="../includes/account-opening-modal4.jsp"/>
+<jsp:include page="../includes/account-opening-modal5.jsp"/>
+<jsp:include page="../includes/account-opening-modal6.jsp"/>
+<jsp:include page="../includes/account-opening-modal7.jsp"/>
+<jsp:include page="../includes/account-opening-modal8.jsp"/>
+<jsp:include page="../includes/footer.jsp"/>
+<script src="/js/account-opening.js"></script>
 </body>
 </html>

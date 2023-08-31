@@ -6,16 +6,16 @@
     <meta charset="UTF-8">
     <title>account_info_hana</title>
     <link rel="stylesheet" href="/css/common.css">
-    <link rel="stylesheet" href="/css/account_opening_modal.css">
+    <link rel="stylesheet" href="/css/account-opening-modal.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
-<div class="modal" id="modal-electronic-transactions4">
+<div class="modal" id="modal-electronic-transactions6">
     <div class="modal-content">
         <span class="close">&times;</span>
-        <p class="modal-title">하나은행 통장 상품 설명서</p>
-        <p>▣ 하나은행 통장 상품 설명서<br/>
+        <p class="modal-title">개인정보 제3자 제공 동의서</p>
+        <p>▣ 개인정보 제3자 제공 동의서<br/>
             제1조(목적)<br/>
             이 약관은 국민은행(이하 "은행"이라 합니다.)과 이용자 사이의 전자금융거래에 관한 기본적인 사항을 정함으로써, 거래의 신속하고 효율적인 처리를 도모하고 거래당사자 상호간의 이해관계를 합리적으로
             조정하는 것을 목적으로 합니다.<br/>
@@ -286,6 +286,6 @@
         </div>
     </div>
 </div>
-<script src="/js/account_opening_modal4.js"></script>
+<script src="/js/account-opening-modal6.js"></script>
 </body>
 </html>

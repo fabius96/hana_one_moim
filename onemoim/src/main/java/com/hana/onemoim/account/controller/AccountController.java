@@ -48,16 +48,16 @@ public class AccountController {
     }// 금융상품
 
     // 금융상품 개설페이지
-    @GetMapping("/account_opening")
+    @GetMapping("/account/account-opening")
     public ModelAndView openAccount(@RequestParam String productName) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("productName", productName);
-        modelAndView.setViewName("account_opening");
+        modelAndView.setViewName("/account/account-opening");
         return modelAndView;
     }
 
     // 금융상품 개설
-    @PostMapping("/account_opening")
+    @PostMapping("/account/account-opening")
     public String makeAccount(@RequestParam int memberId,
                               @RequestParam String simplePassword,
                               @RequestParam String accountNickname) {
