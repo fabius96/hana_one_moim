@@ -61,7 +61,7 @@
                         <input class="startDay" type="date" name="startDay"
                                placeholder="모임 회비 납부 시작일 선택">
                     </div>
-                    <p class="payment-cycle-info">납주 주기 선택</p>
+                    <p class="payment-cycle-info">납부 주기 선택</p>
                     <div class="input-container-7">
                         <label>
                             <input class="paymentCycle" type="radio" name="paymentCycle" value="year">

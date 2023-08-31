@@ -47,6 +47,16 @@
     align-items: center;
 }
 
+.transaction-button {
+    width: 100px;
+    height: 40px;
+    background-color: #2E354F;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .main-button {
     width: 100px;
     height: 40px;

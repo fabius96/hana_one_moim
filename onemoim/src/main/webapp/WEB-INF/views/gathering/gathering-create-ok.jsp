@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>계좌이체성공</title>
+    <title>모임개설성공</title>
     <link rel="stylesheet" href="/css/common.css">
     <link rel="stylesheet" href="/css/account-opening-ok.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -29,9 +29,6 @@
             <button type="button" class="inquiry-button">
                 <a href="${pageContext.request.contextPath}/account/account-transfer-hana" class="button-text">계좌이체</a>
             </button>
-            <button type="button" class="transaction-button">
-                <a href="${pageContext.request.contextPath}/account/account-transaction" class="button-text">거래내역</a>
-            </button>
             <button type="button" class="main-button">
                 <a href="${pageContext.request.contextPath}/account/after-login-main" class="button-text">메인</a>
             </button>
@@ -39,6 +36,6 @@
     </div>
 
 </div>
-<jsp:include page="../includes/footer.jsp"/>
+    <jsp:include page="../includes/footer.jsp"/>
 </body>
 </html>
