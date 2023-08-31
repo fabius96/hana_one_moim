@@ -58,22 +58,22 @@
                     </div>
                     <p class="start-day-info">모임 회비 납부 시작일 선택</p>
                     <div class="input-container-6">
-                        <input class="startDay" type="date" name="startDay"
+                        <input class="startDate" type="date" name="startDate"
                                placeholder="모임 회비 납부 시작일 선택">
                     </div>
                     <p class="payment-cycle-info">납부 주기 선택</p>
                     <div class="input-container-7">
                         <label>
-                            <input class="paymentCycle" type="radio" name="paymentCycle" value="year">
+                            <input class="paymentCycleCode" type="radio" name="paymentCycleCode" value="60">
                             연
                         </label>
                         <label>
-                            <input class="paymentCycle" type="radio" name="paymentCycle" value="month">
-                            월
+                            <input class="paymentCycleCode" type="radio" name="paymentCycleCode" value="61">
+                            분기
                         </label>
                         <label>
-                            <input class="paymentCycle" type="radio" name="paymentCycle" value="day">
-                            일
+                            <input class="paymentCycleCode" type="radio" name="paymentCycleCode" value="62">
+                            월
                         </label>
                     </div>
 

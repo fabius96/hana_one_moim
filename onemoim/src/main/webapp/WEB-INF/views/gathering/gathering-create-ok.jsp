@@ -18,16 +18,16 @@
     <div class="main-container">
         <div class="content-container">
             <div class="text-container">
-                <p class="signup_ok_title">계좌이체가 완료되었습니다.</p>
+                <p class="signup_ok_title">모임개설이 완료되었습니다.</p>
                 <p class="signup_ok_content">
-                    계좌이체가 성공적으로 완료되었습니다.<br/>
+                    모임개설이 성공적으로 완료되었습니다.<br/>
                     추가적인 작업이 필요하시다면 아래 버튼을 선택해주세요.
                 </p>
             </div>
         </div>
         <div class="button-container">
             <button type="button" class="inquiry-button">
-                <a href="${pageContext.request.contextPath}/account/account-transfer-hana" class="button-text">계좌이체</a>
+                <a href="${pageContext.request.contextPath}/gathering/gathering-info" class="button-text">모임조회</a>
             </button>
             <button type="button" class="main-button">
                 <a href="${pageContext.request.contextPath}/account/after-login-main" class="button-text">메인</a>

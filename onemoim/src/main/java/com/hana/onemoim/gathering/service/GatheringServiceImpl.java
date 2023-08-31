@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class GatheringServiceImpl implements GatheringService {
 
-    private GatheringMapper gatheringMapper;
+    private final GatheringMapper gatheringMapper;
 
     public GatheringServiceImpl(GatheringMapper gatheringMapper) {
         this.gatheringMapper = gatheringMapper;
@@ -16,6 +16,8 @@ public class GatheringServiceImpl implements GatheringService {
     // 모임 개설
     @Override
     public void createrGathering(GatheringCreateDto gatheringCreateDto) {
-        gatheringMapper.insertGathering(gatheringCreateDto);
+        gatheringCreateDto.setGatheringId(gatheringMapper.getNextSeq()+1); // 모임 ID 확인 및 설정
+        gatheringMapper.insertGathering(gatheringCreateDto); // 모임 개설
+        gatheringMapper.insertGatheringPaymentRule(gatheringCreateDto); // 모임회비규칙 생성
     }
 }

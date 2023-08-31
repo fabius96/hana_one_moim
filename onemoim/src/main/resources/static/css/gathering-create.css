@@ -102,7 +102,7 @@
     margin-right: 5px; /* 라디오 버튼 우측 간격 조절 */
 }
 
-.gatheringName, .gatheringDescription, .gatheringImage, .paymentAmount, .paymentDay, .startDay {
+.gatheringName, .gatheringDescription, .gatheringImage, .paymentAmount, .paymentDay, .startDate {
     width: 100%;
     border: none;
     font-family: Hana2-Bold, sans-serif;
@@ -115,7 +115,7 @@
     height: 95%;
 }
 
-.startDay {
+.startDate {
     color: #777777;
     width: 385px;
 }

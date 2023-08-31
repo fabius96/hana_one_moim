@@ -2,12 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hana.onemoim.gathering.mapper.GatheringMapper">
 
+    <!-- gathering_id 가져오기 -->
+    <select id="getNextSeq" resultType="int">
+        SELECT gathering_seq.NEXTVAL
+        FROM DUAL
+    </select>
 
     <!-- 모임개설  -->
     <insert id="insertGathering" parameterType="com.hana.onemoim.gathering.dto.GatheringCreateDto">
         INSERT INTO gathering
-        (gathering_leader_id, gathering_name, gathering_description)
+            (gathering_leader_id, gathering_name, gathering_description)
         values (#{gatheringLeaderId}, #{gatheringName}, #{gatheringDescription})
+    </insert>
+
+    <!-- 모임회비규칙 생성 -->
+    <insert id="insertGatheringPaymentRule" parameterType="com.hana.onemoim.gathering.dto.GatheringCreateDto">
+        INSERT INTO gathering_payment_rule
+            (gathering_id, payment_amount, payment_day, start_date, payment_cycle_code)
+        values (#{gatheringId}, #{paymentAmount}, #{paymentDay}, #{startDate}, #{paymentCycleCode})
     </insert>
 
 </mapper>

@@ -9,6 +9,7 @@ import java.sql.Date;
 @Setter
 public class GatheringCreateDto {
 
+    private int gatheringId; // 모임ID
     private int gatheringLeaderId; // 모임장ID
     private String gatheringName; //모임명
     private String gatheringDescription; // 모임설명
