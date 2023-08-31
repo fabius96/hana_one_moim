@@ -3,29 +3,37 @@ package com.hana.onemoim.gathering.service;
 import com.hana.onemoim.common.dto.ImageDto;
 import com.hana.onemoim.common.mapper.ImageMapper;
 import com.hana.onemoim.gathering.dto.GatheringCreateDto;
+import com.hana.onemoim.gathering.dto.GatheringDto;
 import com.hana.onemoim.gathering.mapper.GatheringMapper;
+import com.hana.onemoim.member.mapper.MemberMapper;
 import com.hana.onemoim.util.S3uploader;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class GatheringServiceImpl implements GatheringService {
 
     private final GatheringMapper gatheringMapper;
+    private final MemberMapper memberMapper;
     private final ImageMapper imageMapper;
     private final S3uploader s3uploader;
 
     // 모임 개설
+    @Transactional
     @Override
     public void createGathering(GatheringCreateDto gatheringCreateDto, MultipartFile file) {
-        gatheringCreateDto.setGatheringId(gatheringMapper.getNextSeq()+1); // 모임 ID 확인 및 설정
+        gatheringCreateDto.setGatheringId(gatheringMapper.getNextSeq() + 1); // 모임 ID 확인 및 설정
         gatheringMapper.insertGathering(gatheringCreateDto); // 모임 개설
+        gatheringMapper.insertGatheringMember(gatheringCreateDto); // 모임대표(모임원 가입)
 
-        if(file != null){
+        // 모임대표이미지 삽입
+        if (file != null) {
             try {
                 String url = s3uploader.Uploader(file);
                 ImageDto imageDto = ImageDto.builder()
@@ -41,5 +49,16 @@ public class GatheringServiceImpl implements GatheringService {
         }
 
         gatheringMapper.insertGatheringPaymentRule(gatheringCreateDto); // 모임회비규칙 생성
+    }
+
+    // 내가 가입한 모임 조회
+    @Override
+    public List<GatheringDto> findAllGatheringByMemberId(int memberId) {
+        List<GatheringDto> gatheringDtoList = gatheringMapper.selectGroupByMemberId(memberId);
+        for (GatheringDto gatheringDto : gatheringDtoList) {
+            gatheringDto.setGatheringLeaderName(memberMapper.selectNameByLeaderId(gatheringDto.getGatheringLeaderId()));
+            gatheringDto.setGatheringCoverImageUrl(gatheringMapper.selectGatheringCoverImage(gatheringDto.getGatheringId()));
+        }
+        return gatheringDtoList;
     }
 }

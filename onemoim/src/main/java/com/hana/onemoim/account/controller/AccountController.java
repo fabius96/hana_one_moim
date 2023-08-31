@@ -5,6 +5,7 @@ import com.hana.onemoim.account.dto.AccountTransferDto;
 import com.hana.onemoim.account.dto.MemberTransactionDto;
 import com.hana.onemoim.account.service.AccountService;
 import com.hana.onemoim.member.dto.MemberDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -13,12 +14,10 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
+@RequiredArgsConstructor
 public class AccountController {
-    private AccountService accountService;
+    private final AccountService accountService;
 
-    public AccountController(AccountService accountService) {
-        this.accountService = accountService;
-    }
 
     // 로그인 후 메인
     @GetMapping("/account/after-login-main")

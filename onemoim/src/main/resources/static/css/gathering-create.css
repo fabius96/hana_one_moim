@@ -112,7 +112,10 @@
 }
 
 .gatheringDescription {
-    height: 95%;
+    height: 98%;
+    resize: vertical;
+    overflow: auto;
+    width: 98%;
 }
 
 .startDate {

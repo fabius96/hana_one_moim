@@ -44,4 +44,12 @@
         WHERE login_id = #{loginId}
           AND password = #{password}
     </select>
+
+    <!-- 모임장 이름 조회 -->
+    <select id="selectNameByLeaderId" parameterType="int" resultType="String">
+        SELECT name
+        FROM member
+        WHERE member_id = #{gatheringLeaderID}
+    </select>
+
 </mapper>

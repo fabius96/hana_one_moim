@@ -20,7 +20,7 @@
             <p class="page-name">모임개설</p>
             <form action="/gathering/gathering-create" method="post" enctype="multipart/form-data">
 
-            <div class="box-container">
+                <div class="box-container">
                     <p class="header-text">
                         하나원모임<br>신규 모임 개설
                     </p>
@@ -33,8 +33,8 @@
                                placeholder="모임 이름 입력 (20자리 이내로 입력해주세요)" required>
                     </div>
                     <div class="input-container-2">
-                        <input class="gatheringDescription" type="text" name="gatheringDescription"
-                               placeholder="모임설명 (모임에 대한 간단한 소개문구를 입력해주세요)" required>
+                        <textarea class="gatheringDescription" name="gatheringDescription" rows="4"
+                                  placeholder="모임설명 (모임에 대한 간단한 소개문구를 입력해주세요)" required></textarea>
                     </div>
                     <div class="input-container-3">
                         <label for="gatheringImage" class="file-upload-label">

@@ -2,6 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hana.onemoim.gathering.mapper.GatheringMapper">
 
+    <resultMap id="gatheringDto" type="com.hana.onemoim.gathering.dto.GatheringDto">
+        <result column="gathering_id" property="gatheringId"/>
+        <result column="gathering_leader_id" property="gatheringLeaderId"/>
+        <result column="gathering_name" property="gatheringName"/>
+        <result column="gathering_description" property="gatheringDescription"/>
+    </resultMap>
+
     <!-- gathering_id 가져오기 -->
     <select id="getNextSeq" resultType="int">
         SELECT gathering_seq.NEXTVAL
@@ -18,8 +25,30 @@
     <!-- 모임회비규칙 생성 -->
     <insert id="insertGatheringPaymentRule" parameterType="com.hana.onemoim.gathering.dto.GatheringCreateDto">
         INSERT INTO gathering_payment_rule
-            (gathering_id, payment_amount, payment_day, start_date, payment_cycle_code)
+        (gathering_id, payment_amount, payment_day, start_date, payment_cycle_code)
         values (#{gatheringId}, #{paymentAmount}, #{paymentDay}, #{startDate}, #{paymentCycleCode})
     </insert>
 
+    <!-- 모임원 가입 -->
+    <insert id="insertGatheringMember" parameterType="com.hana.onemoim.gathering.dto.GatheringCreateDto">
+        INSERT INTO gathering_member
+            (gathering_id, member_id, member_name)
+        values (#{gatheringId}, #{memberId}, #{memberName})
+    </insert>
+
+    <!-- 가입한 모임 조회 -->
+    <select id="selectGroupByMemberId" parameterType="int"
+    resultMap="gatheringDto">
+        SELECT g.*
+        FROM gathering_member gm
+                 JOIN gathering g ON gm.gathering_id = g.gathering_id
+        WHERE gm.member_id = #{memberId}
+    </select>
+
+    <!-- 모임 대표 이미지 조회 -->
+    <select id="selectGatheringCoverImage" parameterType="int" resultType="String">
+        select image_url
+        FROM gathering_cover_image
+        WHERE gathering_id = ${gathering_id}
+    </select>
 </mapper>
