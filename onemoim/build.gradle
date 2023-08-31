@@ -54,6 +54,11 @@ dependencies {
 	// SMTP
 	implementation 'org.springframework.boot:spring-boot-starter-mail:2.7.2'
 
+	// S3
+	implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
+
+	// scalr(image resize)
+	implementation group: 'org.imgscalr', name: 'imgscalr-lib', version: '4.2'
 }
 
 

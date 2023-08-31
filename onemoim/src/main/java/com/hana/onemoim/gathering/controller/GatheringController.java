@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
@@ -48,11 +50,13 @@ public class GatheringController {
 
     // 모임 개설
     @PostMapping("/gathering/gathering-create")
-    public ModelAndView createGathering(HttpSession httpSession, @ModelAttribute GatheringCreateDto gatheringCreateDto) {
+    public ModelAndView createGathering(HttpSession httpSession,
+                                        @ModelAttribute GatheringCreateDto gatheringCreateDto,
+                                        @RequestParam("gatheringImage") MultipartFile file) {
         ModelAndView modelAndView = new ModelAndView("/gathering/gathering-create-ok");
         MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
         gatheringCreateDto.setGatheringLeaderId(memberDto.getMemberId());
-        gatheringService.createrGathering(gatheringCreateDto);
+        gatheringService.createGathering(gatheringCreateDto, file);
 
         return modelAndView;
     }

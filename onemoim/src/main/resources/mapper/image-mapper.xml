@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hana.onemoim.common.mapper.ImageMapper">
+
+    <!-- 모임대표이미지 저장  -->
+    <insert id="insertImage" parameterType="com.hana.onemoim.common.dto.ImageDto">
+        INSERT INTO gathering_cover_image
+        (gathering_id, image_url)
+        values (#{targetId}, #{imageUrl})
+    </insert>
+
+</mapper>

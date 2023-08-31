@@ -1,4 +1,4 @@
-package com.hana.onemoim.controller;
+package com.hana.onemoim.common.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

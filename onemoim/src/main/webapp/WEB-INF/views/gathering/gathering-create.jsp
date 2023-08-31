@@ -18,9 +18,9 @@
     <div class="main-container">
         <div class="content-wrapper">
             <p class="page-name">모임개설</p>
-            <form action="/gathering/gathering-create" method="post">
+            <form action="/gathering/gathering-create" method="post" enctype="multipart/form-data">
 
-                <div class="box-container">
+            <div class="box-container">
                     <p class="header-text">
                         하나원모임<br>신규 모임 개설
                     </p>
@@ -88,6 +88,6 @@
 
 </div>
 <jsp:include page="../includes/footer.jsp"/>
-<script src="/js/gathering-create.js"/>
+<script src="/js/gathering-create.js"></script>
 </body>
 </html>
