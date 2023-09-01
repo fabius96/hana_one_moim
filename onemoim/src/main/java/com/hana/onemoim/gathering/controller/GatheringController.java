@@ -97,4 +97,17 @@ public class GatheringController {
         gatheringService.createdGatheringCard(gatheringId, accountNumber, gatheringName);
         return modelAndView;
     }
+
+    // 모임카드혜택설정 페이지 조회
+    @GetMapping("/gathering/card-opening-setting")
+    public ModelAndView showCardOpeningSetting(HttpSession httpSession) {
+        ModelAndView modelAndView = new ModelAndView("/gathering/card-opening-setting");
+        MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
+
+        if (memberDto != null) {
+            modelAndView.setViewName("/gathering/card-opening-setting");
+        }
+
+        return modelAndView;
+    }
 }
