@@ -6,11 +6,13 @@ $(document).ready(function () {
         // 현재 슬라이더의 값을 표시하는 요소 선택
         let sliderValue = slider.nextElementSibling.querySelector("span");
         let benefitBox = slider.closest(".benefit-box");
+        let hiddenInput = slider.previousElementSibling;
 
         // 각 슬라이더에 대한 input 이벤트 리스너 추가
         slider.addEventListener("input", function () {
             // 슬라이더 값 표시
             sliderValue.textContent = slider.value;
+            hiddenInput.value = slider.value;
 
             // 슬라이더 진행률 계산
             let progress = (slider.value - slider.min) / (slider.max - slider.min) * 100;

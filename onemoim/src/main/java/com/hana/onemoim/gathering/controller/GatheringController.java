@@ -1,5 +1,6 @@
 package com.hana.onemoim.gathering.controller;
 
+import com.hana.onemoim.gathering.dto.CardBenefitWrapper;
 import com.hana.onemoim.gathering.dto.GatheringCreateDto;
 import com.hana.onemoim.gathering.dto.GatheringDto;
 import com.hana.onemoim.gathering.service.GatheringService;
@@ -88,13 +89,14 @@ public class GatheringController {
         return modelAndView;
     }
 
-    // 금융상품 개설
+    // 모임 카드 개설
     @PostMapping("/gathering/card-opening")
     public ModelAndView makeGatheringCard(@RequestParam int gatheringId,
                                           @RequestParam String accountNumber,
                                           @RequestParam String gatheringName) {
-        ModelAndView modelAndView = new ModelAndView("/gathering/gathering-create-ok");
-        gatheringService.createdGatheringCard(gatheringId, accountNumber, gatheringName);
+        ModelAndView modelAndView = new ModelAndView("/gathering/card-opening-setting");
+        int gatheringCardId = gatheringService.createdGatheringCard(gatheringId, accountNumber, gatheringName);
+        modelAndView.addObject("gatheringCardId", gatheringCardId);
         return modelAndView;
     }
 
@@ -109,5 +111,21 @@ public class GatheringController {
         }
 
         return modelAndView;
+    }
+
+    // 카드 혜택 설정
+    @PostMapping("/gathering/card-opening-setting")
+    public ModelAndView settingCardBenefit(@ModelAttribute CardBenefitWrapper cardBenefitWrapper,
+                                           @RequestParam int gatheringCardId,
+                                           HttpSession httpSession) {
+
+        ModelAndView modelAndView = new ModelAndView("/signin");
+        MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
+        if (memberDto != null){
+            modelAndView.setViewName("/gathering/gathering-create-ok");
+            gatheringService.settingCardBenefit(cardBenefitWrapper, gatheringCardId);
+        }
+
+            return modelAndView;
     }
 }

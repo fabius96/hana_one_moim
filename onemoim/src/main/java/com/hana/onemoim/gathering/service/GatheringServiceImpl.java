@@ -2,9 +2,7 @@ package com.hana.onemoim.gathering.service;
 
 import com.hana.onemoim.common.dto.ImageDto;
 import com.hana.onemoim.common.mapper.ImageMapper;
-import com.hana.onemoim.gathering.dto.GatheringCardDto;
-import com.hana.onemoim.gathering.dto.GatheringCreateDto;
-import com.hana.onemoim.gathering.dto.GatheringDto;
+import com.hana.onemoim.gathering.dto.*;
 import com.hana.onemoim.gathering.mapper.CardMapper;
 import com.hana.onemoim.gathering.mapper.GatheringMapper;
 import com.hana.onemoim.member.mapper.MemberMapper;
@@ -69,13 +67,16 @@ public class GatheringServiceImpl implements GatheringService {
     // 모임카드 개설
 
     @Override
-    public void createdGatheringCard(int gatheringId, String accountNumber, String gatheringName) {
+    public int createdGatheringCard(int gatheringId, String accountNumber, String gatheringName) {
+        int gatheringCardId = cardMapper.getNextCardSeq()+1;
         GatheringCardDto gatheringCardDto = GatheringCardDto.builder()
+                .cardId(gatheringCardId)
                 .accountNumber(accountNumber)
                 .cardName(gatheringName + " 모임카드")
                 .cardNumber(generateCardNumber())
                 .build();
         cardMapper.insertGatheringCard(gatheringCardDto);
+        return gatheringCardId;
     }
 
     // 모임카드번호생성
@@ -88,5 +89,16 @@ public class GatheringServiceImpl implements GatheringService {
         }
 
         return accountNumber.toString();
+    }
+
+    // 카드혜택설정
+
+    @Override
+    public void settingCardBenefit(CardBenefitWrapper cardBenefitWrapper, int gatheringCardId) {
+        List<CardBenefitDto> cardBenefitDtoList = cardBenefitWrapper.getCardBenefitDtoList();
+        for(CardBenefitDto cardBenefitDto :cardBenefitDtoList){
+            cardBenefitDto.setCardId(gatheringCardId);
+            cardMapper.insertCardBenefit(cardBenefitDto);
+        }
     }
 }

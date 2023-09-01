@@ -18,7 +18,8 @@ public class GatheringCardDto {
     private Date expirationDate; // 만료일
 
     @Builder
-    public GatheringCardDto(String accountNumber, String cardName, String cardNumber) {
+    public GatheringCardDto(int cardId, String accountNumber, String cardName, String cardNumber) {
+        this.cardId = cardId;
         this.accountNumber = accountNumber;
         this.cardName = cardName;
         this.cardNumber = cardNumber;

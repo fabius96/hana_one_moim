@@ -2,10 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hana.onemoim.gathering.mapper.CardMapper">
 
+    <!-- gathering_card_id 가져오기 -->
+    <select id="getNextCardSeq" resultType="int">
+        SELECT gathering_card_seq.NEXTVAL
+        FROM DUAL
+    </select>
+
     <!-- 계좌개설  -->
     <insert id="insertGatheringCard" parameterType="com.hana.onemoim.gathering.dto.GatheringCardDto">
         INSERT INTO gathering_card
             (account_number, card_name, card_number)
         values (#{accountNumber}, #{cardName}, #{cardNumber})
+    </insert>
+
+    <!-- 카드혜택설정 -->
+    <insert id="insertCardBenefit" parameterType="com.hana.onemoim.gathering.dto.CardBenefitDto">
+        INSERT INTO card_benefit
+            (card_id, benefit_id, benefit_rate)
+        values (#{cardId}, #{benefitId}, #{benefitRate})
     </insert>
 </mapper>

@@ -59,6 +59,9 @@ dependencies {
 
 	// scalr(image resize)
 	implementation group: 'org.imgscalr', name: 'imgscalr-lib', version: '4.2'
+
+	// Java - XML binder
+	implementation 'javax.xml.bind:jaxb-api:2.3.1'
 }
 
 
