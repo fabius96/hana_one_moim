@@ -18,7 +18,7 @@
 }
 
 .main-image {
-    width: 1400px;
+    width: 1300px;
     height: 508.3px;
     object-fit: cover;
     margin-bottom: 30px;
@@ -27,7 +27,7 @@
 .overlay-content {
     position: absolute;
     top: 0;
-    left: 100px;
+    left: 150px;
     right: 0;
     bottom: 0;
     display: flex;

@@ -3,8 +3,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-left: 100px;
-    padding-right: 130px;
+    padding-left: 200px;
+    padding-right: 200px;
     background: #fff;
     border-bottom: 1px solid #008375;
 }
@@ -31,11 +31,11 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 75px;
-    height: 30px;
+    width: 80px;
+    height: 35px;
     border-radius: 5px;
     background: #008375;
     color: #fff;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 700;
 }

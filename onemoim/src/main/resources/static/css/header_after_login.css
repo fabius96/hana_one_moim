@@ -2,8 +2,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-left: 100px;
-    padding-right: 130px;
+    padding-left: 200px;
+    padding-right: 200px;
     background: #fff;
     border-bottom: 1px solid #008375;
     color: #000;
@@ -14,6 +14,7 @@
     display: flex;
     align-items: center;
     gap: 10px; /* 로고와 텍스트 사이의 간격 */
+    margin-top: 7px;
 }
 
 .header img {
@@ -35,36 +36,45 @@ p, a {
     width: 120px;
     height: 36px;
     position: absolute;
-    top: 30px;
     font-size: 16px;
+    top: 17px;
 }
 
-.menu-view {
-    left: 995px;
+#menu-view {
+    left: 1025px;
 }
 
-.menu-transfer {
-    left: 1115px;
+#menu-transfer {
+    left: 1145px;
 }
 
-.menu-products {
-    left: 1235px;
+#menu-products {
+    left: 1265px;
 }
 
-.menu-moim {
-    left: 1375px;
+#menu-moim {
+    left: 1405px;
 }
 
 .logout-text {
     font-family: Hana2CM, sans-serif;
     width: 120px;
-    height: 36px;
+    height: 10px;
     position: absolute;
-    left: 1475px;
-    top: 24px;
+    left: 1315px;
     font-size: 12px;
+    bottom: 48px;
+    text-align: end;
 }
 
-.member-name{
+.member-name {
     text-decoration: underline;
+    font-family: Hana2CM, sans-serif;
+    width: 120px;
+    height: 10px;
+    position: absolute;
+    left: 1265px;
+    font-size: 12px;
+    bottom: 48px;
+    text-align: end;
 }

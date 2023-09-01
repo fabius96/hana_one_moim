@@ -14,23 +14,31 @@
 <body>
 
 <div class="header">
-    <a href="/account/after-login-main" class="link-button">
+    <a href="/after-login-main" class="link-button">
         <div class="logo-container">
             <img src="<%= request.getContextPath() %>/img/hana_logo.png" alt="하나금융로고"/>
             <p class="title">하나원모임</p>
         </div>
-    </a>
-    <a href="/account/account-info-hana" class="menu-text menu-view">조회</a>
-    <a href="/account/account-transfer-hana" class="menu-text menu-transfer">이체</a>
-    <a href="/account/account-product-list" class="menu-text menu-products">금융상품</a>
-    <a href="/gathering/gathering-info" class="menu-text menu-moim">모임</a>
-    <p class="logout-text">
-        <% if (name != null && !name.equals("Unknown")) { %>
-        <a href="/" class="member-name"><%= name %> 님</a> <a href="/api/member/logout">로그아웃</a>
-        <% } else {  %>
-        <a href="/signin">로그인</a>
-        <% } %>
-    </p>
+        <p class="menu-text" id="menu-view">
+            <a href="/account/account-info-hana">조회</a>
+        </p>
+        <p class="menu-text" id="menu-transfer">
+            <a href="/account/account-transfer-hana">이체</a>
+        </p>
+        <p class="menu-text" id="menu-products">
+            <a href="/account/account-product-list">금융상품</a>
+        </p>
+        <p class="menu-text" id="menu-moim">
+            <a href="/gathering/gathering-info">모임</a>
+        </p>
+
+        <p>
+            <% if (name != null && !name.equals("Unknown")) { %>
+            <a href="/" class="member-name"><%= name %> 님</a> <a href="/api/member/logout" class="logout-text">로그아웃</a>
+            <% } else { %>
+            <a href="/signin" class="logout-text">로그인</a>
+            <% } %>
+        </p>
 </div>
 
 </body>

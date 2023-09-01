@@ -25,7 +25,7 @@
             </div>
 
             <div class="create-group-button">
-                <button type="submit" class="button-text" onclick="location.href='${pageContext.request.contextPath}/gathering/gathering-create'">모임 만들기</button>
+                <button type="submit" class="button-text" onclick="location.href='${pageContext.request.contextPath}/gathering/gathering-create'">모임만들기</button>
             </div>
 
             <div class="boxes-container">
