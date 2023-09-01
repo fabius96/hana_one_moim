@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <title>account_info_hana</title>
     <link rel="stylesheet" href="/css/common.css">
-    <link rel="stylesheet" href="/css/account-opening.css">
+    <link rel="stylesheet" href="/css/card-opening.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
@@ -18,20 +18,19 @@
 
     <div class="main-container">
         <div class="content-wrapper">
-            <p class="page-name">통장개설</p>
-            <form action="/account/account-opening" method="post">
+            <p class="page-name">모임카드개설</p>
+            <form action="/gathering/card-opening" method="post">
 
                 <input type="hidden" name="memberId" value="${loggedInMember.memberId}"/>
                 <input type="hidden" name="simplePassword" value="${loggedInMember.simplePassword}"/>
-                <input type="hidden" name="accountNickname" value="${productName}"/>
-                <input type="hidden" name="gatheringId" value="${empty gatheringId ? '0' : gatheringId}"/>
-                <input type="hidden" name="gatheringName" value="${empty gatheringName ? '' : gatheringName}"/>
+                <input type="hidden" name="gatheringId" value="${gatheringId}"/>
+                <input type="hidden" name="gatheringName" value="${gatheringName}"/>
+                <input type="hidden" name="accountNumber" value="${accountNumber}"/>
 
 
                 <div class="box-container">
                     <p class="header-text">
-                        ${productName}<br/>
-                        ${productName eq '하나원모임' ? '모임 통장 개설' : '통장 개설'}
+                        하나원모임<br/>모임 카드 개설
                     </p>
                     <p class="sub-text">
                         통장 개설을 위해 아래 약관에 동의해주세요
@@ -42,37 +41,38 @@
                             <div class="essential-terms-title1">
                                 <img src="${pageContext.request.contextPath}/img/checkbox_empty.png"
                                      class="checkbox-toggle" alt="checkbox_empty"/>
-                                <p>[필수]전자금융거래 기본약관</p>
+                                <p>[필수]체크카드 개인회원 약관</p>
                             </div>
                             <div class="essential-terms-title2">
                                 <img src="${pageContext.request.contextPath}/img/checkbox_empty.png"
                                      class="checkbox-toggle" alt="checkbox_empty"/>
-                                <p>[필수]개인(신용)정보 수집, 이용 동의서[비여신 금융거래]</p>
+                                <p>[필수]현금카드 약관</p>
                             </div>
                             <div class="essential-terms-title3">
                                 <img src="${pageContext.request.contextPath}/img/checkbox_empty.png"
                                      class="checkbox-toggle" alt="checkbox_empty"/>
-                                <p>[필수]KBC 올크레딧 서비스 이용약관(신상정보서비스)</p>
+                                <p>[필수]특정 금융거래 보고 및 이용에 관한 안내</p>
                             </div>
                             <div class="essential-terms-title4">
                                 <img src="${pageContext.request.contextPath}/img/checkbox_empty.png"
                                      class="checkbox-toggle" alt="checkbox_empty"/>
-                                <p>[필수]하나은행 통장 상품 설명서</p>
+                                <p>[필수]하나원모임 모임카드 상품 설명서</p>
                             </div>
                             <div class="essential-terms-title5">
                                 <img src="${pageContext.request.contextPath}/img/checkbox_empty.png"
                                      class="checkbox-toggle" alt="checkbox_empty"/>
-                                <p>[필수]하나은행 통장 특약</p>
+                                <p>[필수]하나원모임 모임카드 특약</p>
                             </div>
                             <div class="essential-terms-title6">
                                 <img src="${pageContext.request.contextPath}/img/checkbox_empty.png"
                                      class="checkbox-toggle" alt="checkbox_empty"/>
-                                <p>[필수]개인정보 제3자 제공 동의서</p>
+                                <p>[필수]개인(신용)정보 수집, 이용, 제공 동의</p>
                             </div>
                             <div class="essential-terms-title7">
                                 <img src="${pageContext.request.contextPath}/img/checkbox_empty.png"
                                      class="checkbox-toggle" alt="checkbox_empty"/>
-                                <p>[필수]고유식별정보 수집, 이용 동의서</p>
+                                <p>개인(신용)정보 및 금융거래정보<br/>
+                                제 3자 제공 동의서[모임카드서비스이용]</p>
                             </div>
                         </div>
                     </div>
@@ -82,7 +82,7 @@
                             <div class="optional-terms-title1">
                                 <img src="${pageContext.request.contextPath}/img/checkbox_empty.png"
                                      class="checkbox-toggle" alt="checkbox_empty"/>
-                                <p>[선택]개인(신용)정보 수집, 이용, 제공 동의서[상품서비스 안내 등]</p>
+                                <p>[선택]해외 부정거래 방지 정보제공 동의</p>
                             </div>
                         </div>
                     </div>

@@ -58,11 +58,25 @@ public class AccountController {
 
     // 금융상품 개설
     @PostMapping("/account/account-opening")
-    public String makeAccount(@RequestParam int memberId,
-                              @RequestParam String simplePassword,
-                              @RequestParam String accountNickname) {
-        accountService.openAccount(memberId, simplePassword, accountNickname);
-        return "/account/account-opening-ok";
+    public ModelAndView makeAccount(@RequestParam int memberId,
+                                    @RequestParam String simplePassword,
+                                    @RequestParam String accountNickname,
+                                    @RequestParam(required = false) int gatheringId,
+                                    @RequestParam(required = false) String gatheringName) {
+        ModelAndView modelAndView = new ModelAndView("/account/account-opening-ok");
+        // 모임통장 개설일 경우
+        if (gatheringId != 0) {
+            accountNickname = gatheringName + " 모임통장";
+            accountService.openGatheringAccount(simplePassword, accountNickname, gatheringId);
+            modelAndView.addObject("gatheringName", gatheringName);
+            modelAndView.addObject("gatheringId", gatheringId);
+            modelAndView.addObject("accountNumber",
+                    accountService.findAccountNumberByGatheringId(gatheringId));
+            modelAndView.setViewName("/gathering/card-opening");
+        } else { // 개인계좌 개설일 경우
+            accountService.openAccount(memberId, simplePassword, accountNickname);
+        }
+        return modelAndView;
     }
 
     // 금융상품 개설 성공
@@ -88,20 +102,20 @@ public class AccountController {
 
     // 계좌이체
     @PostMapping("/account/account-transfer-hana")
-    public String accountTransfer(@ModelAttribute AccountTransferDto accountTransferDto){
+    public String accountTransfer(@ModelAttribute AccountTransferDto accountTransferDto) {
         accountService.accountTransfer(accountTransferDto);
         return "/account/account-transfer-ok";
     }
 
     // 계좌이체 완료 페이지 조회
     @GetMapping("/account/account-transfer-ok")
-    public String showAccountTransferOk(){
+    public String showAccountTransferOk() {
         return "/account/account-transfer-ok";
     }
 
     // 거래내역 조회 페이지 조회
     @GetMapping("/account/account-transaction")
-    public ModelAndView showAccountTransaction(HttpSession httpSession){
+    public ModelAndView showAccountTransaction(HttpSession httpSession) {
         ModelAndView modelAndView = new ModelAndView("signin");
         MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
 
@@ -117,11 +131,11 @@ public class AccountController {
     // 계좌이체 내역 조회
     @GetMapping("/api/account/get-account-transaction")
     @ResponseBody
-    public List<MemberTransactionDto> getAccountTransaction(AccountDto accountDto){
+    public List<MemberTransactionDto> getAccountTransaction(AccountDto accountDto) {
         System.out.println(accountDto.getAccountNumber());
         List<MemberTransactionDto> memberTransactionDtoList =
                 accountService.findTransactionByAccountNumber(accountDto);
-        for(MemberTransactionDto dto : memberTransactionDtoList){
+        for (MemberTransactionDto dto : memberTransactionDtoList) {
             System.out.println(dto.getTransactionTypeCode());
         }
         return memberTransactionDtoList;

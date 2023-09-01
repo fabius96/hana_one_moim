@@ -2,9 +2,11 @@ package com.hana.onemoim.account.service;
 
 import com.hana.onemoim.account.dto.AccountDto;
 import com.hana.onemoim.account.dto.AccountTransferDto;
+import com.hana.onemoim.account.dto.GatheringAccountDto;
 import com.hana.onemoim.account.mapper.AccountMapper;
 import com.hana.onemoim.account.dto.MemberTransactionDto;
 import com.hana.onemoim.account.mapper.TransactionMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,19 +14,14 @@ import java.util.List;
 import java.util.Random;
 
 @Service
+@RequiredArgsConstructor
 public class AccountServiceImpl implements AccountService {
 
     private static final int TRANSACTION_TYPE_WITHDRAW = 51;  // 출금 거래 코드
     private static final int TRANSACTION_TYPE_DEPOSIT = 50;   // 입금 거래 코드
 
-    private AccountMapper accountMapper;
-    private TransactionMapper transactionMapper;
-
-    public AccountServiceImpl(AccountMapper accountMapper, TransactionMapper transactionMapper) {
-        this.accountMapper = accountMapper;
-        this.transactionMapper = transactionMapper;
-    }
-
+    private final AccountMapper accountMapper;
+    private final TransactionMapper transactionMapper;
     // 계좌개설
 
     @Override
@@ -38,6 +35,18 @@ public class AccountServiceImpl implements AccountService {
         accountDto.setAccountPassword(simplePassword);
         accountDto.setAccountNickname(accountNickname);
         accountMapper.insertAccount(accountDto);
+    }
+
+    // 모임통장 개설
+    @Override
+    public void openGatheringAccount(String simplePassword, String accountNickname, int gatheringId) {
+        GatheringAccountDto gatheringAccountDto = GatheringAccountDto.builder()
+                .gatheringId(gatheringId)
+                .accountNickname(accountNickname)
+                .accountPassword(simplePassword)
+                .accountNumber(generateAccountNumber())
+                .build();
+        accountMapper.insertGatheringAccount(gatheringAccountDto);
     }
 
     // 계좌번호 생성
@@ -100,5 +109,12 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public List<MemberTransactionDto> findTransactionByAccountNumber(AccountDto accountDto) {
         return transactionMapper.selectTransactionByAccountNumber(accountDto);
+    }
+
+    // 모임계좌번호조회
+
+    @Override
+    public String findAccountNumberByGatheringId(int gatheringId) {
+        return accountMapper.selectAccountNumberByGatheringId(gatheringId);
     }
 }

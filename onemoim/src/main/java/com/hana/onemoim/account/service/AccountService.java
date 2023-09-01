@@ -11,6 +11,9 @@ public interface AccountService {
     // 계좌 개설
     void openAccount(int memberId, String simplePassword, String accountNickname);
 
+    // 모임 계좌 개설
+    void openGatheringAccount(String simplePassword, String accountNickname, int gatheringId);
+
     // 전체 계좌 조회
     List<AccountDto> findAllAccount(String personalIdNumber);
 
@@ -19,4 +22,7 @@ public interface AccountService {
 
     // 거래내역 조회
     List<MemberTransactionDto> findTransactionByAccountNumber(AccountDto accountDto);
+
+    // 모임계좌번호조회
+    String findAccountNumberByGatheringId(int gatheringId);
 }

@@ -13,4 +13,7 @@ public interface GatheringService {
 
     // 모임 조회
     List<GatheringDto> findAllGatheringByMemberId(int memberId);
+
+    // 모임카드 개설
+    void createdGatheringCard(int gatheringId, String accountNumber, String gatheringName);
 }

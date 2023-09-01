@@ -50,4 +50,18 @@
         FROM member_account_info
         WHERE account_number = #{accountNumber}
     </select>
+
+    <!-- 모임계좌개설  -->
+    <insert id="insertGatheringAccount" parameterType="com.hana.onemoim.account.dto.GatheringAccountDto">
+        INSERT INTO gathering_account_info
+            (account_number, gathering_id, account_password, account_nickname)
+        values (#{accountNumber}, #{gatheringId}, #{accountPassword}, #{accountNickname})
+    </insert>
+
+    <!-- 모임계좌번호조회 -->
+    <select id="selectAccountNumberByGatheringId" parameterType="int" resultType="String">
+        SELECT account_number
+        FROM gathering_account_info
+        WHERE gathering_id = #{gatheringId}
+    </select>
 </mapper>

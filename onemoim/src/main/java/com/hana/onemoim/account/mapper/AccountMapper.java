@@ -2,6 +2,7 @@ package com.hana.onemoim.account.mapper;
 
 import com.hana.onemoim.account.dto.AccountDto;
 import com.hana.onemoim.account.dto.AccountTransferDto;
+import com.hana.onemoim.account.dto.GatheringAccountDto;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -11,6 +12,9 @@ public interface AccountMapper {
 
     // 계좌개설
     void insertAccount(AccountDto accountDto);
+
+    // 모임계좌개설
+    void insertGatheringAccount(GatheringAccountDto gatheringAccountDto);
 
     // 전체계좌조회
     List<AccountDto> selectAccountByPersonalIdNumber(String personalIdNumber);
@@ -22,4 +26,7 @@ public interface AccountMapper {
 
     // 잔액조회
     int selectBalance(AccountTransferDto accountTransferDto);
+
+    // 모임계좌번호조회
+    String selectAccountNumberByGatheringId(int gatheringId);
 }

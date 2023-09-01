@@ -29,7 +29,7 @@ public class GatheringController {
         MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
 
         if (memberDto == null) {
-           return modelAndView;
+            return modelAndView;
         }
 
         modelAndView.setViewName("/gathering/gathering-info");
@@ -59,7 +59,7 @@ public class GatheringController {
         ModelAndView modelAndView = new ModelAndView("/signin");
         MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
 
-        if(memberDto == null){
+        if (memberDto == null) {
             return modelAndView;
         }
 
@@ -67,8 +67,34 @@ public class GatheringController {
         gatheringCreateDto.setMemberName(memberDto.getName());
         gatheringCreateDto.setGatheringLeaderId(memberDto.getMemberId());
         gatheringService.createGathering(gatheringCreateDto, file);
+        modelAndView.addObject("gatheringName", gatheringCreateDto.getGatheringName());
+        modelAndView.addObject("gatheringId", gatheringCreateDto.getGatheringId());
+        modelAndView.addObject("productName", "하나원모임");
 
-        modelAndView.setViewName("/gathering/gathering-create-ok");
+        modelAndView.setViewName("/account/account-opening");
+        return modelAndView;
+    }
+
+    // 모임 카드 개설 페이지 조회
+    @GetMapping("/gathering/card-opening")
+    public ModelAndView showCardOpening(HttpSession httpSession) {
+        ModelAndView modelAndView = new ModelAndView("/signin");
+        MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
+
+        if (memberDto != null) {
+            modelAndView.setViewName("/gathering/card-opening");
+        }
+
+        return modelAndView;
+    }
+
+    // 금융상품 개설
+    @PostMapping("/gathering/card-opening")
+    public ModelAndView makeGatheringCard(@RequestParam int gatheringId,
+                                          @RequestParam String accountNumber,
+                                          @RequestParam String gatheringName) {
+        ModelAndView modelAndView = new ModelAndView("/gathering/gathering-create-ok");
+        gatheringService.createdGatheringCard(gatheringId, accountNumber, gatheringName);
         return modelAndView;
     }
 }

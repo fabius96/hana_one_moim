@@ -49,6 +49,6 @@
     <select id="selectGatheringCoverImage" parameterType="int" resultType="String">
         select image_url
         FROM gathering_cover_image
-        WHERE gathering_id = ${gathering_id}
+        WHERE gathering_id = #{gatheringId}
     </select>
 </mapper>

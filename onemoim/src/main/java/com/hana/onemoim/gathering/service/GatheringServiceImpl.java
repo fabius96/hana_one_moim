@@ -2,8 +2,10 @@ package com.hana.onemoim.gathering.service;
 
 import com.hana.onemoim.common.dto.ImageDto;
 import com.hana.onemoim.common.mapper.ImageMapper;
+import com.hana.onemoim.gathering.dto.GatheringCardDto;
 import com.hana.onemoim.gathering.dto.GatheringCreateDto;
 import com.hana.onemoim.gathering.dto.GatheringDto;
+import com.hana.onemoim.gathering.mapper.CardMapper;
 import com.hana.onemoim.gathering.mapper.GatheringMapper;
 import com.hana.onemoim.member.mapper.MemberMapper;
 import com.hana.onemoim.util.S3uploader;
@@ -14,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Random;
 
 @Service
 @RequiredArgsConstructor
@@ -22,6 +25,7 @@ public class GatheringServiceImpl implements GatheringService {
     private final GatheringMapper gatheringMapper;
     private final MemberMapper memberMapper;
     private final ImageMapper imageMapper;
+    private final CardMapper cardMapper;
     private final S3uploader s3uploader;
 
     // 모임 개설
@@ -60,5 +64,29 @@ public class GatheringServiceImpl implements GatheringService {
             gatheringDto.setGatheringCoverImageUrl(gatheringMapper.selectGatheringCoverImage(gatheringDto.getGatheringId()));
         }
         return gatheringDtoList;
+    }
+
+    // 모임카드 개설
+
+    @Override
+    public void createdGatheringCard(int gatheringId, String accountNumber, String gatheringName) {
+        GatheringCardDto gatheringCardDto = GatheringCardDto.builder()
+                .accountNumber(accountNumber)
+                .cardName(gatheringName + " 모임카드")
+                .cardNumber(generateCardNumber())
+                .build();
+        cardMapper.insertGatheringCard(gatheringCardDto);
+    }
+
+    // 모임카드번호생성
+    public String generateCardNumber() {
+        Random random = new Random();
+        StringBuilder accountNumber = new StringBuilder();
+
+        for (int i = 0; i < 16; i++) {
+            accountNumber.append(random.nextInt(10));
+        }
+
+        return accountNumber.toString();
     }
 }

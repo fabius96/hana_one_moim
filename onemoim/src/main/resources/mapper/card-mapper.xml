@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hana.onemoim.gathering.mapper.CardMapper">
+
+    <!-- 계좌개설  -->
+    <insert id="insertGatheringCard" parameterType="com.hana.onemoim.gathering.dto.GatheringCardDto">
+        INSERT INTO gathering_card
+            (account_number, card_name, card_number)
+        values (#{accountNumber}, #{cardName}, #{cardNumber})
+    </insert>
+</mapper>
