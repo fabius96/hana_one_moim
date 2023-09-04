@@ -263,16 +263,16 @@
     border: 1px solid #aaa;
     border-radius: 4px;
     font-size: 14px;
-    width: 85%;
+    width: 83%;
 
     margin-left: 10px;
-    padding: 5px 30px 5px 10px;
+    padding: 10px 30px 10px 10px;
 }
 
 .search-btn {
     position: absolute;
     bottom: 5.5%;
-    right: 10px;
+    right: 12px;
     width: 20px; /* 아이콘 크기를 설정 (원하는 크기로 조절) */
     height: 20px;
     background-image: url('/img/search2.png'); /* 이미지 경로를 설정 */
