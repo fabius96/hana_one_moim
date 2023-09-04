@@ -3,17 +3,14 @@ package com.hana.onemoim.member.controller;
 import com.hana.onemoim.member.dto.MemberDto;
 import com.hana.onemoim.member.dto.SignupMemberDto;
 import com.hana.onemoim.member.service.MemberService;
-import com.hana.onemoim.member.service.MemberServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.Map;
 
 @Controller
 public class MemberController {
@@ -56,7 +53,20 @@ public class MemberController {
     @PostMapping("/signup")
     public ModelAndView registerMember(SignupMemberDto signupMemberDto) {
         memberService.signupMember(signupMemberDto);
-        return new ModelAndView("signup-ok");
+        return new ModelAndView("/interest");
+    }
+
+    // 관심사 설정
+//    @PostMapping("/interest")
+//    public ModelAndView registerMemberInterest(@RequestParam int memberId){
+//        memberService.
+//     return new ModelAndView("signup-ok");
+//    }
+
+    // 관심사 설정 페이지 조회
+    @GetMapping("/interest")
+    public ModelAndView getMemberInterest() {
+        return new ModelAndView("/interest");
     }
 
     // 회원가입 완료 페이지
