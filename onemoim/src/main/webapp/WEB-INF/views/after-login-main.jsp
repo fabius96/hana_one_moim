@@ -15,20 +15,37 @@
     <div class="main-container">
 
         <div class="sub-container">
-            <div class="container">
-                <img src="<%= request.getContextPath() %>/img/main.png" alt="슬라이드이미지1" class="container-image"/>
-                <p class="slogan">
-                    <span>새로운 모임을 만들고 </span><br/>
-                    <span>친구들과 추억을 나눠보세요</span>
-                </p>
-                <p class="hash-tag">#가족 #학교, 동아리 #취미, 동호회 #스터디 #회사, 팀</p>
+            <div class="slider-wrapper">
+                <div class="container" id="first-container">
+                    <img src="<%= request.getContextPath() %>/img/main.png" alt="슬라이드이미지1" class="container-image"/>
+                    <p class="slogan">
+                        <span>새로운 모임을 만들고 </span><br/>
+                        <span>친구들과 추억을 나눠보세요</span>
+                    </p>
+                    <p class="hash-tag">#가족 #학교, 동아리 #취미, 동호회 #스터디 #회사, 팀</p>
+                    <div class="create-group-button">
+                        <button type="submit" class="button-text"
+                                onclick="location.href='${pageContext.request.contextPath}/gathering/gathering-create'">
+                            모임만들기
+                        </button>
+                    </div>
+                </div>
+                <div class="container" id="second-container">
+                    <img src="<%= request.getContextPath() %>/img/travel.png" alt="슬라이드이미지1" class="container-image-2"/>
+                    <p class="slogan">
+                        <span>내게 맞는 모임을 </span><br/>
+                        <span>찾아보세요</span>
+                    </p>
+                    <p class="hash-tag">#스포츠, 레저  #여행, 캠핑  #친목, 모임  #나이, 또래모임</p>
+                    <div class="create-group-button">
+                        <button type="submit" class="button-text"
+                                onclick="location.href='${pageContext.request.contextPath}/gathering/gathering-create'">
+                            모임검색
+                        </button>
+                    </div>
+                </div>
             </div>
 
-            <div class="create-group-button">
-                <button type="submit" class="button-text"
-                        onclick="location.href='${pageContext.request.contextPath}/gathering/gathering-create'">모임만들기
-                </button>
-            </div>
             <div class="right-container">
                 <div class="boxes-container">
                     <div class="big-link-button" id="link-button-group">
@@ -96,5 +113,6 @@
 </div>
 
 <jsp:include page="includes/footer.jsp"/>
+<script src="/js/after-login-main.js"></script>
 </body>
 </html>

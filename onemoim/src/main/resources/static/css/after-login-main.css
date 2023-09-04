@@ -16,14 +16,41 @@
     margin-right: 50px;
 }
 
-.container {
+.slider-wrapper {
+    position: relative;
     width: 850px;
     height: 350px;
-    position: relative;
+
+    margin-right: 60px;
+}
+
+/* 첫 번째 슬라이드만 초기에 보이게 설정 */
+.container:first-child {
+    opacity: 1;
+}
+
+.container {
+    /* 슬라이드 관련 설정 */
+    opacity: 0;   /* 기본적으로 투명하게 설정 */
+    transition: opacity 0.5s; /* opacity 변화 시 1초 동안 부드럽게 전환 */
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
     overflow: hidden;
     border-radius: 10px;
+}
+
+#first-container{
     background: linear-gradient(to bottom, rgba(0, 131, 117, 0.2) 0%, rgba(0, 0, 0, 0) 100%);
-    margin-right: 60px;
+}
+
+#second-container{
+    background: linear-gradient(to bottom, rgba(255, 191, 0, 0.3) 0%, rgba(0, 0, 0, 0) 100%);
+    /*background: linear-gradient(to bottom, rgba(255, 247, 236, 0.2) 0%, rgba(255, 247, 236, 0) 100%);*/
 }
 
 .right-container{
@@ -51,10 +78,18 @@
     height: 45px;
 }
 
-.container img {
+.container-image {
     width: 500px;
     position: absolute;
     left: 385px;
+    top: 1px;
+    object-fit: cover;
+}
+
+.container-image-2 {
+    width: 400px;
+    position: absolute;
+    left: 435px;
     top: 1px;
     object-fit: cover;
 }
