@@ -16,7 +16,7 @@
 
         <div class="sub-container">
             <div class="container">
-                <img src="<%= request.getContextPath() %>/img/main.png"/>
+                <img src="<%= request.getContextPath() %>/img/main.png" alt="슬라이드이미지1" class="container-image"/>
                 <p class="slogan">
                     <span>새로운 모임을 만들고 </span><br/>
                     <span>친구들과 추억을 나눠보세요</span>
@@ -25,18 +25,43 @@
             </div>
 
             <div class="create-group-button">
-                <button type="submit" class="button-text" onclick="location.href='${pageContext.request.contextPath}/gathering/gathering-create'">모임만들기</button>
+                <button type="submit" class="button-text"
+                        onclick="location.href='${pageContext.request.contextPath}/gathering/gathering-create'">모임만들기
+                </button>
+            </div>
+            <div class="right-container">
+                <div class="boxes-container">
+                    <div class="big-link-button" id="link-button-group">
+                        <button type="button" class="link-button-text" id="link-button-text-group"
+                                onclick="location.href='${pageContext.request.contextPath}/gathering/gathering-info'">모임
+                        </button>
+                    </div>
+
+                    <div class="big-link-button" id="link-button-openbanking">
+                        <button type="submit" class="link-button-text" id="link-button-text-openbanking">오픈뱅킹</button>
+                    </div>
+                </div>
+                <div class="gathering-container">
+                    <div class="third-gathering-icon">
+                        <img src="<%= request.getContextPath() %>/img/category.png" alt="모임아이콘3"
+                             class="gathering-image">
+                        <p class="icon-name">모임분류</p>
+                    </div>
+                    <div class="second-gathering-icon">
+                        <img src="<%= request.getContextPath() %>/img/recommend.png" alt="모임아이콘2"
+                             class="gathering-image">
+                        <p class="icon-name">모임추천</p>
+                    </div>
+                    <div class="first-gathering-icon">
+                        <img src="<%= request.getContextPath() %>/img/search.png" alt="모임아이콘1"
+                             class="gathering-image">
+                        <p class="icon-name">모임검색</p>
+                    </div>
+
+
+                </div>
             </div>
 
-            <div class="boxes-container">
-                <div class="big-link-button" id="link-button-group">
-                    <button type="button" class="link-button-text" id="link-button-text-group" onclick="location.href='${pageContext.request.contextPath}/gathering/gathering-info'">모임</button>
-                </div>
-
-                <div class="big-link-button" id="link-button-openbanking">
-                    <button type="submit" class="link-button-text" id="link-button-text-openbanking">오픈뱅킹</button>
-                </div>
-            </div>
         </div>
 
     </div>

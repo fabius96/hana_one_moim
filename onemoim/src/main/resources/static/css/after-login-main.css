@@ -13,31 +13,49 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin-right: 50px;
 }
 
 .container {
-    width: 1030px;
-    height: 400px;
+    width: 850px;
+    height: 350px;
     position: relative;
     overflow: hidden;
     border-radius: 10px;
     background: linear-gradient(to bottom, rgba(0, 131, 117, 0.2) 0%, rgba(0, 0, 0, 0) 100%);
-    margin-right: 30px;
+    margin-right: 60px;
+}
+
+.right-container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .boxes-container {
-    width: 180px;
     display: flex;
-    flex-direction: column;
-    gap: 30px;
+    gap: 15px;
+    width: 100%;
+}
+
+.gathering-container{
+    justify-content: center;
+    display: flex;
+    width: 100%;
+    margin-top: 50px;
+    gap: 80px;
+}
+
+.gathering-image{
+    width: 45px;
+    height: 45px;
 }
 
 .container img {
-    width: 553px;
-    height: 368px;
+    width: 500px;
     position: absolute;
-    left: 476px;
-    top: -1px;
+    left: 385px;
+    top: 1px;
     object-fit: cover;
 }
 
@@ -45,9 +63,9 @@
     width: 472px;
     position: absolute;
     left: 33px;
-    top: 50px;
-    font-size: 40px;
-    font-weight: 700;
+    top: 30px;
+    font-size: 38px;
+    font-family: Hana2-Bold, sans-serif;
     text-align: left;
     color: #000;
 }
@@ -57,9 +75,9 @@
     height: 36px;
     position: absolute;
     left: 33px;
-    top: 210px;
+    top: 170px;
     font-size: 16px;
-    font-weight: 500;
+    font-family: Hana2-Regular, sans-serif;
     text-align: left;
     color: #777;
 }
@@ -68,7 +86,7 @@
     border: 1px solid #333333;
     background-color: #333333;
     border-radius: 20px;
-    top: 280px;
+    top: 250px;
     left: 33px;
     width: 100px;
     height: 40px;
@@ -94,15 +112,15 @@
 }
 
 .big-link-button {
-    width: 160px;
-    height: 110px;
+    width: 158px;
+    height: 120px;
     position: relative;
     overflow: hidden;
     border-radius: 5px;
 }
 
 #link-button-group {
-    background: #008375;
+    background: #009591;
 }
 
 #link-button-openbanking {
@@ -115,7 +133,7 @@
     color: #fff;
 
     position: absolute;
-    top: 20px;
+    top: 30px;
 
     border: none;
     background: none;
@@ -136,6 +154,20 @@
 
 #link-button-text-openbanking {
     right: 20px;
+}
+
+.first-gathering-icon,
+.second-gathering-icon,
+.third-gathering-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-name{
+    font-family: Hana2-Medium, sans-serif;
+    font-size: 14px;
 }
 
 .menu-container {
