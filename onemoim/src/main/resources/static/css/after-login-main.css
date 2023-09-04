@@ -69,7 +69,8 @@
     justify-content: center;
     display: flex;
     width: 100%;
-    margin-top: 50px;
+    margin-top: 40px;
+    margin-bottom: 40px;
     gap: 80px;
 }
 
@@ -246,4 +247,54 @@
     font-size: 16px;
     text-align: center;
     color: #000;
+}
+
+.search-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.search-form{
+    width: 100%;
+}
+
+.search-bar {
+    padding: 5px 10px;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 70%;
+
+    margin-left: 10px;
+}
+
+.search-btn {
+    padding: 5px 10px;
+    background-color: #009591;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px; /* 폰트 크기 */
+    font-family: Hana2-Bold, sans-serif;
+    transition: background-color 0.3s;
+    margin-left: 10px;
+}
+
+.search-btn:hover {
+    background-color: #00706f; /* 마우스 오버 시 색상 */
+}
+
+
+.circle-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.group-name {
+    text-align: center;
+    margin-top: 10px;
 }

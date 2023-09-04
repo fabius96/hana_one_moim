@@ -36,7 +36,7 @@
                         <span>내게 맞는 모임을 </span><br/>
                         <span>찾아보세요</span>
                     </p>
-                    <p class="hash-tag">#스포츠, 레저  #여행, 캠핑  #친목, 모임  #나이, 또래모임</p>
+                    <p class="hash-tag">#스포츠, 레저 #여행, 캠핑 #친목, 모임 #나이, 또래모임</p>
                     <div class="create-group-button">
                         <button type="submit" class="button-text"
                                 onclick="location.href='${pageContext.request.contextPath}/gathering/gathering-create'">
@@ -70,12 +70,16 @@
                         <p class="icon-name">모임추천</p>
                     </div>
                     <div class="first-gathering-icon">
-                        <img src="<%= request.getContextPath() %>/img/search.png" alt="모임아이콘1"
+                        <img src="<%= request.getContextPath() %>/img/add.png" alt="모임아이콘1"
                              class="gathering-image">
-                        <p class="icon-name">모임검색</p>
+                        <p class="icon-name">모임생성</p>
                     </div>
-
-
+                </div>
+                <div class="search-container">
+                    <form action="<%= request.getContextPath() %>/search-action" method="get" class="search-form">
+                        <input type="text" placeholder="모임 검색" class="search-bar" name="query">
+                        <button type="submit" class="search-btn">검색</button>
+                    </form>
                 </div>
             </div>
 
@@ -109,7 +113,6 @@
             </a>
         </div>
     </div>
-
 </div>
 
 <jsp:include page="includes/footer.jsp"/>
