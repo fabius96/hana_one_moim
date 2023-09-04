@@ -38,7 +38,7 @@
 
     <!-- 가입한 모임 조회 -->
     <select id="selectGroupByMemberId" parameterType="int"
-    resultMap="gatheringDto">
+            resultMap="gatheringDto">
         SELECT g.*
         FROM gathering_member gm
                  JOIN gathering g ON gm.gathering_id = g.gathering_id
@@ -50,5 +50,23 @@
         select image_url
         FROM gathering_cover_image
         WHERE gathering_id = #{gatheringId}
+    </select>
+
+    <!-- 모임 검색 -->
+    <select id="selectGatheringByKeyword" parameterType="String"
+            resultMap="gatheringDto">
+        SELECT *
+        FROM gathering
+        WHERE gathering_name LIKE '%' || #{keyword} || '%'
+                  OR gathering_description LIKE '%' || #{keyword} || '%'
+    </select>
+
+    <!-- 모임 검색 결과 수 -->
+    <select id="countGatheringByKeyword" parameterType="String"
+            resultType="int">
+        SELECT COUNT(*)
+        FROM gathering
+        WHERE gathering_name LIKE '%' || #{keyword} || '%'
+                  OR gathering_description LIKE '%' || #{keyword} || '%'
     </select>
 </mapper>

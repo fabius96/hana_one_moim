@@ -101,4 +101,21 @@ public class GatheringServiceImpl implements GatheringService {
             cardMapper.insertCardBenefit(cardBenefitDto);
         }
     }
+
+    // 모임 검색
+    @Override
+    public List<GatheringDto> findAllGatheringByKeyword(String keyword) {
+        List<GatheringDto> gatheringDtoList = gatheringMapper.selectGatheringByKeyword(keyword);
+        for (GatheringDto gatheringDto : gatheringDtoList) {
+            gatheringDto.setGatheringLeaderName(memberMapper.selectNameByLeaderId(gatheringDto.getGatheringLeaderId()));
+            gatheringDto.setGatheringCoverImageUrl(gatheringMapper.selectGatheringCoverImage(gatheringDto.getGatheringId()));
+        }
+        return gatheringDtoList;
+    }
+
+    // 모임 검색 결과 세기
+    @Override
+    public int countGatheringByKeyword(String keyword) {
+        return gatheringMapper.countGatheringByKeyword(keyword);
+    }
 }

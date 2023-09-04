@@ -76,9 +76,9 @@
                     </div>
                 </div>
                 <div class="search-container">
-                    <form action="<%= request.getContextPath() %>/search-action" method="get" class="search-form">
-                        <input type="text" placeholder="모임 검색" class="search-bar" name="query">
-                        <button type="submit" class="search-btn">검색</button>
+                    <form action="<%= request.getContextPath() %>/gathering/gathering-search" method="get" class="search-form">
+                        <input type="text" placeholder="모임 검색" class="search-bar" name="keyword">
+                        <button type="submit" class="search-btn"></button>
                     </form>
                 </div>
             </div>

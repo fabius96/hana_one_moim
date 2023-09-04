@@ -26,4 +26,10 @@ public interface GatheringMapper {
 
     // 모임대표이미지 조회
     String selectGatheringCoverImage(int gatheringId);
+
+    // 모임 검색
+    List<GatheringDto> selectGatheringByKeyword(String keyword);
+
+    // 모임 검색 결과 수
+    int countGatheringByKeyword(String keyword);
 }

@@ -260,32 +260,29 @@
 }
 
 .search-bar {
-    padding: 5px 10px;
     border: 1px solid #aaa;
     border-radius: 4px;
     font-size: 14px;
-    width: 70%;
+    width: 85%;
 
     margin-left: 10px;
+    padding: 5px 30px 5px 10px;
 }
 
 .search-btn {
-    padding: 5px 10px;
-    background-color: #009591;
-    color: white;
-    border: none;
-    border-radius: 4px;
+    position: absolute;
+    bottom: 5.5%;
+    right: 10px;
+    width: 20px; /* 아이콘 크기를 설정 (원하는 크기로 조절) */
+    height: 20px;
+    background-image: url('/img/search2.png'); /* 이미지 경로를 설정 */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent; /* 배경색을 투명하게 */
+    background-size: contain;
+    border: none; /* 테두리 제거 */
     cursor: pointer;
-    font-size: 14px; /* 폰트 크기 */
-    font-family: Hana2-Bold, sans-serif;
-    transition: background-color 0.3s;
-    margin-left: 10px;
 }
-
-.search-btn:hover {
-    background-color: #00706f; /* 마우스 오버 시 색상 */
-}
-
 
 .circle-image {
     width: 100px;

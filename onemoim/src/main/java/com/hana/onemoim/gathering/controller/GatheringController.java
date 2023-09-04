@@ -39,6 +39,18 @@ public class GatheringController {
         return modelAndView;
     }
 
+    // 모임 검색
+    @GetMapping("/gathering/gathering-search")
+    public ModelAndView searchGathering(@RequestParam String keyword) {
+        ModelAndView modelAndView = new ModelAndView("/gathering/search-result");
+        List<GatheringDto> gatheringDtoList = gatheringService.findAllGatheringByKeyword(keyword);
+        int gatheringCount = gatheringService.countGatheringByKeyword(keyword);
+        modelAndView.addObject("keyword", keyword);
+        modelAndView.addObject("gatherings", gatheringDtoList);
+        modelAndView.addObject("gatheringCount", gatheringCount);
+        return modelAndView;
+    }
+
     // 새로운 모임 만들기 페이지 조회
     @GetMapping("/gathering/gathering-create")
     public ModelAndView showGatheringCreate(HttpSession httpSession) {
@@ -121,11 +133,11 @@ public class GatheringController {
 
         ModelAndView modelAndView = new ModelAndView("/signin");
         MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
-        if (memberDto != null){
+        if (memberDto != null) {
             modelAndView.setViewName("/gathering/gathering-create-ok");
             gatheringService.settingCardBenefit(cardBenefitWrapper, gatheringCardId);
         }
 
-            return modelAndView;
+        return modelAndView;
     }
 }

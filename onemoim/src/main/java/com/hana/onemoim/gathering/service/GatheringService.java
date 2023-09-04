@@ -20,4 +20,10 @@ public interface GatheringService {
 
     // 카드 혜택 설정
     void settingCardBenefit(CardBenefitWrapper cardBenefitWrapper, int gatheringCardId);
+
+    // 모임 검색
+    List<GatheringDto> findAllGatheringByKeyword(String keyword);
+
+    // 모임 검색 결과 수
+    int countGatheringByKeyword(String keyword);
 }
