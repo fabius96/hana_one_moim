@@ -26,4 +26,7 @@ public interface GatheringService {
 
     // 모임 검색 결과 수
     int countGatheringByKeyword(String keyword);
+
+    // 모임 관심사 설정
+    void registerGatheringInterest(int gatheringId, List<String> interestNames);
 }

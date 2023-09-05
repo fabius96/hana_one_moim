@@ -1,7 +1,9 @@
 package com.hana.onemoim.gathering.service;
 
 import com.hana.onemoim.common.dto.ImageDto;
+import com.hana.onemoim.common.dto.InterestDto;
 import com.hana.onemoim.common.mapper.ImageMapper;
+import com.hana.onemoim.common.mapper.InterestMapper;
 import com.hana.onemoim.gathering.dto.*;
 import com.hana.onemoim.gathering.mapper.CardMapper;
 import com.hana.onemoim.gathering.mapper.GatheringMapper;
@@ -24,6 +26,7 @@ public class GatheringServiceImpl implements GatheringService {
     private final MemberMapper memberMapper;
     private final ImageMapper imageMapper;
     private final CardMapper cardMapper;
+    private final InterestMapper interestMapper;
     private final S3uploader s3uploader;
 
     // 모임 개설
@@ -68,7 +71,7 @@ public class GatheringServiceImpl implements GatheringService {
 
     @Override
     public int createdGatheringCard(int gatheringId, String accountNumber, String gatheringName) {
-        int gatheringCardId = cardMapper.getNextCardSeq()+1;
+        int gatheringCardId = cardMapper.getNextCardSeq() + 1;
         GatheringCardDto gatheringCardDto = GatheringCardDto.builder()
                 .cardId(gatheringCardId)
                 .accountNumber(accountNumber)
@@ -96,7 +99,7 @@ public class GatheringServiceImpl implements GatheringService {
     @Override
     public void settingCardBenefit(CardBenefitWrapper cardBenefitWrapper, int gatheringCardId) {
         List<CardBenefitDto> cardBenefitDtoList = cardBenefitWrapper.getCardBenefitDtoList();
-        for(CardBenefitDto cardBenefitDto :cardBenefitDtoList){
+        for (CardBenefitDto cardBenefitDto : cardBenefitDtoList) {
             cardBenefitDto.setCardId(gatheringCardId);
             cardMapper.insertCardBenefit(cardBenefitDto);
         }
@@ -117,5 +120,17 @@ public class GatheringServiceImpl implements GatheringService {
     @Override
     public int countGatheringByKeyword(String keyword) {
         return gatheringMapper.countGatheringByKeyword(keyword);
+    }
+
+    // 모임 관심사 등록
+    @Override
+    public void registerGatheringInterest(int gatheringId, List<String> interestNames) {
+        System.out.println("MemberServiceImpl.registerMemberInterest");
+        for (String interestName : interestNames) {
+            InterestDto interestDto = new InterestDto();
+            interestDto.setGatheringId(gatheringId);
+            interestDto.setInterestName(interestName);
+            interestMapper.insertInterest(interestDto);
+        }
     }
 }

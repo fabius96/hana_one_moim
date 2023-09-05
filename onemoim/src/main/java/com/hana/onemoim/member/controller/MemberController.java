@@ -63,7 +63,6 @@ public class MemberController {
     @PostMapping("/interest")
     public ModelAndView registerMemberInterest(@RequestParam int memberId,
                                                @RequestParam List<String> interestNames){
-        System.out.println("MemberController.registerMemberInterest");
         memberService.registerMemberInterest(memberId, interestNames);
      return new ModelAndView("/signup-ok");
     }

@@ -109,6 +109,7 @@ public class GatheringController {
         ModelAndView modelAndView = new ModelAndView("/gathering/card-opening-setting");
         int gatheringCardId = gatheringService.createdGatheringCard(gatheringId, accountNumber, gatheringName);
         modelAndView.addObject("gatheringCardId", gatheringCardId);
+        modelAndView.addObject("gatheringId", gatheringId);
         return modelAndView;
     }
 
@@ -129,15 +130,37 @@ public class GatheringController {
     @PostMapping("/gathering/card-opening-setting")
     public ModelAndView settingCardBenefit(@ModelAttribute CardBenefitWrapper cardBenefitWrapper,
                                            @RequestParam int gatheringCardId,
+                                           @RequestParam int gatheringId,
                                            HttpSession httpSession) {
 
         ModelAndView modelAndView = new ModelAndView("/signin");
         MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
         if (memberDto != null) {
-            modelAndView.setViewName("/gathering/gathering-create-ok");
+            modelAndView.setViewName("/gathering/gathering-interest");
+            modelAndView.addObject("gatheringId", gatheringId);
             gatheringService.settingCardBenefit(cardBenefitWrapper, gatheringCardId);
         }
 
+        return modelAndView;
+    }
+
+    // 관심사 설정 페이지 조회
+    @GetMapping("/gathering/gathering-interest")
+    public ModelAndView getMemberInterest() {
+        return new ModelAndView("/gathering/gathering-interest");
+    }
+
+    //관심사 설정
+    @PostMapping("/gathering/gathering-interest")
+    public ModelAndView registerMemberInterest(HttpSession httpSession,
+                                               @RequestParam int gatheringId,
+                                               @RequestParam List<String> interestNames) {
+        ModelAndView modelAndView = new ModelAndView("/signin");
+        MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
+        if (memberDto != null) {
+            gatheringService.registerGatheringInterest(gatheringId, interestNames);
+            modelAndView.setViewName("/gathering/gathering-create-ok");
+        }
         return modelAndView;
     }
 }

@@ -21,6 +21,7 @@
 
             <form action="/gathering/card-opening-setting" method="post">
                 <input type="hidden" name="gatheringCardId" value="${gatheringCardId}"/>
+                <input type="hidden" name="gatheringId" value="${gatheringId}"/>
                 <div class="box-container">
                     <p class="header-text">
                         카드 혜택 설정

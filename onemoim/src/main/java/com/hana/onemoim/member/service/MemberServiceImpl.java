@@ -50,11 +50,9 @@ public class MemberServiceImpl implements MemberService {
         System.out.println("MemberServiceImpl.registerMemberInterest");
         for(String interestName : interestNames){
             InterestDto interestDto = new InterestDto();
-            System.out.println("MemberServiceImpl.registerMemberInterest");
-            System.out.println(interestName);
             interestDto.setMemberId(memberId);
             interestDto.setInterestName(interestName);
-            interestMapper.insertMemberInterest(interestDto);
+            interestMapper.insertInterest(interestDto);
         }
     }
 }
