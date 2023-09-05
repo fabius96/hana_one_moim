@@ -61,8 +61,11 @@ public class GatheringServiceImpl implements GatheringService {
     public List<GatheringDto> findAllGatheringByMemberId(int memberId) {
         List<GatheringDto> gatheringDtoList = gatheringMapper.selectGroupByMemberId(memberId);
         for (GatheringDto gatheringDto : gatheringDtoList) {
+            String gatheringDescription = gatheringDto.getGatheringDescription().replace("\n","<br/>");
+            gatheringDto.setGatheringDescription(gatheringDescription);
             gatheringDto.setGatheringLeaderName(memberMapper.selectNameByLeaderId(gatheringDto.getGatheringLeaderId()));
             gatheringDto.setGatheringCoverImageUrl(gatheringMapper.selectGatheringCoverImage(gatheringDto.getGatheringId()));
+
         }
         return gatheringDtoList;
     }

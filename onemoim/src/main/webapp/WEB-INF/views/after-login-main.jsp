@@ -60,7 +60,7 @@
                 </div>
                 <div class="gathering-container">
                     <div class="third-gathering-icon">
-                        <img src="<%= request.getContextPath() %>/img/category.png" alt="모임아이콘3"
+                        <img src="<%= request.getContextPath() %>/img/category.png" alt="모임아이콘1"
                              class="gathering-image">
                         <p class="icon-name">모임분류</p>
                     </div>
@@ -70,9 +70,9 @@
                         <p class="icon-name">모임추천</p>
                     </div>
                     <div class="first-gathering-icon">
-                        <img src="<%= request.getContextPath() %>/img/add.png" alt="모임아이콘1"
-                             class="gathering-image">
-                        <p class="icon-name">모임생성</p>
+                        <img src="<%= request.getContextPath() %>/img/add.png" alt="모임아이콘3"
+                             class="gathering-image" onclick="createGathering();">
+                        <p class="icon-name" onclick="createGathering();">모임생성</p>
                     </div>
                 </div>
                 <div class="search-container">

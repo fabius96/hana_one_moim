@@ -24,3 +24,8 @@ function changeContainer() {
 
 // 3초마다 changeContainer 함수 실행
 setInterval(changeContainer, 4000);
+
+function createGathering() {
+    location.href = '/gathering/gathering-create';
+}
+
