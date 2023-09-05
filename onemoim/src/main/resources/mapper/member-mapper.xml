@@ -52,4 +52,10 @@
         WHERE member_id = #{gatheringLeaderID}
     </select>
 
+    <!-- member_id 가져오기 -->
+    <select id="getNextMemberSeq" resultType="int">
+        SELECT member_seq.NEXTVAL
+        FROM DUAL
+    </select>
+
 </mapper>

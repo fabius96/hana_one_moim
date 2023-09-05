@@ -19,4 +19,7 @@ public interface MemberMapper {
 
     // 모임장 이름 조회
     String selectNameByLeaderId(int gatheringLeaderId);
+
+    // member_id 가져오기
+    int getNextMemberSeq();
 }

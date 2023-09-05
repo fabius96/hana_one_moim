@@ -19,7 +19,8 @@
         <div class="content-wrapper">
             <p class="page-name">관심사 설정</p>
 
-            <form action="path_to_server_side_handling" method="post" id="interest-form">
+            <form action="/interest" method="post" id="interest-form">
+                <input type="hidden" name="memberId" value="${memberId}"/>
                 <div class="container">
                     <p class="header-text">
                         모임 관심사 설정
@@ -30,28 +31,28 @@
                     </p>
                     <div class="row">
                         <label>
-                            <input type="checkbox" name=""/>
+                            <input type="checkbox" name="interestNames" value="가족"/>
                             <div class="icon-box">
                                 <i class="fa-solid fa-people-roof" aria-hidden="true"></i>
                                 <span>가족</span>
                             </div>
                         </label>
                         <label>
-                            <input type="checkbox" name=""/>
+                            <input type="checkbox" name="interestNames" value="커플"/>
                             <div class="icon-box">
                                 <i class="fa-solid fa-heart" aria-hidden="true"></i>
                                 <span>커플</span>
                             </div>
                         </label>
                         <label>
-                            <input type="checkbox" name=""/>
+                            <input type="checkbox" name="interestNames" value="학교/동아리"/>
                             <div class="icon-box">
                                 <i class="fa-solid fa-school" aria-hidden="true"></i>
                                 <span>학교/동아리</span>
                             </div>
                         </label>
                         <label>
-                            <input type="checkbox" name=""/>
+                            <input type="checkbox" name="interestNames" value="회사/팀"/>
                             <div class="icon-box">
                                 <i class="fa-solid fa-building" aria-hidden="true"></i>
                                 <span>회사/팀</span>
@@ -59,7 +60,7 @@
                         </label>
 
                         <label>
-                            <input type="checkbox" name=""/>
+                            <input type="checkbox" name="interestNames" value="취미/동호회"/>
                             <div class="icon-box">
                                 <i class="fa-solid fa-people-group" aria-hidden="true"></i>
                                 <span>취미/동호회</span>
@@ -67,77 +68,77 @@
                         </label>
 
                         <label>
-                            <input type="checkbox" name=""/>
+                            <input type="checkbox" name="interestNames" value="스터디"/>
                             <div class="icon-box">
                                 <i class="fa-solid fa-pen" aria-hidden="true"></i>
                                 <span>스터디</span>
                             </div>
                         </label>
                         <label>
-                            <input type="checkbox" name=""/>
+                            <input type="checkbox" name="interestNames" value="게임"/>
                             <div class="icon-box">
                                 <i class="fa fa-gamepad" aria-hidden="true"></i>
                                 <span>게임</span>
                             </div>
                         </label>
                         <label>
-                            <input type="checkbox" name=""/>
+                            <input type="checkbox" name="interestNames" value="스포츠/레저"/>
                             <div class="icon-box">
                                 <i class="fa-solid fa-futbol" aria-hidden="true"></i>
                                 <span>스포츠/레저</span>
                             </div>
                         </label>
                         <label>
-                            <input type="checkbox" name=""/>
+                            <input type="checkbox" name="interestNames" value="헬스/다이어트"/>
                             <div class="icon-box">
                                 <i class="fa-solid fa-dumbbell" aria-hidden="true"></i>
                                 <span>헬스/다이어트</span>
                             </div>
                         </label>
                         <label>
-                            <input type="checkbox" name=""/>
+                            <input type="checkbox" name="interestNames" value="음악"/>
                             <div class="icon-box">
                                 <i class="fa-solid fa-music" aria-hidden="true"></i>
                                 <span>음악</span>
                             </div>
                         </label>
                         <label>
-                            <input type="checkbox" name=""/>
+                            <input type="checkbox" name="interestNames" value="맛집/요리"/>
                             <div class="icon-box">
                                 <i class="fa-solid fa-utensils" aria-hidden="true"></i>
                                 <span>맛집/요리</span>
                             </div>
                         </label>
                         <label>
-                            <input type="checkbox" name=""/>
+                            <input type="checkbox" name="interestNames" value="여행/캠핑"/>
                             <div class="icon-box">
                                 <i class="fa-solid fa-binoculars" aria-hidden="true"></i>
                                 <span>여행/캠핑</span>
                             </div>
                         </label>
                         <label>
-                            <input type="checkbox" name=""/>
+                            <input type="checkbox" name="interestNames" value="종교/봉사"/>
                             <div class="icon-box">
                                 <i class="fa-solid fa-cross" aria-hidden="true"></i>
                                 <span>종교/봉사</span>
                             </div>
                         </label>
                         <label>
-                            <input type="checkbox" name=""/>
+                            <input type="checkbox" name="interestNames" value="문화/예술"/>
                             <div class="icon-box">
                                 <i class="fa-solid fa-palette" aria-hidden="true"></i>
                                 <span>문화/예술</span>
                             </div>
                         </label>
                         <label>
-                            <input type="checkbox" name=""/>
+                            <input type="checkbox" name="interestNames" value="영화/애니"/>
                             <div class="icon-box">
                                 <i class="fa-solid fa-film" aria-hidden="true"></i>
                                 <span>영화/애니</span>
                             </div>
                         </label>
                         <label>
-                            <input type="checkbox" name=""/>
+                            <input type="checkbox" name="interestNames" value="독서"/>
                             <div class="icon-box">
                                 <i class="fa-solid fa-book" aria-hidden="true"></i>
                                 <span>독서</span>

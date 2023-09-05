@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 public class MemberController {
@@ -52,16 +53,20 @@ public class MemberController {
     // 회원가입
     @PostMapping("/signup")
     public ModelAndView registerMember(SignupMemberDto signupMemberDto) {
-        memberService.signupMember(signupMemberDto);
-        return new ModelAndView("/interest");
+        ModelAndView modelAndView = new ModelAndView("/interest");
+        int memberId = memberService.signupMember(signupMemberDto);
+        modelAndView.addObject("memberId", memberId);
+        return modelAndView;
     }
 
-    // 관심사 설정
-//    @PostMapping("/interest")
-//    public ModelAndView registerMemberInterest(@RequestParam int memberId){
-//        memberService.
-//     return new ModelAndView("signup-ok");
-//    }
+     //관심사 설정
+    @PostMapping("/interest")
+    public ModelAndView registerMemberInterest(@RequestParam int memberId,
+                                               @RequestParam List<String> interestNames){
+        System.out.println("MemberController.registerMemberInterest");
+        memberService.registerMemberInterest(memberId, interestNames);
+     return new ModelAndView("/signup-ok");
+    }
 
     // 관심사 설정 페이지 조회
     @GetMapping("/interest")
