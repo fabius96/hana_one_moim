@@ -88,7 +88,19 @@
                                     <span class="bank-name">하나은행</span>
                                 </div>
                                 <div class="dropdown-item">
-                                    <span class="bank-name">타행</span>
+                                    <span class="bank-name">국민은행</span>
+                                </div>
+                                <div class="dropdown-item">
+                                    <span class="bank-name">농협은행</span>
+                                </div>
+                                <div class="dropdown-item">
+                                    <span class="bank-name">신한은행</span>
+                                </div>
+                                <div class="dropdown-item">
+                                    <span class="bank-name">우리은행</span>
+                                </div>
+                                <div class="dropdown-item">
+                                    <span class="bank-name">IBK기업은행</span>
                                 </div>
                             </div>
                         </div>
