@@ -28,7 +28,7 @@
     </select>
 
     <!-- 모임 추천 -->
-    <select id="selectGatheringIdByMemberInterest" parameterType="Integer" resultType="Integer">
+    <select id="selectGatheringIdByMemberInterest" parameterType="int" resultType="Integer">
         SELECT DISTINCT i.gathering_id
         FROM interest i
         <if test="memberId != 0">
@@ -44,8 +44,16 @@
             WHERE member_id = #{memberId}
             )
         </if>
-        FETCH FIRST 4 ROWS ONLY
+        <choose>
+            <when test="limitResults">
+                FETCH FIRST 4 ROWS ONLY
+            </when>
+            <otherwise>
+
+            </otherwise>
+        </choose>
     </select>
+
 
 
 </mapper>

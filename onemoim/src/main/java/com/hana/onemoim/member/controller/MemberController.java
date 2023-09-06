@@ -37,10 +37,10 @@ public class MemberController {
 
         if (memberDto != null) {
             httpSession.setAttribute("loggedInMember", memberDto);
-            modelAndView.setViewName("after-login-main");
+            modelAndView.setViewName("redirect:after-login-main");
         } else {
             modelAndView.addObject("errorMessage", "아이디 혹은 패스워드가 일치하지 않습니다.");
-            modelAndView.setViewName("signin"); // 로그인 실패 시 다시 로그인 페이지로
+            modelAndView.setViewName("/signin"); // 로그인 실패 시 다시 로그인 페이지로
         }
         return modelAndView;
     }

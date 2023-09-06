@@ -2,6 +2,7 @@ package com.hana.onemoim.common.mapper;
 
 import com.hana.onemoim.common.dto.InterestDto;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -15,5 +16,6 @@ public interface InterestMapper {
     List<Integer>  selectGatheringIdFromInterest(String interest);
 
     // 모임 추천
-    List<Integer> selectGatheringIdByMemberInterest(int memberId);
+    List<Integer> selectGatheringIdByMemberInterest(@Param("memberId") int memberId,
+                                                    @Param("limitResults") boolean limitResults);
 }

@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 @Service
@@ -141,9 +142,10 @@ public class GatheringServiceImpl implements GatheringService {
 
     // 모임 추천
     @Override
-    public List<GatheringDto> findGatheringByMemberInterest(int memberId) {
+    public List<GatheringDto> findGatheringByMemberInterest(int memberId, boolean limitResults) {
         List<GatheringDto> gatheringDtoList = new ArrayList<>();
-        List<Integer> list = interestMapper.selectGatheringIdByMemberInterest(memberId);
+        List<Integer> list = interestMapper.selectGatheringIdByMemberInterest(memberId, limitResults);
+        list.removeIf(Objects::isNull);
         for (int gatheringId : list) {
             GatheringDto gatheringDto = gatheringMapper.selectGatheringByGatheringId(gatheringId);
             gatheringDto.setGatheringCoverImageUrl(gatheringMapper.selectGatheringCoverImage(gatheringDto.getGatheringId()));

@@ -34,5 +34,5 @@ public interface GatheringService {
     List<GatheringDto> findGatheringByInterest(String interest);
 
     // 모임 추천
-    List<GatheringDto> findGatheringByMemberInterest(int memberId);
+    List<GatheringDto> findGatheringByMemberInterest(int memberId, boolean limitResults);
 }
