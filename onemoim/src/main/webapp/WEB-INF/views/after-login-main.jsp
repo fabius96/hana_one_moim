@@ -67,7 +67,7 @@
                     </div>
                     <div class="second-gathering-icon">
                         <img src="<%= request.getContextPath() %>/img/recommend.png" alt="모임아이콘2"
-                             class="gathering-image">
+                             class="gathering-image" onclick="showGatheringRecommend();">
                         <p class="icon-name">모임추천</p>
                     </div>
                     <div class="first-gathering-icon">
@@ -166,7 +166,7 @@
     <div class="second-recommend-area">
         <div class="second-recommend-area-title">
             <p class="second-area-title">이런 모임은 어때요?</p>
-            <p class="second-area-link"> 모두보기 ></p>
+            <p class="second-area-link"> <a href="/gathering/gathering-recommend">모두보기 ></a></p>
         </div>
         <c:forEach var="gathering" items="${gatherings}">
             <div class="second-area-item">

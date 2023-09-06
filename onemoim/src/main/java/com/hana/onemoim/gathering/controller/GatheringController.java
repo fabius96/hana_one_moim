@@ -174,5 +174,18 @@ public class GatheringController {
         return modelAndView;
     }
 
-    // 모임 추천
+    // 모임 추천 페이지 조회
+    @GetMapping("/gathering/gathering-recommend")
+    public ModelAndView showGatheringRecommend(HttpSession httpSession){
+        ModelAndView modelAndView = new ModelAndView("/gathering/gathering-recommend");
+        MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
+        List<GatheringDto> gatheringDtoList;
+        if (memberDto == null) {
+            gatheringDtoList = gatheringService.findGatheringByMemberInterest(0);
+        } else {
+            gatheringDtoList = gatheringService.findGatheringByMemberInterest(memberDto.getMemberId());
+        }
+        modelAndView.addObject("gatherings", gatheringDtoList);
+        return modelAndView;
+    }
 }

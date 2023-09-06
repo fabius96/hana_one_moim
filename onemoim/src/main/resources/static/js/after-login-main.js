@@ -35,12 +35,17 @@ function showGatheringCategory(interest) {
     location.href = '/gathering/gathering-category?interest=' + interest;
 }
 
+// 주제별 모임 조회
+function showGatheringRecommend() {
+    location.href = '/gathering/gathering-recommend';
+}
+
 let currentSlide = 0;
 const slider = document.querySelector('.recommend-slider');
 const items = document.querySelectorAll('.recommend-item');
 const totalSlides = 3;
 
-document.getElementById('nextBtn').addEventListener('click', function() {
+document.getElementById('nextBtn').addEventListener('click', function () {
     if (currentSlide < totalSlides - 1) { // 마지막 슬라이드가 아니면
         currentSlide++;
     } else { // 마지막 슬라이드면
@@ -49,7 +54,7 @@ document.getElementById('nextBtn').addEventListener('click', function() {
     updateSliderPosition();
 });
 
-document.getElementById('prevBtn').addEventListener('click', function() {
+document.getElementById('prevBtn').addEventListener('click', function () {
     if (currentSlide > 0) { // 첫 번째 슬라이드가 아니면
         currentSlide--;
         updateSliderPosition();
