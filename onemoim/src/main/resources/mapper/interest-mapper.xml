@@ -19,11 +19,33 @@
         </choose>
     </insert>
 
+    <!-- 모임 분류 조회 -->
     <select id="selectGatheringIdFromInterest" parameterType="String" resultType="Integer">
         SELECT gathering_id
         FROM interest
         WHERE interest_name = #{interest}
           AND gathering_id IS NOT NULL
     </select>
+
+    <!-- 모임 추천 -->
+    <select id="selectGatheringIdByMemberInterest" parameterType="Integer" resultType="Integer">
+        SELECT DISTINCT i.gathering_id
+        FROM interest i
+        <if test="memberId != 0">
+            WHERE i.interest_name IN (
+            SELECT interest_name
+            FROM interest
+            WHERE member_id = #{memberId}
+            )
+            AND i.gathering_id IS NOT NULL
+            AND i.gathering_id NOT IN (
+            SELECT gathering_id
+            FROM gathering_member
+            WHERE member_id = #{memberId}
+            )
+        </if>
+        FETCH FIRST 4 ROWS ONLY
+    </select>
+
 
 </mapper>

@@ -32,4 +32,7 @@ public interface GatheringService {
 
     // 모임 분류 조회
     List<GatheringDto> findGatheringByInterest(String interest);
+
+    // 모임 추천
+    List<GatheringDto> findGatheringByMemberInterest(int memberId);
 }

@@ -218,7 +218,6 @@
     margin: 0;
     cursor: pointer;
     -webkit-appearance: none; /* 웹킷 기반 브라우저(예: Chrome, Safari)에서 기본 스타일 제거 */
-    -moz-appearance: none; /* 파이어폭스에서 기본 스타일 제거 */
     appearance: none; /* 표준 속성 */
 
     display: block;

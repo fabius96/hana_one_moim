@@ -173,4 +173,6 @@ public class GatheringController {
         modelAndView.addObject("gatherings", gatheringDtoList);
         return modelAndView;
     }
+
+    // 모임 추천
 }

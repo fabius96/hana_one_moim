@@ -118,7 +118,6 @@ public class GatheringServiceImpl implements GatheringService {
     // 모임 관심사 등록
     @Override
     public void registerGatheringInterest(int gatheringId, List<String> interestNames) {
-        System.out.println("MemberServiceImpl.registerMemberInterest");
         for (String interestName : interestNames) {
             InterestDto interestDto = new InterestDto();
             interestDto.setGatheringId(gatheringId);
@@ -137,6 +136,19 @@ public class GatheringServiceImpl implements GatheringService {
             gatheringDtoList.add(gatheringDto);
         }
         makeGatheringDtos(gatheringDtoList);
+        return gatheringDtoList;
+    }
+
+    // 모임 추천
+    @Override
+    public List<GatheringDto> findGatheringByMemberInterest(int memberId) {
+        List<GatheringDto> gatheringDtoList = new ArrayList<>();
+        List<Integer> list = interestMapper.selectGatheringIdByMemberInterest(memberId);
+        for (int gatheringId : list) {
+            GatheringDto gatheringDto = gatheringMapper.selectGatheringByGatheringId(gatheringId);
+            gatheringDto.setGatheringCoverImageUrl(gatheringMapper.selectGatheringCoverImage(gatheringDto.getGatheringId()));
+            gatheringDtoList.add(gatheringDto);
+        }
         return gatheringDtoList;
     }
 

@@ -168,46 +168,23 @@
             <p class="second-area-title">이런 모임은 어때요?</p>
             <p class="second-area-link"> 모두보기 ></p>
         </div>
-        <div class="second-area-item">
-            <img src="<%= request.getContextPath() %>/img/c10-art.jpg" class="second-area-item-img"
-                 alt="모임추천이미지1">
-            <div class="second-area-item-content">
-                <p class="second-area-item-title">모임명</p>
-                <p class="second-area-item-description">모임설명모임설명모임설명모임설명모임설명모임설명모임설명모
-                    임설명모임설명모임설명모임설명모임설명모임설명모임설명임설명모임설명모임설명모임설명모임설명모임설명모임설명</p>
-                <button class="second-area-item-button">버튼</button>
+        <c:forEach var="gathering" items="${gatherings}">
+            <div class="second-area-item">
+                <img src="${gathering.gatheringCoverImageUrl}" alt="${gathering.gatheringName} Cover Image"
+                     class="second-area-item-img">
+                <div class="second-area-item-content">
+                    <div class="second-area-item-title">
+                            ${gathering.gatheringName}
+                    </div>
+                    <div class="second-area-item-description">
+                            ${gathering.gatheringDescription}
+                    </div>
+                    <div class="button-container">
+                        <p class="area-button-text">가입신청</p>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="second-area-item">
-            <img src="<%= request.getContextPath() %>/img/c10-art.jpg" class="second-area-item-img"
-                 alt="모임추천이미지1">
-            <div class="second-area-item-content">
-                <p class="second-area-item-title">모임명</p>
-                <p class="second-area-item-description">모임설명모임설명모임설명모임설명모임설명모임설명모임설명모
-                    임설명모임설명모임설명모임설명모임설명모임설명모임설명임설명모임설명모임설명모임설명모임설명모임설명모임설명</p>
-                <button class="second-area-item-button">버튼</button>
-            </div>
-        </div>
-        <div class="second-area-item">
-            <img src="<%= request.getContextPath() %>/img/c10-art.jpg" class="second-area-item-img"
-                 alt="모임추천이미지1">
-            <div class="second-area-item-content">
-                <p class="second-area-item-title">모임명</p>
-                <p class="second-area-item-description">모임설명모임설명모임설명모임설명모임설명모임설명모임설명모
-                    임설명모임설명모임설명모임설명모임설명모임설명모임설명임설명모임설명모임설명모임설명모임설명모임설명모임설명</p>
-                <button class="second-area-item-button">버튼</button>
-            </div>
-        </div>
-        <div class="second-area-item">
-            <img src="<%= request.getContextPath() %>/img/c10-art.jpg" class="second-area-item-img"
-                 alt="모임추천이미지1">
-            <div class="second-area-item-content">
-                <p class="second-area-item-title">모임명</p>
-                <p class="second-area-item-description">모임설명모임설명모임설명모임설명모임설명모임설명모임설명모
-                    임설명모임설명모임설명모임설명모임설명모임설명모임설명임설명모임설명모임설명모임설명모임설명모임설명모임설명</p>
-                <button class="second-area-item-button">버튼</button>
-            </div>
-        </div>
+        </c:forEach>
 
     </div>
 
