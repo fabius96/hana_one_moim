@@ -19,6 +19,9 @@
         <div class="content-wrapper">
             <p class="page-name">카드</p>
 
+            <p class="progress-text">STEP</p>
+            <img src="${pageContext.request.contextPath}/img/progress-bar5-05.png" alt="진행도" class="progress-bar">
+
             <form action="/gathering/card-opening-setting" method="post">
                 <input type="hidden" name="gatheringCardId" value="${gatheringCardId}"/>
                 <input type="hidden" name="gatheringId" value="${gatheringId}"/>

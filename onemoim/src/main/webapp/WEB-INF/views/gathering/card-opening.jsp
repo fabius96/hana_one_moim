@@ -27,6 +27,8 @@
                 <input type="hidden" name="gatheringName" value="${gatheringName}"/>
                 <input type="hidden" name="accountNumber" value="${accountNumber}"/>
 
+                <p class="progress-text">STEP</p>
+                <img src="${pageContext.request.contextPath}/img/progress-bar5-04.png" alt="진행도" class="progress-bar">
 
                 <div class="box-container">
                     <p class="header-text">

@@ -64,7 +64,7 @@ public class GatheringController {
         return modelAndView;
     }
 
-    // 모임 개설
+    // 1. 모임 개설
     @PostMapping("/gathering/gathering-create")
     public ModelAndView createGathering(HttpSession httpSession,
                                         @ModelAttribute GatheringCreateDto gatheringCreateDto,
@@ -84,7 +84,7 @@ public class GatheringController {
         modelAndView.addObject("gatheringId", gatheringCreateDto.getGatheringId());
         modelAndView.addObject("productName", "하나원모임");
 
-        modelAndView.setViewName("/account/account-opening");
+        modelAndView.setViewName("/gathering/gathering-interest");
         return modelAndView;
     }
 
@@ -136,7 +136,7 @@ public class GatheringController {
         ModelAndView modelAndView = new ModelAndView("/signin");
         MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
         if (memberDto != null) {
-            modelAndView.setViewName("/gathering/gathering-interest");
+            modelAndView.setViewName("/gathering/gathering-create-ok");
             modelAndView.addObject("gatheringId", gatheringId);
             gatheringService.settingCardBenefit(cardBenefitWrapper, gatheringCardId);
         }
@@ -153,13 +153,18 @@ public class GatheringController {
     //관심사 설정
     @PostMapping("/gathering/gathering-interest")
     public ModelAndView registerMemberInterest(HttpSession httpSession,
-                                               @RequestParam int gatheringId,
+                                               @RequestParam(required = false) int gatheringId,
+                                               @RequestParam(required = false) String gatheringName,
                                                @RequestParam List<String> interestNames) {
         ModelAndView modelAndView = new ModelAndView("/signin");
         MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
         if (memberDto != null) {
             gatheringService.registerGatheringInterest(gatheringId, interestNames);
-            modelAndView.setViewName("/gathering/gathering-create-ok");
+            modelAndView.setViewName("/account/account-opening");
+
+            modelAndView.addObject("gatheringName", gatheringName);
+            modelAndView.addObject("gatheringId", gatheringId);
+            modelAndView.addObject("productName", "하나원모임");
         }
         return modelAndView;
     }

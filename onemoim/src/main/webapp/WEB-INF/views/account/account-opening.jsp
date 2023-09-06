@@ -1,5 +1,6 @@
 <%@ page import="com.hana.onemoim.member.dto.MemberDto" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <% MemberDto loggedInMember = (MemberDto) session.getAttribute("loggedInMember"); %>
 <!DOCTYPE html>
 <html>
@@ -27,8 +28,13 @@
                 <input type="hidden" name="gatheringId" value="${empty gatheringId ? '0' : gatheringId}"/>
                 <input type="hidden" name="gatheringName" value="${empty gatheringName ? '' : gatheringName}"/>
 
+                <c:if test="${productName == '하나원모임'}">
+                    <p class="progress-text">STEP</p>
+                    <img src="${pageContext.request.contextPath}/img/progress-bar5-03.png" alt="진행도" class="progress-bar">
+                </c:if>
 
                 <div class="box-container">
+
                     <p class="header-text">
                         ${productName}<br/>
                         ${productName eq '하나원모임' ? '모임 통장 개설' : '통장 개설'}

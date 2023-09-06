@@ -18,9 +18,12 @@
     <div class="main-container">
         <div class="content-wrapper">
             <p class="page-name">모임개설</p>
+            <p class="progress-text">STEP</p>
+            <img src="${pageContext.request.contextPath}/img/progress-bar5-01.png" alt="진행도" class="progress-bar">
             <form action="/gathering/gathering-create" method="post" enctype="multipart/form-data">
 
                 <div class="box-container">
+
                     <p class="header-text">
                         하나원모임<br>신규 모임 개설
                     </p>

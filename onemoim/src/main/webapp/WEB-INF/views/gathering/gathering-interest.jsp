@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <title>관심사 설정</title>
     <link rel="stylesheet" href="/css/common.css">
-    <link rel="stylesheet" href="/css/interest.css">
+    <link rel="stylesheet" href="/css/gathering-interest.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
@@ -19,8 +19,17 @@
         <div class="content-wrapper">
             <p class="page-name">관심사 설정</p>
 
+            <p class="progress-text">STEP</p>
+            <img src="${pageContext.request.contextPath}/img/progress-bar5-02.png" alt="진행도" class="progress-bar">
+
             <form action="/gathering/gathering-interest" method="post" id="interest-form">
-                <input type="hidden" name="gatheringId" value="${gatheringId}"/>
+
+                <input type="hidden" name="memberId" value="${loggedInMember.memberId}"/>
+                <input type="hidden" name="simplePassword" value="${loggedInMember.simplePassword}"/>
+                <input type="hidden" name="accountNickname" value="${productName}"/>
+                <input type="hidden" name="gatheringId" value="${empty gatheringId ? '0' : gatheringId}"/>
+                <input type="hidden" name="gatheringName" value="${empty gatheringName ? '' : gatheringName}"/>
+
                 <div class="container">
                     <p class="header-text">
                         모임 관심사 설정

@@ -208,3 +208,20 @@
     white-space: nowrap;
     border: 0;
 }
+
+.progress-bar{
+    width: 80px;
+    position: absolute;
+    left: 995px;
+    top: 35px;
+}
+
+.progress-text{
+    font-family: Hana2-Bold, sans-serif;
+    font-size: 12px;
+    position: absolute;
+    left: 960px;
+    top: 35px;
+    margin: 0;
+    color: #00A296;
+}

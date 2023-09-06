@@ -16,6 +16,8 @@
 <div class="except-footer">
     <jsp:include page="includes/header_before_login.jsp"/>
     <div class="main-container">
+        <p class="progress-text">STEP</p>
+        <img src="img/progress-bar2-01.png" alt="진행도" class="progress-bar">
         <div class="signup-container">
             <img class="character-image" src="img/character2.png">
             <p class="title"><span class="green-text">하나 </span><span class="red-text">원</span><span

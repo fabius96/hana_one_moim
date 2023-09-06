@@ -18,10 +18,12 @@
     <div class="main-container">
         <div class="content-wrapper">
             <p class="page-name">관심사 설정</p>
-
+            <p class="progress-text">STEP</p>
+            <img src="img/progress-bar2-02.png" alt="진행도" class="progress-bar">
             <form action="/interest" method="post" id="interest-form">
                 <input type="hidden" name="memberId" value="${memberId}"/>
                 <div class="container">
+
                     <p class="header-text">
                         모임 관심사 설정
                     </p>

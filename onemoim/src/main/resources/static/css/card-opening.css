@@ -224,3 +224,20 @@
     width: 100%;
     height: 100%;
 }
+
+.progress-bar{
+    width: 170px;
+    position: absolute;
+    top: 45px;
+    left: 365px;
+}
+
+.progress-text{
+    font-family: Hana2-Bold, sans-serif;
+    font-size: 12px;
+    position: absolute;
+    left: 330px;
+    top: 45px;
+    margin: 0;
+    color: #00A296;
+}
