@@ -267,7 +267,7 @@
     position: absolute;
     top: 490px;
     left: 210px;
-    font-family: Hana2-Medium,sans-serif;
+    font-family: Hana2-Medium, sans-serif;
     font-size: 20px;
 }
 
@@ -318,7 +318,7 @@
     z-index: 10;
 }
 
-.scroll-btn-img{
+.scroll-btn-img {
     width: 40px;
     height: 40px;
 }
@@ -336,8 +336,87 @@
     border-radius: 200px;
 }
 
-.item-title{
+.item-title {
     margin-top: 20px;
     font-family: Hana2-Medium, sans-serif;
     font-size: 15px;
+}
+
+.second-recommend-area {
+    display: flex;
+    flex-wrap: wrap; /* 아이템들이 여러 줄로 나눠지도록 함 */
+    flex-direction: row; /* 아이템들이 가로 방향으로 나열되도록 함 */
+    align-items: flex-start;
+    width: 75%;
+    justify-content: start;
+    margin: 0 auto 50px;
+    gap: 10px;
+}
+
+.second-recommend-area-title {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.second-area-item-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.second-area-title {
+    font-family: Hana2-Medium, sans-serif;
+    font-size: 20px;
+    margin: 0;
+}
+
+.second-area-link {
+    margin-top: 15px;
+    margin-right: 50px;
+}
+
+.second-area-item {
+    margin-left: 30px;
+    margin-right: 20px;
+    margin-top: 10px;
+    display: flex;
+    width: calc(50% - 70px); /* 아이템 2개가 한 줄에 올 수 있도록 너비 설정. gap의 절반만큼 뺌 */
+    height: 100px;
+}
+
+.second-area-item p {
+    margin: 0 0 5px;
+}
+
+.second-area-item-title {
+    font-family: Hana2-Medium, sans-serif;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.second-area-item-description {
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* 두 줄로 제한 */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 450px;
+
+    font-family: Hana2-Regular, sans-serif;
+    font-size: 12px;
+    margin-bottom: 15px;
+}
+
+.second-area-item-img {
+    width: 93px;
+    height: 93px;
+    object-fit: cover;
+    border-radius: 200px;
+    margin-right: 15px;
+}
+
+.second-area-item-button {
+    margin-top: 5px;
 }

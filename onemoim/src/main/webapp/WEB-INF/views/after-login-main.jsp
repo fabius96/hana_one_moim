@@ -163,6 +163,53 @@
             </button>
         </div>
     </div>
+    <div class="second-recommend-area">
+        <div class="second-recommend-area-title">
+            <p class="second-area-title">이런 모임은 어때요?</p>
+            <p class="second-area-link"> 모두보기 ></p>
+        </div>
+        <div class="second-area-item">
+            <img src="<%= request.getContextPath() %>/img/c10-art.jpg" class="second-area-item-img"
+                 alt="모임추천이미지1">
+            <div class="second-area-item-content">
+                <p class="second-area-item-title">모임명</p>
+                <p class="second-area-item-description">모임설명모임설명모임설명모임설명모임설명모임설명모임설명모
+                    임설명모임설명모임설명모임설명모임설명모임설명모임설명임설명모임설명모임설명모임설명모임설명모임설명모임설명</p>
+                <button class="second-area-item-button">버튼</button>
+            </div>
+        </div>
+        <div class="second-area-item">
+            <img src="<%= request.getContextPath() %>/img/c10-art.jpg" class="second-area-item-img"
+                 alt="모임추천이미지1">
+            <div class="second-area-item-content">
+                <p class="second-area-item-title">모임명</p>
+                <p class="second-area-item-description">모임설명모임설명모임설명모임설명모임설명모임설명모임설명모
+                    임설명모임설명모임설명모임설명모임설명모임설명모임설명임설명모임설명모임설명모임설명모임설명모임설명모임설명</p>
+                <button class="second-area-item-button">버튼</button>
+            </div>
+        </div>
+        <div class="second-area-item">
+            <img src="<%= request.getContextPath() %>/img/c10-art.jpg" class="second-area-item-img"
+                 alt="모임추천이미지1">
+            <div class="second-area-item-content">
+                <p class="second-area-item-title">모임명</p>
+                <p class="second-area-item-description">모임설명모임설명모임설명모임설명모임설명모임설명모임설명모
+                    임설명모임설명모임설명모임설명모임설명모임설명모임설명임설명모임설명모임설명모임설명모임설명모임설명모임설명</p>
+                <button class="second-area-item-button">버튼</button>
+            </div>
+        </div>
+        <div class="second-area-item">
+            <img src="<%= request.getContextPath() %>/img/c10-art.jpg" class="second-area-item-img"
+                 alt="모임추천이미지1">
+            <div class="second-area-item-content">
+                <p class="second-area-item-title">모임명</p>
+                <p class="second-area-item-description">모임설명모임설명모임설명모임설명모임설명모임설명모임설명모
+                    임설명모임설명모임설명모임설명모임설명모임설명모임설명임설명모임설명모임설명모임설명모임설명모임설명모임설명</p>
+                <button class="second-area-item-button">버튼</button>
+            </div>
+        </div>
+
+    </div>
 
 </div>
 
