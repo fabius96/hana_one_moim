@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -76,7 +77,8 @@
                     </div>
                 </div>
                 <div class="search-container">
-                    <form action="<%= request.getContextPath() %>/gathering/gathering-search" method="get" class="search-form">
+                    <form action="<%= request.getContextPath() %>/gathering/gathering-search" method="get"
+                          class="search-form">
                         <input type="text" placeholder="모임 검색" class="search-bar" name="keyword">
                         <button type="submit" class="search-btn"></button>
                     </form>
@@ -86,33 +88,82 @@
         </div>
 
     </div>
-
-    <div class="menu-container">
-        <div class="menu" id="first-menu">
-            <a href="${pageContext.request.contextPath}/account/account-info-hana" class="link-button">
-                <p class="menu-title">계좌조회</p>
-                <p class="menu-describe">계좌정보 거래내역 조회</p>
-            </a>
-        </div>
-        <div class="menu">
-            <a href="${pageContext.request.contextPath}/account/account-transfer-hana" class="link-button">
-                <p class="menu-title">계좌이체</p>
-                <p class="menu-describe">계좌이체부터 회비납부까지!</p>
-            </a>
-        </div>
-        <div class="menu">
-            <a href="${pageContext.request.contextPath}/gathering/gathering-info" class="link-button">
-                <p class="menu-title">모임</p>
-                <p class="menu-describe">모임원들과 함께!</p>
-            </a>
-        </div>
-        <div class="menu" id="last-menu">
-            <a href="/" class="link-button">
-                <p class="menu-title">오픈뱅킹</p>
-                <p class="menu-describe">내 모든 계좌를 한 눈에</p>
-            </a>
+    <div class="recommend-area">
+        <p class="area-title">주제별 모임을 찾아보세요</p>
+        <div class="recommend-container">
+            <button id="prevBtn" class="scroll-btn">
+                <img src="<%= request.getContextPath() %>/img/left-arrow.png" class="scroll-btn-img"
+                     alt="좌측화살표">
+            </button>
+            <div class="recommend-slider">
+                <div class="recommend-item" id="recommend-item-1">
+                    <img src="<%= request.getContextPath() %>/img/c1-hobby.jpg" class="recommend-item-img"
+                         alt="모임이미지1">
+                    <p class="item-title">취미/동호회</p>
+                </div>
+                <div class="recommend-item" id="recommend-item-2">
+                    <img src="<%= request.getContextPath() %>/img/c2-study.jpg" class="recommend-item-img"
+                         alt="모임이미지2">
+                    <p class="item-title">스터디</p>
+                </div>
+                <div class="recommend-item" id="recommend-item-3">
+                    <img src="<%= request.getContextPath() %>/img/c3-game.jpg" class="recommend-item-img"
+                         alt="모임이미지3">
+                    <p class="item-title">게임</p>
+                </div>
+                <div class="recommend-item" id="recommend-item-4">
+                    <img src="<%= request.getContextPath() %>/img/c4-sport.jpg" class="recommend-item-img"
+                         alt="모임이미지4">
+                    <p class="item-title">스포츠/레저</p>
+                </div>
+                <div class="recommend-item" id="recommend-item-5">
+                    <img src="<%= request.getContextPath() %>/img/c5-health.jpg" class="recommend-item-img"
+                         alt="모임이미지5">
+                    <p class="item-title">헬스/다이어트</p>
+                </div>
+                <div class="recommend-item" id="recommend-item-6">
+                    <img src="<%= request.getContextPath() %>/img/c6-music.jpg" class="recommend-item-img"
+                         alt="모임이미지6">
+                    <p class="item-title">음악</p>
+                </div>
+                <div class="recommend-item" id="recommend-item-7">
+                    <img src="<%= request.getContextPath() %>/img/c7-food.jpg" class="recommend-item-img"
+                         alt="모임이미지7">
+                    <p class="item-title">맛집/요리</p>
+                </div>
+                <div class="recommend-item" id="recommend-item-8">
+                    <img src="<%= request.getContextPath() %>/img/c8-travel.jpg" class="recommend-item-img"
+                         alt="모임이미지8">
+                    <p class="item-title">여행/캠핑</p>
+                </div>
+                <div class="recommend-item" id="recommend-item-9">
+                    <img src="<%= request.getContextPath() %>/img/c9-religion.jpg" class="recommend-item-img"
+                         alt="모임이미지9">
+                    <p class="item-title">종교/봉사</p>
+                </div>
+                <div class="recommend-item" id="recommend-item-10">
+                    <img src="<%= request.getContextPath() %>/img/c10-art.jpg" class="recommend-item-img"
+                         alt="모임이미지10">
+                    <p class="item-title">문화/예술</p>
+                </div>
+                <div class="recommend-item" id="recommend-item-11">
+                    <img src="<%= request.getContextPath() %>/img/c11-movie.jpg" class="recommend-item-img"
+                         alt="모임이미지11">
+                    <p class="item-title">영화/애니</p>
+                </div>
+                <div class="recommend-item" id="recommend-item-12">
+                    <img src="<%= request.getContextPath() %>/img/c12-book.jpg" class="recommend-item-img"
+                         alt="모임이미지12">
+                    <p class="item-title">독서</p>
+                </div>
+            </div>
+            <button id="nextBtn" class="scroll-btn">
+                <img src="<%= request.getContextPath() %>/img/right-arrow.png" class="scroll-btn-img"
+                     alt="우측화살표">
+            </button>
         </div>
     </div>
+
 </div>
 
 <jsp:include page="includes/footer.jsp"/>
