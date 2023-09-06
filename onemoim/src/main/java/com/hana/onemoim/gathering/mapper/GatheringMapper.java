@@ -32,4 +32,7 @@ public interface GatheringMapper {
 
     // 모임 검색 결과 수
     int countGatheringByKeyword(String keyword);
+
+    // 모임 분류 조회
+    GatheringDto selectGatheringByGatheringId(int gatheringId);
 }

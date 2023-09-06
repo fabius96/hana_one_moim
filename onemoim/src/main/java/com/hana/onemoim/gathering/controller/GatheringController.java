@@ -163,4 +163,14 @@ public class GatheringController {
         }
         return modelAndView;
     }
+
+    // 모임분류 페이지 조회
+    @GetMapping("/gathering/gathering-category")
+    public ModelAndView showGatheringCategory(@RequestParam String interest){
+        ModelAndView modelAndView = new ModelAndView("/gathering/gathering-category");
+        List<GatheringDto> gatheringDtoList = gatheringService.findGatheringByInterest(interest);
+        modelAndView.addObject("interest",interest);
+        modelAndView.addObject("gatherings", gatheringDtoList);
+        return modelAndView;
+    }
 }

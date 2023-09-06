@@ -62,7 +62,7 @@
                 <div class="gathering-container">
                     <div class="third-gathering-icon">
                         <img src="<%= request.getContextPath() %>/img/category.png" alt="모임아이콘1"
-                             class="gathering-image">
+                             class="gathering-image" onclick="showGatheringCategory();">
                         <p class="icon-name">모임분류</p>
                     </div>
                     <div class="second-gathering-icon">
@@ -96,62 +96,62 @@
                      alt="좌측화살표">
             </button>
             <div class="recommend-slider">
-                <div class="recommend-item" id="recommend-item-1">
+                <div class="recommend-item" id="recommend-item-1" onclick="showGatheringCategory('취미/동호회');">
                     <img src="<%= request.getContextPath() %>/img/c1-hobby.jpg" class="recommend-item-img"
                          alt="모임이미지1">
                     <p class="item-title">취미/동호회</p>
                 </div>
-                <div class="recommend-item" id="recommend-item-2">
+                <div class="recommend-item" id="recommend-item-2" onclick="showGatheringCategory('스터디');">
                     <img src="<%= request.getContextPath() %>/img/c2-study.jpg" class="recommend-item-img"
                          alt="모임이미지2">
                     <p class="item-title">스터디</p>
                 </div>
-                <div class="recommend-item" id="recommend-item-3">
+                <div class="recommend-item" id="recommend-item-3" onclick="showGatheringCategory('게임');">
                     <img src="<%= request.getContextPath() %>/img/c3-game.jpg" class="recommend-item-img"
                          alt="모임이미지3">
                     <p class="item-title">게임</p>
                 </div>
-                <div class="recommend-item" id="recommend-item-4">
+                <div class="recommend-item" id="recommend-item-4" onclick="showGatheringCategory('스포츠/레저');">
                     <img src="<%= request.getContextPath() %>/img/c4-sport.jpg" class="recommend-item-img"
                          alt="모임이미지4">
                     <p class="item-title">스포츠/레저</p>
                 </div>
-                <div class="recommend-item" id="recommend-item-5">
+                <div class="recommend-item" id="recommend-item-5" onclick="showGatheringCategory('헬스/다이어트');">
                     <img src="<%= request.getContextPath() %>/img/c5-health.jpg" class="recommend-item-img"
                          alt="모임이미지5">
                     <p class="item-title">헬스/다이어트</p>
                 </div>
-                <div class="recommend-item" id="recommend-item-6">
+                <div class="recommend-item" id="recommend-item-6" onclick="showGatheringCategory('음악');">
                     <img src="<%= request.getContextPath() %>/img/c6-music.jpg" class="recommend-item-img"
                          alt="모임이미지6">
                     <p class="item-title">음악</p>
                 </div>
-                <div class="recommend-item" id="recommend-item-7">
+                <div class="recommend-item" id="recommend-item-7" onclick="showGatheringCategory('맛집/요리');">
                     <img src="<%= request.getContextPath() %>/img/c7-food.jpg" class="recommend-item-img"
                          alt="모임이미지7">
                     <p class="item-title">맛집/요리</p>
                 </div>
-                <div class="recommend-item" id="recommend-item-8">
+                <div class="recommend-item" id="recommend-item-8" onclick="showGatheringCategory('여행/캠핑');">
                     <img src="<%= request.getContextPath() %>/img/c8-travel.jpg" class="recommend-item-img"
                          alt="모임이미지8">
                     <p class="item-title">여행/캠핑</p>
                 </div>
-                <div class="recommend-item" id="recommend-item-9">
+                <div class="recommend-item" id="recommend-item-9" onclick="showGatheringCategory('종교/봉사');">
                     <img src="<%= request.getContextPath() %>/img/c9-religion.jpg" class="recommend-item-img"
                          alt="모임이미지9">
                     <p class="item-title">종교/봉사</p>
                 </div>
-                <div class="recommend-item" id="recommend-item-10">
+                <div class="recommend-item" id="recommend-item-10" onclick="showGatheringCategory('문화/예술');">
                     <img src="<%= request.getContextPath() %>/img/c10-art.jpg" class="recommend-item-img"
                          alt="모임이미지10">
                     <p class="item-title">문화/예술</p>
                 </div>
-                <div class="recommend-item" id="recommend-item-11">
+                <div class="recommend-item" id="recommend-item-11" onclick="showGatheringCategory('영화/애니');">
                     <img src="<%= request.getContextPath() %>/img/c11-movie.jpg" class="recommend-item-img"
                          alt="모임이미지11">
                     <p class="item-title">영화/애니</p>
                 </div>
-                <div class="recommend-item" id="recommend-item-12">
+                <div class="recommend-item" id="recommend-item-12" onclick="showGatheringCategory('독서');">
                     <img src="<%= request.getContextPath() %>/img/c12-book.jpg" class="recommend-item-img"
                          alt="모임이미지12">
                     <p class="item-title">독서</p>

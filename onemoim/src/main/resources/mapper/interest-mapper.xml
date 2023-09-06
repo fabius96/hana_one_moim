@@ -19,4 +19,11 @@
         </choose>
     </insert>
 
+    <select id="selectGatheringIdFromInterest" parameterType="String" resultType="Integer">
+        SELECT gathering_id
+        FROM interest
+        WHERE interest_name = #{interest}
+          AND gathering_id IS NOT NULL
+    </select>
+
 </mapper>

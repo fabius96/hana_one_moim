@@ -29,4 +29,7 @@ public interface GatheringService {
 
     // 모임 관심사 설정
     void registerGatheringInterest(int gatheringId, List<String> interestNames);
+
+    // 모임 분류 조회
+    List<GatheringDto> findGatheringByInterest(String interest);
 }

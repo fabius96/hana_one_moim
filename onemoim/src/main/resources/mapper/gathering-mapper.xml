@@ -69,4 +69,13 @@
         WHERE gathering_name LIKE '%' || #{keyword} || '%'
                   OR gathering_description LIKE '%' || #{keyword} || '%'
     </select>
+
+    <!-- 모임 분류 조회 -->
+    <select id="selectGatheringByGatheringId" parameterType="int"
+            resultMap="gatheringDto">
+        SELECT *
+        FROM gathering
+        WHERE gathering_id = #{gatheringId}
+    </select>
+
 </mapper>

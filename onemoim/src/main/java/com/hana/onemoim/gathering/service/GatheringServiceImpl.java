@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -60,14 +61,7 @@ public class GatheringServiceImpl implements GatheringService {
     @Override
     public List<GatheringDto> findAllGatheringByMemberId(int memberId) {
         List<GatheringDto> gatheringDtoList = gatheringMapper.selectGroupByMemberId(memberId);
-        for (GatheringDto gatheringDto : gatheringDtoList) {
-            String gatheringDescription = gatheringDto.getGatheringDescription().replace("\n","<br/>");
-            gatheringDto.setGatheringDescription(gatheringDescription);
-            gatheringDto.setGatheringLeaderName(memberMapper.selectNameByLeaderId(gatheringDto.getGatheringLeaderId()));
-            gatheringDto.setGatheringCoverImageUrl(gatheringMapper.selectGatheringCoverImage(gatheringDto.getGatheringId()));
-
-        }
-        return gatheringDtoList;
+        return makeGatheringDtos(gatheringDtoList);
     }
 
     // 모임카드 개설
@@ -112,11 +106,7 @@ public class GatheringServiceImpl implements GatheringService {
     @Override
     public List<GatheringDto> findAllGatheringByKeyword(String keyword) {
         List<GatheringDto> gatheringDtoList = gatheringMapper.selectGatheringByKeyword(keyword);
-        for (GatheringDto gatheringDto : gatheringDtoList) {
-            gatheringDto.setGatheringLeaderName(memberMapper.selectNameByLeaderId(gatheringDto.getGatheringLeaderId()));
-            gatheringDto.setGatheringCoverImageUrl(gatheringMapper.selectGatheringCoverImage(gatheringDto.getGatheringId()));
-        }
-        return gatheringDtoList;
+        return makeGatheringDtos(gatheringDtoList);
     }
 
     // 모임 검색 결과 세기
@@ -135,5 +125,29 @@ public class GatheringServiceImpl implements GatheringService {
             interestDto.setInterestName(interestName);
             interestMapper.insertInterest(interestDto);
         }
+    }
+
+    // 모임 분류 조회
+    @Override
+    public List<GatheringDto> findGatheringByInterest(String interest) {
+        List<GatheringDto> gatheringDtoList = new ArrayList<>();
+        List<Integer> list = interestMapper.selectGatheringIdFromInterest(interest);
+        for (int gatheringId : list) {
+            GatheringDto gatheringDto = gatheringMapper.selectGatheringByGatheringId(gatheringId);
+            gatheringDtoList.add(gatheringDto);
+        }
+        makeGatheringDtos(gatheringDtoList);
+        return gatheringDtoList;
+    }
+
+    // 모임 설명 개행, 모임장명, 모임커버이미지URL 설정 공통 모듈화
+    private List<GatheringDto> makeGatheringDtos(List<GatheringDto> gatheringDtoList) {
+        for (GatheringDto gatheringDto : gatheringDtoList) {
+            String gatheringDescription = gatheringDto.getGatheringDescription().replace("\n", "<br/>");
+            gatheringDto.setGatheringDescription(gatheringDescription);
+            gatheringDto.setGatheringLeaderName(memberMapper.selectNameByLeaderId(gatheringDto.getGatheringLeaderId()));
+            gatheringDto.setGatheringCoverImageUrl(gatheringMapper.selectGatheringCoverImage(gatheringDto.getGatheringId()));
+        }
+        return gatheringDtoList;
     }
 }
