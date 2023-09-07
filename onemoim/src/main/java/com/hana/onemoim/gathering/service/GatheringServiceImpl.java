@@ -157,8 +157,8 @@ public class GatheringServiceImpl implements GatheringService {
     // 모임 설명 개행, 모임장명, 모임커버이미지URL 설정 공통 모듈화
     private List<GatheringDto> makeGatheringDtos(List<GatheringDto> gatheringDtoList) {
         for (GatheringDto gatheringDto : gatheringDtoList) {
-            String gatheringDescription = gatheringDto.getGatheringDescription().replace("\n", "<br/>");
-            gatheringDto.setGatheringDescription(gatheringDescription);
+//            String gatheringDescription = gatheringDto.getGatheringDescription().replace("\n", "<br/>");
+//            gatheringDto.setGatheringDescription(gatheringDescription);
             gatheringDto.setGatheringLeaderName(memberMapper.selectNameByLeaderId(gatheringDto.getGatheringLeaderId()));
             gatheringDto.setGatheringCoverImageUrl(gatheringMapper.selectGatheringCoverImage(gatheringDto.getGatheringId()));
         }
