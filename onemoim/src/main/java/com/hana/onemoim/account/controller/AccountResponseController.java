@@ -1,13 +1,14 @@
 package com.hana.onemoim.account.controller;
 
 import com.hana.onemoim.account.dto.AccountDto;
-import com.hana.onemoim.account.dto.AccountTransferDto;
 import com.hana.onemoim.account.dto.MemberTransactionDto;
 import com.hana.onemoim.account.service.AccountService;
 import com.hana.onemoim.member.dto.MemberDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
@@ -15,17 +16,16 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
-public class AccountController {
+public class AccountResponseController {
     private final AccountService accountService;
 
-
-    // 로그인 후 메인
+    // 로그인 후 메인 페이지 조회
     @GetMapping("/account/after-login-main")
     public String showAfterLoginMain() {
         return "after-login-main";
     }
 
-    // 계좌조회 - 하나은행
+    // 계좌조회(하나은행) 페이지 조회
     @GetMapping("/account/account-info-hana")
     public ModelAndView showAccountInfoHana(HttpSession httpSession) {
         ModelAndView modelAndView = new ModelAndView("signin");
@@ -41,13 +41,13 @@ public class AccountController {
         return modelAndView;
     }
 
-    // 금융상품
+    // 금융상품 페이지 조회
     @GetMapping("/account/account-product-list")
     public String showAccountProductList() {
         return "/account/account-product-list";
     }// 금융상품
 
-    // 금융상품 개설페이지
+    // 금융상품 개설 페이지 조회
     @GetMapping("/account/account-opening")
     public ModelAndView openAccount(@RequestParam String productName) {
         ModelAndView modelAndView = new ModelAndView();
@@ -56,30 +56,7 @@ public class AccountController {
         return modelAndView;
     }
 
-    // 금융상품 개설
-    @PostMapping("/account/account-opening")
-    public ModelAndView makeAccount(@RequestParam int memberId,
-                                    @RequestParam String simplePassword,
-                                    @RequestParam String accountNickname,
-                                    @RequestParam(required = false) int gatheringId,
-                                    @RequestParam(required = false) String gatheringName) {
-        ModelAndView modelAndView = new ModelAndView("/account/account-opening-ok");
-        // 모임통장 개설일 경우
-        if (gatheringId != 0) {
-            accountNickname = gatheringName + " 모임통장";
-            accountService.openGatheringAccount(simplePassword, accountNickname, gatheringId);
-            modelAndView.addObject("gatheringName", gatheringName);
-            modelAndView.addObject("gatheringId", gatheringId);
-            modelAndView.addObject("accountNumber",
-                    accountService.findAccountNumberByGatheringId(gatheringId));
-            modelAndView.setViewName("/gathering/card-opening");
-        } else { // 개인계좌 개설일 경우
-            accountService.openAccount(memberId, simplePassword, accountNickname);
-        }
-        return modelAndView;
-    }
-
-    // 금융상품 개설 성공
+    // 금융상품 개설 성공 페이지 조회
     @GetMapping("/account/account-opening-ok")
     public String showAccountOpeningOk() {
         return "/account/account-opening-ok";
@@ -98,13 +75,6 @@ public class AccountController {
         }
 
         return modelAndView;
-    }
-
-    // 계좌이체
-    @PostMapping("/account/account-transfer-hana")
-    public String accountTransfer(@ModelAttribute AccountTransferDto accountTransferDto) {
-        accountService.accountTransfer(accountTransferDto);
-        return "/account/account-transfer-ok";
     }
 
     // 계좌이체 완료 페이지 조회
@@ -128,7 +98,7 @@ public class AccountController {
         return modelAndView;
     }
 
-    // 계좌이체 내역 조회
+    // 계좌이체 내역 페이지 조회
     @GetMapping("/api/account/get-account-transaction")
     @ResponseBody
     public List<MemberTransactionDto> getAccountTransaction(AccountDto accountDto) {
