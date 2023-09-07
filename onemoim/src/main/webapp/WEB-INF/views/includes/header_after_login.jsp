@@ -34,7 +34,7 @@
 
         <p>
             <% if (name != null && !name.equals("Unknown")) { %>
-            <a href="/" class="member-name"><%= name %> 님</a> <a href="/api/member/logout" class="logout-text">로그아웃</a>
+            <a href="/" class="member-name"><%= name %> 님</a> <a href="/logout" class="logout-text">로그아웃</a>
             <% } else { %>
             <a href="/signin" class="logout-text">로그인</a>
             <% } %>

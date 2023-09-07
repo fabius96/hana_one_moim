@@ -7,26 +7,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
-public class MemberController {
+public class MemberRequestController {
 
     private final MemberService memberService;
 
-    public MemberController(MemberService memberService) {
+    public MemberRequestController(MemberService memberService) {
         this.memberService = memberService;
     }
 
-
-    @GetMapping("/signin")
-    public String showSignin() {
-        return "signin";
-    }
 
     // 로그인
     @PostMapping("/signin")
@@ -53,11 +47,6 @@ public class MemberController {
         return modelAndView;
     }
 
-    @GetMapping("/signup")
-    public String showSignup() {
-        return "signup";
-    }
-
     // 회원가입
     @PostMapping("/signup")
     public ModelAndView registerMember(SignupMemberDto signupMemberDto) {
@@ -75,29 +64,11 @@ public class MemberController {
         return new ModelAndView("/signup-ok");
     }
 
-    // 관심사 설정 페이지 조회
-    @GetMapping("/interest")
-    public ModelAndView getMemberInterest() {
-        return new ModelAndView("/interest");
-    }
-
-    // 회원가입 완료 페이지
-    @GetMapping("/signup-ok")
-    public String showSignupOk() {
-        return "signup-ok";
-    }
-
-    // 아이디 중복 확인
-    @GetMapping("/api/member/login_id/check")
-    @ResponseBody
-    public boolean checkLoginId(@RequestParam String loginId) {
-        return memberService.isLoginIdExist(loginId);
-    }
-
     // 로그아웃
-    @GetMapping("/api/member/logout")
-    public String logout(HttpSession httpSession) {
+    @GetMapping("/logout")
+    public ModelAndView logout(HttpSession httpSession) {
+        ModelAndView modelAndView = new ModelAndView("redirect:after-login-main");
         httpSession.removeAttribute("loggedInMember");
-        return "redirect:/signin";
+        return modelAndView;
     }
 }
