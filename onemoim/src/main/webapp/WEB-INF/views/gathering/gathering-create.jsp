@@ -48,24 +48,37 @@
                         <input id="gatheringImage" class="gatheringImage" type="file" name="gatheringImage"
                                style="display: none;">
                     </div>
-                    <p class="sub-title">모임 회비 정보</p>
+
+                    <p class="open-info">모임 공개 여부</p>
+                    <p class="input-description">비공개 선택 시 모임 분류, 추천, 검색으로의 조회가 불가합니다.</p>
                     <div class="input-container-4">
+                        <label>
+                            <input class="isPublic" type="radio" name="isPublic" value="Y">
+                            공개
+                        </label>
+                        <label>
+                            <input class="isPublic" type="radio" name="isPublic" value="N">
+                            비공개
+                        </label>
+                    </div>
+                    <p class="sub-title">모임 회비 정보</p>
+                    <div class="input-container-5">
                         <input class="paymentAmount" type="number" name="paymentAmount"
                                placeholder="모임 회비 입력" required>
                         <span class="input-currency">원</span>
                     </div>
-                    <div class="input-container-5">
+                    <div class="input-container-6">
                         <input class="paymentDay" type="number" name="paymentDay"
                                placeholder="모임 회비 납부일 입력 (1~30일 사이)" required>
                         <span class="input-currency">일</span>
                     </div>
                     <p class="start-day-info">모임 회비 납부 시작일 선택</p>
-                    <div class="input-container-6">
+                    <div class="input-container-7">
                         <input class="startDate" type="date" name="startDate"
                                placeholder="모임 회비 납부 시작일 선택">
                     </div>
                     <p class="payment-cycle-info">납부 주기 선택</p>
-                    <div class="input-container-7">
+                    <div class="input-container-8">
                         <label>
                             <input class="paymentCycleCode" type="radio" name="paymentCycleCode" value="60">
                             연

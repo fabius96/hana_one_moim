@@ -135,7 +135,7 @@ public class GatheringResponseController {
             return modelAndView;
         }
 
-        List<GatheringDto> gatheringDtoList = gatheringService.findGatheringByMemberInterest(memberDto.getMemberId(), false);
+        List<GatheringDto> gatheringDtoList = gatheringService.findGatheringByMemberInterest(memberDto.getMemberId());
         modelAndView.addObject("gatherings", gatheringDtoList);
         modelAndView.setViewName("/gathering/gathering-recommend");
         return modelAndView;

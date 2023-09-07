@@ -13,4 +13,5 @@ public class GatheringDto {
     private String gatheringName; // 모임명
     private String gatheringDescription; // 모임설명
     private String gatheringCoverImageUrl; // 모임대표이미지 URL
+    private String isPublic; // 모임 공개 여부
 }

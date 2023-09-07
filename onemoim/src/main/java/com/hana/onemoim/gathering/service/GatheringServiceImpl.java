@@ -142,14 +142,20 @@ public class GatheringServiceImpl implements GatheringService {
 
     // 모임 추천
     @Override
-    public List<GatheringDto> findGatheringByMemberInterest(int memberId, boolean limitResults) {
+    public List<GatheringDto> findGatheringByMemberInterest(int memberId) {
         List<GatheringDto> gatheringDtoList = new ArrayList<>();
-        List<Integer> list = interestMapper.selectGatheringIdByMemberInterest(memberId, limitResults);
+        List<Integer> list = interestMapper.selectGatheringIdByMemberInterest(memberId);
         list.removeIf(Objects::isNull);
         for (int gatheringId : list) {
             GatheringDto gatheringDto = gatheringMapper.selectGatheringByGatheringId(gatheringId);
+            if(gatheringDto == null){
+                continue;
+            }
             gatheringDto.setGatheringCoverImageUrl(gatheringMapper.selectGatheringCoverImage(gatheringDto.getGatheringId()));
             gatheringDtoList.add(gatheringDto);
+            if(gatheringDtoList.size()==4){
+                break;
+            }
         }
         return gatheringDtoList;
     }

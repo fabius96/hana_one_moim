@@ -16,6 +16,5 @@ public interface InterestMapper {
     List<Integer>  selectGatheringIdFromInterest(String interest);
 
     // 모임 추천
-    List<Integer> selectGatheringIdByMemberInterest(@Param("memberId") int memberId,
-                                                    @Param("limitResults") boolean limitResults);
+    List<Integer> selectGatheringIdByMemberInterest(@Param("memberId") int memberId);
 }

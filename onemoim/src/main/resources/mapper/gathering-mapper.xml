@@ -18,8 +18,8 @@
     <!-- 모임개설  -->
     <insert id="insertGathering" parameterType="com.hana.onemoim.gathering.dto.GatheringCreateDto">
         INSERT INTO gathering
-            (gathering_leader_id, gathering_name, gathering_description)
-        values (#{gatheringLeaderId}, #{gatheringName}, #{gatheringDescription})
+            (gathering_leader_id, gathering_name, gathering_description, is_public)
+        values (#{gatheringLeaderId}, #{gatheringName}, #{gatheringDescription}, #{isPublic})
     </insert>
 
     <!-- 모임회비규칙 생성 -->
@@ -57,8 +57,9 @@
             resultMap="gatheringDto">
         SELECT *
         FROM gathering
-        WHERE gathering_name LIKE '%' || #{keyword} || '%'
-                  OR gathering_description LIKE '%' || #{keyword} || '%'
+        WHERE is_public = 'Y'
+          AND (gathering_name LIKE '%' || #{keyword} || '%'
+                   OR gathering_description LIKE '%' || #{keyword} || '%')
     </select>
 
     <!-- 모임 검색 결과 수 -->
@@ -66,8 +67,9 @@
             resultType="int">
         SELECT COUNT(*)
         FROM gathering
-        WHERE gathering_name LIKE '%' || #{keyword} || '%'
-                  OR gathering_description LIKE '%' || #{keyword} || '%'
+        WHERE is_public = 'Y'
+          AND (gathering_name LIKE '%' || #{keyword} || '%'
+                   OR gathering_description LIKE '%' || #{keyword} || '%')
     </select>
 
     <!-- 모임 분류 조회 -->
@@ -75,7 +77,8 @@
             resultMap="gatheringDto">
         SELECT *
         FROM gathering
-        WHERE gathering_id = #{gatheringId}
+        WHERE is_public = 'Y'
+          AND gathering_id = #{gatheringId}
     </select>
 
 </mapper>

@@ -28,9 +28,9 @@ public class MainController {
         MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
         List<GatheringDto> gatheringDtoList;
         if (memberDto == null) {
-            gatheringDtoList = gatheringService.findGatheringByMemberInterest(0, true);
+            gatheringDtoList = gatheringService.findGatheringByMemberInterest(0);
         } else {
-            gatheringDtoList = gatheringService.findGatheringByMemberInterest(memberDto.getMemberId(), true);
+            gatheringDtoList = gatheringService.findGatheringByMemberInterest(memberDto.getMemberId());
         }
         modelAndView.addObject("gatherings", gatheringDtoList);
         return modelAndView;

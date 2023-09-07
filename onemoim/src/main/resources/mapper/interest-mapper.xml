@@ -44,14 +44,6 @@
             WHERE member_id = #{memberId}
             )
         </if>
-        <choose>
-            <when test="limitResults">
-                FETCH FIRST 4 ROWS ONLY
-            </when>
-            <otherwise>
-
-            </otherwise>
-        </choose>
     </select>
 
 

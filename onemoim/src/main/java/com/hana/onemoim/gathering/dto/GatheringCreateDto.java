@@ -13,6 +13,7 @@ public class GatheringCreateDto {
     private int gatheringLeaderId; // 모임장ID
     private String gatheringName; //모임명
     private String gatheringDescription; // 모임설명
+    private String isPublic; // 모임설명
     private int paymentAmount; // 모임 회비
     private int paymentDay; // 납부일
     private Date startDate; //모임 회비 납부 시작일
