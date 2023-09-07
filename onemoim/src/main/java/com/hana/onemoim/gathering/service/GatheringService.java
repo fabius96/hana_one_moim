@@ -22,7 +22,7 @@ public interface GatheringService {
     void settingCardBenefit(CardBenefitWrapper cardBenefitWrapper, int gatheringCardId);
 
     // 모임 검색
-    List<GatheringDto> findAllGatheringByKeyword(String keyword);
+    List<GatheringDto> findAllGatheringByKeyword(String keyword, int memberId);
 
     // 모임 검색 결과 수
     int countGatheringByKeyword(String keyword);
@@ -31,8 +31,8 @@ public interface GatheringService {
     void registerGatheringInterest(int gatheringId, List<String> interestNames);
 
     // 모임 분류 조회
-    List<GatheringDto> findGatheringByInterest(String interest);
+    List<GatheringDto> findGatheringByInterest(String interest, int memberId);
 
     // 모임 추천
-    List<GatheringDto> findGatheringByMemberInterest(int memberId);
+    List<GatheringDto> findGatheringByMemberInterest(int memberId, int num);
 }

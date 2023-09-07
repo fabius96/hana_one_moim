@@ -81,4 +81,11 @@
           AND gathering_id = #{gatheringId}
     </select>
 
+    <!-- 모임 가입 여부 확인 -->
+    <select id="isMemberJoined" parameterType="int" resultType="boolean">
+        SELECT COUNT(*)
+        FROM gathering_member
+        WHERE gathering_id = #{gatheringId} AND member_id = #{memberId}
+    </select>
+
 </mapper>

@@ -159,6 +159,20 @@
     overflow: hidden;
 }
 
+.join-button {
+    background-color: transparent;
+    border: 1px solid #008375;
+    border-radius: 2px;
+    margin-top: 7px;
+    width: 120px;
+    height: 40px;
+    overflow: hidden;
+}
+
+.join-button .button-text{
+    color: #008375;
+}
+
 .button-text {
     display: flex;
     align-items: center;
@@ -242,7 +256,7 @@
     position: absolute;
     top: 490px;
     left: 210px;
-    font-family: Hana2-Medium,sans-serif;
+    font-family: Hana2-Medium, sans-serif;
     font-size: 20px;
 }
 
@@ -292,7 +306,7 @@
     z-index: 10;
 }
 
-.scroll-btn-img{
+.scroll-btn-img {
     width: 40px;
     height: 40px;
 }
@@ -310,7 +324,7 @@
     border-radius: 200px;
 }
 
-.item-title{
+.item-title {
     margin-top: 20px;
     font-family: Hana2-Medium, sans-serif;
     font-size: 15px;

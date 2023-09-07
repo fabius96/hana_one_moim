@@ -3,6 +3,7 @@ package com.hana.onemoim.gathering.mapper;
 import com.hana.onemoim.gathering.dto.GatheringCreateDto;
 import com.hana.onemoim.gathering.dto.GatheringDto;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -35,4 +36,7 @@ public interface GatheringMapper {
 
     // 모임 분류 조회
     GatheringDto selectGatheringByGatheringId(int gatheringId);
+
+    // 모임 가입 여부 확인
+    Boolean isMemberJoined(@Param("gatheringId") int gatheringId, @Param("memberId")int memberId);
 }

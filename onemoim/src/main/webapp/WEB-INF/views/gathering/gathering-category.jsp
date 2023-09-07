@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page isELIgnored="false" %>
 
 <!DOCTYPE html>
 <html>
@@ -125,10 +126,20 @@
                                     <p class="gathering-description">${gatherings.gatheringDescription}</p>
                                 </div>
                                 <div class="accordion-body-right">
-                                    <button class="detail-button">
-                                        <a href="${pageContext.request.contextPath}/account/account-transfer-hana?accountNumber=${account.accountNumber}"
-                                           class="button-text">자세히 보기</a>
-                                    </button>
+                                    <c:choose>
+                                        <c:when test="${gatherings.joined}">
+                                            <button class="detail-button">
+                                                <a href="${pageContext.request.contextPath}/account/account-transfer-hana?accountNumber=${account.accountNumber}"
+                                                   class="button-text">자세히 보기</a>
+                                            </button>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <button class="join-button">
+                                                <a href="${pageContext.request.contextPath}/joinGathering?gatheringId=${gatherings.gatheringId}"
+                                                   class="button-text">가입신청</a>
+                                            </button>
+                                        </c:otherwise>
+                                    </c:choose>
                                 </div>
                             </div>
                         </div>

@@ -39,9 +39,17 @@ public class GatheringResponseController {
 
     // 모임 검색
     @GetMapping("/gathering/gathering-search")
-    public ModelAndView searchGathering(@RequestParam String keyword) {
+    public ModelAndView searchGathering(HttpSession httpSession,
+                                        @RequestParam String keyword) {
         ModelAndView modelAndView = new ModelAndView("/gathering/search-result");
-        List<GatheringDto> gatheringDtoList = gatheringService.findAllGatheringByKeyword(keyword);
+
+        MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
+        int memberId = 0;
+        if (memberDto != null) {
+            memberId = memberDto.getMemberId();
+        }
+
+        List<GatheringDto> gatheringDtoList = gatheringService.findAllGatheringByKeyword(keyword, memberId);
         int gatheringCount = gatheringService.countGatheringByKeyword(keyword);
         modelAndView.addObject("keyword", keyword);
         modelAndView.addObject("gatherings", gatheringDtoList);
@@ -115,9 +123,15 @@ public class GatheringResponseController {
 
     // 모임분류 페이지 조회
     @GetMapping("/gathering/gathering-category")
-    public ModelAndView showGatheringCategory(@RequestParam String interest) {
+    public ModelAndView showGatheringCategory(HttpSession httpSession,
+                                              @RequestParam String interest) {
+        MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
+        int memberId = 0;
+        if (memberDto != null) {
+            memberId = memberDto.getMemberId();
+        }
         ModelAndView modelAndView = new ModelAndView("/gathering/gathering-category");
-        List<GatheringDto> gatheringDtoList = gatheringService.findGatheringByInterest(interest);
+        List<GatheringDto> gatheringDtoList = gatheringService.findGatheringByInterest(interest, memberId);
         modelAndView.addObject("interest", interest);
         modelAndView.addObject("gatherings", gatheringDtoList);
         return modelAndView;
@@ -135,7 +149,7 @@ public class GatheringResponseController {
             return modelAndView;
         }
 
-        List<GatheringDto> gatheringDtoList = gatheringService.findGatheringByMemberInterest(memberDto.getMemberId());
+        List<GatheringDto> gatheringDtoList = gatheringService.findGatheringByMemberInterest(memberDto.getMemberId(), 0);
         modelAndView.addObject("gatherings", gatheringDtoList);
         modelAndView.setViewName("/gathering/gathering-recommend");
         return modelAndView;

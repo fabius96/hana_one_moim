@@ -267,3 +267,17 @@
     width: 100%;
 }
 
+.join-button {
+    background-color: transparent;
+    border: 1px solid #008375;
+    border-radius: 2px;
+    margin-top: 7px;
+    width: 120px;
+    height: 40px;
+    overflow: hidden;
+}
+
+.join-button .button-text{
+    color: #008375;
+}
+

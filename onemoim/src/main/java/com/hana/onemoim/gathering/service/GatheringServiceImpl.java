@@ -105,8 +105,13 @@ public class GatheringServiceImpl implements GatheringService {
 
     // 모임 검색
     @Override
-    public List<GatheringDto> findAllGatheringByKeyword(String keyword) {
+    public List<GatheringDto> findAllGatheringByKeyword(String keyword, int memberId) {
         List<GatheringDto> gatheringDtoList = gatheringMapper.selectGatheringByKeyword(keyword);
+        for(GatheringDto gatheringDto :gatheringDtoList){
+            int gatheringId = gatheringDto.getGatheringId();
+            boolean isJoined = gatheringMapper.isMemberJoined(gatheringId, memberId);
+            gatheringDto.setJoined(isJoined);
+        }
         return makeGatheringDtos(gatheringDtoList);
     }
 
@@ -129,11 +134,15 @@ public class GatheringServiceImpl implements GatheringService {
 
     // 모임 분류 조회
     @Override
-    public List<GatheringDto> findGatheringByInterest(String interest) {
+    public List<GatheringDto> findGatheringByInterest(String interest, int memberId) {
         List<GatheringDto> gatheringDtoList = new ArrayList<>();
         List<Integer> list = interestMapper.selectGatheringIdFromInterest(interest);
         for (int gatheringId : list) {
             GatheringDto gatheringDto = gatheringMapper.selectGatheringByGatheringId(gatheringId);
+
+            boolean isJoined = gatheringMapper.isMemberJoined(gatheringId, memberId);
+            gatheringDto.setJoined(isJoined);
+
             gatheringDtoList.add(gatheringDto);
         }
         makeGatheringDtos(gatheringDtoList);
@@ -142,7 +151,7 @@ public class GatheringServiceImpl implements GatheringService {
 
     // 모임 추천
     @Override
-    public List<GatheringDto> findGatheringByMemberInterest(int memberId) {
+    public List<GatheringDto> findGatheringByMemberInterest(int memberId, int num) {
         List<GatheringDto> gatheringDtoList = new ArrayList<>();
         List<Integer> list = interestMapper.selectGatheringIdByMemberInterest(memberId);
         list.removeIf(Objects::isNull);
@@ -153,8 +162,10 @@ public class GatheringServiceImpl implements GatheringService {
             }
             gatheringDto.setGatheringCoverImageUrl(gatheringMapper.selectGatheringCoverImage(gatheringDto.getGatheringId()));
             gatheringDtoList.add(gatheringDto);
-            if(gatheringDtoList.size()==4){
-                break;
+            if(num ==1){
+                if(gatheringDtoList.size()==4){
+                    break;
+                }
             }
         }
         return gatheringDtoList;
