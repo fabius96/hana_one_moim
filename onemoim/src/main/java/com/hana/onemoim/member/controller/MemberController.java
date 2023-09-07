@@ -33,12 +33,20 @@ public class MemberController {
     public ModelAndView signin(String loginId, String memberPassword, HttpSession httpSession) {
         MemberDto memberDto = memberService.signin(loginId, memberPassword);
         ModelAndView modelAndView = new ModelAndView();
-        httpSession.getAttribute("destination");
 
-        if (memberDto != null) {
+        if (memberDto != null) { // 로그인 성공 시
             httpSession.setAttribute("loggedInMember", memberDto);
-            modelAndView.setViewName("redirect:after-login-main");
-        } else {
+            String destination = (String) httpSession.getAttribute("destination");
+
+            if (destination != null) { // 1. 이전에 로그인하지 않은 상태로 접근했던 페이지가 존재할 경우
+                httpSession.removeAttribute("destination");
+                modelAndView.setViewName("redirect:" + destination);
+
+            } else { // 2. 일반적인 순서로 로그인을 시도했을 경우
+                modelAndView.setViewName("redirect:after-login-main");
+            }
+
+        } else { // 로그인 실패 시
             modelAndView.addObject("errorMessage", "아이디 혹은 패스워드가 일치하지 않습니다.");
             modelAndView.setViewName("/signin"); // 로그인 실패 시 다시 로그인 페이지로
         }
@@ -59,12 +67,12 @@ public class MemberController {
         return modelAndView;
     }
 
-     //관심사 설정
+    //관심사 설정
     @PostMapping("/interest")
     public ModelAndView registerMemberInterest(@RequestParam int memberId,
-                                               @RequestParam List<String> interestNames){
+                                               @RequestParam List<String> interestNames) {
         memberService.registerMemberInterest(memberId, interestNames);
-     return new ModelAndView("/signup-ok");
+        return new ModelAndView("/signup-ok");
     }
 
     // 관심사 설정 페이지 조회

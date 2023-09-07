@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -25,13 +26,14 @@ public class AccountResponseController {
         return "after-login-main";
     }
 
-    // 계좌조회(하나은행) 페이지 조회
+    // 계좌조회(하나은행) 페이지 조회(로그인 O)
     @GetMapping("/account/account-info-hana")
-    public ModelAndView showAccountInfoHana(HttpSession httpSession) {
+    public ModelAndView showAccountInfoHana(HttpSession httpSession, HttpServletRequest httpServletRequest) {
         ModelAndView modelAndView = new ModelAndView("signin");
         MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
 
         if (memberDto == null) {
+            httpSession.setAttribute("destination", httpServletRequest.getRequestURI());
             return modelAndView;
         }
 
@@ -47,62 +49,93 @@ public class AccountResponseController {
         return "/account/account-product-list";
     }// 금융상품
 
-    // 금융상품 개설 페이지 조회
+    // 금융상품 개설 페이지 조회(로그인 O)
     @GetMapping("/account/account-opening")
-    public ModelAndView openAccount(@RequestParam String productName) {
-        ModelAndView modelAndView = new ModelAndView();
+    public ModelAndView openAccount(HttpSession httpSession,
+                                    HttpServletRequest httpServletRequest,
+                                    @RequestParam String productName) {
+        ModelAndView modelAndView = new ModelAndView("/signin");
+        MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
+
+        if (memberDto == null) {
+            httpSession.setAttribute("destination", httpServletRequest.getRequestURI());
+            return modelAndView;
+        }
+
         modelAndView.addObject("productName", productName);
         modelAndView.setViewName("/account/account-opening");
         return modelAndView;
     }
 
-    // 금융상품 개설 성공 페이지 조회
+    // 금융상품 개설 성공 페이지 조회(로그인 O)
     @GetMapping("/account/account-opening-ok")
-    public String showAccountOpeningOk() {
-        return "/account/account-opening-ok";
+    public ModelAndView showAccountOpeningOk(HttpSession httpSession                                             ) {
+        ModelAndView modelAndView = new ModelAndView("/signin");
+        MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
+
+        if (memberDto == null) {
+            return modelAndView;
+        }
+
+        modelAndView.setViewName("/account/account-opening-ok");
+        return modelAndView;
     }
 
-    // 계좌이체(하나은행) 페이지 조회
+    // 계좌이체(하나은행) 페이지 조회(로그인 O)
     @GetMapping("/account/account-transfer-hana")
-    public ModelAndView showAccountTransferHana(HttpSession httpSession) {
-        ModelAndView modelAndView = new ModelAndView("signin");
+    public ModelAndView showAccountTransferHana(HttpSession httpSession,
+                                                HttpServletRequest httpServletRequest) {
+        ModelAndView modelAndView = new ModelAndView("/signin");
         MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
 
-        if (memberDto != null) {
-            List<AccountDto> accountDtoList = accountService.findAllAccount(memberDto.getPersonalIdNumber());
-            modelAndView.addObject("accounts", accountDtoList);
-            modelAndView.setViewName("account/account-transfer-hana");
+        if (memberDto == null) {
+            httpSession.setAttribute("destination", httpServletRequest.getRequestURI());
+            return modelAndView;
         }
+
+        List<AccountDto> accountDtoList = accountService.findAllAccount(memberDto.getPersonalIdNumber());
+        modelAndView.addObject("accounts", accountDtoList);
+        modelAndView.setViewName("/account/account-transfer-hana");
 
         return modelAndView;
     }
 
-    // 계좌이체 완료 페이지 조회
+    // 계좌이체 완료 페이지 조회(로그인 O)
     @GetMapping("/account/account-transfer-ok")
-    public String showAccountTransferOk() {
-        return "/account/account-transfer-ok";
-    }
-
-    // 거래내역 조회 페이지 조회
-    @GetMapping("/account/account-transaction")
-    public ModelAndView showAccountTransaction(HttpSession httpSession) {
-        ModelAndView modelAndView = new ModelAndView("signin");
+    public ModelAndView showAccountTransferOk(HttpSession httpSession) {
+        ModelAndView modelAndView = new ModelAndView("/signin");
         MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
 
-        if (memberDto != null) {
-            List<AccountDto> accountDtoList = accountService.findAllAccount(memberDto.getPersonalIdNumber());
-            modelAndView.addObject("accounts", accountDtoList);
-            modelAndView.setViewName("account/account-transaction");
+        if (memberDto == null) {
+            return modelAndView;
         }
 
+        modelAndView.setViewName("/account/account-transfer-ok");
         return modelAndView;
     }
 
-    // 계좌이체 내역 페이지 조회
+    // 거래내역 조회 페이지 조회(로그인 O)
+    @GetMapping("/account/account-transaction")
+    public ModelAndView showAccountTransaction(HttpSession httpSession,
+                                               HttpServletRequest httpServletRequest) {
+        ModelAndView modelAndView = new ModelAndView("/signin");
+        MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
+
+        if (memberDto == null) {
+            httpSession.setAttribute("destination", httpServletRequest.getRequestURI());
+            return modelAndView;
+        }
+
+        List<AccountDto> accountDtoList = accountService.findAllAccount(memberDto.getPersonalIdNumber());
+        modelAndView.addObject("accounts", accountDtoList);
+        modelAndView.setViewName("/account/account-transaction");
+        return modelAndView;
+    }
+
+    // 계좌이체 내역 조회 메서드
     @GetMapping("/api/account/get-account-transaction")
     @ResponseBody
     public List<MemberTransactionDto> getAccountTransaction(AccountDto accountDto) {
-        System.out.println(accountDto.getAccountNumber());
         List<MemberTransactionDto> memberTransactionDtoList =
                 accountService.findTransactionByAccountNumber(accountDto);
         for (MemberTransactionDto dto : memberTransactionDtoList) {

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -18,13 +19,15 @@ public class GatheringResponseController {
 
     private final GatheringService gatheringService;
 
-    // 내 모임 페이지 조회
+    // 내 모임 페이지 조회(로그인 O)
     @GetMapping("/gathering/gathering-info")
-    public ModelAndView showGatheringInfo(HttpSession httpSession) {
-        ModelAndView modelAndView = new ModelAndView("signin");
+    public ModelAndView showGatheringInfo(HttpSession httpSession,
+                                          HttpServletRequest httpServletRequest) {
+        ModelAndView modelAndView = new ModelAndView("/signin");
         MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
 
         if (memberDto == null) {
+            httpSession.setAttribute("destination", httpServletRequest.getRequestURI());
             return modelAndView;
         }
 
@@ -46,49 +49,68 @@ public class GatheringResponseController {
         return modelAndView;
     }
 
-    // 새로운 모임 만들기 페이지 조회
+    // 새로운 모임 만들기 페이지 조회(로그인 O)
     @GetMapping("/gathering/gathering-create")
-    public ModelAndView showGatheringCreate(HttpSession httpSession) {
-        ModelAndView modelAndView = new ModelAndView("signin");
-        MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
-
-        if (memberDto != null) {
-            modelAndView.setViewName("/gathering/gathering-create");
-        }
-
-        return modelAndView;
-    }
-
-    // 모임 카드 개설 페이지 조회
-    @GetMapping("/gathering/card-opening")
-    public ModelAndView showCardOpening(HttpSession httpSession) {
+    public ModelAndView showGatheringCreate(HttpSession httpSession,
+                                            HttpServletRequest httpServletRequest) {
         ModelAndView modelAndView = new ModelAndView("/signin");
         MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
 
-        if (memberDto != null) {
-            modelAndView.setViewName("/gathering/card-opening");
+        if (memberDto == null) {
+            httpSession.setAttribute("destination", httpServletRequest.getRequestURI());
+            return modelAndView;
         }
 
+        modelAndView.setViewName("/gathering/gathering-create");
         return modelAndView;
     }
 
-    // 모임카드혜택설정 페이지 조회
-    @GetMapping("/gathering/card-opening-setting")
-    public ModelAndView showCardOpeningSetting(HttpSession httpSession) {
-        ModelAndView modelAndView = new ModelAndView("/gathering/card-opening-setting");
+    // 모임 카드 개설 페이지 조회(로그인 O)
+    @GetMapping("/gathering/card-opening")
+    public ModelAndView showCardOpening(HttpSession httpSession,
+                                        HttpServletRequest httpServletRequest) {
+        ModelAndView modelAndView = new ModelAndView("/signin");
         MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
 
-        if (memberDto != null) {
-            modelAndView.setViewName("/gathering/card-opening-setting");
+        if (memberDto == null) {
+            httpSession.setAttribute("destination", httpServletRequest.getRequestURI());
+            return modelAndView;
         }
 
+        modelAndView.setViewName("/gathering/card-opening");
         return modelAndView;
     }
 
-    // 관심사 설정 페이지 조회
+    // 모임카드혜택설정 페이지 조회(로그인 O)
+    @GetMapping("/gathering/card-opening-setting")
+    public ModelAndView showCardOpeningSetting(HttpSession httpSession,
+                                               HttpServletRequest httpServletRequest) {
+        ModelAndView modelAndView = new ModelAndView("/signin");
+        MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
+
+        if (memberDto == null) {
+            httpSession.setAttribute("destination", httpServletRequest.getRequestURI());
+            return modelAndView;
+        }
+
+        modelAndView.setViewName("/gathering/card-opening-setting");
+        return modelAndView;
+    }
+
+    // 관심사 설정 페이지 조회(로그인 O)
     @GetMapping("/gathering/gathering-interest")
-    public ModelAndView getMemberInterest() {
-        return new ModelAndView("/gathering/gathering-interest");
+    public ModelAndView getMemberInterest(HttpSession httpSession,
+                                          HttpServletRequest httpServletRequest) {
+        ModelAndView modelAndView = new ModelAndView("/signin");
+        MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
+
+        if (memberDto == null) {
+            httpSession.setAttribute("destination", httpServletRequest.getRequestURI());
+            return modelAndView;
+        }
+
+        modelAndView.setViewName("/gathering/gathering-interest");
+        return modelAndView;
     }
 
     // 모임분류 페이지 조회
@@ -101,18 +123,21 @@ public class GatheringResponseController {
         return modelAndView;
     }
 
-    // 모임 추천 페이지 조회
+    // 모임 추천 페이지 조회(로그인 O)
     @GetMapping("/gathering/gathering-recommend")
-    public ModelAndView showGatheringRecommend(HttpSession httpSession) {
-        ModelAndView modelAndView = new ModelAndView("/gathering/gathering-recommend");
+    public ModelAndView showGatheringRecommend(HttpSession httpSession,
+                                               HttpServletRequest httpServletRequest) {
+        ModelAndView modelAndView = new ModelAndView("/signin");
         MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
-        List<GatheringDto> gatheringDtoList;
+
         if (memberDto == null) {
-            gatheringDtoList = gatheringService.findGatheringByMemberInterest(0, false);
-        } else {
-            gatheringDtoList = gatheringService.findGatheringByMemberInterest(memberDto.getMemberId(), false);
+            httpSession.setAttribute("destination", httpServletRequest.getRequestURI());
+            return modelAndView;
         }
+
+        List<GatheringDto> gatheringDtoList = gatheringService.findGatheringByMemberInterest(memberDto.getMemberId(), false);
         modelAndView.addObject("gatherings", gatheringDtoList);
+        modelAndView.setViewName("/gathering/gathering-recommend");
         return modelAndView;
     }
 }
