@@ -154,4 +154,10 @@ public class GatheringResponseController {
         modelAndView.setViewName("/gathering/gathering-recommend");
         return modelAndView;
     }
+
+    // 서비스 소개 페이지 조회
+    @GetMapping("/gathering/service-introduction")
+    public ModelAndView showServiceIntroduce(){
+        return new ModelAndView("/gathering/service-introduction");
+    }
 }

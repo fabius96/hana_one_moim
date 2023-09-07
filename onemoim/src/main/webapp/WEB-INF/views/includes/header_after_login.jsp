@@ -19,6 +19,9 @@
             <img src="<%= request.getContextPath() %>/img/hana_logo.png" alt="하나금융로고"/>
             <p class="title">하나원모임</p>
         </div>
+        <p class="menu-text" id="menu-introduce">
+            <a href="/gathering/service-introduction">서비스소개</a>
+        </p>
         <p class="menu-text" id="menu-view">
             <a href="/account/account-info-hana">조회</a>
         </p>

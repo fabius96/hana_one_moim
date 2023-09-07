@@ -17,12 +17,12 @@ public class MainController {
 
     private final GatheringService gatheringService;
 
-    @GetMapping({"/before_login_main", "/"})
+    @GetMapping({"/before_login_main"})
     public String showBeforeLoginMain() {
         return "before_login_main";
     }
 
-    @GetMapping("/after-login-main")
+    @GetMapping({"/after-login-main","/"})
     public ModelAndView showAfterLoginMain(HttpSession httpSession) {
         ModelAndView modelAndView = new ModelAndView("/after-login-main");
         MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");

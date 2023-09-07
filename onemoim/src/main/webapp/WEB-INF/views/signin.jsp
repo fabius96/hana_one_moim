@@ -13,6 +13,7 @@
 <input type="hidden" id="error-message" value="${errorMessage}" />
 <div class="except-footer">
     <jsp:include page="includes/header_before_login.jsp"/>
+
     <div class="main-container">
         <div class="container">
             <p class="title">

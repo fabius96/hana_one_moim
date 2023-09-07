@@ -15,6 +15,7 @@
 
 <div class="except-footer">
     <jsp:include page="includes/header_before_login.jsp"/>
+
     <div class="main-container">
         <p class="progress-text">STEP</p>
         <img src="img/progress-bar2-01.png" alt="진행도" class="progress-bar">
