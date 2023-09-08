@@ -74,7 +74,7 @@
     gap: 80px;
 }
 
-.gathering-image {
+.gathering-button-image {
     width: 45px;
     height: 45px;
 }
@@ -393,6 +393,7 @@
     font-family: Hana2-Medium, sans-serif;
     font-size: 14px;
     margin-bottom: 5px;
+    cursor: pointer;
 }
 
 .second-area-item-description {
@@ -406,6 +407,8 @@
     font-family: Hana2-Regular, sans-serif;
     font-size: 13px;
     margin-bottom: 15px;
+
+    cursor: pointer;
 }
 
 .second-area-item-img {

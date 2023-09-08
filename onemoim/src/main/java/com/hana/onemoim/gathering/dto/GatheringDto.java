@@ -3,6 +3,8 @@ package com.hana.onemoim.gathering.dto;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 public class GatheringDto {
@@ -15,4 +17,5 @@ public class GatheringDto {
     private String gatheringCoverImageUrl; // 모임대표이미지 URL
     private String isPublic; // 모임 공개 여부
     private boolean isJoined; // 로그인 시 회원의 모임 가입 여부
+    private List<String> interestList; // 모임 관심사
 }

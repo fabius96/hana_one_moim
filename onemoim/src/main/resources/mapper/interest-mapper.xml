@@ -46,6 +46,11 @@
         </if>
     </select>
 
-
-
+    <!-- 모임 분류 조회(GatheringId) -->
+    <select id="selectInterestNameByGatheringId" parameterType="int" resultType="String">
+        SELECT interest_name
+        FROM interest
+        WHERE gathering_id IS NOT NULL
+          AND gathering_id = #{gathering_id}
+    </select>
 </mapper>

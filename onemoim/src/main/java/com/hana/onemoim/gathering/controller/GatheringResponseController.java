@@ -4,6 +4,7 @@ import com.hana.onemoim.gathering.dto.GatheringDto;
 import com.hana.onemoim.gathering.service.GatheringService;
 import com.hana.onemoim.member.dto.MemberDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -125,12 +126,14 @@ public class GatheringResponseController {
     @GetMapping("/gathering/gathering-category")
     public ModelAndView showGatheringCategory(HttpSession httpSession,
                                               @RequestParam String interest) {
+        ModelAndView modelAndView = new ModelAndView("/gathering/gathering-category");
         MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
+
         int memberId = 0;
         if (memberDto != null) {
             memberId = memberDto.getMemberId();
         }
-        ModelAndView modelAndView = new ModelAndView("/gathering/gathering-category");
+
         List<GatheringDto> gatheringDtoList = gatheringService.findGatheringByInterest(interest, memberId);
         modelAndView.addObject("interest", interest);
         modelAndView.addObject("gatherings", gatheringDtoList);
@@ -157,8 +160,23 @@ public class GatheringResponseController {
 
     // 서비스 소개 페이지 조회
     @GetMapping("/gathering/service-introduction")
-    public ModelAndView showServiceIntroduce(){
+    public ModelAndView showServiceIntroduce() {
         return new ModelAndView("/gathering/service-introduction");
+    }
+
+    // 모임 정보 더보기 모달용 데이터 전송
+    @GetMapping("/gathering/gathering-modal-info")
+    public ResponseEntity<?> getGatheringInfo(HttpSession httpSession,
+                                              int gatheringId) {
+
+        MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
+        int memberId = 0;
+        if (memberDto != null) {
+            memberId = memberDto.getMemberId();
+        }
+
+        GatheringDto gatheringDto = gatheringService.getGatheringInfoForModal(true, gatheringId, memberId);
+        return ResponseEntity.ok().body(gatheringDto);
     }
 
 }

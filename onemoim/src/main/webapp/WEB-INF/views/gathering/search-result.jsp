@@ -42,9 +42,9 @@
                              aria-labelledby="heading${status.index}" data-parent="#customAccordion">
                             <div class="accordion-body">
                                 <img src="${gatherings.gatheringCoverImageUrl}" class="gathering-image" alt="모임 대표 이미지">
-                                <div class="accordion-body-center">
+                                <div class="accordion-body-center" data-gathering-id="${gatherings.gatheringId}">
                                     <div class="gathering-leader-name-box">
-                                        <p class="gathering-leader-name-content">
+                                        <p class="gathering-leader-name-content" >
                                             <img src="${pageContext.request.contextPath}/img/crown.png" alt="모임장 왕관"
                                                  class="crown-img">
                                             &nbsp
@@ -54,12 +54,13 @@
                                     <p class="gathering-name">${gatherings.gatheringName}</p>
                                     <p class="gathering-description">${gatherings.gatheringDescription}</p>
                                 </div>
+                                <img src="${pageContext.request.contextPath}/img/next-arrow.png" alt="더보기" class="next-arrow" data-gathering-id="${gatherings.gatheringId}">
                                 <div class="accordion-body-right">
                                     <c:choose>
                                         <c:when test="${gatherings.joined}">
                                             <button class="detail-button">
                                                 <a href="${pageContext.request.contextPath}/account/account-transfer-hana?accountNumber=${account.accountNumber}"
-                                                   class="button-text">자세히 보기</a>
+                                                   class="button-text">이동하기</a>
                                             </button>
                                         </c:when>
                                         <c:otherwise>
@@ -79,6 +80,7 @@
         </div>
     </div>
 </div>
+<jsp:include page="../includes/gathering-modal.jsp"/>
 <jsp:include page="../includes/footer.jsp"/>
 <script src="/js/gathering-info.js"></script>
 </body>

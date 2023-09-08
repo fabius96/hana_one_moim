@@ -17,4 +17,7 @@ public interface InterestMapper {
 
     // 모임 추천
     List<Integer> selectGatheringIdByMemberInterest(@Param("memberId") int memberId);
+
+    // 모임 분류 조회
+    List<String> selectInterestNameByGatheringId(int gatheringId);
 }

@@ -139,6 +139,7 @@ public class GatheringServiceImpl implements GatheringService {
         List<Integer> list = interestMapper.selectGatheringIdFromInterest(interest);
         for (int gatheringId : list) {
             GatheringDto gatheringDto = findGatheringByGatheringId(true, gatheringId);
+            gatheringDto.setGatheringLeaderName(memberMapper.selectNameByLeaderId(gatheringDto.getGatheringLeaderId()));
 
             boolean isJoined = gatheringMapper.isMemberJoined(gatheringId, memberId);
             gatheringDto.setJoined(isJoined);
@@ -183,9 +184,22 @@ public class GatheringServiceImpl implements GatheringService {
     }
 
     // 모임 ID로 모임 조회
-
     @Override
     public GatheringDto findGatheringByGatheringId(boolean onlyPublic, int gatheringId) {
-        return gatheringMapper.selectGatheringByGatheringId(onlyPublic, gatheringId);
+        GatheringDto gatheringDto = gatheringMapper.selectGatheringByGatheringId(onlyPublic, gatheringId);
+        return gatheringDto;
+    }
+
+    // 모임 ID로 모임 조회(+모달용)
+    @Override
+    public GatheringDto getGatheringInfoForModal(boolean onlyPublic, int gatheringId, int memberId) {
+        GatheringDto gatheringDto = findGatheringByGatheringId(onlyPublic, gatheringId);
+        gatheringDto.setInterestList(interestMapper.selectInterestNameByGatheringId(gatheringId));
+        gatheringDto.setGatheringCoverImageUrl(gatheringMapper.selectGatheringCoverImage(gatheringDto.getGatheringId()));
+        gatheringDto.setGatheringLeaderName(memberMapper.selectNameByLeaderId(gatheringDto.getGatheringLeaderId()));
+        boolean isJoined = gatheringMapper.isMemberJoined(gatheringId, memberId);
+        gatheringDto.setJoined(isJoined);
+
+        return gatheringDto;
     }
 }

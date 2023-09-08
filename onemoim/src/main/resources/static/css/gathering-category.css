@@ -141,6 +141,12 @@
     margin: 0 10px;
 }
 
+.next-arrow{
+    margin-top: 50px;
+    width: 20px;
+    cursor: pointer;
+}
+
 .accordion-body-right {
     display: flex;
     justify-content: right;
@@ -150,7 +156,7 @@
 }
 
 .detail-button {
-    background-color: #008375;
+    background-color: #2e354f;
     border: none;
     border-radius: 2px;
     margin-top: 7px;
@@ -161,7 +167,7 @@
 
 .join-button {
     background-color: transparent;
-    border: 1px solid #008375;
+    border: 1px solid #2e354f;
     border-radius: 2px;
     margin-top: 7px;
     width: 120px;
@@ -170,7 +176,7 @@
 }
 
 .join-button .button-text{
-    color: #008375;
+    color: #2e354f;
 }
 
 .button-text {
@@ -193,7 +199,7 @@
 }
 
 .gathering-leader-name-box {
-    background-color: #999999;
+    background-color: #2E354F;
     border: none;
     border-radius: 5px;
     width: 70px;
@@ -229,6 +235,8 @@
     font-size: 18px;
     margin-bottom: 0;
     margin-top: 5px;
+
+    cursor: pointer;
 }
 
 .gathering-description {
@@ -241,6 +249,8 @@
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 450px;
+
+    cursor: pointer;
 }
 
 .recommend-area {

@@ -62,17 +62,17 @@
                 <div class="gathering-container">
                     <div class="third-gathering-icon">
                         <img src="<%= request.getContextPath() %>/img/category.png" alt="모임아이콘1"
-                             class="gathering-image" onclick="showGatheringCategory();">
+                             class="gathering-button-image" onclick="showGatheringCategory();">
                         <p class="icon-name">모임분류</p>
                     </div>
                     <div class="second-gathering-icon">
                         <img src="<%= request.getContextPath() %>/img/recommend.png" alt="모임아이콘2"
-                             class="gathering-image" onclick="showGatheringRecommend();">
+                             class="gathering-button-image" onclick="showGatheringRecommend();">
                         <p class="icon-name">모임추천</p>
                     </div>
                     <div class="first-gathering-icon">
                         <img src="<%= request.getContextPath() %>/img/add.png" alt="모임아이콘3"
-                             class="gathering-image" onclick="createGathering();">
+                             class="gathering-button-image" onclick="createGathering();">
                         <p class="icon-name" onclick="createGathering();">모임생성</p>
                     </div>
                 </div>
@@ -168,16 +168,16 @@
             <p class="second-area-title">이런 모임은 어때요?</p>
             <p class="second-area-link"> <a href="/gathering/gathering-recommend">모두보기 ></a></p>
         </div>
-        <c:forEach var="gathering" items="${gatherings}">
+        <c:forEach var="gatherings" items="${gatherings}">
             <div class="second-area-item">
-                <img src="${gathering.gatheringCoverImageUrl}" alt="${gathering.gatheringName} Cover Image"
+                <img src="${gatherings.gatheringCoverImageUrl}" alt="${gatherings.gatheringName} Cover Image"
                      class="second-area-item-img">
                 <div class="second-area-item-content">
-                    <div class="second-area-item-title">
-                            ${gathering.gatheringName}
+                    <div class="second-area-item-title" data-gathering-id="${gatherings.gatheringId}">
+                            ${gatherings.gatheringName}
                     </div>
-                    <div class="second-area-item-description">
-                            ${gathering.gatheringDescription}
+                    <div class="second-area-item-description" data-gathering-id="${gatherings.gatheringId}">
+                            ${gatherings.gatheringDescription}
                     </div>
                     <div class="button-container">
                         <p class="area-button-text">가입신청</p>
@@ -190,6 +190,7 @@
 
 </div>
 
+<jsp:include page="includes/gathering-modal.jsp"/>
 <jsp:include page="includes/footer.jsp"/>
 <script src="/js/after-login-main.js"></script>
 </body>
