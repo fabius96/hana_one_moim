@@ -131,7 +131,7 @@
                                         <c:when test="${gatherings.joined}">
                                             <button class="detail-button">
                                                 <a href="${pageContext.request.contextPath}/community/community-main?gatheringId=${gatherings.gatheringId}"
-                                                   class="button-text">자세히 보기</a>
+                                                   class="button-text">이동하기</a>
                                             </button>
                                         </c:when>
                                         <c:otherwise>
