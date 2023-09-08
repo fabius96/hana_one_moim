@@ -93,4 +93,11 @@
           AND member_id = #{memberId}
     </select>
 
+    <!-- gathering_id 가져오기 -->
+    <select id="selectGatheringLeaderId" parameterType="int" resultType="int">
+        SELECT gathering_leader_id
+        FROM gathering
+        WHERE gathering_id = #{gatheringId}
+    </select>
+
 </mapper>

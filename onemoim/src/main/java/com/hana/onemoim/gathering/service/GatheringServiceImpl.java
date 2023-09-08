@@ -202,4 +202,10 @@ public class GatheringServiceImpl implements GatheringService {
 
         return gatheringDto;
     }
+
+    // 모임장 ID 확인
+    @Override
+    public int getGatheringLeaderId(int gatheringId) {
+        return gatheringMapper.selectGatheringLeaderId(gatheringId);
+    }
 }

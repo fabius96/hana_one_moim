@@ -7,7 +7,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>모임메인</title>
+    <title>커뮤니티 메인</title>
     <link rel="stylesheet" href="/css/common.css">
     <link rel="stylesheet" href="/css/gathering-category.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

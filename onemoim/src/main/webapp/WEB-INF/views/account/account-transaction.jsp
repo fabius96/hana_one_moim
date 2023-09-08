@@ -56,7 +56,6 @@
                 </tr>
                 </thead>
                 <tbody class="transaction-content">
-                <%-- 데이터가 여기에 들어갈 예정입니다. --%>
                 </tbody>
             </table>
         </div>

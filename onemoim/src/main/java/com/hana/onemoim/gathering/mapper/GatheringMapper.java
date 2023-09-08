@@ -40,4 +40,7 @@ public interface GatheringMapper {
 
     // 모임 가입 여부 확인
     Boolean isMemberJoined(@Param("gatheringId") int gatheringId, @Param("memberId") int memberId);
+
+    // 모임장 ID 확인
+    int selectGatheringLeaderId(@Param("gatheringId") int gatheringId);
 }

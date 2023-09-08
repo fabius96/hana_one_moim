@@ -41,4 +41,7 @@ public interface GatheringService {
 
     // 모임 정보 조회(모달용)
     GatheringDto getGatheringInfoForModal(boolean onlyPublic, int gatheringId, int memberId);
+
+    // 모임장 ID 확인
+    int getGatheringLeaderId(int gatheringId);
 }

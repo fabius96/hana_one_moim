@@ -25,4 +25,5 @@ p, a {
     font-size: 16px;
     margin: 0 25px;
     color: #ffffff;
+    cursor: pointer;
 }
