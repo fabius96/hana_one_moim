@@ -1,8 +1,8 @@
+<%@ page import="com.hana.onemoim.gathering.dto.GatheringDto" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <!-- scriptlet -->
 <jsp:include page="scriptlet/header_after_login_scriptlet.jsp"/>
-<% String name = (String) request.getAttribute("name");%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +15,7 @@
 
 <div class="second-header">
     <p class="second-menu-text">
-        <img src="<%= request.getContextPath() %>/img/home.png" alt="home"/>
+        <img src="<%= request.getContextPath() %>/img/home.png" alt="home" data-gathering-id="${gathering.gatheringId}" onclick="home(this)"/>
     </p>
     <p class="second-menu-text" id="gallery">
         <a href="/gathering/service-introduction">갤러리</a>
@@ -33,6 +33,6 @@
         <a href="/gathering/gathering-info">모임</a>
     </p>
 </div>
-
+<script src="/js/header-community.js"></script>
 </body>
 </html>
