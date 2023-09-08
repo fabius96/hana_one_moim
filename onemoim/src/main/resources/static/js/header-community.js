@@ -2,5 +2,5 @@
 function home(gatheringIdParam) {
     var gatheringId = gatheringIdParam.getAttribute('data-gathering-id');
     console.log(gatheringId);
-    window.location.href = `/community/community-main?gatheringId=${gatheringId}`;
+    window.location.href = `/community/${gatheringId}`;
 }

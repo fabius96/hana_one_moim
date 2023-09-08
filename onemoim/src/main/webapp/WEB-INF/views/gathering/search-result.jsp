@@ -59,7 +59,7 @@
                                     <c:choose>
                                         <c:when test="${gatherings.joined}">
                                             <button class="detail-button">
-                                                <a href="${pageContext.request.contextPath}/account/account-transfer-hana?accountNumber=${account.accountNumber}"
+                                                <a href="${pageContext.request.contextPath}/community/${gatherings.gatheringId}"
                                                    class="button-text">이동하기</a>
                                             </button>
                                         </c:when>

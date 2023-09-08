@@ -57,7 +57,7 @@ function setupActionButton(joined, gatheringId) {
     let contextPath = "${pageContext.request.contextPath}";
     if (joined) {
         $agreeBtn.text("이동하기").off("click").on("click", function() {
-            window.location.href = `/community/community-main?gatheringId=${gatheringId}`;
+            window.location.href = `/community/${gatheringId}`;
         });
     } else {
         $agreeBtn.text("가입신청").off("click").on("click", function() {

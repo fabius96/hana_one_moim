@@ -55,7 +55,7 @@
                                 <img src="${pageContext.request.contextPath}/img/next-arrow.png" alt="더보기" class="next-arrow" data-gathering-id="${gatherings.gatheringId}">
                                 <div class="accordion-body-right">
                                     <button class="detail-button">
-                                        <a href="${pageContext.request.contextPath}/community/community-main?gatheringId=${gatherings.gatheringId}"
+                                        <a href="${pageContext.request.contextPath}/community/${gatherings.gatheringId}"
                                            class="button-text">이동하기</a>
                                     </button>
                                 </div>

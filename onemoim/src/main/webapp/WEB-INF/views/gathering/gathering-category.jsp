@@ -130,7 +130,7 @@
                                     <c:choose>
                                         <c:when test="${gatherings.joined}">
                                             <button class="detail-button">
-                                                <a href="${pageContext.request.contextPath}/community/community-main?gatheringId=${gatherings.gatheringId}"
+                                                <a href="${pageContext.request.contextPath}/community/${gatherings.gatheringId}"
                                                    class="button-text">이동하기</a>
                                             </button>
                                         </c:when>
