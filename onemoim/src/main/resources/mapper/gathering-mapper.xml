@@ -29,11 +29,18 @@
         values (#{gatheringId}, #{paymentAmount}, #{paymentDay}, #{startDate}, #{paymentCycleCode})
     </insert>
 
-    <!-- 모임원 가입 -->
+    <!-- 모임원 가입(대표) -->
     <insert id="insertGatheringMember" parameterType="com.hana.onemoim.gathering.dto.GatheringCreateDto">
         INSERT INTO gathering_member
             (gathering_id, member_id, member_name)
         values (#{gatheringId}, #{memberId}, #{memberName})
+    </insert>
+
+    <!-- 모임원 가입(가입신청) -->
+    <insert id="insertGatheringMemberByApplication" parameterType="com.hana.onemoim.community.dto.GatheringMemberDto">
+        INSERT INTO gathering_member
+            (gathering_id, member_id, member_status_code, member_name)
+        values (#{gatheringId}, #{memberId}, #{memberStatusCode}, #{memberName})
     </insert>
 
     <!-- 가입한 모임 조회 -->
@@ -92,6 +99,8 @@
         WHERE gathering_id = #{gatheringId}
           AND member_id = #{memberId}
     </select>
+
+    <!-- 모임원 상태 코드 확인 -->
 
     <!-- gathering_id 가져오기 -->
     <select id="selectGatheringLeaderId" parameterType="int" resultType="int">

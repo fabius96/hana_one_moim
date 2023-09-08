@@ -59,4 +59,10 @@ function updateSliderPosition() {
     slider.style.transform = `translateX(${offset}%)`;
 }
 
-
+document.addEventListener("DOMContentLoaded", function() {
+    var errorMessage = document.getElementById("message").value;
+    console.log(errorMessage)
+    if (errorMessage && errorMessage !== '0') {
+        alert(errorMessage);
+    }
+});

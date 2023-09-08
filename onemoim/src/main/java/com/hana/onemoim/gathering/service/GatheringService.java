@@ -3,6 +3,7 @@ package com.hana.onemoim.gathering.service;
 import com.hana.onemoim.gathering.dto.CardBenefitWrapper;
 import com.hana.onemoim.gathering.dto.GatheringCreateDto;
 import com.hana.onemoim.gathering.dto.GatheringDto;
+import com.hana.onemoim.member.dto.MemberDto;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -44,4 +45,7 @@ public interface GatheringService {
 
     // 모임장 ID 확인
     int getGatheringLeaderId(int gatheringId);
+
+    // 모임 가입
+    void joinGathering(int gatheringId, MemberDto memberDto);
 }

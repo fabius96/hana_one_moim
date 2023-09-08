@@ -18,6 +18,9 @@
 <div class="except-footer">
     <jsp:include page="../includes/header_after_login.jsp"/>
     <div class="main-container">
+
+        <input type="hidden" id="message" value="${message}">
+
         <div class="outer-content-wrapper">
             <div class="header-container">
                 <p class="page-name">모임 분류</p>

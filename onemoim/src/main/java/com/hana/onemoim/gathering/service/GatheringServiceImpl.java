@@ -4,9 +4,11 @@ import com.hana.onemoim.common.dto.ImageDto;
 import com.hana.onemoim.common.dto.InterestDto;
 import com.hana.onemoim.common.mapper.ImageMapper;
 import com.hana.onemoim.common.mapper.InterestMapper;
+import com.hana.onemoim.community.dto.GatheringMemberDto;
 import com.hana.onemoim.gathering.dto.*;
 import com.hana.onemoim.gathering.mapper.CardMapper;
 import com.hana.onemoim.gathering.mapper.GatheringMapper;
+import com.hana.onemoim.member.dto.MemberDto;
 import com.hana.onemoim.member.mapper.MemberMapper;
 import com.hana.onemoim.util.S3uploader;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +25,10 @@ import java.util.Random;
 @Service
 @RequiredArgsConstructor
 public class GatheringServiceImpl implements GatheringService {
+
+    private static final int MEMBER_STATUS_ACTIVE = 70;  // 활동
+    private static final int MEMBER_STATUS_PAUSE = 71;   // 정지
+    private static final int MEMBER_STATUS_STANDBY = 72;   // 정지
 
     private final GatheringMapper gatheringMapper;
     private final MemberMapper memberMapper;
@@ -207,5 +213,17 @@ public class GatheringServiceImpl implements GatheringService {
     @Override
     public int getGatheringLeaderId(int gatheringId) {
         return gatheringMapper.selectGatheringLeaderId(gatheringId);
+    }
+
+    // 모임 가입
+    @Override
+    public void joinGathering(int gatheringId, MemberDto memberDto) {
+        GatheringMemberDto gatheringMemberDto = GatheringMemberDto.builder()
+                .gatheringId(gatheringId)
+                .memberId(memberDto.getMemberId())
+                .memberStatusCode(MEMBER_STATUS_STANDBY)
+                .memberName(memberDto.getName())
+                .build();
+        gatheringMapper.insertGatheringMemberByApplication(gatheringMemberDto);
     }
 }

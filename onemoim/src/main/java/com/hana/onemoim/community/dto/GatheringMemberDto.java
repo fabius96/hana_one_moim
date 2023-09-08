@@ -1,5 +1,6 @@
 package com.hana.onemoim.community.dto;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,4 +14,12 @@ public class GatheringMemberDto {
     private String memberName; // 회원명
     private String createdAt; // createdAt
     private String modifiedAt; // modifiedAt
+
+    @Builder
+    public GatheringMemberDto(int gatheringId, int memberId, int memberStatusCode, String memberName) {
+        this.gatheringId = gatheringId;
+        this.memberId = memberId;
+        this.memberStatusCode = memberStatusCode;
+        this.memberName = memberName;
+    }
 }

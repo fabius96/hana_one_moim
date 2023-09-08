@@ -8,4 +8,7 @@ public interface CommunityService {
 
     // 모임원 조회
     List<GatheringMemberDto> findGatheringMemberByGatheringId(int gatheringId);
+
+    // 모임원 상태 코드 확인
+    int checkMemberStatusCode(int gatheringId, int memberId);
 }

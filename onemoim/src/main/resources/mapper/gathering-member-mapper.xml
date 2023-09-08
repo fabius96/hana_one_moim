@@ -19,4 +19,14 @@
         WHERE gathering_id = #{gathering_id}
         ORDER BY created_at DESC
     </select>
+
+    <!-- 모임원 상태 코드 확인 -->
+    <select id="isMemberStatusCodeActive" parameterType="int" resultType="int">
+        SELECT member_status_code
+        FROM gathering_member
+        WHERE gathering_id = #{gatheringId}
+          AND member_id = #{memberId}
+    </select>
+
+
 </mapper>

@@ -61,7 +61,25 @@ function setupActionButton(joined, gatheringId) {
         });
     } else {
         $agreeBtn.text("가입신청").off("click").on("click", function() {
-            window.location.href = `${contextPath}/joinGathering?gatheringId=${gatheringId}`;
+            applicationGathering(gatheringId);
         });
     }
+}
+
+function applicationGathering(gatheringId) {
+    const contextPath = document.body.getAttribute('data-context-path');
+    const url = contextPath + "/gathering/gathering-application";
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: { gatheringId: gatheringId },
+        success: function() {
+            alert("가입신청이 성공적으로 처리되었습니다.");
+            closeCurrentModal();
+        },
+        error: function() {
+            console.log(url)
+            alert("가입신청에 실패했습니다.");
+        }
+    });
 }

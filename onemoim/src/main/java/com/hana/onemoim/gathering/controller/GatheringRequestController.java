@@ -5,6 +5,8 @@ import com.hana.onemoim.gathering.dto.GatheringCreateDto;
 import com.hana.onemoim.gathering.service.GatheringService;
 import com.hana.onemoim.member.dto.MemberDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -92,5 +95,19 @@ public class GatheringRequestController {
         }
 
         return modelAndView;
+    }
+
+    // 회원가입
+    @PostMapping("/gathering/gathering-application")
+    public ResponseEntity<?> applicationGathering(HttpSession httpSession,
+                                               @RequestParam int gatheringId){
+        MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
+
+        if (memberDto == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("message", "로그인이 필요합니다."));
+        }
+
+        gatheringService.joinGathering(gatheringId, memberDto);
+        return ResponseEntity.ok().body(Map.of("message", "가입신청이 성공적으로 처리되었습니다."));
     }
 }

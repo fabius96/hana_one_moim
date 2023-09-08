@@ -10,7 +10,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
-<body>
+<body data-context-path="${pageContext.request.contextPath}">
 <div class="modal" id="modal-electronic-transactions">
     <div class="modal-content">
 

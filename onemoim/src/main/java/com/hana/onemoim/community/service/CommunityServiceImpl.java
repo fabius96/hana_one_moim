@@ -18,4 +18,10 @@ public class CommunityServiceImpl implements CommunityService {
     public List<GatheringMemberDto> findGatheringMemberByGatheringId(int gatheringId) {
         return gatheringMemberMapper.selectGatheringMemberByGatheringId(gatheringId);
     }
+
+    // 모임원 상태 코드 확인
+    @Override
+    public int checkMemberStatusCode(int gatheringId, int memberId) {
+        return gatheringMemberMapper.isMemberStatusCodeActive(gatheringId, memberId);
+    }
 }

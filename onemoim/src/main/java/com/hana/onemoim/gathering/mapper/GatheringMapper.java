@@ -1,5 +1,6 @@
 package com.hana.onemoim.gathering.mapper;
 
+import com.hana.onemoim.community.dto.GatheringMemberDto;
 import com.hana.onemoim.gathering.dto.GatheringCreateDto;
 import com.hana.onemoim.gathering.dto.GatheringDto;
 import org.apache.ibatis.annotations.Mapper;
@@ -21,6 +22,7 @@ public interface GatheringMapper {
 
     // 모임원 가입
     void insertGatheringMember(GatheringCreateDto gatheringCreateDto);
+    void insertGatheringMemberByApplication(GatheringMemberDto gatheringMemberDto);
 
     // 가입한 모임 조회
     List<GatheringDto> selectGroupByMemberId(int memberId);
