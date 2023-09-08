@@ -107,7 +107,7 @@ public class GatheringServiceImpl implements GatheringService {
     @Override
     public List<GatheringDto> findAllGatheringByKeyword(String keyword, int memberId) {
         List<GatheringDto> gatheringDtoList = gatheringMapper.selectGatheringByKeyword(keyword);
-        for(GatheringDto gatheringDto :gatheringDtoList){
+        for (GatheringDto gatheringDto : gatheringDtoList) {
             int gatheringId = gatheringDto.getGatheringId();
             boolean isJoined = gatheringMapper.isMemberJoined(gatheringId, memberId);
             gatheringDto.setJoined(isJoined);
@@ -138,7 +138,7 @@ public class GatheringServiceImpl implements GatheringService {
         List<GatheringDto> gatheringDtoList = new ArrayList<>();
         List<Integer> list = interestMapper.selectGatheringIdFromInterest(interest);
         for (int gatheringId : list) {
-            GatheringDto gatheringDto = gatheringMapper.selectGatheringByGatheringId(gatheringId);
+            GatheringDto gatheringDto = findGatheringByGatheringId(true, gatheringId);
 
             boolean isJoined = gatheringMapper.isMemberJoined(gatheringId, memberId);
             gatheringDto.setJoined(isJoined);
@@ -156,14 +156,14 @@ public class GatheringServiceImpl implements GatheringService {
         List<Integer> list = interestMapper.selectGatheringIdByMemberInterest(memberId);
         list.removeIf(Objects::isNull);
         for (int gatheringId : list) {
-            GatheringDto gatheringDto = gatheringMapper.selectGatheringByGatheringId(gatheringId);
-            if(gatheringDto == null){
+            GatheringDto gatheringDto = findGatheringByGatheringId(true, gatheringId);
+            if (gatheringDto == null) {
                 continue;
             }
             gatheringDto.setGatheringCoverImageUrl(gatheringMapper.selectGatheringCoverImage(gatheringDto.getGatheringId()));
             gatheringDtoList.add(gatheringDto);
-            if(num ==1){
-                if(gatheringDtoList.size()==4){
+            if (num == 1) {
+                if (gatheringDtoList.size() == 4) {
                     break;
                 }
             }
@@ -180,5 +180,12 @@ public class GatheringServiceImpl implements GatheringService {
             gatheringDto.setGatheringCoverImageUrl(gatheringMapper.selectGatheringCoverImage(gatheringDto.getGatheringId()));
         }
         return gatheringDtoList;
+    }
+
+    // 모임 ID로 모임 조회
+
+    @Override
+    public GatheringDto findGatheringByGatheringId(boolean onlyPublic, int gatheringId) {
+        return gatheringMapper.selectGatheringByGatheringId(onlyPublic, gatheringId);
     }
 }

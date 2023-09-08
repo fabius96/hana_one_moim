@@ -77,15 +77,20 @@
             resultMap="gatheringDto">
         SELECT *
         FROM gathering
-        WHERE is_public = 'Y'
-          AND gathering_id = #{gatheringId}
+        <where>
+            <if test="onlyPublic">
+                is_public = 'Y'
+            </if>
+            AND gathering_id = #{gatheringId}
+        </where>
     </select>
 
     <!-- 모임 가입 여부 확인 -->
     <select id="isMemberJoined" parameterType="int" resultType="boolean">
         SELECT COUNT(*)
         FROM gathering_member
-        WHERE gathering_id = #{gatheringId} AND member_id = #{memberId}
+        WHERE gathering_id = #{gatheringId}
+          AND member_id = #{memberId}
     </select>
 
 </mapper>

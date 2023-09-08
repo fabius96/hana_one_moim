@@ -160,4 +160,5 @@ public class GatheringResponseController {
     public ModelAndView showServiceIntroduce(){
         return new ModelAndView("/gathering/service-introduction");
     }
+
 }

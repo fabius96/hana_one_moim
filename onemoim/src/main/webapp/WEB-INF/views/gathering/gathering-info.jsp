@@ -54,7 +54,7 @@
                                 </div>
                                 <div class="accordion-body-right">
                                     <button class="detail-button">
-                                        <a href="${pageContext.request.contextPath}/account/account-transfer-hana?accountNumber=${account.accountNumber}"
+                                        <a href="${pageContext.request.contextPath}/community/community-main?gatheringId=${gatherings.gatheringId}"
                                            class="button-text">자세히 보기</a>
                                     </button>
                                 </div>

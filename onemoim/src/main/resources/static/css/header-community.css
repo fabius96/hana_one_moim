@@ -1,0 +1,27 @@
+.second-header{
+    display: flex;
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center;     /* 세로 중앙 정렬 */
+    background: #008375;
+    color: #000;
+    position: relative;
+    height: 40px;
+    padding: 0 20px;  /* 좌우 여백 조정 */
+}
+
+.second-header img {
+    width: 23px;
+    height: 23px;
+    object-fit: cover;
+    margin-top: 5px;
+}
+
+p, a {
+    font-family: Hana2-Medium, sans-serif;
+}
+
+.second-menu-text {
+    font-size: 16px;
+    margin: 0 25px;
+    color: #ffffff;
+}

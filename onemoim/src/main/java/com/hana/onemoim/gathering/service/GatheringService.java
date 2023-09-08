@@ -35,4 +35,7 @@ public interface GatheringService {
 
     // 모임 추천
     List<GatheringDto> findGatheringByMemberInterest(int memberId, int num);
+
+    // 모임 ID로 모임 조회
+    GatheringDto findGatheringByGatheringId(boolean onlyPublic, int gatheringId);
 }

@@ -35,8 +35,9 @@ public interface GatheringMapper {
     int countGatheringByKeyword(String keyword);
 
     // 모임 분류 조회
-    GatheringDto selectGatheringByGatheringId(int gatheringId);
+    GatheringDto selectGatheringByGatheringId(@Param("onlyPublic") boolean onlyPublic,
+                                              @Param("gatheringId") int gatheringId);
 
     // 모임 가입 여부 확인
-    Boolean isMemberJoined(@Param("gatheringId") int gatheringId, @Param("memberId")int memberId);
+    Boolean isMemberJoined(@Param("gatheringId") int gatheringId, @Param("memberId") int memberId);
 }
