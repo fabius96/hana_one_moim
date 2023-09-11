@@ -43,6 +43,9 @@ function calendar_rendering(eventsData) {
             omitZeroMinute: false,
             hour12: false
         },
+        buttonText: {
+            today: '오늘'
+        },
         selectable: true,
         events: eventsData,
         select: function (info) {
