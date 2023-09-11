@@ -128,7 +128,8 @@
                                     <p class="gathering-name">${gatherings.gatheringName}</p>
                                     <p class="gathering-description">${gatherings.gatheringDescription}</p>
                                 </div>
-                                <img src="${pageContext.request.contextPath}/img/next-arrow.png" alt="더보기" class="next-arrow" data-gathering-id="${gatherings.gatheringId}">
+                                <img src="${pageContext.request.contextPath}/img/next-arrow.png" alt="더보기"
+                                     class="next-arrow" data-gathering-id="${gatherings.gatheringId}">
                                 <div class="accordion-body-right">
                                     <c:choose>
                                         <c:when test="${gatherings.joined}">
@@ -138,7 +139,8 @@
                                             </button>
                                         </c:when>
                                         <c:otherwise>
-                                            <button class="join-button" data-gathering-id="${gatherings.gatheringId}">
+                                            <button class="join-button" data-gathering-id="${gatherings.gatheringId}"
+                                                    onclick="applicationGathering('${gatherings.gatheringId}')">
                                                 <a class="button-text">가입신청</a>
                                             </button>
                                         </c:otherwise>

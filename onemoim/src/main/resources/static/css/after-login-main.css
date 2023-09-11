@@ -420,7 +420,8 @@
 }
 
 .button-container {
-    width: 50px;
+    background-color: white;
+    width: 60px;
     height: 25px;
     overflow: hidden;
     border-radius: 5px;
@@ -437,7 +438,6 @@
     padding: 0;
     margin-top: 5px;
     margin-bottom: 0;
-    margin-left:3px;
     cursor: pointer;
     -webkit-appearance: none; /* 웹킷 기반 브라우저(예: Chrome, Safari)에서 기본 스타일 제거 */
     appearance: none; /* 표준 속성 */

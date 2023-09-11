@@ -97,7 +97,7 @@ public class GatheringRequestController {
         return modelAndView;
     }
 
-    // 회원가입
+    // 모임가입
     @PostMapping("/gathering/gathering-application")
     public ResponseEntity<?> applicationGathering(HttpSession httpSession,
                                                @RequestParam int gatheringId){

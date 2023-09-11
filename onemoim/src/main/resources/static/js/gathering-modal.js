@@ -76,6 +76,7 @@ function applicationGathering(gatheringId) {
         success: function() {
             alert("가입신청이 성공적으로 처리되었습니다.");
             closeCurrentModal();
+            location.reload();
         },
         error: function() {
             console.log(url)

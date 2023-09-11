@@ -19,7 +19,7 @@
             <p>하나원모임</p>
         </div>
     </a>
-    <a href="signin" class="start-button-link">
+    <a href="/signin" class="start-button-link">
         <div class="start-button">시작하기</div>
     </a>
 </div>

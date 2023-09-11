@@ -179,9 +179,10 @@
                     <div class="second-area-item-description" data-gathering-id="${gatherings.gatheringId}">
                             ${gatherings.gatheringDescription}
                     </div>
-                    <div class="button-container">
-                        <p class="area-button-text">가입신청</p>
-                    </div>
+                    <button class="button-container" data-gathering-id="${gatherings.gatheringId}"
+                         onclick="applicationGathering('${gatherings.gatheringId}')">
+                        <a class="area-button-text">가입신청</a>
+                    </button>
                 </div>
             </div>
         </c:forEach>
