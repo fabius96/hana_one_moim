@@ -44,8 +44,20 @@ public class CommunityResponseController {
 
     // 커뮤니티 모임 정보 페이지 조회
     @GetMapping("/community/{gatheringId}/info")
-    public ModelAndView showCommunityInfo(@PathVariable int gatheringId) {
-        ModelAndView modelAndView = new ModelAndView("/community/community-info");
+    public ModelAndView showCommunityInfo(HttpSession httpSession,
+                                          HttpServletRequest httpServletRequest,
+                                          @PathVariable int gatheringId) {
+        ModelAndView modelAndView = new ModelAndView("/signin");
+
+        MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
+
+        if (memberDto == null) {
+            httpSession.setAttribute("destination", httpServletRequest.getRequestURI());
+            return modelAndView;
+        }
+        modelAndView.setViewName("/community/community-info");
+        modelAndView.addObject("loggedInMemberId", memberDto.getMemberId());
+
         CommunityInfoDto communityInfoDto = communityService.getCommunityInfo(gatheringId);
         modelAndView.addObject("gathering", communityInfoDto.getGatheringDto());
         modelAndView.addObject("gatheringLeaderId", communityInfoDto.getGatheringLeaderId());

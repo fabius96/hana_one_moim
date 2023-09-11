@@ -15,4 +15,8 @@ public interface GatheringMemberMapper {
     // 모임원 상태 코드 확인
     int isMemberStatusCodeActive(@Param("gatheringId") int gatheringId,
                                  @Param("memberId") int memberId);
+
+    // 모임원 상태 코드 변경
+    void updateMemberStatusCode(@Param("memberStatusCode") int memberStatusCode,
+                                @Param("memberId") int memberId);
 }

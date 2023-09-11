@@ -66,4 +66,10 @@ public class CommunityServiceImpl implements CommunityService {
                 .gatheringMemberDtoList(findGatheringMemberByGatheringId(gatheringId))
                 .build();
     }
+
+    // 모임원 상태 코드 변경
+    @Override
+    public void updateMemberStatusCode(int memberStatusCode, int memberId) {
+        gatheringMemberMapper.updateMemberStatusCode(memberStatusCode, memberId);
+    }
 }

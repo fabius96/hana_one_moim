@@ -74,3 +74,29 @@
     width: 20px;
     height: 20px;
 }
+
+.active-p{
+    margin: 0;
+    color: #008375;
+}
+
+.pause-p{
+    margin: 0;
+    color: #E4003F;
+}
+
+.standby-p{
+    margin: 0;
+    color: #2E354F;
+}
+
+.status-change-button{
+    border: none;
+    border-radius: 5px;
+    background-color: #008375;
+    color: white;
+    width: 45px;
+    height: 25px;
+    font-family: Hana2-Bold, sans-serif;
+    cursor: pointer;
+}

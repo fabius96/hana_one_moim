@@ -19,4 +19,7 @@ public interface CommunityService {
 
     // 커뮤니티 - 모임 정보 조회
     CommunityInfoDto getCommunityInfo( int gatheringId);
+
+    // 모임원 상태 코드 변경
+    void updateMemberStatusCode(int memberStatusCode, int memberId);
 }

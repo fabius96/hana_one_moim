@@ -28,5 +28,13 @@
           AND member_id = #{memberId}
     </select>
 
+    <!-- 모임원 상태 코드 변경 -->
+    <update id="updateMemberStatusCode" parameterType="int">
+        UPDATE gathering_member
+        SET member_status_code = #{memberStatusCode},
+            modified_at = SYSDATE
+        WHERE member_id = #{memberId}
+    </update>
+
 
 </mapper>

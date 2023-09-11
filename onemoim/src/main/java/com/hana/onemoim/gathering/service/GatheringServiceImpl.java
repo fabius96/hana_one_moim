@@ -28,7 +28,7 @@ public class GatheringServiceImpl implements GatheringService {
 
     private static final int MEMBER_STATUS_ACTIVE = 70;  // 활동
     private static final int MEMBER_STATUS_PAUSE = 71;   // 정지
-    private static final int MEMBER_STATUS_STANDBY = 72;   // 정지
+    private static final int MEMBER_STATUS_STANDBY = 72;   // 대기
 
     private final GatheringMapper gatheringMapper;
     private final MemberMapper memberMapper;

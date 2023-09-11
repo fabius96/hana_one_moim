@@ -20,7 +20,7 @@
     <jsp:include page="../includes/header-community.jsp"/>
     <div class="main-container">
         <div class="outer-content-wrapper">
-            <p class="page-name">모임</p>
+            <p class="page-name">모임관리</p>
             <table class="gathering-member-table">
                 <thead>
                 <tr>
@@ -36,23 +36,39 @@
                     <tr class="member-item">
                         <td>${member.memberName}</td>
                         <td>
-                        <c:choose>
-                            <c:when test="${member.memberStatusCode == 70}">활동</c:when>
-                            <c:when test="${member.memberStatusCode == 71}">정지</c:when>
-                            <c:when test="${member.memberStatusCode == 72}">승인대기</c:when>
-                            <c:otherwise>알 수 없음</c:otherwise>
-                        </c:choose>
+                            <c:choose>
+                                <c:when test="${member.memberStatusCode == 70}"><p class="active-p">활동</p></c:when>
+                                <c:when test="${member.memberStatusCode == 71}"><p class="pause-p">정지</p></c:when>
+                                <c:when test="${member.memberStatusCode == 72}"><p class="standby-p">승인대기</p></c:when>
+                                <c:otherwise>알 수 없음</c:otherwise>
+                            </c:choose>
                         </td>
                         <td>${member.createdAt}</td>
                         <td>${member.modifiedAt}</td>
                         <td>
-                            <c:choose>
-                                <c:when test="${member.memberId == gatheringLeaderId}">
-                                    <img src="/img/crown.png" class="crown-img" alt="모임장">
-                                </c:when>
-                                <c:otherwise><button>버튼이름</button></c:otherwise>
-                            </c:choose>
-                        </td> <!-- 버튼 이름 및 기능을 구체화해야 합니다. -->
+                            <c:if test="${member.memberId == gatheringLeaderId}">
+                                <img src="/img/crown.png" class="crown-img" alt="모임장">
+                            </c:if>
+                            <c:if test="${loggedInMemberId == gatheringLeaderId && member.memberId != gatheringLeaderId}">
+                                <c:choose>
+                                    <c:when test="${member.memberStatusCode == 70}">
+                                        <button class="status-change-button" data-member-id="${member.memberId}" data-member-status-code="71">
+                                            정지
+                                        </button>
+                                    </c:when>
+                                    <c:when test="${member.memberStatusCode == 71}">
+                                        <button class="status-change-button" data-member-id="${member.memberId}" data-member-status-code="70">
+                                            활동
+                                        </button>
+                                    </c:when>
+                                    <c:when test="${member.memberStatusCode == 72}">
+                                        <button class="status-change-button" data-member-id="${member.memberId}" data-member-status-code="70">
+                                            승인
+                                        </button>
+                                    </c:when>
+                                </c:choose>
+                            </c:if>
+                        </td>
                     </tr>
                 </c:forEach>
                 </tbody>
@@ -61,5 +77,6 @@
     </div>
 </div>
 <jsp:include page="../includes/footer.jsp"/>
+<script src="/js/community-info.js"></script>
 </body>
 </html>

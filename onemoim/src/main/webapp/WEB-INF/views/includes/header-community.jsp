@@ -30,7 +30,7 @@
         <a href="/account/account-product-list">카드</a>
     </p>
     <p class="second-menu-text" id="gathering">
-        <a data-gathering-id="${gathering.gatheringId}" onclick="goToInfo(this)">모임</a>
+        <a data-gathering-id="${gathering.gatheringId}" onclick="goToInfo(this)">모임관리</a>
     </p>
 </div>
 <script src="/js/header-community.js"></script>
