@@ -7,7 +7,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>커뮤니티-모임</title>
+    <title>커뮤니티 모임관리</title>
     <link rel="stylesheet" href="/css/common.css">
     <link rel="stylesheet" href="/css/community-info.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

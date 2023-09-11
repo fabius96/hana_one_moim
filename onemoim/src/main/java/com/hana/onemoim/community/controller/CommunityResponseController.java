@@ -64,4 +64,24 @@ public class CommunityResponseController {
         modelAndView.addObject("gatheringMembers", communityInfoDto.getGatheringMemberDtoList());
         return modelAndView;
     }
+
+    // 커뮤니티 일정 페이지 조회
+    @GetMapping("/community/{gatheringId}/calendar")
+    public ModelAndView showCommunityCalendar(HttpSession httpSession,
+                                          HttpServletRequest httpServletRequest,
+                                          @PathVariable int gatheringId) {
+        ModelAndView modelAndView = new ModelAndView("/signin");
+
+        MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
+
+        if (memberDto == null) {
+            httpSession.setAttribute("destination", httpServletRequest.getRequestURI());
+            return modelAndView;
+        }
+        modelAndView.setViewName("/community/community-calendar");
+        modelAndView.addObject("gatheringId", gatheringId);
+        modelAndView.addObject("loggedInMemberId", memberDto.getMemberId());
+
+        return modelAndView;
+    }
 }

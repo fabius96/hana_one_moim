@@ -1,5 +1,6 @@
 package com.hana.onemoim.community.service;
 
+import com.hana.onemoim.community.dto.CalendarEventDto;
 import com.hana.onemoim.community.dto.CommunityInfoDto;
 import com.hana.onemoim.community.dto.CommunityMainDto;
 import com.hana.onemoim.community.dto.GatheringMemberDto;
@@ -22,4 +23,7 @@ public interface CommunityService {
 
     // 모임원 상태 코드 변경
     void updateMemberStatusCode(int memberStatusCode, int memberId, int gatheringId);
+
+    // 캘린더 일정 등록
+    void insertCalendarEvent(int gatheringId, CalendarEventDto calendarEventDto);
 }

@@ -1,14 +1,12 @@
 package com.hana.onemoim.community.controller;
 
+import com.hana.onemoim.community.dto.CalendarEventDto;
 import com.hana.onemoim.community.service.CommunityService;
-import com.hana.onemoim.member.dto.MemberDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 @Controller
@@ -19,14 +17,19 @@ public class CommunityRequestController {
 
     // 모임원 상태 코드 변경
     @PatchMapping("/community/update-status")
-    public ResponseEntity<?> updateGatheringMemberStatusCode(HttpSession httpSession,
-                                                             @RequestParam("memberStatusCode") int memberStatusCode,
+    public ResponseEntity<?> updateGatheringMemberStatusCode(@RequestParam("memberStatusCode") int memberStatusCode,
                                                              @RequestParam("memberId") int memberId,
                                                              @RequestParam("gatheringId") int gatheringId) {
-        MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
-
         communityService.updateMemberStatusCode(memberStatusCode, memberId, gatheringId);
 
         return ResponseEntity.ok().body(Map.of("message", "모임원 상태가 정상적으로 변경되었습니다."));
+    }
+
+    // 캘린더 일정 삽입
+    @PostMapping("/community/{gatheringId}/calendar")
+    public ResponseEntity<?> insertCalendarEvent(@PathVariable int gatheringId,
+                                                 @RequestBody CalendarEventDto calendarEventDto){
+        communityService.insertCalendarEvent(gatheringId, calendarEventDto);
+        return ResponseEntity.ok().body(Map.of("message", "일정이 정상적으로 등록되었습니다."));
     }
 }
