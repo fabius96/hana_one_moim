@@ -100,4 +100,10 @@ public class CommunityServiceImpl implements CommunityService {
             throw new RuntimeException("일정을 추가하는 도중 오류가 발생했습니다.", e);
         }
     }
+
+    // 캘린더 일정 조회
+    @Override
+    public List<CalendarEventDto> getAllCalendarEvent(int gatheringId) {
+        return calendarMapper.selectCalendarEventByGatheringId(gatheringId);
+    }
 }

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ page isELIgnored="false" %>
 
 <!DOCTYPE html>
@@ -14,7 +15,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
-<body data-context-path="${pageContext.request.contextPath}" data-gathering-id="${gatheringId}">
+<body data-context-path="${pageContext.request.contextPath}" data-gathering-id="${gatheringId}" data-events-json="${fn:escapeXml(eventsJson)}">
 
 <div class="except-footer">
     <jsp:include page="../includes/header_after_login.jsp"/>

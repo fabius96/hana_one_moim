@@ -13,4 +13,5 @@ public class CalendarEventDto {
     private String eventEndDate; // 일정 종료 일자
     private boolean alldayYn; // 종일 진행 여부
     private String eventDescription; // 일정 설명
+    private String eventColor; // 일정 설명
 }

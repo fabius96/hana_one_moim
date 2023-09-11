@@ -1,56 +1,110 @@
-// 캘린더 요소 참조
+let calendar; // 전역 캘린더 인스턴스
+
 const calendarEl = document.getElementById("calendar");
 
-// 캘린더 렌더링 함수
-function calendar_rendering() {
-    let calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: "dayGridMonth", // 초기 뷰 설정
-        firstDay: 1, // 시작 요일 설정 (월요일)
-        titleFormat: function (date) { // 제목 형식 설정
+// 페이지 로드 시 캘린더 렌더링
+document.addEventListener('DOMContentLoaded', function () {
+    const rawData = $('body').data('events-json');
+    const convertedData = convertEventData(rawData);
+    calendar_rendering(convertedData);
+});
+
+// 데이터 변환
+function convertEventData(eventsData) {
+    return eventsData.map(event => ({
+        title: event.eventTitle,
+        start: event.eventStartDate.replace(" ", "T"),
+        end: event.eventEndDate.replace(" ", "T"),
+        allDay: event.alldayYn,
+        description: event.eventDescription,
+        color: event.eventColor
+    }));
+}
+
+// 캘린더 렌더링
+function calendar_rendering(eventsData) {
+    calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: "dayGridMonth",
+        firstDay: 1,
+        titleFormat: function (date) {
             const year = date.date.year;
             const month = date.date.month + 1;
             return year + "년 " + month + "월";
         },
+        slotLabelFormat: {
+            hour: '2-digit',
+            minute: '2-digit',
+            omitZeroMinute: false,
+            hour12: false
+        },
+        eventTimeFormat: {
+            hour: '2-digit',
+            minute: '2-digit',
+            omitZeroMinute: false,
+            hour12: false
+        },
         selectable: true,
+        events: eventsData,
         select: function (info) {
-            const selectedDate = new Date(info.startStr); // 사용자가 선택한 날짜
-            const currentTime = new Date(); // 현재 시간
+            const selectedDate = new Date(info.startStr);
+            const currentTime = new Date();
 
-            // 선택한 날짜와 현재 시간 합치기
             selectedDate.setHours(currentTime.getHours(), currentTime.getMinutes(), currentTime.getSeconds());
 
             document.getElementById('edit-start').value = formatDateTime(selectedDate);
 
             const endDate = new Date(selectedDate);
-            endDate.setHours(endDate.getHours() + 1); // 선택한 날짜의 현재 시간 + 1시간
+            endDate.setHours(endDate.getHours() + 1);
             document.getElementById('edit-end').value = formatDateTime(endDate);
 
-            // 모달 표시
+            document.getElementById('edit-title').value = "";
+            document.getElementById('edit-allDay').checked = false;
+            document.getElementById('edit-desc').value = "";
+            document.getElementById('edit-color').value = "";
+
             openModal();
+        },
+        eventClick: function (info) {
+            showEventDetails(info.event);
         }
     });
 
-    calendar.render(); // 캘린더 렌더링 실행
+    calendar.render();
 }
 
-// 페이지 로드 시 캘린더 렌더링 함수 호출
-document.addEventListener('DOMContentLoaded', function () {
-    calendar_rendering();
-});
+// 이벤트 클릭 시 상세 보기
+function showEventDetails(event) {
+    document.getElementById('edit-title').value = event.title;
+    document.getElementById('edit-start').value = formatDateTime(new Date(event.start));
+    document.getElementById('edit-end').value = formatDateTime(new Date(event.end));
+    document.getElementById('edit-allDay').checked = event.allDay;
+    document.getElementById('edit-desc').value = event.extendedProps.description;
+    document.getElementById('edit-color').value = event.backgroundColor || "#008375";
+    openModal();
+}
+
+// 날짜와 시간 포맷 변환
+function formatDateTime(date) {
+    let year = date.getFullYear();
+    let month = (date.getMonth() + 1).toString().padStart(2, '0');
+    let day = date.getDate().toString().padStart(2, '0');
+    let hours = date.getHours().toString().padStart(2, '0');
+    let minutes = date.getMinutes().toString().padStart(2, '0');
+
+    return `${year}-${month}-${day}T${hours}:${minutes}`;
+}
 
 // 모달 열기
 function openModal() {
     document.getElementById("eventModal").style.display = "block";
 
-    const currentDate = new Date(); // 현재 날짜 및 시간
-    console.log(currentDate);
+    const currentDate = new Date();
     const formattedDate = formatDateTime(currentDate);
 
     const endDate = new Date(currentDate);
-    endDate.setHours(currentDate.getHours() + 1); // 현재 시간 + 1시간
+    endDate.setHours(currentDate.getHours() + 1);
     const formattedEndDate = formatDateTime(endDate);
 
-    // input 필드에 기본 값을 설정.(이미 값이 존재하는 경우 제외)
     if (!document.getElementById('edit-start').value) {
         document.getElementById('edit-start').value = formattedDate;
     }
@@ -59,13 +113,16 @@ function openModal() {
     }
 }
 
-// 날짜와 시간을 'YYYY-MM-DDTHH:MM:SS' 형식으로 변환하는 함수
-function formatDateTime(date) {
-    let year = date.getFullYear();
-    let month = (date.getMonth() + 1).toString().padStart(2, '0'); // 월
-    let day = date.getDate().toString().padStart(2, '0'); // 일
-    let hours = date.getHours().toString().padStart(2, '0'); // 시
-    let minutes = date.getMinutes().toString().padStart(2, '0'); // 분
+// 저장 버튼 클릭 이벤트
+document.getElementById('save-event').addEventListener('click', function() {
+    const newEvent = {
+        title: document.getElementById('edit-title').value,
+        start: document.getElementById('edit-start').value,
+        end: document.getElementById('edit-end').value,
+        allDay: document.getElementById('edit-allDay').checked,
+        description: document.getElementById('edit-desc').value,
+        color: document.getElementById('edit-color').value
+    };
 
-    return `${year}-${month}-${day} ${hours}:${minutes}`;
-}
+    calendar.addEvent(newEvent);
+});

@@ -26,4 +26,7 @@ public interface CommunityService {
 
     // 캘린더 일정 등록
     void insertCalendarEvent(int gatheringId, CalendarEventDto calendarEventDto);
+
+    // 캘린더 일정 조회
+    List<CalendarEventDto> getAllCalendarEvent(int gatheringId);
 }

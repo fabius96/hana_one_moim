@@ -2,11 +2,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hana.onemoim.community.mapper.CalendarMapper">
 
+    <resultMap id="calendarEventDto" type="com.hana.onemoim.community.dto.CalendarEventDto">
+        <result column="event_id" property="eventId"/>
+        <result column="gathering_id" property="gatheringId"/>
+        <result column="event_title" property="eventTitle"/>
+        <result column="event_start_date" property="eventStartDate"/>
+        <result column="event_end_date" property="eventEndDate"/>
+        <result column="allday_yn" property="alldayYn"/>
+        <result column="event_description" property="eventDescription"/>
+        <result column="event_color" property="eventColor"/>
+    </resultMap>
+
     <!-- 캘린더 일정 삽입  -->
     <insert id="insertCalendarEvent" parameterType="com.hana.onemoim.community.dto.CalendarEventDto">
         INSERT INTO calendar_event
-            (gathering_id, event_title, event_start_date, event_end_date, allday_yn, event_description)
-        values (#{gatheringId}, #{eventTitle}, TO_DATE(#{eventStartDate}, 'yyyy-MM-dd HH24:MI'), TO_DATE(#{eventEndDate}, 'yyyy-MM-dd HH24:MI'), #{alldayYn}, #{eventDescription})
+        (gathering_id, event_title, event_start_date, event_end_date, allday_yn, event_description, event_color)
+        values (#{gatheringId}, #{eventTitle}, TO_DATE(#{eventStartDate}, 'yyyy-MM-dd HH24:MI'),
+                TO_DATE(#{eventEndDate}, 'yyyy-MM-dd HH24:MI'), #{alldayYn}, #{eventDescription}, #{eventColor} )
     </insert>
+
+    <!-- 일정 찾기 -->
+    <select id="selectCalendarEventByGatheringId" parameterType="int" resultMap="calendarEventDto">
+        SELECT *
+        FROM calendar_event
+        WHERE gathering_id = #{gatheringId}
+    </select>
 
 </mapper>

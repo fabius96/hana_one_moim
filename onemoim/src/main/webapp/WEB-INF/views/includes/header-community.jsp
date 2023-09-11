@@ -15,13 +15,13 @@
 
 <div class="second-header">
     <p class="second-menu-link">
-        <img src="<%= request.getContextPath() %>/img/home.png" alt="home" data-gathering-id="${gathering.gatheringId}" onclick="goToHome(this)"/>
+        <img src="<%= request.getContextPath() %>/img/home.png" alt="home" data-gathering-id="${gatheringId}" onclick="goToHome(this)"/>
     </p>
     <p class="second-menu-link" id="gallery">
         <a href="/gathering/service-introduction">갤러리</a>
     </p>
     <p class="second-menu-link" id="calendar-schedule">
-        <a data-gathering-id="${gathering.gatheringId}" onclick="goToCalendar(this)">일정</a>
+        <a data-gathering-id="${gatheringId}" onclick="goToCalendar(this)">일정</a>
     </p>
     <p class="second-menu-link" id="account">
         <a href="/account/account-transfer-hana">계좌</a>
@@ -30,7 +30,7 @@
         <a href="/account/account-product-list">카드</a>
     </p>
     <p class="second-menu-link" id="gathering">
-        <a data-gathering-id="${gathering.gatheringId}" onclick="goToInfo(this)">모임관리</a>
+        <a data-gathering-id="${gatheringId}" onclick="goToInfo(this)">모임관리</a>
     </p>
 </div>
 <script src="/js/header-community.js"></script>
