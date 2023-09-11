@@ -38,7 +38,7 @@ public class CommunityServiceImpl implements CommunityService {
         if (memberStatusCode == 71) { // 활동 정지 상태의 모임원이 모임에 접근할 경우
             return CommunityMainDto.builder()
                     .gatheringDto(null)
-                    .message("활동이 정지된 모임원입니다. <br/> 모임장에게 문의하세요")
+                    .message("활동이 정지된 모임원입니다. \n모임장에게 문의하세요")
                     .redirectRequired(true)
                     .build();
         } else if (memberStatusCode == 72) { // 승인 대기 상태의 모임원이 모임에 접근할 경우
@@ -69,7 +69,7 @@ public class CommunityServiceImpl implements CommunityService {
 
     // 모임원 상태 코드 변경
     @Override
-    public void updateMemberStatusCode(int memberStatusCode, int memberId) {
-        gatheringMemberMapper.updateMemberStatusCode(memberStatusCode, memberId);
+    public void updateMemberStatusCode(int memberStatusCode, int memberId, int gatheringId) {
+        gatheringMemberMapper.updateMemberStatusCode(memberStatusCode, memberId, gatheringId);
     }
 }

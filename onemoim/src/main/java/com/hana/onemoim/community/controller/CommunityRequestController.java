@@ -21,10 +21,11 @@ public class CommunityRequestController {
     @PatchMapping("/community/update-status")
     public ResponseEntity<?> updateGatheringMemberStatusCode(HttpSession httpSession,
                                                              @RequestParam("memberStatusCode") int memberStatusCode,
-                                                             @RequestParam("memberId") int memberId) {
+                                                             @RequestParam("memberId") int memberId,
+                                                             @RequestParam("gatheringId") int gatheringId) {
         MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
 
-        communityService.updateMemberStatusCode(memberStatusCode, memberId);
+        communityService.updateMemberStatusCode(memberStatusCode, memberId, gatheringId);
 
         return ResponseEntity.ok().body(Map.of("message", "모임원 상태가 정상적으로 변경되었습니다."));
     }

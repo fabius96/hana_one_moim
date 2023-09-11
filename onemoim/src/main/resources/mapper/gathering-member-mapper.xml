@@ -32,8 +32,9 @@
     <update id="updateMemberStatusCode" parameterType="int">
         UPDATE gathering_member
         SET member_status_code = #{memberStatusCode},
-            modified_at = SYSDATE
+            modified_at        = SYSDATE
         WHERE member_id = #{memberId}
+          AND gathering_id = #{gatheringId}
     </update>
 
 

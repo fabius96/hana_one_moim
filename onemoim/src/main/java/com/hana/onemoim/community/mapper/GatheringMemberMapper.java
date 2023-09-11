@@ -18,5 +18,6 @@ public interface GatheringMemberMapper {
 
     // 모임원 상태 코드 변경
     void updateMemberStatusCode(@Param("memberStatusCode") int memberStatusCode,
-                                @Param("memberId") int memberId);
+                                @Param("memberId") int memberId,
+                                @Param("gatheringId") int gatheringId);
 }

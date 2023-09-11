@@ -13,14 +13,22 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
-<body data-context-path="${pageContext.request.contextPath}">
+<body data-context-path="${pageContext.request.contextPath}" data-gathering-id="${gathering.gatheringId}">
 
 <div class="except-footer">
     <jsp:include page="../includes/header_after_login.jsp"/>
     <jsp:include page="../includes/header-community.jsp"/>
     <div class="main-container">
         <div class="outer-content-wrapper">
-            <p class="page-name">모임관리</p>
+            <div class="page-name-wrapper">
+                <p class="page-name">모임관리</p>
+                <div class="page-name-right">
+                    <c:if test="${loggedInMemberId == gatheringLeaderId }">
+                        <button class="invite-button">모임원 초대</button>
+                        <button class="edit-button">모임 정보 수정</button>
+                    </c:if>
+                </div>
+            </div>
             <table class="gathering-member-table">
                 <thead>
                 <tr>
@@ -52,17 +60,20 @@
                             <c:if test="${loggedInMemberId == gatheringLeaderId && member.memberId != gatheringLeaderId}">
                                 <c:choose>
                                     <c:when test="${member.memberStatusCode == 70}">
-                                        <button class="status-change-button" data-member-id="${member.memberId}" data-member-status-code="71">
+                                        <button class="status-change-button pause" data-member-id="${member.memberId}"
+                                                data-member-status-code="71">
                                             정지
                                         </button>
                                     </c:when>
                                     <c:when test="${member.memberStatusCode == 71}">
-                                        <button class="status-change-button" data-member-id="${member.memberId}" data-member-status-code="70">
+                                        <button class="status-change-button active" data-member-id="${member.memberId}"
+                                                data-member-status-code="70">
                                             활동
                                         </button>
                                     </c:when>
                                     <c:when test="${member.memberStatusCode == 72}">
-                                        <button class="status-change-button" data-member-id="${member.memberId}" data-member-status-code="70">
+                                        <button class="status-change-button approve" data-member-id="${member.memberId}"
+                                                data-member-status-code="70">
                                             승인
                                         </button>
                                     </c:when>

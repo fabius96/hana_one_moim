@@ -2,13 +2,15 @@ $(document).ready(function(){
     $(".status-change-button").click(function(){
         const memberStatusCode = $(this).data('member-status-code');
         const memberId = $(this).data('member-id');
+        const gatheringId = $('body').data('gathering-id');
 
         $.ajax({
             url: "/community/update-status",
             type: "PATCH",
             data: {
                 memberStatusCode: memberStatusCode,
-                memberId: memberId
+                memberId: memberId,
+                gatheringId: gatheringId
             },
             success: function(response) {
                 alert(response.message);

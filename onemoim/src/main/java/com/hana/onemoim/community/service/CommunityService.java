@@ -21,5 +21,5 @@ public interface CommunityService {
     CommunityInfoDto getCommunityInfo( int gatheringId);
 
     // 모임원 상태 코드 변경
-    void updateMemberStatusCode(int memberStatusCode, int memberId);
+    void updateMemberStatusCode(int memberStatusCode, int memberId, int gatheringId);
 }
