@@ -26,6 +26,19 @@
                     <button class="write-button" id="write-button">글쓰기</button>
                 </div>
             </div>
+            <div class="image-container">
+                <c:forEach var="imageUrl" items="${imageUrls}">
+                    <img src="${imageUrl}" alt="갤러리이미지" class="image-item">
+                </c:forEach>
+                <img src="<%= request.getContextPath() %>/img/sample.jpg" alt="갤러리이미지" class="image-item">
+                <img src="<%= request.getContextPath() %>/img/sample.jpg" alt="갤러리이미지" class="image-item">
+                <img src="<%= request.getContextPath() %>/img/sample.jpg" alt="갤러리이미지" class="image-item">
+                <img src="<%= request.getContextPath() %>/img/sample.jpg" alt="갤러리이미지" class="image-item">
+                <img src="<%= request.getContextPath() %>/img/sample.jpg" alt="갤러리이미지" class="image-item">
+                <img src="<%= request.getContextPath() %>/img/sample.jpg" alt="갤러리이미지" class="image-item">
+                <img src="<%= request.getContextPath() %>/img/sample.jpg" alt="갤러리이미지" class="image-item">
+                <img src="<%= request.getContextPath() %>/img/sample.jpg" alt="갤러리이미지" class="image-item">
+            </div>
 
         </div>
     </div>

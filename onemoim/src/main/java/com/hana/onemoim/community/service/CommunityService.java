@@ -36,4 +36,7 @@ public interface CommunityService {
 
     // 갤러리 게시글 삽입
     void insertGalleryPost(int gatheringId, int memberId, GalleryPostDto galleryPostDto, List<MultipartFile> multipartFiles);
+
+    // 이미지 조회
+    List<String> getAllImage(int gatheringId);
 }

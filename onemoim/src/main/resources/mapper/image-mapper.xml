@@ -5,15 +5,24 @@
     <!-- 모임대표이미지 저장  -->
     <insert id="insertImage" parameterType="com.hana.onemoim.common.dto.ImageDto">
         INSERT INTO gathering_cover_image
-        (gathering_id, image_url)
+            (gathering_id, image_url)
         values (#{targetId}, #{imageUrl})
     </insert>
 
     <!-- 게시글 이미지 저장  -->
     <insert id="insertGalleryImage" parameterType="com.hana.onemoim.common.dto.ImageDto">
         INSERT INTO gallery_image
-        (post_id, image_url)
+            (post_id, image_url)
         values (#{targetId}, #{imageUrl})
     </insert>
+
+    <select id="selectImgUrlByPostId" parameterType="int" resultType="String">
+        SELECT image_url
+        FROM (
+                 SELECT image_url, ROWNUM as rn
+                 FROM gallery_image
+                 WHERE post_id = #{postId}
+             ) WHERE rn = 1
+    </select>
 
 </mapper>

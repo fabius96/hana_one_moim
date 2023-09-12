@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -164,5 +165,19 @@ public class CommunityServiceImpl implements CommunityService {
                 }
             }
         }
+    }
+
+    // 이미지 조회
+    @Override
+    public List<String> getAllImage(int gatheringId) {
+        List<Integer> postIdList = galleryPostMapper.selectPostId(gatheringId);
+        List<String> imageUrls = new ArrayList<>();
+        for(int postId : postIdList){
+            String imgUrl = imageMapper.selectImgUrlByPostId(postId);
+            if(imgUrl != null){
+                imageUrls.add(imgUrl);
+            }
+        }
+        return imageUrls;
     }
 }

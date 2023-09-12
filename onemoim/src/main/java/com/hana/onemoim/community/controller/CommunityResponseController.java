@@ -116,6 +116,7 @@ public class CommunityResponseController {
         }
         modelAndView.setViewName("/community/community-gallery");
         modelAndView.addObject("gatheringId", gatheringId);
+        modelAndView.addObject("imageUrls", communityService.getAllImage(gatheringId));
         return modelAndView;
     }
 }

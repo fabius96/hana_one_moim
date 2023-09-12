@@ -15,4 +15,11 @@
         values (#{gatheringId}, #{gatheringMemberId}, #{title}, #{content})
     </insert>
 
+    <!-- 갤러리 게시글 ID 조회 -->
+    <select id="selectPostId" parameterType="int" resultType="int">
+        SELECT post_id
+        FROM gallery_post
+        WHERE gathering_id = #{gatheringId}
+    </select>
+
 </mapper>

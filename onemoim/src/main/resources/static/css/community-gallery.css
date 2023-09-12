@@ -27,6 +27,7 @@
     align-items: center;
     width: 100%;
     border-bottom: 0.5px solid #cccccc;
+    margin-bottom: 10px;
 }
 
 .page-name-right {
@@ -44,4 +45,17 @@
     cursor: pointer;
     font-family: Hana2-Bold, sans-serif;
     font-size: 16px;
+}
+
+.image-container {
+    display: flex;
+    flex-wrap: wrap; /* 요소들이 넘치면 다음 줄로 이동 */
+    gap: 10px; /* 이미지 사이의 간격 */
+}
+
+.image-item{
+    background-color: #cccccc;
+    height: 325px;
+    width: 325px;
+    object-fit: cover;
 }
