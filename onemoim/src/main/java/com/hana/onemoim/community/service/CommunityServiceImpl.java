@@ -80,18 +80,15 @@ public class CommunityServiceImpl implements CommunityService {
 
     @Override
     public void insertCalendarEvent(int gatheringId, CalendarEventDto calendarEventDto) {
-        System.out.println(calendarEventDto.getEventEndDate());
         try {
             // eventStartDate와 eventEndDate를 Java의 Date 타입으로 변환
             SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
             Date startDateTime = inputFormat.parse(calendarEventDto.getEventStartDate());
-            System.out.println(startDateTime);
             Date endDateTime = inputFormat.parse(calendarEventDto.getEventEndDate());
 
             // 변환된 Date 객체를 Oracle 데이터베이스 형식의 문자열로 재변환
             SimpleDateFormat oracleFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
             calendarEventDto.setEventStartDate(oracleFormat.format(startDateTime));
-            System.out.println( oracleFormat.format(startDateTime));
             calendarEventDto.setEventEndDate(oracleFormat.format(endDateTime));
 
             // DB에 저장
@@ -105,5 +102,33 @@ public class CommunityServiceImpl implements CommunityService {
     @Override
     public List<CalendarEventDto> getAllCalendarEvent(int gatheringId) {
         return calendarMapper.selectCalendarEventByGatheringId(gatheringId);
+    }
+
+    // 일정 삭제
+    @Override
+    public void deleteCalendarEvent(int eventId) {
+        calendarMapper.deleteCalendarEventByEventId(eventId);
+    }
+
+    // 일정 수정
+
+    @Override
+    public void updateCalendarEvent(CalendarEventDto calendarEventDto) {
+        try {
+            // eventStartDate와 eventEndDate를 Java의 Date 타입으로 변환
+            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+            Date startDateTime = inputFormat.parse(calendarEventDto.getEventStartDate());
+            Date endDateTime = inputFormat.parse(calendarEventDto.getEventEndDate());
+
+            // 변환된 Date 객체를 Oracle 데이터베이스 형식의 문자열로 재변환
+            SimpleDateFormat oracleFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            calendarEventDto.setEventStartDate(oracleFormat.format(startDateTime));
+            calendarEventDto.setEventEndDate(oracleFormat.format(endDateTime));
+
+            // DB에 저장
+            calendarMapper.updateCalendarEvent(calendarEventDto);
+        } catch (Exception e) {
+            throw new RuntimeException("일정을 추가하는 도중 오류가 발생했습니다.", e);
+        }
     }
 }

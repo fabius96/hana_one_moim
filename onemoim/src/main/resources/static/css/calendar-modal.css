@@ -69,6 +69,14 @@
     border-radius: 3px;
 }
 
+#update-event{
+    display: none;
+}
+
+#delete-event{
+    display: none;
+}
+
 .close-btn {
     color: #2e354f;
     background-color: #ffffff;

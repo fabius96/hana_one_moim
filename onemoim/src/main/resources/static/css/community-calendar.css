@@ -35,3 +35,7 @@
     color: red;
     text-decoration: none;
 }
+
+.fc-daygrid-day-frame {
+    height: 115px !important;  /* 원하는 높이값으로 조절 */
+}

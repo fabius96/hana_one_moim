@@ -29,4 +29,10 @@ public interface CommunityService {
 
     // 캘린더 일정 조회
     List<CalendarEventDto> getAllCalendarEvent(int gatheringId);
+
+    // 일정 삭제
+    void deleteCalendarEvent(int eventId);
+
+    // 일정 수정
+    void updateCalendarEvent(CalendarEventDto calendarEventDto);
 }

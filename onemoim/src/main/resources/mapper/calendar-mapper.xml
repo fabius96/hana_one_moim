@@ -18,7 +18,7 @@
         INSERT INTO calendar_event
         (gathering_id, event_title, event_start_date, event_end_date, allday_yn, event_description, event_color)
         values (#{gatheringId}, #{eventTitle}, TO_DATE(#{eventStartDate}, 'yyyy-MM-dd HH24:MI'),
-                TO_DATE(#{eventEndDate}, 'yyyy-MM-dd HH24:MI'), #{alldayYn}, #{eventDescription}, #{eventColor} )
+                TO_DATE(#{eventEndDate}, 'yyyy-MM-dd HH24:MI'), #{alldayYn}, #{eventDescription}, #{eventColor})
     </insert>
 
     <!-- 일정 찾기 -->
@@ -27,5 +27,24 @@
         FROM calendar_event
         WHERE gathering_id = #{gatheringId}
     </select>
+
+    <!-- 일정 삭제 -->
+    <delete id="deleteCalendarEventByEventId" parameterType="int">
+        DELETE
+        FROM calendar_event
+        WHERE event_id = #{eventId}
+    </delete>
+
+    <!-- 일정 수정 -->
+    <update id="updateCalendarEvent" parameterType="com.hana.onemoim.community.dto.CalendarEventDto">
+        UPDATE calendar_event
+        SET event_title       = #{eventTitle},
+            event_start_date  = TO_DATE(#{eventStartDate},'yyyy-MM-dd HH24:MI'),
+            event_end_date    = TO_DATE(#{eventEndDate}, 'yyyy-MM-dd HH24:MI'),
+            allday_yn         = #{alldayYn},
+            event_description = #{eventDescription},
+            event_color       = #{eventColor}
+        WHERE event_id = #{eventId}
+    </update>
 
 </mapper>

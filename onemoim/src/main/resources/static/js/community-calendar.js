@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
 // 데이터 변환
 function convertEventData(eventsData) {
     return eventsData.map(event => ({
+        id: event.eventId,
         title: event.eventTitle,
         start: event.eventStartDate.replace(" ", "T"),
         end: event.eventEndDate.replace(" ", "T"),
@@ -65,6 +66,10 @@ function calendar_rendering(eventsData) {
             document.getElementById('edit-desc').value = "";
             document.getElementById('edit-color').value = "";
 
+            document.getElementById('save-event').style.display = "block";
+            document.getElementById('update-event').style.display = "none";
+            document.getElementById('delete-event').style.display = "none";
+
             openModal();
         },
         eventClick: function (info) {
@@ -73,6 +78,7 @@ function calendar_rendering(eventsData) {
     });
 
     calendar.render();
+
 }
 
 // 이벤트 클릭 시 상세 보기
@@ -83,6 +89,13 @@ function showEventDetails(event) {
     document.getElementById('edit-allDay').checked = event.allDay;
     document.getElementById('edit-desc').value = event.extendedProps.description;
     document.getElementById('edit-color').value = event.backgroundColor || "#008375";
+
+    document.getElementById('hiddenEventId').value = event.id;
+
+    document.getElementById('save-event').style.display = "none";
+    document.getElementById('update-event').style.display = "block";
+    document.getElementById('delete-event').style.display = "block";
+
     openModal();
 }
 
@@ -100,7 +113,6 @@ function formatDateTime(date) {
 // 모달 열기
 function openModal() {
     document.getElementById("eventModal").style.display = "block";
-
     const currentDate = new Date();
     const formattedDate = formatDateTime(currentDate);
 
@@ -115,17 +127,3 @@ function openModal() {
         document.getElementById('edit-end').value = formattedEndDate;
     }
 }
-
-// 저장 버튼 클릭 이벤트
-document.getElementById('save-event').addEventListener('click', function() {
-    const newEvent = {
-        title: document.getElementById('edit-title').value,
-        start: document.getElementById('edit-start').value,
-        end: document.getElementById('edit-end').value,
-        allDay: document.getElementById('edit-allDay').checked,
-        description: document.getElementById('edit-desc').value,
-        color: document.getElementById('edit-color').value
-    };
-
-    calendar.addEvent(newEvent);
-});

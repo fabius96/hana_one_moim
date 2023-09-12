@@ -32,4 +32,20 @@ public class CommunityRequestController {
         communityService.insertCalendarEvent(gatheringId, calendarEventDto);
         return ResponseEntity.ok().body(Map.of("message", "일정이 정상적으로 등록되었습니다."));
     }
+
+    // 캘린더 일정 삭제
+    @DeleteMapping("/community/{gatheringId}/calendar")
+    public ResponseEntity<?> deleteCalendarEvent(@PathVariable int gatheringId,
+                                                 @RequestParam int eventId){
+        communityService.deleteCalendarEvent(eventId);
+        return ResponseEntity.ok().body(Map.of("message","일정이 정상적으로 삭제되었습니다."));
+    }
+
+    // 캘린더 일정 수정
+    @PutMapping("/community/{gatheringId}/calendar")
+    public ResponseEntity<?> updateCalendarEvent(@PathVariable int gatheringId,
+                                                 @RequestBody CalendarEventDto calendarEventDto){
+        communityService.updateCalendarEvent(calendarEventDto);
+        return ResponseEntity.ok().body(Map.of("message","일정이 정상적으로 수정되었습니다."));
+    }
 }

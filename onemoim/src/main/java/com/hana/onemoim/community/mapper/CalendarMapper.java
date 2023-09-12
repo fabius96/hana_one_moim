@@ -13,4 +13,10 @@ public interface CalendarMapper {
 
     // 캘린더 조회
     List<CalendarEventDto> selectCalendarEventByGatheringId(int gatheringId);
+
+    // 일정 삭제
+    void deleteCalendarEventByEventId(int eventId);
+
+    // 일정 수정
+    void updateCalendarEvent(CalendarEventDto calendarEventDto);
 }

@@ -11,6 +11,7 @@
 </head>
 
 <body data-context-path="${pageContext.request.contextPath}">
+<input type="hidden" id="hiddenEventId">
 <div class="modal" id="eventModal">
     <div class="modal-content">
 
@@ -61,8 +62,9 @@
             </table>
         </div>
         <div class="modal-footer modalBtnContainer-addEvent">
-            <button class="delete-btn" id="deleteEvent">삭제</button>
+            <button class="delete-btn" id="delete-event">삭제</button>
             <button class="save-btn" id="save-event">저장</button>
+            <button class="save-btn" id="update-event">수정</button>
             <button class="close-btn" data-dismiss="modal">취소</button>
         </div>
     </div>
