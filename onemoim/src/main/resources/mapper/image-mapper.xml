@@ -9,4 +9,11 @@
         values (#{targetId}, #{imageUrl})
     </insert>
 
+    <!-- 게시글 이미지 저장  -->
+    <insert id="insertGalleryImage" parameterType="com.hana.onemoim.common.dto.ImageDto">
+        INSERT INTO gallery_image
+        (post_id, image_url)
+        values (#{targetId}, #{imageUrl})
+    </insert>
+
 </mapper>

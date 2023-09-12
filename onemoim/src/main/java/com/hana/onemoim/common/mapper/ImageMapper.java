@@ -7,5 +7,6 @@ import org.apache.ibatis.annotations.Mapper;
 public interface ImageMapper {
 
     // 이미지 저장
-    public void insertImage(ImageDto imageDto);
+    void insertImage(ImageDto imageDto);
+    void insertGalleryImage(ImageDto imageDto);
 }

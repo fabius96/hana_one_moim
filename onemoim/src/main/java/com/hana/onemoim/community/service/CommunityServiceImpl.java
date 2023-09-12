@@ -1,16 +1,20 @@
 package com.hana.onemoim.community.service;
 
-import com.hana.onemoim.community.dto.CalendarEventDto;
-import com.hana.onemoim.community.dto.CommunityInfoDto;
-import com.hana.onemoim.community.dto.CommunityMainDto;
-import com.hana.onemoim.community.dto.GatheringMemberDto;
+import com.hana.onemoim.common.dto.ImageDto;
+import com.hana.onemoim.common.mapper.ImageMapper;
+import com.hana.onemoim.community.dto.*;
 import com.hana.onemoim.community.mapper.CalendarMapper;
+import com.hana.onemoim.community.mapper.GalleryPostMapper;
 import com.hana.onemoim.community.mapper.GatheringMemberMapper;
 import com.hana.onemoim.gathering.dto.GatheringDto;
 import com.hana.onemoim.gathering.mapper.GatheringMapper;
+import com.hana.onemoim.util.S3uploader;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -22,6 +26,9 @@ public class CommunityServiceImpl implements CommunityService {
     private final GatheringMemberMapper gatheringMemberMapper;
     private final GatheringMapper gatheringMapper;
     private final CalendarMapper calendarMapper;
+    private final GalleryPostMapper galleryPostMapper;
+    private final ImageMapper imageMapper;
+    private final S3uploader s3uploader;
 
     // 모임원 찾기
     @Override
@@ -129,6 +136,33 @@ public class CommunityServiceImpl implements CommunityService {
             calendarMapper.updateCalendarEvent(calendarEventDto);
         } catch (Exception e) {
             throw new RuntimeException("일정을 추가하는 도중 오류가 발생했습니다.", e);
+        }
+    }
+
+    // 갤러리 게시글 등록
+    @Transactional
+    @Override
+    public void insertGalleryPost(int gatheringId, int memberId, GalleryPostDto galleryPostDto,List<MultipartFile> multipartFiles) {
+        galleryPostDto.setPostId(galleryPostMapper.getNextPostSeq()+1);
+        galleryPostDto.setGatheringId(gatheringId);
+        galleryPostDto.setGatheringMemberId(memberId);
+        galleryPostMapper.insertGalleryPost(galleryPostDto); // 게시글 등록
+
+        // 게시글 이미지 삽입
+        if (multipartFiles != null) {
+            for(MultipartFile multipartFile : multipartFiles){
+                try {
+                    String url = s3uploader.Uploader(multipartFile);
+                    ImageDto imageDto = ImageDto.builder()
+                            .targetId(galleryPostDto.getPostId())
+                            .imageUrl(url)
+                            .build();
+                    imageMapper.insertGalleryImage(imageDto);
+                } catch (IOException e) {
+                    System.out.println(e.getMessage());
+                    System.out.println("이미지 업로드 중 오류가 발생했습니다.");
+                }
+            }
         }
     }
 }

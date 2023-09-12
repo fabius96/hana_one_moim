@@ -7,7 +7,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Page Title</title>
+    <title>header-after-login</title>
     <link rel="stylesheet" href="/css/common.css">
     <link rel="stylesheet" href="/css/header_after_login.css">
 </head>
@@ -17,7 +17,7 @@
     <a href="/after-login-main" class="link-button">
         <div class="logo-container">
             <img src="<%= request.getContextPath() %>/img/hana_logo.png" alt="하나금융로고"/>
-            <p class="title">하나원모임</p>
+            <p class="service-title">하나원모임</p>
         </div>
         <p class="menu-text" id="menu-introduce">
             <a href="/gathering/service-introduction">서비스소개</a>

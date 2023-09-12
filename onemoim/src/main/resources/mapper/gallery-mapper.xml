@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hana.onemoim.community.mapper.GalleryPostMapper">
+
+    <!-- gathering_id 가져오기 -->
+    <select id="getNextPostSeq" resultType="int">
+        SELECT post_seq.NEXTVAL
+        FROM DUAL
+    </select>
+
+    <!-- 갤러리 게시글 작성 삽입  -->
+    <insert id="insertGalleryPost" parameterType="com.hana.onemoim.community.dto.GalleryPostDto">
+        INSERT INTO gallery_post
+            (gathering_id, gathering_member_id, title, content)
+        values (#{gatheringId}, #{gatheringMemberId}, #{title}, #{content})
+    </insert>
+
+</mapper>

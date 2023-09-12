@@ -18,7 +18,7 @@
         <img src="<%= request.getContextPath() %>/img/home.png" alt="home" data-gathering-id="${gatheringId}" onclick="goToHome(this)"/>
     </p>
     <p class="second-menu-link" id="gallery">
-        <a href="/gathering/service-introduction">갤러리</a>
+        <a data-gathering-id="${gatheringId}" onclick="goToGallery(this)">갤러리</a>
     </p>
     <p class="second-menu-link" id="calendar-schedule">
         <a data-gathering-id="${gatheringId}" onclick="goToCalendar(this)">일정</a>

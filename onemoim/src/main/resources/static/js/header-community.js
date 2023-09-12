@@ -15,3 +15,9 @@ function goToCalendar(gatheringIdParam) {
     var gatheringId = gatheringIdParam.getAttribute('data-gathering-id');
     window.location.href = `/community/${gatheringId}/calendar`;
 }
+
+// 커뮤니티 갤러리 페이지로 이동
+function goToGallery(gatheringIdParam) {
+    var gatheringId = gatheringIdParam.getAttribute('data-gathering-id');
+    window.location.href = `/community/${gatheringId}/gallery`;
+}

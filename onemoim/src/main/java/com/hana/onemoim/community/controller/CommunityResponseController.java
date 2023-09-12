@@ -101,4 +101,21 @@ public class CommunityResponseController {
 
         return modelAndView;
     }
+
+    // 커뮤니티 캘러리 페이지 조회
+    @GetMapping("/community/{gatheringId}/gallery")
+    public ModelAndView showCommunityGallery(HttpSession httpSession,
+                                          HttpServletRequest httpServletRequest,
+                                          @PathVariable int gatheringId) {
+        MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
+        ModelAndView modelAndView = new ModelAndView("/signin");
+
+        if (memberDto == null) {
+            httpSession.setAttribute("destination", httpServletRequest.getRequestURI());
+            return modelAndView;
+        }
+        modelAndView.setViewName("/community/community-gallery");
+        modelAndView.addObject("gatheringId", gatheringId);
+        return modelAndView;
+    }
 }

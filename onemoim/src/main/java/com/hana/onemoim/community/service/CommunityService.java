@@ -1,9 +1,7 @@
 package com.hana.onemoim.community.service;
 
-import com.hana.onemoim.community.dto.CalendarEventDto;
-import com.hana.onemoim.community.dto.CommunityInfoDto;
-import com.hana.onemoim.community.dto.CommunityMainDto;
-import com.hana.onemoim.community.dto.GatheringMemberDto;
+import com.hana.onemoim.community.dto.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -19,7 +17,7 @@ public interface CommunityService {
     CommunityMainDto searchCommunityInfo(int gatheringId, int memberId);
 
     // 커뮤니티 - 모임 정보 조회
-    CommunityInfoDto getCommunityInfo( int gatheringId);
+    CommunityInfoDto getCommunityInfo(int gatheringId);
 
     // 모임원 상태 코드 변경
     void updateMemberStatusCode(int memberStatusCode, int memberId, int gatheringId);
@@ -35,4 +33,7 @@ public interface CommunityService {
 
     // 일정 수정
     void updateCalendarEvent(CalendarEventDto calendarEventDto);
+
+    // 갤러리 게시글 삽입
+    void insertGalleryPost(int gatheringId, int memberId, GalleryPostDto galleryPostDto, List<MultipartFile> multipartFiles);
 }
