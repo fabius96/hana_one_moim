@@ -22,4 +22,7 @@ public interface GalleryPostMapper {
 
     // 게시글 상세 조회
     GalleryPostDto selectGalleryPost(int postId);
+
+    // 게시글 조회수 증가
+    void updateViewCnt(int postId);
 }

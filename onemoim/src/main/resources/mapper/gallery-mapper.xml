@@ -47,4 +47,11 @@
         WHERE post_id = #{postId}
     </select>
 
+    <!-- 조회수 증가 -->
+    <update id="updateViewCnt" parameterType="int">
+        UPDATE gallery_post
+        SET view_cnt = view_cnt + 1
+        WHERE post_id = #{postId}
+    </update>
+
 </mapper>

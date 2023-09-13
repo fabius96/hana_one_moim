@@ -192,6 +192,7 @@ public class CommunityServiceImpl implements CommunityService {
     // 게시글 상세 조회
     @Override
     public GalleryPostResponseDto getPost(int postId) {
+        galleryPostMapper.updateViewCnt(postId);
         GalleryPostDto galleryPostDto = galleryPostMapper.selectGalleryPost(postId);
 
         return GalleryPostResponseDto.builder()

@@ -28,6 +28,8 @@
 
 .left-content, .right-content {
     flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .modal-image-container {
@@ -54,6 +56,8 @@
     border-bottom: 0.5px solid #cccccc;
     padding-left: 20px;
     height: 35px;
+
+    flex-shrink: 0;
 }
 
 .right-content-area {
@@ -62,11 +66,31 @@
     padding-left: 20px;
     min-height: 200px;
     height: auto;
+
+    flex-shrink: 0;
+}
+
+.right-comment-area {
+    margin-top: 18px;
+    padding-left: 20px;
+    min-height: 200px;
+    max-height: calc(100% - 200px - 50px);
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+/* 스크롤바 숨기기 */
+.right-comment-area::-webkit-scrollbar {
+    width: 0;
 }
 
 .modal-content-writer, .modal-content-createdat {
     font-family: Hana2-Medium, sans-serif;
     font-size: 14px;
+}
+
+.modal-content-comment-writer, .modal-content-comment-createdat {
+    font-size: 13px;
 }
 
 .modal-content-title {
@@ -110,10 +134,18 @@
     color: #777777;
 }
 
-.modal-content-content{
+.modal-content-content {
     font-family: Hana2-Regular, sans-serif;
     font-size: 14px;
     margin-top: 10px;
+    width: 540px;
+    word-wrap: break-word;
+}
+
+.modal-content-comment-content {
+    font-family: Hana2-Regular, sans-serif;
+    font-size: 13px;
+    margin-top: 5px;
     width: 540px;
     word-wrap: break-word;
 }
@@ -150,4 +182,31 @@
 
 #nextBtn {
     right: 600px;
+}
+
+.right-comment-form-area {
+    position: absolute;
+    bottom: 0;
+    height: 35px;
+    width: 600px;
+    flex-shrink: 0;
+    background-color: #ffffff;
+}
+
+.comment-input {
+    margin-top: 3px;
+    margin-left: 3px;
+    width: 500px;
+    height: 23px;
+}
+
+.comment-button {
+    width: 80px;
+    background-color: #008375;
+    color: white;
+    border: none;
+    border-top: 2px solid #008375;
+    border-radius: 3px;
+    height: 29px;
+    font-family: Hana2-Medium, sans-serif;
 }

@@ -43,6 +43,58 @@
                     <div class="modal-content-content"></div>
                 </div>
             </div>
+            <div class="right-comment-area">
+                <div class="modal-content-comment">
+                    <span class="modal-content-writer modal-content-comment-writer"> </span>
+                    ·
+                    <span class="modal-content-createdat modal-content-comment-createdat">날짜</span>
+                    <p class="modal-content-comment-content">댓글 내용이 이런 식으로 달릴거에요</p>
+                </div>
+                <div class="modal-content-comment">
+                    <span class="modal-content-writer modal-content-comment-writer"> </span>
+                    ·
+                    <span class="modal-content-createdat modal-content-comment-createdat">날짜</span>
+                    <p class="modal-content-comment-content">댓글 내용이 이런 식으로 달릴거에요</p>
+                </div>
+                <div class="modal-content-comment">
+                    <span class="modal-content-writer modal-content-comment-writer"> </span>
+                    ·
+                    <span class="modal-content-createdat modal-content-comment-createdat">날짜</span>
+                    <p class="modal-content-comment-content">댓글 내용이 이런 식으로 달릴거에요</p>
+                </div> <div class="modal-content-comment">
+                    <span class="modal-content-writer modal-content-comment-writer"> </span>
+                    ·
+                    <span class="modal-content-createdat modal-content-comment-createdat">날짜</span>
+                    <p class="modal-content-comment-content">댓글 내용이 이런 식으로 달릴거에요</p>
+                </div> <div class="modal-content-comment">
+                    <span class="modal-content-writer modal-content-comment-writer"> </span>
+                    ·
+                    <span class="modal-content-createdat modal-content-comment-createdat">날짜</span>
+                    <p class="modal-content-comment-content">댓글 내용이 이런 식으로 달릴거에요</p>
+                </div> <div class="modal-content-comment">
+                    <span class="modal-content-writer modal-content-comment-writer"> </span>
+                    ·
+                    <span class="modal-content-createdat modal-content-comment-createdat">날짜</span>
+                    <p class="modal-content-comment-content">댓글 내용이 이런 식으로 달릴거에요</p>
+                </div> <div class="modal-content-comment">
+                    <span class="modal-content-writer modal-content-comment-writer"> </span>
+                    ·
+                    <span class="modal-content-createdat modal-content-comment-createdat">날짜</span>
+                    <p class="modal-content-comment-content">댓글 내용이 이런 식으로 달릴거에요</p>
+                </div> <div class="modal-content-comment">
+                    <span class="modal-content-writer modal-content-comment-writer"> </span>
+                    ·
+                    <span class="modal-content-createdat modal-content-comment-createdat">날짜</span>
+                    <p class="modal-content-comment-content">댓글 내용이 이런 식으로 달릴거에요</p>
+                </div>
+                <p>\n</p>
+            </div>
+            <div class="right-comment-form-area">
+                <form>
+                    <input type="text" placeholder="댓글을 입력해주세요" class="comment-input">
+                    <button class="comment-button">등록</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>
