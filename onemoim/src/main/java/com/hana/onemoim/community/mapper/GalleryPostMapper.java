@@ -16,4 +16,10 @@ public interface GalleryPostMapper {
 
     // post_id 가져오기
     List<Integer> selectPostId(int gatheringId);
+
+    // 게시글 작성자 조회
+    int selectWriter(int postId);
+
+    // 게시글 상세 조회
+    GalleryPostDto selectGalleryPost(int postId);
 }

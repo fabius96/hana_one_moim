@@ -37,5 +37,11 @@
           AND gathering_id = #{gatheringId}
     </update>
 
+    <!-- 모임원 이름 조회 -->
+    <select id="selectGatheringMemberName" parameterType="int" resultType="String">
+        SELECT member_name
+        FROM gathering_member
+        WHERE gathering_member_id = #{gatheringMemberId}
+    </select>
 
 </mapper>

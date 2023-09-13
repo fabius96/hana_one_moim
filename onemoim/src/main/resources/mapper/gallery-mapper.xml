@@ -2,6 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hana.onemoim.community.mapper.GalleryPostMapper">
 
+    <resultMap id="galleryPostDto" type="com.hana.onemoim.community.dto.GalleryPostDto">
+        <result column="post_id" property="postId"/>
+        <result column="gathering_id" property="gatheringId"/>
+        <result column="gathering_member_id" property="gatheringMemberId"/>
+        <result column="title" property="title"/>
+        <result column="content" property="content"/>
+        <result column="view_cnt" property="viewCnt"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="modified_at" property="modifiedAt"/>
+    </resultMap>
+
     <!-- gathering_id 가져오기 -->
     <select id="getNextPostSeq" resultType="int">
         SELECT post_seq.NEXTVAL
@@ -20,6 +31,20 @@
         SELECT post_id
         FROM gallery_post
         WHERE gathering_id = #{gatheringId}
+    </select>
+
+    <!-- 게시글 작성자ID 조회 -->
+    <select id="selectWriter" parameterType="int" resultType="int">
+        SELECT gathering_member_id
+        FROM gallery_post
+        WHERE post_id = #{postId}
+    </select>
+
+    <!-- 게시글 상세 조회 -->
+    <select id="selectGalleryPost" resultType="int" resultMap="galleryPostDto">
+        SELECT *
+        FROM gallery_post
+        WHERE post_id = #{postId}
     </select>
 
 </mapper>

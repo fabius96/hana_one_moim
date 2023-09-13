@@ -16,6 +16,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -143,15 +146,15 @@ public class CommunityServiceImpl implements CommunityService {
     // 갤러리 게시글 등록
     @Transactional
     @Override
-    public void insertGalleryPost(int gatheringId, int memberId, GalleryPostDto galleryPostDto,List<MultipartFile> multipartFiles) {
-        galleryPostDto.setPostId(galleryPostMapper.getNextPostSeq()+1);
+    public void insertGalleryPost(int gatheringId, int memberId, GalleryPostDto galleryPostDto, List<MultipartFile> multipartFiles) {
+        galleryPostDto.setPostId(galleryPostMapper.getNextPostSeq() + 1);
         galleryPostDto.setGatheringId(gatheringId);
         galleryPostDto.setGatheringMemberId(memberId);
         galleryPostMapper.insertGalleryPost(galleryPostDto); // 게시글 등록
 
         // 게시글 이미지 삽입
         if (multipartFiles != null) {
-            for(MultipartFile multipartFile : multipartFiles){
+            for (MultipartFile multipartFile : multipartFiles) {
                 try {
                     String url = s3uploader.Uploader(multipartFile);
                     ImageDto imageDto = ImageDto.builder()
@@ -169,15 +172,83 @@ public class CommunityServiceImpl implements CommunityService {
 
     // 이미지 조회
     @Override
-    public List<String> getAllImage(int gatheringId) {
+    public List<GalleryImageResponseDto> getAllImage(int gatheringId) {
         List<Integer> postIdList = galleryPostMapper.selectPostId(gatheringId);
-        List<String> imageUrls = new ArrayList<>();
-        for(int postId : postIdList){
+        List<GalleryImageResponseDto> galleryImageResponseDtoList = new ArrayList<>();
+        for (int postId : postIdList) {
             String imgUrl = imageMapper.selectImgUrlByPostId(postId);
-            if(imgUrl != null){
-                imageUrls.add(imgUrl);
+            int writer = galleryPostMapper.selectWriter(postId);
+            if (imgUrl != null) {
+                galleryImageResponseDtoList.add(GalleryImageResponseDto.builder()
+                        .postId(postId)
+                        .imageUrl(imgUrl)
+                        .gatheringMemberId(writer)
+                        .build());
             }
         }
-        return imageUrls;
+        return galleryImageResponseDtoList;
+    }
+
+    // 게시글 상세 조회
+    @Override
+    public GalleryPostResponseDto getPost(int postId) {
+        GalleryPostDto galleryPostDto = galleryPostMapper.selectGalleryPost(postId);
+
+        return GalleryPostResponseDto.builder()
+                .postId(postId)
+                .gatheringId(galleryPostDto.getGatheringId())
+                .gatheringMemberId(galleryPostDto.getGatheringMemberId())
+                .gatheringMemberName(gatheringMemberMapper.selectGatheringMemberName(galleryPostDto.getGatheringMemberId()))
+                .title(galleryPostDto.getTitle())
+                .content(galleryPostDto.getContent())
+                .viewCnt(galleryPostDto.getViewCnt())
+                .createdAt(calculateTimeAgo(galleryPostDto.getCreatedAt()))
+                .modifiedAt(galleryPostDto.getModifiedAt())
+                .imageUrlList(imageMapper.selectImgUrlForDetail(postId))
+                .build();
+    }
+
+    // 게시글 작성일 수정
+    public String calculateTimeAgo(String pastDateTimeString) {
+        // 문자열을 LocalDateTime으로 변환
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime past = LocalDateTime.parse(pastDateTimeString, formatter);
+
+        LocalDateTime now = LocalDateTime.now();
+        Duration duration = Duration.between(past, now);
+
+        long seconds = duration.getSeconds();
+        long absSeconds = Math.abs(seconds);
+        String ago = "방금 전";
+
+        if (absSeconds >= 60) {
+            long minutes = absSeconds / 60;
+            if (minutes < 60) {
+                ago = minutes + "분 전";
+            } else {
+                long hours = minutes / 60;
+                if (hours < 24) {
+                    ago = hours + "시간 전";
+                } else {
+                    long days = hours / 24;
+                    if (days < 7) {
+                        ago = days + "일 전";
+                    } else if (days < 30) {
+                        long weeks = days / 7;
+                        ago = weeks + "주 전";
+                    } else {
+                        long months = days / 30;
+                        if (months < 12) {
+                            ago = months + "달 전";
+                        } else {
+                            long years = months / 12;
+                            ago = years + "년 전";
+                        }
+                    }
+                }
+            }
+        }
+
+        return ago;
     }
 }

@@ -38,5 +38,8 @@ public interface CommunityService {
     void insertGalleryPost(int gatheringId, int memberId, GalleryPostDto galleryPostDto, List<MultipartFile> multipartFiles);
 
     // 이미지 조회
-    List<String> getAllImage(int gatheringId);
+    List<GalleryImageResponseDto> getAllImage(int gatheringId);
+
+    // 게시글 상세 조회
+    GalleryPostResponseDto getPost(int postId);
 }

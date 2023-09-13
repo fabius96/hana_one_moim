@@ -20,4 +20,7 @@ public interface GatheringMemberMapper {
     void updateMemberStatusCode(@Param("memberStatusCode") int memberStatusCode,
                                 @Param("memberId") int memberId,
                                 @Param("gatheringId") int gatheringId);
+
+    // 모임원 이름 조회
+    String selectGatheringMemberName(int gatheringMemberId);
 }

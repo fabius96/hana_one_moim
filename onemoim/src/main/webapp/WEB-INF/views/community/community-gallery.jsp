@@ -27,8 +27,8 @@
                 </div>
             </div>
             <div class="image-container">
-                <c:forEach var="imageUrl" items="${imageUrls}">
-                    <img src="${imageUrl}" alt="갤러리이미지" class="image-item">
+                <c:forEach var="imageInfo" items="${galleryImageData}">
+                    <img src="${imageInfo.imageUrl}" alt="갤러리이미지" class="image-item" data-post-id="${imageInfo.postId}" data-gathering-id="${gatheringId}">
                 </c:forEach>
                 <img src="<%= request.getContextPath() %>/img/sample.jpg" alt="갤러리이미지" class="image-item">
                 <img src="<%= request.getContextPath() %>/img/sample.jpg" alt="갤러리이미지" class="image-item">
@@ -45,6 +45,7 @@
 </div>
 
 <jsp:include page="../includes/gallery-modal.jsp"/>
+<jsp:include page="../includes/post-detail-modal.jsp"/>
 <jsp:include page="../includes/footer.jsp"/>
 </body>
 </html>

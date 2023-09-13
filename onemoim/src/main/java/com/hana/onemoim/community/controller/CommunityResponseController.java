@@ -5,12 +5,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hana.onemoim.community.dto.CalendarEventDto;
 import com.hana.onemoim.community.dto.CommunityInfoDto;
 import com.hana.onemoim.community.dto.CommunityMainDto;
+import com.hana.onemoim.community.dto.GalleryPostResponseDto;
 import com.hana.onemoim.community.service.CommunityService;
 import com.hana.onemoim.member.dto.MemberDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -105,8 +108,8 @@ public class CommunityResponseController {
     // 커뮤니티 캘러리 페이지 조회
     @GetMapping("/community/{gatheringId}/gallery")
     public ModelAndView showCommunityGallery(HttpSession httpSession,
-                                          HttpServletRequest httpServletRequest,
-                                          @PathVariable int gatheringId) {
+                                             HttpServletRequest httpServletRequest,
+                                             @PathVariable int gatheringId) {
         MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
         ModelAndView modelAndView = new ModelAndView("/signin");
 
@@ -116,7 +119,18 @@ public class CommunityResponseController {
         }
         modelAndView.setViewName("/community/community-gallery");
         modelAndView.addObject("gatheringId", gatheringId);
-        modelAndView.addObject("imageUrls", communityService.getAllImage(gatheringId));
+        modelAndView.addObject("galleryImageData", communityService.getAllImage(gatheringId));
         return modelAndView;
+    }
+
+    // 갤러리 게시글 상세 조회(모달)
+    @GetMapping("/community/{gatheringId}/gallery-post")
+    public ResponseEntity<?> showGalleryPost(HttpSession httpSession,
+                                             @PathVariable int gatheringId,
+                                             @RequestParam int postId) {
+        MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
+
+        GalleryPostResponseDto galleryPostResponseDto = communityService.getPost(postId);
+        return ResponseEntity.ok().body(galleryPostResponseDto);
     }
 }
