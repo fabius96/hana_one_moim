@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hana.onemoim.community.mapper.GalleryCommentMapper">
+
+    <resultMap id="galleryCommentDto" type="com.hana.onemoim.community.dto.GalleryCommentDto">
+        <result column="comment_id" property="commentId"/>
+        <result column="post_id" property="postId"/>
+        <result column="gathering_id" property="gatheringId"/>
+        <result column="gathering_member_id" property="gatheringMemberId"/>
+        <result column="content" property="content"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="modified_at" property="modifiedAt"/>
+    </resultMap>
+
+    <!-- 갤러리 댓글 작성 삽입  -->
+    <insert id="insertGalleryComment" parameterType="com.hana.onemoim.community.dto.GalleryCommentDto">
+        INSERT INTO gallery_comment
+            (post_id, gathering_id, gathering_member_id, content)
+        values (#{postId}, #{gatheringId}, #{gatheringMemberId}, #{content})
+    </insert>
+
+    <!-- 갤러리 게시글 댓글 조회 -->
+    <select id="selectGalleryCommentByPostId" parameterType="int" resultMap="galleryCommentDto">
+        SELECT *
+        FROM gallery_comment
+        WHERE post_id = #{postId}
+        ORDER BY modified_at DESC
+    </select>
+
+</mapper>

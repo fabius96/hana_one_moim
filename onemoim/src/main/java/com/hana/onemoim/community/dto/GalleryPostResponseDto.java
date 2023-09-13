@@ -17,6 +17,8 @@ public class GalleryPostResponseDto {
     private String title; // 제목
     private String content; // 내용
     private int viewCnt; // 조회수
+    private int commentCnt; // 댓글수
+    private List<GalleryCommentDto> galleryCommentDtoList; // 댓글목록
     private String createdAt; // createdAt
     private String modifiedAt; // modifiedAt
     private List<String> imageUrlList; // 이미지URL

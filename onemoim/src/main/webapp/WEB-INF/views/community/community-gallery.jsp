@@ -28,7 +28,9 @@
             </div>
             <div class="image-container">
                 <c:forEach var="imageInfo" items="${galleryImageData}">
-                    <img src="${imageInfo.imageUrl}" alt="갤러리이미지" class="image-item" data-post-id="${imageInfo.postId}" data-gathering-id="${gatheringId}">
+                    <img src="${imageInfo.imageUrl}" alt="갤러리이미지" class="image-item"
+                         data-post-id="${imageInfo.postId}" data-gathering-id="${gatheringId}"
+                         data-member-id="${memberId}" data-gathering-member-id="${gatheringMemberId}">
                 </c:forEach>
                 <img src="<%= request.getContextPath() %>/img/sample.jpg" alt="갤러리이미지" class="image-item">
                 <img src="<%= request.getContextPath() %>/img/sample.jpg" alt="갤러리이미지" class="image-item">

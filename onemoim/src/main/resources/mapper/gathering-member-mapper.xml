@@ -44,4 +44,12 @@
         WHERE gathering_member_id = #{gatheringMemberId}
     </select>
 
+    <!-- member_id 조회 -->
+    <select id="selectGatheringMemberId" parameterType="int" resultType="int">
+        SELECT gathering_member_id
+        FROM gathering_member
+        WHERE member_id = #{memberId}
+          AND gathering_id = #{gatheringId}
+    </select>
+
 </mapper>

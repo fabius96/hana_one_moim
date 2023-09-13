@@ -71,12 +71,16 @@
 }
 
 .right-comment-area {
-    margin-top: 18px;
+    margin: 0;
     padding-left: 20px;
     min-height: 200px;
     max-height: calc(100% - 200px - 50px);
     flex-grow: 1;
     overflow-y: auto;
+}
+
+.blank-line{
+    margin: 0;
 }
 
 /* 스크롤바 숨기기 */
@@ -121,9 +125,11 @@
 }
 
 .modal-content-view-count {
+    width: 20px;
+    text-align: left;
     position: absolute;
     top: 107.5px;
-    right: 552px;
+    right: 540px;
     color: #777777;
 }
 
@@ -140,6 +146,13 @@
     margin-top: 10px;
     width: 540px;
     word-wrap: break-word;
+}
+
+.comment-actions {
+    font-family: Hana2-Regular, sans-serif;
+    font-size: 12px;
+    margin-right: 20px;
+    cursor: pointer;
 }
 
 .modal-content-comment-content {
@@ -206,7 +219,14 @@
     color: white;
     border: none;
     border-top: 2px solid #008375;
+    border-bottom: 1px solid #008375;
     border-radius: 3px;
     height: 29px;
     font-family: Hana2-Medium, sans-serif;
+}
+
+.comment-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

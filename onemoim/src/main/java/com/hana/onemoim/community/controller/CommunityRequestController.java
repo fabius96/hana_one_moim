@@ -56,12 +56,23 @@ public class CommunityRequestController {
 
     // 갤러리 게시글 작성
     @PostMapping("/community/{gatheringId}/gallery")
-    public ResponseEntity<?> createGathering(@PathVariable int gatheringId,
-                                             HttpSession httpSession,
-                                             GalleryPostDto galleryPostDto,
-                                             @RequestParam("galleryImage") List<MultipartFile> multipartFiles) {
+    public ResponseEntity<?> insertGalleryPost(@PathVariable int gatheringId,
+                                               HttpSession httpSession,
+                                               GalleryPostDto galleryPostDto,
+                                               @RequestParam("galleryImage") List<MultipartFile> multipartFiles) {
         MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
         communityService.insertGalleryPost(gatheringId, memberDto.getMemberId(), galleryPostDto, multipartFiles);
         return ResponseEntity.ok().body(Map.of("message", "게시글 등록이 정상적으로 완료되었습니다."));
+    }
+
+    // 갤러리 댓글 작성
+    @PostMapping("/community/{gatheringId}/gallery/comment")
+    public ResponseEntity<?> insertGalleryComment(@PathVariable int gatheringId,
+                                                  HttpSession httpSession,
+                                                  @RequestParam("postId") int postId,
+                                                  @RequestParam("content") String content) {
+        MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
+        String memberName = communityService.insertGalleryComment(postId, gatheringId, memberDto.getMemberId(), content);
+        return ResponseEntity.ok().body(Map.of("memberName", memberName));
     }
 }

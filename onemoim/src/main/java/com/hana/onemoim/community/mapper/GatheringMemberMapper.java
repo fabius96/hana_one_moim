@@ -23,4 +23,8 @@ public interface GatheringMemberMapper {
 
     // 모임원 이름 조회
     String selectGatheringMemberName(int gatheringMemberId);
+
+    // gathering_member_id 조회
+    int selectGatheringMemberId(@Param("memberId") int memberId,
+                                @Param("gatheringId") int gatheringId);
 }

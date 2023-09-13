@@ -4,6 +4,7 @@ import com.hana.onemoim.common.dto.ImageDto;
 import com.hana.onemoim.common.mapper.ImageMapper;
 import com.hana.onemoim.community.dto.*;
 import com.hana.onemoim.community.mapper.CalendarMapper;
+import com.hana.onemoim.community.mapper.GalleryCommentMapper;
 import com.hana.onemoim.community.mapper.GalleryPostMapper;
 import com.hana.onemoim.community.mapper.GatheringMemberMapper;
 import com.hana.onemoim.gathering.dto.GatheringDto;
@@ -32,6 +33,7 @@ public class CommunityServiceImpl implements CommunityService {
     private final CalendarMapper calendarMapper;
     private final GalleryPostMapper galleryPostMapper;
     private final ImageMapper imageMapper;
+    private final GalleryCommentMapper galleryCommentMapper;
     private final S3uploader s3uploader;
 
     // 모임원 찾기
@@ -194,6 +196,11 @@ public class CommunityServiceImpl implements CommunityService {
     public GalleryPostResponseDto getPost(int postId) {
         galleryPostMapper.updateViewCnt(postId);
         GalleryPostDto galleryPostDto = galleryPostMapper.selectGalleryPost(postId);
+        List<GalleryCommentDto> galleryCommentDtoList = galleryCommentMapper.selectGalleryCommentByPostId(postId);
+        for (GalleryCommentDto galleryCommentDto : galleryCommentDtoList) {
+            galleryCommentDto.setCreatedAt(calculateTimeAgo(galleryCommentDto.getCreatedAt()));
+            galleryCommentDto.setMemberName(gatheringMemberMapper.selectGatheringMemberName(galleryCommentDto.getGatheringMemberId()));
+        }
 
         return GalleryPostResponseDto.builder()
                 .postId(postId)
@@ -203,6 +210,8 @@ public class CommunityServiceImpl implements CommunityService {
                 .title(galleryPostDto.getTitle())
                 .content(galleryPostDto.getContent())
                 .viewCnt(galleryPostDto.getViewCnt())
+                .commentCnt(galleryCommentDtoList.size())
+                .galleryCommentDtoList(galleryCommentDtoList)
                 .createdAt(calculateTimeAgo(galleryPostDto.getCreatedAt()))
                 .modifiedAt(galleryPostDto.getModifiedAt())
                 .imageUrlList(imageMapper.selectImgUrlForDetail(postId))
@@ -251,5 +260,23 @@ public class CommunityServiceImpl implements CommunityService {
         }
 
         return ago;
+    }
+
+    // 댓글 작성
+    @Override
+    public String insertGalleryComment(int postId, int gatheringId, int memberId, String content) {
+        galleryCommentMapper.insertGalleryComment(GalleryCommentDto.builder()
+                .postId(postId)
+                .gatheringMemberId(gatheringMemberMapper.selectGatheringMemberId(memberId, gatheringId))
+                .gatheringId(gatheringId)
+                .content(content)
+                .build());
+        return gatheringMemberMapper.selectGatheringMemberName(gatheringMemberMapper.selectGatheringMemberId(memberId, gatheringId));
+    }
+
+    // gathering_member_id 조회
+    @Override
+    public int getGatheringMemberId(int memberId, int gatheringId) {
+        return gatheringMemberMapper.selectGatheringMemberId(memberId, gatheringId);
     }
 }

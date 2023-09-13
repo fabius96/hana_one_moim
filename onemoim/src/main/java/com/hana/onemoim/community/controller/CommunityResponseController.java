@@ -105,7 +105,7 @@ public class CommunityResponseController {
         return modelAndView;
     }
 
-    // 커뮤니티 캘러리 페이지 조회
+    // 커뮤니티 갤러리 페이지 조회
     @GetMapping("/community/{gatheringId}/gallery")
     public ModelAndView showCommunityGallery(HttpSession httpSession,
                                              HttpServletRequest httpServletRequest,
@@ -119,6 +119,7 @@ public class CommunityResponseController {
         }
         modelAndView.setViewName("/community/community-gallery");
         modelAndView.addObject("gatheringId", gatheringId);
+        modelAndView.addObject("gatheringMemberId", communityService.getGatheringMemberId(memberDto.getMemberId(), gatheringId));
         modelAndView.addObject("galleryImageData", communityService.getAllImage(gatheringId));
         return modelAndView;
     }

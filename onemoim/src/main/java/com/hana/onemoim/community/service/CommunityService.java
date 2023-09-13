@@ -42,4 +42,10 @@ public interface CommunityService {
 
     // 게시글 상세 조회
     GalleryPostResponseDto getPost(int postId);
+
+    // 댓글 작성
+    String insertGalleryComment(int postId, int gatheringId, int memberId, String content);
+
+    // gathering_member_id 조회
+    int getGatheringMemberId(int memberId, int gatheringId);
 }
