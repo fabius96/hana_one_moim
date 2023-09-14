@@ -76,9 +76,23 @@
     color: #000;
 }
 
+/*.gathering-description {*/
+/*    width: 402px;*/
+/*    height: 36px;*/
+/*    position: absolute;*/
+/*    left: 370px;*/
+/*    top: 150px;*/
+/*    font-size: 15px;*/
+/*    font-family: Hana2-Regular, sans-serif;*/
+/*    text-align: left;*/
+/*    color: #999999;*/
+/*}*/
+
 .gathering-description {
+    /* 기존 스타일 유지 */
     width: 402px;
-    height: 36px;
+    height: auto; /* 높이를 자동으로 설정 */
+    max-height: 90px; /* 예를 들어 한 줄의 높이가 18px이라고 가정 */
     position: absolute;
     left: 370px;
     top: 150px;
@@ -86,6 +100,12 @@
     font-family: Hana2-Regular, sans-serif;
     text-align: left;
     color: #999999;
+
+    /* ellipsis 효과를 위한 스타일 추가 */
+    overflow: hidden; /* 초과하는 내용은 숨김 */
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
 }
 
 .community-info-button {
