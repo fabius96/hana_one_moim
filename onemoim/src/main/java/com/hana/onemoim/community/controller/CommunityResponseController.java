@@ -52,7 +52,8 @@ public class CommunityResponseController {
 
         modelAndView.setViewName("/community/community-main");
         modelAndView.addObject("gathering", communityMainDto.getGatheringDto());
-        System.out.println(communityMainDto.getGatheringDto().getGatheringLeaderName());
+        modelAndView.addObject("gatheringMemberId", communityService.getGatheringMemberId(memberDto.getMemberId(), gatheringId));
+        modelAndView.addObject("galleryImageData", communityService.getAllImage(gatheringId));
         modelAndView.addObject("gatheringId", communityMainDto.getGatheringDto().getGatheringId());
         return modelAndView;
     }
@@ -140,5 +141,12 @@ public class CommunityResponseController {
 
         GalleryPostResponseDto galleryPostResponseDto = communityService.getPost(postId);
         return ResponseEntity.ok().body(galleryPostResponseDto);
+    }
+
+    // 모임 관심사 조회
+    @GetMapping("/community/{gatheringId}/interest")
+    public ResponseEntity<?> getGatheringInterest(@PathVariable int gatheringId){
+        List<String> gatheringInterestList = communityService.getGatheringInterest(gatheringId);
+        return ResponseEntity.ok().body(gatheringInterestList);
     }
 }

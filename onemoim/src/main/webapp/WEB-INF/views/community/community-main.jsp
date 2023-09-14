@@ -13,42 +13,119 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
-<body data-context-path="${pageContext.request.contextPath}">
+<body data-context-path="${pageContext.request.contextPath}" data-gathering-id="${gatheringId}">
 
 <div class="except-footer">
     <jsp:include page="../includes/header_after_login.jsp"/>
     <jsp:include page="../includes/header-community.jsp"/>
     <div class="main-container">
         <div class="outer-content-wrapper">
-            <div class="slider-wrapper">
-                <div class="container" id="first-container">
-                    <img src="${gathering.gatheringCoverImageUrl}" alt="슬라이드이미지" class="container-image"/>
-                    <div class="gathering-leader-name-box">
-                        <p class="gathering-leader-name-content">
-                            <img src="${pageContext.request.contextPath}/img/crown.png" alt="모임장 왕관"
-                                 class="crown-img">
-                            &nbsp;
-                            <span>${gathering.gatheringLeaderName}</span>
-                        </p>
+            <div class="top-container">
+                <div class="slider-wrapper">
+                    <div class="container" id="first-container">
+                        <img src="${gathering.gatheringCoverImageUrl}" alt="슬라이드이미지" class="container-image"/>
+                        <div class="gathering-leader-name-box">
+                            <p class="gathering-leader-name-content">
+                                <img src="${pageContext.request.contextPath}/img/crown.png" alt="모임장 왕관"
+                                     class="crown-img">
+                                &nbsp;
+                                <span>${gathering.gatheringLeaderName}</span>
+                            </p>
+                        </div>
+                        <div class="gathering-member-number-box">
+                            <p class="gathering-member-number-content">
+                                <img src="${pageContext.request.contextPath}/img/member.png" alt="모임원"
+                                     class="crown-img">
+                                &nbsp;
+                                <span>${gathering.gatheringMemberNumber}</span>
+                            </p>
+                        </div>
+                        <div class="interest-container" id="interestsContainer">
+                        </div>
+                        <div class="gathering-name">
+                            ${gathering.gatheringName}
+                        </div>
+                        <div class="gathering-description">
+                            ${gathering.gatheringDescription}
+                        </div>
+                        <div class="community-info-button">
+                            <button type="submit" class="button-text"
+                                    data-gathering-id="${gatheringId}" onclick="goToInfo(this)">
+                                모임정보
+                            </button>
+                        </div>
                     </div>
-                    <div class="interest-container" id="interestsContainer">
+                </div>
+                <div class="right-container">
+                    <div class="boxes-container">
+                        <div class="big-link-button" id="link-button-calendar">
+                            <button type="button" class="link-button-text" id="link-button-text-calendar"
+                                    onclick="location.href='${pageContext.request.contextPath}/community/${gatheringId}/calendar'">일정보기
+                            </button>
+                        </div>
+
+                        <div class="big-link-button" id="link-button-payment">
+                            <button type="submit" class="link-button-text" id="link-button-text-payment">회비납부</button>
+                        </div>
                     </div>
-                    <p class="slogan">
-                        <span>새로운 모임을 만들고 </span><br/>
-                        <span>친구들과 추억을 나눠보세요</span>
-                    </p>
-                    <p class="hash-tag">#가족 #학교, 동아리 #취미, 동호회 #스터디 #회사, 팀</p>
-                    <div class="create-group-button">
-                        <button type="submit" class="button-text"
-                                onclick="location.href='${pageContext.request.contextPath}/gathering/gathering-create'">
-                            모임만들기
-                        </button>
+                    <div class="notice-container">
+                        <div class="notice-title">
+                            <span>공지사항</span>
+                            <span class="notice-more">···</span>
+                        </div>
+                        <div class="notice-content">
+                            <span>공지사항 1</span>
+                            <img src="${pageContext.request.contextPath}/img/notice-arrow.png" alt="다음화살표" class="arrow-img">
+                        </div>
+                        <div class="notice-content">
+                            공지사항 2
+                            <img src="${pageContext.request.contextPath}/img/notice-arrow.png" alt="다음화살표" class="arrow-img">
+                        </div>
+                        <div class="notice-content">
+                            공지사항 3
+                            <img src="${pageContext.request.contextPath}/img/notice-arrow.png" alt="다음화살표" class="arrow-img">
+                        </div>
+                        <div class="notice-content">
+                            공지사항 4
+                            <img src="${pageContext.request.contextPath}/img/notice-arrow.png" alt="다음화살표" class="arrow-img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- 갤러리 영역 -->
+            <div class="background-container">
+                <div class="gallery-container">
+                    <div class="page-name-wrapper">
+                        <p class="page-name">갤러리</p>
+                        <div class="page-name-right">
+                            <button class="write-button" id="write-button">글쓰기</button>
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <c:forEach var="imageInfo" items="${galleryImageData}">
+                            <img src="${imageInfo.imageUrl}" alt="갤러리이미지" class="image-item"
+                                 data-post-id="${imageInfo.postId}" data-gathering-id="${gatheringId}"
+                                 data-member-id="${memberId}" data-gathering-member-id="${gatheringMemberId}">
+                        </c:forEach>
+                        <img src="<%= request.getContextPath() %>/img/sample.jpg" alt="갤러리이미지" class="image-item">
+                        <img src="<%= request.getContextPath() %>/img/sample.jpg" alt="갤러리이미지" class="image-item">
+                        <img src="<%= request.getContextPath() %>/img/sample.jpg" alt="갤러리이미지" class="image-item">
+                        <img src="<%= request.getContextPath() %>/img/sample.jpg" alt="갤러리이미지" class="image-item">
+                        <img src="<%= request.getContextPath() %>/img/sample.jpg" alt="갤러리이미지" class="image-item">
+                        <img src="<%= request.getContextPath() %>/img/sample.jpg" alt="갤러리이미지" class="image-item">
+                        <img src="<%= request.getContextPath() %>/img/sample.jpg" alt="갤러리이미지" class="image-item">
+                        <img src="<%= request.getContextPath() %>/img/sample.jpg" alt="갤러리이미지" class="image-item">
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script src="/js/community-main.js"></script>
+<jsp:include page="../includes/gallery-modal.jsp"/>
+<jsp:include page="../includes/post-detail-modal.jsp"/>
 <jsp:include page="../includes/footer.jsp"/>
 </body>
 </html>

@@ -52,4 +52,11 @@
           AND gathering_id = #{gatheringId}
     </select>
 
+    <!-- 모임원 수 확인 -->
+    <select id="countGatheringMemberByGatheringId" parameterType="int" resultType="int">
+        SELECT COUNT(gathering_member_id)
+        FROM gathering_member
+        WHERE gathering_id = #{gatheringId}
+    </select>
+
 </mapper>

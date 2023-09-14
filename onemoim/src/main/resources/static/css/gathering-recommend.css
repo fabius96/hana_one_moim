@@ -330,7 +330,8 @@
 }
 
 .button-container {
-    width: 50px;
+    background-color: white;
+    width: 60px;
     height: 25px;
     overflow: hidden;
     border-radius: 5px;

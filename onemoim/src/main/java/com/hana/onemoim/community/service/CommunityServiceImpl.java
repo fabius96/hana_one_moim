@@ -2,6 +2,7 @@ package com.hana.onemoim.community.service;
 
 import com.hana.onemoim.common.dto.ImageDto;
 import com.hana.onemoim.common.mapper.ImageMapper;
+import com.hana.onemoim.common.mapper.InterestMapper;
 import com.hana.onemoim.community.dto.*;
 import com.hana.onemoim.community.mapper.CalendarMapper;
 import com.hana.onemoim.community.mapper.GalleryCommentMapper;
@@ -36,6 +37,7 @@ public class CommunityServiceImpl implements CommunityService {
     private final ImageMapper imageMapper;
     private final GalleryCommentMapper galleryCommentMapper;
     private final MemberMapper memberMapper;
+    private final InterestMapper interestMapper;
     private final S3uploader s3uploader;
 
     // 모임원 찾기
@@ -72,6 +74,7 @@ public class CommunityServiceImpl implements CommunityService {
         GatheringDto gatheringDto = gatheringMapper.selectGatheringByGatheringId(false, gatheringId);
         gatheringDto.setGatheringCoverImageUrl(gatheringMapper.selectGatheringCoverImage(gatheringId));
         gatheringDto.setGatheringLeaderName(memberMapper.selectNameByLeaderId(gatheringDto.getGatheringLeaderId()));
+        gatheringDto.setGatheringMemberNumber(gatheringMemberMapper.countGatheringMemberByGatheringId(gatheringId));
         return CommunityMainDto.builder()
                 .gatheringDto(gatheringDto)
                 .message(null)
@@ -283,5 +286,11 @@ public class CommunityServiceImpl implements CommunityService {
     @Override
     public int getGatheringMemberId(int memberId, int gatheringId) {
         return gatheringMemberMapper.selectGatheringMemberId(memberId, gatheringId);
+    }
+
+    // 모임 관심사 조회
+    @Override
+    public List<String> getGatheringInterest(int gatheringId) {
+        return interestMapper.selectInterestNameByGatheringId(gatheringId);
     }
 }

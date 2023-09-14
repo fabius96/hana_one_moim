@@ -10,9 +10,13 @@
 .outer-content-wrapper {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     width: 100%;
-    max-width: 1000px;
+    max-width: 1200px;
+}
+
+.top-container {
+    display: flex;
+    flex-direction: row;
 }
 
 .header-container {
@@ -33,7 +37,7 @@
     width: 850px;
     height: 350px;
 
-    margin-right: 60px;
+    margin-right: 30px;
 }
 
 .container {
@@ -61,37 +65,37 @@
     object-fit: cover;
 }
 
-.slogan {
+.gathering-name {
     width: 472px;
     position: absolute;
-    left: 350px;
-    top: 30px;
+    left: 365px;
+    top: 95px;
     font-size: 38px;
     font-family: Hana2-Bold, sans-serif;
     text-align: left;
     color: #000;
 }
 
-.hash-tag {
+.gathering-description {
     width: 402px;
     height: 36px;
     position: absolute;
-    left: 350px;
-    top: 170px;
-    font-size: 16px;
+    left: 370px;
+    top: 150px;
+    font-size: 15px;
     font-family: Hana2-Regular, sans-serif;
     text-align: left;
-    color: #777;
+    color: #999999;
 }
 
-.create-group-button {
+.community-info-button {
     border: 1px solid #333333;
     background-color: #333333;
     border-radius: 20px;
-    top: 250px;
-    left: 350px;
-    width: 100px;
-    height: 40px;
+    top: 270px;
+    left: 365px;
+    width: 80px;
+    height: 35px;
     position: absolute;
     overflow: hidden;
 }
@@ -114,6 +118,9 @@
 }
 
 .gathering-leader-name-box {
+    position: absolute;
+    left: 365px;
+    top: 10px;
     background-color: #2e354f;
     border: none;
     border-radius: 5px;
@@ -134,23 +141,50 @@
     font-size: 14px;
 }
 
+.gathering-member-number-box {
+    position: absolute;
+    left: 440px;
+    top: 10px;
+    background-color: #2e354f;
+    border: none;
+    border-radius: 5px;
+    width: 70px;
+    height: 25px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.gathering-member-number-content {
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    font-size: 14px;
+}
+
 .crown-img {
     width: 15px;
     height: 15px;
 }
 
-.modal-gathering-name{
+.modal-gathering-name {
     font-size: 18px;
     font-family: Hana2-Bold, sans-serif;
     margin-top: 20px;
 }
 
-.modal-gathering-description{
+.modal-gathering-description {
     font-size: 14px;
     font-family: Hana2-Regular, sans-serif;
 }
 
-.interest-container{
+.interest-container {
+    left: 365px;
+    top: 50px;
+    position: absolute;
     display: flex;
     flex-direction: row;
     gap: 5px;
@@ -174,4 +208,171 @@
     height: 100%;
     margin: 0;
     font-size: 13px;
+}
+
+.right-container {
+    width: 360px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.notice-container {
+    background-color: #FAFAFA;
+    width: 100%;
+    height: 177px;
+}
+
+.notice-more {
+    font-size: 15px;
+    font-weight: 500;
+    position: absolute;
+    right: 250px;
+    top: 190px;
+    cursor: pointer;
+}
+
+.notice-content:last-child {
+    border-bottom: none;
+}
+
+.notice-title {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-family: Hana2-Bold, sans-serif;
+    border-bottom: 0.5px solid #E6E6E6;
+    padding-left: 15px;
+    height: 35px;
+}
+
+.notice-content {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-family: Hana2-Regular, sans-serif;
+    border-bottom: 0.5px solid #E6E6E6;
+    padding-left: 15px;
+    padding-right: 10px;
+    height: 35px;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.arrow-img {
+    width: 13px;
+}
+
+.boxes-container {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+
+    padding-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 35px;
+}
+
+.big-link-button {
+    width: 158px;
+    height: 120px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+#link-button-calendar {
+    background: #009591;
+}
+
+#link-button-payment {
+    background: #2e354f;
+}
+
+.link-button-text {
+    font-family: Hana2-Bold, sans-serif;
+    font-size: 20px;
+    color: #fff;
+
+    position: absolute;
+    top: 30px;
+
+    border: none;
+    background: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    -webkit-appearance: none; /* 웹킷 기반 브라우저(예: Chrome, Safari)에서 기본 스타일 제거 */
+    appearance: none; /* 표준 속성 */
+
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+#link-button-text-calendar, #link-button-text-payment {
+    right: 20px;
+}
+
+/* 갤러리 */
+.page-name {
+    display: flex;
+    font-family: Hana2-Bold, sans-serif;
+    font-size: 24px;
+}
+
+.page-name-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 1100px;
+    border-bottom: 0.5px solid #cccccc;
+    margin-bottom: 10px;
+}
+
+.page-name-right {
+    display: flex;
+    gap: 10px;
+}
+
+.write-button {
+    width: 80px;
+    height: 35px;
+    border: none;
+    background-color: #008375;
+    color: #FFFFFF;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: Hana2-Bold, sans-serif;
+    font-size: 16px;
+}
+
+.image-container {
+    display: flex;
+    flex-wrap: wrap; /* 요소들이 넘치면 다음 줄로 이동 */
+    gap: 20px; /* 이미지 사이의 간격 */
+    width: 100%;
+    max-width: 1025px;
+    align-items: flex-start;
+}
+
+.image-item {
+    background-color: #cccccc;
+    height: 325px;
+    width: 325px;
+    object-fit: cover;
+}
+
+.gallery-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.background-container{
+    width: 1200px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #FAFAFA;
 }

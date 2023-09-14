@@ -27,4 +27,7 @@ public interface GatheringMemberMapper {
     // gathering_member_id 조회
     int selectGatheringMemberId(@Param("memberId") int memberId,
                                 @Param("gatheringId") int gatheringId);
+
+    // 모임원 수 COUNT
+    int countGatheringMemberByGatheringId(int gatheringId);
 }

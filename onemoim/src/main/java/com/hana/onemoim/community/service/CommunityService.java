@@ -48,4 +48,7 @@ public interface CommunityService {
 
     // gathering_member_id 조회
     int getGatheringMemberId(int memberId, int gatheringId);
+
+    // 모임 관심사 조회
+    List<String> getGatheringInterest(int gatheringId);
 }
