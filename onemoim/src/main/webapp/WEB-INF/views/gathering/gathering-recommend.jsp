@@ -22,20 +22,21 @@
                 <p class="page-name">모임 추천</p>
             </div>
             <div class="second-recommend-area">
-                <c:forEach var="gathering" items="${gatherings}">
+                <c:forEach var="gatherings" items="${gatherings}">
                     <div class="second-area-item">
-                        <img src="${gathering.gatheringCoverImageUrl}" alt="${gathering.gatheringName} Cover Image"
+                        <img src="${gatherings.gatheringCoverImageUrl}" alt="${gatherings.gatheringName} Cover Image"
                              class="second-area-item-img">
                         <div class="second-area-item-content">
-                            <div class="second-area-item-title">
-                                    ${gathering.gatheringName}
+                            <div class="second-area-item-title" data-gathering-id="${gatherings.gatheringId}">
+                                    ${gatherings.gatheringName}
                             </div>
-                            <div class="second-area-item-description">
-                                    ${gathering.gatheringDescription}
+                            <div class="second-area-item-description" data-gathering-id="${gatherings.gatheringId}">
+                                    ${gatherings.gatheringDescription}
                             </div>
-                            <div class="button-container">
-                                <p class="area-button-text">가입신청</p>
-                            </div>
+                            <button class="button-container" data-gathering-id="${gatherings.gatheringId}"
+                                    onclick="applicationGathering('${gatherings.gatheringId}')">
+                                <a class="area-button-text">가입신청</a>
+                            </button>
                         </div>
                     </div>
                 </c:forEach>
@@ -43,6 +44,7 @@
         </div>
     </div>
 </div>
+<jsp:include page="../includes/gathering-modal.jsp"/>
 <jsp:include page="../includes/footer.jsp"/>
 </body>
 </html>

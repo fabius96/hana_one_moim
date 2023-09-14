@@ -24,7 +24,7 @@
                 <p class="gathering-leader-name-content">
                     <img src="${pageContext.request.contextPath}/img/crown.png" alt="모임장 왕관"
                          class="crown-img">
-                    &nbsp
+                    &nbsp;
                     <span id="modalGatheringLeaderName"></span>
                 </p>
             </div>

@@ -33,7 +33,13 @@ public class CommunityResponseController {
                                           HttpServletRequest httpServletRequest,
                                           RedirectAttributes redirectAttributes,
                                           @PathVariable int gatheringId) {
+        ModelAndView modelAndView = new ModelAndView("/signin");
         MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
+
+        if (memberDto == null) {
+            httpSession.setAttribute("destination", httpServletRequest.getRequestURI());
+            return modelAndView;
+        }
 
         CommunityMainDto communityMainDto = communityService.searchCommunityInfo(gatheringId, memberDto.getMemberId());
 
@@ -44,8 +50,9 @@ public class CommunityResponseController {
             return errorModelAndView;
         }
 
-        ModelAndView modelAndView = new ModelAndView("/community/community-main");
+        modelAndView.setViewName("/community/community-main");
         modelAndView.addObject("gathering", communityMainDto.getGatheringDto());
+        System.out.println(communityMainDto.getGatheringDto().getGatheringLeaderName());
         modelAndView.addObject("gatheringId", communityMainDto.getGatheringDto().getGatheringId());
         return modelAndView;
     }

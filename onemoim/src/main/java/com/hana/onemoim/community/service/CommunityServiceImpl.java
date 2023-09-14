@@ -9,6 +9,7 @@ import com.hana.onemoim.community.mapper.GalleryPostMapper;
 import com.hana.onemoim.community.mapper.GatheringMemberMapper;
 import com.hana.onemoim.gathering.dto.GatheringDto;
 import com.hana.onemoim.gathering.mapper.GatheringMapper;
+import com.hana.onemoim.member.mapper.MemberMapper;
 import com.hana.onemoim.util.S3uploader;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -34,6 +35,7 @@ public class CommunityServiceImpl implements CommunityService {
     private final GalleryPostMapper galleryPostMapper;
     private final ImageMapper imageMapper;
     private final GalleryCommentMapper galleryCommentMapper;
+    private final MemberMapper memberMapper;
     private final S3uploader s3uploader;
 
     // 모임원 찾기
@@ -68,6 +70,8 @@ public class CommunityServiceImpl implements CommunityService {
         }
 
         GatheringDto gatheringDto = gatheringMapper.selectGatheringByGatheringId(false, gatheringId);
+        gatheringDto.setGatheringCoverImageUrl(gatheringMapper.selectGatheringCoverImage(gatheringId));
+        gatheringDto.setGatheringLeaderName(memberMapper.selectNameByLeaderId(gatheringDto.getGatheringLeaderId()));
         return CommunityMainDto.builder()
                 .gatheringDto(gatheringDto)
                 .message(null)
@@ -91,6 +95,7 @@ public class CommunityServiceImpl implements CommunityService {
         gatheringMemberMapper.updateMemberStatusCode(memberStatusCode, memberId, gatheringId);
     }
 
+    // 캘리더 일정 삽입
     @Override
     public void insertCalendarEvent(int gatheringId, CalendarEventDto calendarEventDto) {
         try {

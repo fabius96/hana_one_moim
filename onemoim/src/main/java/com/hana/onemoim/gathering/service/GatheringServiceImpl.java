@@ -99,7 +99,6 @@ public class GatheringServiceImpl implements GatheringService {
     }
 
     // 카드혜택설정
-
     @Override
     public void settingCardBenefit(CardBenefitWrapper cardBenefitWrapper, int gatheringCardId) {
         List<CardBenefitDto> cardBenefitDtoList = cardBenefitWrapper.getCardBenefitDtoList();
