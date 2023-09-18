@@ -1,5 +1,6 @@
 package com.hana.onemoim.community.service;
 
+import com.hana.onemoim.account.dto.AccountDto;
 import com.hana.onemoim.community.dto.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -60,4 +61,7 @@ public interface CommunityService {
 
     // 모임계좌거래내역 조회
     List<GatheringTransactionDto> getGatheringTransaction(String accountNumber);
+
+    // 사용자 전체 계좌 조회
+    List<AccountDto> getAllAccountByPersonalIdNumber(String personaIdNumber);
 }

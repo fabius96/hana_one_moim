@@ -22,7 +22,9 @@
                 <p class="page-name">${gathering.gatheringName} 계좌조회</p>
                 <div class="page-name-right">
                     <button class="withdraw-button" id="withdraw-button">출금하기</button>
-                    <button class="payment-button" id="payment-button">회비납입</button>
+                    <button class="payment-button" id="payment-button"
+                            onclick="location.href='${pageContext.request.contextPath}/community/${gatheringId}/transfer-hana'">회비납입
+                    </button>
                 </div>
             </div>
 

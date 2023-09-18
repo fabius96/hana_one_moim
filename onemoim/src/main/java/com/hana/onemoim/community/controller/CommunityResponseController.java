@@ -2,6 +2,7 @@ package com.hana.onemoim.community.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hana.onemoim.account.dto.AccountDto;
 import com.hana.onemoim.community.dto.*;
 import com.hana.onemoim.community.service.CommunityService;
 import com.hana.onemoim.member.dto.MemberDto;
@@ -177,5 +178,28 @@ public class CommunityResponseController {
     @ResponseBody
     public List<GatheringTransactionDto> getAccountTransaction(String accountNumber) {
         return communityService.getGatheringTransaction(accountNumber);
+    }
+
+    // 커뮤니티 계좌 이체 페이지 조회(하나은행)
+    @GetMapping("/community/{gatheringId}/transfer-hana")
+    public ModelAndView showTransferHana(HttpSession httpSession,
+                                             HttpServletRequest httpServletRequest,
+                                             @PathVariable int gatheringId) {
+        MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
+        ModelAndView modelAndView = new ModelAndView("/signin");
+
+        if (memberDto == null) {
+            httpSession.setAttribute("destination", httpServletRequest.getRequestURI());
+            return modelAndView;
+        }
+
+        List<AccountDto> accountDtoList = communityService.getAllAccountByPersonalIdNumber(memberDto.getPersonalIdNumber());
+
+        modelAndView.setViewName("/community/community-transfer-hana");
+        modelAndView.addObject("gatheringId", gatheringId);
+        modelAndView.addObject("accounts", accountDtoList);
+        modelAndView.addObject("accountNumber", communityService.getGatheringAccountNumber(gatheringId));
+        modelAndView.addObject("gatheringMemberId", communityService.getGatheringMemberId(memberDto.getMemberId(), gatheringId));
+        return modelAndView;
     }
 }

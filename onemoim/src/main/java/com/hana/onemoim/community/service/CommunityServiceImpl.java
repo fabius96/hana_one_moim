@@ -1,5 +1,6 @@
 package com.hana.onemoim.community.service;
 
+import com.hana.onemoim.account.dto.AccountDto;
 import com.hana.onemoim.account.mapper.AccountMapper;
 import com.hana.onemoim.common.dto.ImageDto;
 import com.hana.onemoim.common.mapper.ImageMapper;
@@ -310,5 +311,12 @@ public class CommunityServiceImpl implements CommunityService {
     @Override
     public List<GatheringTransactionDto> getGatheringTransaction(String accountNumber) {
         return gatheringTransactionMapper.selectTransactionByAccountNumber(accountNumber);
+    }
+
+    // 사용자 전체 계좌 조회
+
+    @Override
+    public List<AccountDto> getAllAccountByPersonalIdNumber(String personaIdNumber) {
+        return accountMapper.selectAccountByPersonalIdNumber(personaIdNumber);
     }
 }
