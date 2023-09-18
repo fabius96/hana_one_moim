@@ -54,4 +54,10 @@ public interface CommunityService {
 
     // 공지사항 조회
     List<GalleryPostDto> getNotice(int gatheringId);
+
+    // 모임계좌번호 조회
+    String getGatheringAccountNumber(int gatheringId);
+
+    // 모임계좌거래내역 조회
+    List<GatheringTransactionDto> getGatheringTransaction(String accountNumber);
 }

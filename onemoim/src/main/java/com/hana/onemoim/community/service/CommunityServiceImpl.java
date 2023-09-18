@@ -1,13 +1,11 @@
 package com.hana.onemoim.community.service;
 
+import com.hana.onemoim.account.mapper.AccountMapper;
 import com.hana.onemoim.common.dto.ImageDto;
 import com.hana.onemoim.common.mapper.ImageMapper;
 import com.hana.onemoim.common.mapper.InterestMapper;
 import com.hana.onemoim.community.dto.*;
-import com.hana.onemoim.community.mapper.CalendarMapper;
-import com.hana.onemoim.community.mapper.GalleryCommentMapper;
-import com.hana.onemoim.community.mapper.GalleryPostMapper;
-import com.hana.onemoim.community.mapper.GatheringMemberMapper;
+import com.hana.onemoim.community.mapper.*;
 import com.hana.onemoim.gathering.dto.GatheringDto;
 import com.hana.onemoim.gathering.mapper.GatheringMapper;
 import com.hana.onemoim.member.mapper.MemberMapper;
@@ -38,6 +36,8 @@ public class CommunityServiceImpl implements CommunityService {
     private final GalleryCommentMapper galleryCommentMapper;
     private final MemberMapper memberMapper;
     private final InterestMapper interestMapper;
+    private final AccountMapper accountMapper;
+    private final GatheringTransactionMapper gatheringTransactionMapper;
     private final S3uploader s3uploader;
 
     // 모임원 찾기
@@ -298,5 +298,17 @@ public class CommunityServiceImpl implements CommunityService {
     @Override
     public List<GalleryPostDto> getNotice(int gatheringId) {
         return galleryPostMapper.selectNoticeTitle(gatheringId);
+    }
+
+    // 모임계좌번호 조회
+    @Override
+    public String getGatheringAccountNumber(int gatheringId) {
+        return accountMapper.selectAccountNumberByGatheringId(gatheringId);
+    }
+
+    // 모임계좌거래내역 조회
+    @Override
+    public List<GatheringTransactionDto> getGatheringTransaction(String accountNumber) {
+        return gatheringTransactionMapper.selectTransactionByAccountNumber(accountNumber);
     }
 }

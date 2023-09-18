@@ -24,7 +24,7 @@
         <a data-gathering-id="${gatheringId}" onclick="goToCalendar(this)">일정</a>
     </p>
     <p class="second-menu-link" id="account">
-        <a href="/account/account-transfer-hana">계좌</a>
+        <a data-gathering-id="${gatheringId}" onclick="goToAccount(this)">계좌</a>
     </p>
     <p class="second-menu-link" id="card">
         <a href="/account/account-product-list">카드</a>

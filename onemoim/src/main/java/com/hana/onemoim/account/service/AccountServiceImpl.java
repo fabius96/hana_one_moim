@@ -112,7 +112,6 @@ public class AccountServiceImpl implements AccountService {
     }
 
     // 모임계좌번호조회
-
     @Override
     public String findAccountNumberByGatheringId(int gatheringId) {
         return accountMapper.selectAccountNumberByGatheringId(gatheringId);

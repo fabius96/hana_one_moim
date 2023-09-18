@@ -136,11 +136,6 @@ public class AccountResponseController {
     @GetMapping("/api/account/get-account-transaction")
     @ResponseBody
     public List<MemberTransactionDto> getAccountTransaction(AccountDto accountDto) {
-        List<MemberTransactionDto> memberTransactionDtoList =
-                accountService.findTransactionByAccountNumber(accountDto);
-        for (MemberTransactionDto dto : memberTransactionDtoList) {
-            System.out.println(dto.getTransactionTypeCode());
-        }
-        return memberTransactionDtoList;
+        return accountService.findTransactionByAccountNumber(accountDto);
     }
 }

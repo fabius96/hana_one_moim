@@ -2,10 +2,7 @@ package com.hana.onemoim.community.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hana.onemoim.community.dto.CalendarEventDto;
-import com.hana.onemoim.community.dto.CommunityInfoDto;
-import com.hana.onemoim.community.dto.CommunityMainDto;
-import com.hana.onemoim.community.dto.GalleryPostResponseDto;
+import com.hana.onemoim.community.dto.*;
 import com.hana.onemoim.community.service.CommunityService;
 import com.hana.onemoim.member.dto.MemberDto;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -146,8 +144,38 @@ public class CommunityResponseController {
 
     // 모임 관심사 조회
     @GetMapping("/community/{gatheringId}/interest")
-    public ResponseEntity<?> getGatheringInterest(@PathVariable int gatheringId){
+    public ResponseEntity<?> getGatheringInterest(@PathVariable int gatheringId) {
         List<String> gatheringInterestList = communityService.getGatheringInterest(gatheringId);
         return ResponseEntity.ok().body(gatheringInterestList);
+    }
+
+    // 커뮤니티 계좌 페이지 조회
+    @GetMapping("/community/{gatheringId}/account")
+    public ModelAndView showCommunityAccount(HttpSession httpSession,
+                                             HttpServletRequest httpServletRequest,
+                                             @PathVariable int gatheringId) {
+        MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
+        ModelAndView modelAndView = new ModelAndView("/signin");
+
+        if (memberDto == null) {
+            httpSession.setAttribute("destination", httpServletRequest.getRequestURI());
+            return modelAndView;
+        }
+
+        CommunityInfoDto communityInfoDto = communityService.getCommunityInfo(gatheringId);
+
+        modelAndView.setViewName("/community/community-account");
+        modelAndView.addObject("gatheringId", gatheringId);
+        modelAndView.addObject("accountNumber", communityService.getGatheringAccountNumber(gatheringId));
+        modelAndView.addObject("gathering", communityInfoDto.getGatheringDto());
+        modelAndView.addObject("gatheringMemberId", communityService.getGatheringMemberId(memberDto.getMemberId(), gatheringId));
+        return modelAndView;
+    }
+
+    // 계좌이체 내역 조회 메서드
+    @GetMapping("/api/community/get-account-transaction")
+    @ResponseBody
+    public List<GatheringTransactionDto> getAccountTransaction(String accountNumber) {
+        return communityService.getGatheringTransaction(accountNumber);
     }
 }
