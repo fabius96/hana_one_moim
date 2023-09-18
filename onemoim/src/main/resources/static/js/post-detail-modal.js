@@ -46,8 +46,8 @@ $(document).ready(function () {
         });
     });
 
-    // 이미지 아이템 클릭
-    $(".image-item").on("click", function () {
+    // 게시글 상세 조회
+    $(".image-item, .notice-content").on("click", function () {
         const postId = $(this).data('post-id');
         const gatheringId = $(this).data('gathering-id');
         const gatheringMemberId = $(this).data('gathering-member-id');

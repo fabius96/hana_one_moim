@@ -60,7 +60,8 @@
                     <div class="boxes-container">
                         <div class="big-link-button" id="link-button-calendar">
                             <button type="button" class="link-button-text" id="link-button-text-calendar"
-                                    onclick="location.href='${pageContext.request.contextPath}/community/${gatheringId}/calendar'">일정보기
+                                    onclick="location.href='${pageContext.request.contextPath}/community/${gatheringId}/calendar'">
+                                일정보기
                             </button>
                         </div>
 
@@ -73,22 +74,15 @@
                             <span>공지사항</span>
                             <span class="notice-more">···</span>
                         </div>
-                        <div class="notice-content">
-                            <span>공지사항 1</span>
-                            <img src="${pageContext.request.contextPath}/img/notice-arrow.png" alt="다음화살표" class="arrow-img">
-                        </div>
-                        <div class="notice-content">
-                            공지사항 2
-                            <img src="${pageContext.request.contextPath}/img/notice-arrow.png" alt="다음화살표" class="arrow-img">
-                        </div>
-                        <div class="notice-content">
-                            공지사항 3
-                            <img src="${pageContext.request.contextPath}/img/notice-arrow.png" alt="다음화살표" class="arrow-img">
-                        </div>
-                        <div class="notice-content">
-                            공지사항 4
-                            <img src="${pageContext.request.contextPath}/img/notice-arrow.png" alt="다음화살표" class="arrow-img">
-                        </div>
+                        <c:forEach var="noticeData" items="${noticeData}">
+                            <div class="notice-content"
+                                 data-post-id="${noticeData.postId}" data-gathering-id="${gatheringId}"
+                                 data-member-id="${memberId}" data-gathering-member-id="${gatheringMemberId}">
+                                <span>${noticeData.title}</span>
+                                <img src="${pageContext.request.contextPath}/img/notice-arrow.png" alt="다음화살표"
+                                     class="arrow-img">
+                            </div>
+                        </c:forEach>
                     </div>
                 </div>
             </div>

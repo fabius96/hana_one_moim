@@ -13,7 +13,7 @@
         <result column="modified_at" property="modifiedAt"/>
     </resultMap>
 
-    <!-- gathering_id 가져오기 -->
+    <!-- gallery_post id 가져오기 -->
     <select id="getNextPostSeq" resultType="int">
         SELECT post_seq.NEXTVAL
         FROM DUAL
@@ -31,6 +31,7 @@
         SELECT post_id
         FROM gallery_post
         WHERE gathering_id = #{gatheringId}
+        ORDER BY created_at DESC
     </select>
 
     <!-- 게시글 작성자ID 조회 -->
@@ -53,5 +54,14 @@
         SET view_cnt = view_cnt + 1
         WHERE post_id = #{postId}
     </update>
+
+    <!-- 최신 공지사항 4개 제목 가져오기 -->
+    <select id="selectNoticeTitle" parameterType="int" resultMap="galleryPostDto">
+        SELECT *
+        FROM gallery_post
+        WHERE gathering_id = #{gatheringId}
+          AND is_notice = 'Y'
+        ORDER BY created_at DESC FETCH FIRST 4 ROWS ONLY
+    </select>
 
 </mapper>

@@ -54,6 +54,7 @@ public class CommunityResponseController {
         modelAndView.addObject("gathering", communityMainDto.getGatheringDto());
         modelAndView.addObject("gatheringMemberId", communityService.getGatheringMemberId(memberDto.getMemberId(), gatheringId));
         modelAndView.addObject("galleryImageData", communityService.getAllImage(gatheringId));
+        modelAndView.addObject("noticeData", communityService.getNotice(gatheringId));
         modelAndView.addObject("gatheringId", communityMainDto.getGatheringDto().getGatheringId());
         return modelAndView;
     }

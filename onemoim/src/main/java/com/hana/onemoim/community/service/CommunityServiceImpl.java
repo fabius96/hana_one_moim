@@ -293,4 +293,10 @@ public class CommunityServiceImpl implements CommunityService {
     public List<String> getGatheringInterest(int gatheringId) {
         return interestMapper.selectInterestNameByGatheringId(gatheringId);
     }
+
+    // 공지사항 조회
+    @Override
+    public List<GalleryPostDto> getNotice(int gatheringId) {
+        return galleryPostMapper.selectNoticeTitle(gatheringId);
+    }
 }

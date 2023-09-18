@@ -25,4 +25,7 @@ public interface GalleryPostMapper {
 
     // 게시글 조회수 증가
     void updateViewCnt(int postId);
+
+    // 공지사항 제목 출력
+    List<GalleryPostDto> selectNoticeTitle(int gatheringId);
 }

@@ -51,4 +51,7 @@ public interface CommunityService {
 
     // 모임 관심사 조회
     List<String> getGatheringInterest(int gatheringId);
+
+    // 공지사항 조회
+    List<GalleryPostDto> getNotice(int gatheringId);
 }
