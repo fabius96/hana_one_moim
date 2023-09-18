@@ -130,3 +130,42 @@
     white-space: nowrap;
     text-overflow: ellipsis; /* 파일 이름이 길 경우 ...으로 표시 */
 }
+
+.radio-container{
+    width: 60%;
+    max-width: 400px;
+    border-radius: 2px;
+    position: relative;
+    padding: 5px;
+
+    font-family: Hana2-Bold, sans-serif;
+    font-size: 16px;
+
+    margin: 60px auto 15px;
+
+    display: flex;
+    justify-content: space-between; /* 내부 아이템 간격을 동일하게 설정 */
+    align-items: center;
+}
+
+.open-info{
+    position: absolute;
+    top: 345px;
+    left: 70px;
+
+    font-family: Hana2-Bold, sans-serif;
+    font-size: 14px;
+    color: #000000;
+    margin-bottom: 5px;
+}
+
+.input-description {
+    top: 385px;
+    left: 35px;
+    position: absolute;
+    font-family: Hana2-Regular, sans-serif;
+    font-size: 13px;
+    color: #000000;
+    margin-left: 35px;
+    margin-top: 0;
+}

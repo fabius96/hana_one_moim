@@ -37,6 +37,18 @@
                     <input id="galleryImage" class="galleryImage" multiple type="file" name="galleryImage"
                            style="display: none;">
                 </div>
+                <p class="open-info">공지사항 여부</p>
+                <p class="input-description">공지사항으로 설정 시 모임 메인 페이지에 게시됩니다.</p>
+                <div class="radio-container">
+                    <label>
+                        <input class="isNotice" type="radio" name="isNotice" value="Y">
+                        공지사항
+                    </label>
+                    <label>
+                        <input class="isNotice" type="radio" name="isNotice" value="N">
+                        일반 게시물
+                    </label>
+                </div>
 
             </div>
 

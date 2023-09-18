@@ -12,6 +12,7 @@ public class GalleryPostDto {
     private String title; // 제목
     private String content; // 내용
     private int viewCnt; // 조회수
+    private String isNotice; // 공지사항여부
     private String createdAt; // createdAt
     private String modifiedAt; // modifiedAt
 }

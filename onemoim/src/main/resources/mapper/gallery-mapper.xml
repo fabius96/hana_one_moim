@@ -22,8 +22,8 @@
     <!-- 갤러리 게시글 작성 삽입  -->
     <insert id="insertGalleryPost" parameterType="com.hana.onemoim.community.dto.GalleryPostDto">
         INSERT INTO gallery_post
-            (gathering_id, gathering_member_id, title, content)
-        values (#{gatheringId}, #{gatheringMemberId}, #{title}, #{content})
+            (gathering_id, gathering_member_id, title, content, is_notice)
+        values (#{gatheringId}, #{gatheringMemberId}, #{title}, #{content}, #{isNotice})
     </insert>
 
     <!-- 갤러리 게시글 ID 조회 -->
