@@ -22,10 +22,17 @@ public interface AccountMapper {
     // 출금
     void updateAccountBalance(AccountTransferDto accountTransferDto);
 
+    // 입금
     void updateAccountBalanceDeposit(AccountTransferDto accountTransferDto);
+
+    // 입금(모임회비납부)
+    void updateGatheringAccountBalanceDeposit(AccountTransferDto accountTransferDto);
 
     // 잔액조회
     int selectBalance(AccountTransferDto accountTransferDto);
+
+    // 모임계좌 잔액조회
+    int selectGatheringAccountBalance(AccountTransferDto accountTransferDto);
 
     // 모임계좌번호조회
     String selectAccountNumberByGatheringId(int gatheringId);

@@ -1,5 +1,6 @@
 package com.hana.onemoim.community.controller;
 
+import com.hana.onemoim.account.dto.AccountTransferDto;
 import com.hana.onemoim.community.dto.CalendarEventDto;
 import com.hana.onemoim.community.dto.GalleryPostDto;
 import com.hana.onemoim.community.service.CommunityService;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -74,5 +76,20 @@ public class CommunityRequestController {
         MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
         String memberName = communityService.insertGalleryComment(postId, gatheringId, memberDto.getMemberId(), content);
         return ResponseEntity.ok().body(Map.of("memberName", memberName));
+    }
+
+    // 모임회비납부
+    @PostMapping("/community/{gatheringId}/transfer-hana")
+    public ModelAndView gatheringAccountTransfer(@PathVariable int gatheringId,
+                                        HttpSession httpSession,
+                                        @ModelAttribute AccountTransferDto accountTransferDto) {
+        ModelAndView modelAndView = new ModelAndView("/signin");
+        MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
+        if (memberDto == null) {
+            return modelAndView;
+        }
+        modelAndView.setViewName("/account/account-transfer-ok");
+        communityService.paymentTransfer(accountTransferDto, gatheringId, memberDto.getMemberId());
+        return modelAndView;
     }
 }

@@ -198,6 +198,7 @@ public class CommunityResponseController {
         modelAndView.setViewName("/community/community-transfer-hana");
         modelAndView.addObject("gatheringId", gatheringId);
         modelAndView.addObject("accounts", accountDtoList);
+        modelAndView.addObject("paymentAmount", communityService.getGatheringPaymentAmount(gatheringId));
         modelAndView.addObject("accountNumber", communityService.getGatheringAccountNumber(gatheringId));
         modelAndView.addObject("gatheringMemberId", communityService.getGatheringMemberId(memberDto.getMemberId(), gatheringId));
         return modelAndView;

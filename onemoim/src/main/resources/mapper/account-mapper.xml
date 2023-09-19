@@ -44,10 +44,24 @@
         WHERE account_number = #{otherAccountNumber}
     </update>
 
+    <!-- 모임회비납부(입금) -->
+    <update id="updateGatheringAccountBalanceDeposit" parameterType="com.hana.onemoim.account.dto.AccountTransferDto">
+        UPDATE gathering_account_info
+        SET balance = balance + #{amount}
+        WHERE account_number = #{otherAccountNumber}
+    </update>
+
     <!-- 잔액조회 -->
     <select id="selectBalance" parameterType="com.hana.onemoim.account.dto.AccountTransferDto" resultType="int">
         SELECT balance
         FROM member_account_info
+        WHERE account_number = #{accountNumber}
+    </select>
+
+    <!-- 모임계좌 잔액조회 -->
+    <select id="selectGatheringAccountBalance" parameterType="com.hana.onemoim.account.dto.AccountTransferDto" resultType="int">
+        SELECT balance
+        FROM gathering_account_info
         WHERE account_number = #{accountNumber}
     </select>
 

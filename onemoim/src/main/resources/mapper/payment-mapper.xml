@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hana.onemoim.community.mapper.PaymentMapper">
+
+    <resultMap id="gatheringPaymentRuleDto" type="com.hana.onemoim.community.dto.GatheringPaymentRuleDto">
+        <result column="gathering_payment_rule_id" property="gatheringPaymentRuleId"/>
+        <result column="gathering_id" property="gatheringId"/>
+        <result column="payment_cycle_code" property="paymentCycleCode"/>
+        <result column="payment_day" property="paymentDay"/>
+        <result column="start_date" property="startDate"/>
+        <result column="payment_amount" property="paymentAmount"/>
+    </resultMap>
+
+    <!-- 회비확인 -->
+    <select id="selectPaymentAmount" parameterType="int" resultType="int">
+        SELECT payment_amount
+        FROM gathering_payment_rule
+        WHERE gathering_id = #{gatheringId}
+    </select>
+
+    <!-- 모임회비규칙확인 -->
+    <select id="selectPaymentRule" parameterType="int" resultMap="gatheringPaymentRuleDto">
+        SELECT gathering_payment_rule_id,
+               gathering_id,
+               payment_cycle_code,
+               payment_day,
+               start_date,
+               payment_amount
+        FROM gathering_payment_rule
+        WHERE gathering_id = #{gatheringId}
+    </select>
+
+    <!-- 모임회비 납부기록 생성 -->
+    <insert id="insertGatheringPaymentRecord" parameterType="com.hana.onemoim.community.dto.GatheringPaymentRecordDto">
+        INSERT INTO gathering_payment_record
+        (gathering_id, gathering_member_id, gathering_payment_rule_id, payment_amount,
+         payment_due_date, round)
+        values (#{gatheringId}, #{gatheringMemberId}, #{gatheringPaymentRuleId}, #{paymentAmount},
+                TO_DATE(#{paymentDueDate}, 'YYMMDD'), #{round})
+    </insert>
+</mapper>

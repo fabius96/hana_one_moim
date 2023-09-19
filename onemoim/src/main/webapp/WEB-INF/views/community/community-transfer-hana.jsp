@@ -9,7 +9,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>계좌이체(하나은행)</title>
+    <title>회비납부(하나은행)</title>
     <link rel="stylesheet" href="/css/common.css">
     <link rel="stylesheet" href="/css/account-transfer-hana.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -31,7 +31,7 @@
                    class="unchosen-page">다른은행</a>
             </div>
 
-            <form action="/account/account-transfer-hana" method="post">
+            <form action="/community/${gatheringId}/transfer-hana" method="post">
 
                 <div class="content-wrapper">
 
@@ -73,15 +73,17 @@
                 </div>
                 <div class="second-content-wrapper">
                     <div><p class="content-name">입금정보</p></div>
+                    <div class="content-description">우리 모임의 기본 회비 정보로 우선 설정됩니다.</div>
                     <div class="input-container">
-                        <input class="password-input" type="text" placeholder="입금금액" name="amount">
+                        <input class="password-input" type="text" placeholder="입금금액" name="amount"
+                               value="${paymentAmount}">
                         <span class="input-currency">원</span>
                     </div>
 
                     <div class="bank-account-wrapper">
 
                         <div class="dropdown-container bank-dropdown" data-dropdown="bank">
-                            <span class="dropdown-title">은행을 선택하세요</span>
+                            <span class="dropdown-title">${not empty param.bankName ? param.bankName : '하나은행'}</span>
                             <img src="${pageContext.request.contextPath}/img/arrow_under.png" class="dropdown-arrow"
                                  alt="화살표">
                             <div class="dropdown-menu">
@@ -107,7 +109,8 @@
                         </div>
 
                         <div class="input-container account-input-container account-box">
-                            <input class="password-input" type="text" maxlength="14" placeholder="계좌번호 입력" name="otherAccountNumber">
+                            <input class="password-input" type="text" maxlength="14" placeholder="계좌번호 입력"
+                                   name="otherAccountNumber" value="${accountNumber}">
                         </div>
                     </div>
 

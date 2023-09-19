@@ -14,15 +14,16 @@
         <result column="memo" property="memo"/>
     </resultMap>
 
-<!--    &lt;!&ndash; 거레내역생성  &ndash;&gt;-->
-<!--    <insert id="insertTransaction" parameterType="com.hana.onemoim.account.dto.MemberTransactionDto">-->
-<!--        INSERT INTO member_transaction-->
-<!--        (account_number, other_account_number, transaction_type_code, transaction_amount, balance_after_transaction,-->
-<!--         memo)-->
-<!--        values (#{accountNumber}, #{otherAccountNumber}, #{transactionTypeCode}, #{transactionAmount},-->
-<!--                #{balanceAfterTransaction}, #{memo})-->
-<!--    </insert>-->
+    <!-- 거레내역생성  -->
+    <insert id="insertGatheringTransaction" parameterType="com.hana.onemoim.account.dto.MemberTransactionDto">
+        INSERT INTO gathering_transaction
+        (account_number, other_account_number, transaction_type_code, transaction_amount, balance_after_transaction,
+         memo)
+        values (#{accountNumber}, #{otherAccountNumber}, #{transactionTypeCode}, #{transactionAmount},
+                #{balanceAfterTransaction}, #{memo})
+    </insert>
 
+    <!-- 모임거래내역 조회 -->
     <select id="selectTransactionByAccountNumber" parameterType="String"
             resultMap="gatheringTransactionDto">
         SELECT TO_CHAR(transaction_time, 'YY-MM-DD HH24:MI:SS') as transaction_time, transaction_type_code, transaction_category_code, memo, transaction_amount, balance_after_transaction

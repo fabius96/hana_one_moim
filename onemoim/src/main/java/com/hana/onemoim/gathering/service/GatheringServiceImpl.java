@@ -144,6 +144,9 @@ public class GatheringServiceImpl implements GatheringService {
         List<Integer> list = interestMapper.selectGatheringIdFromInterest(interest);
         for (int gatheringId : list) {
             GatheringDto gatheringDto = findGatheringByGatheringId(true, gatheringId);
+            if(gatheringDto==null){ // 비공개 모임 제외
+                break;
+            }
             gatheringDto.setGatheringLeaderName(memberMapper.selectNameByLeaderId(gatheringDto.getGatheringLeaderId()));
 
             boolean isJoined = gatheringMapper.isMemberJoined(gatheringId, memberId);
@@ -180,8 +183,6 @@ public class GatheringServiceImpl implements GatheringService {
     // 모임 설명 개행, 모임장명, 모임커버이미지URL 설정 공통 모듈화
     private List<GatheringDto> makeGatheringDtos(List<GatheringDto> gatheringDtoList) {
         for (GatheringDto gatheringDto : gatheringDtoList) {
-//            String gatheringDescription = gatheringDto.getGatheringDescription().replace("\n", "<br/>");
-//            gatheringDto.setGatheringDescription(gatheringDescription);
             gatheringDto.setGatheringLeaderName(memberMapper.selectNameByLeaderId(gatheringDto.getGatheringLeaderId()));
             gatheringDto.setGatheringCoverImageUrl(gatheringMapper.selectGatheringCoverImage(gatheringDto.getGatheringId()));
         }

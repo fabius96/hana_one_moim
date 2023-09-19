@@ -1,7 +1,10 @@
 package com.hana.onemoim.community.service;
 
 import com.hana.onemoim.account.dto.AccountDto;
+import com.hana.onemoim.account.dto.AccountTransferDto;
+import com.hana.onemoim.account.dto.MemberTransactionDto;
 import com.hana.onemoim.account.mapper.AccountMapper;
+import com.hana.onemoim.account.mapper.TransactionMapper;
 import com.hana.onemoim.common.dto.ImageDto;
 import com.hana.onemoim.common.mapper.ImageMapper;
 import com.hana.onemoim.common.mapper.InterestMapper;
@@ -19,8 +22,10 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -29,6 +34,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CommunityServiceImpl implements CommunityService {
 
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    private static final DateTimeFormatter SECOND_FORMATTER = DateTimeFormatter.ofPattern("yyMMdd");
+    private static final int TRANSACTION_TYPE_WITHDRAW = 51;  // 출금 거래 코드
+    private static final int TRANSACTION_TYPE_DEPOSIT = 50;   // 입금 거래 코드
+    private static final int PAYMENT_CYCLE_YEARLY = 60;   // 납부 주기 코드 - 연
+    private static final int PAYMENT_CYCLE_QUARTERLY = 61;   // 납부 주기 코드 - 분기
+    private static final int PAYMENT_CYCLE_MONTHLY = 62;   // 납부 주기 코드 - 월
     private final GatheringMemberMapper gatheringMemberMapper;
     private final GatheringMapper gatheringMapper;
     private final CalendarMapper calendarMapper;
@@ -38,7 +50,9 @@ public class CommunityServiceImpl implements CommunityService {
     private final MemberMapper memberMapper;
     private final InterestMapper interestMapper;
     private final AccountMapper accountMapper;
+    private final PaymentMapper paymentMapper;
     private final GatheringTransactionMapper gatheringTransactionMapper;
+    private final TransactionMapper transactionMapper;
     private final S3uploader s3uploader;
 
     // 모임원 찾기
@@ -314,9 +328,114 @@ public class CommunityServiceImpl implements CommunityService {
     }
 
     // 사용자 전체 계좌 조회
-
     @Override
     public List<AccountDto> getAllAccountByPersonalIdNumber(String personaIdNumber) {
         return accountMapper.selectAccountByPersonalIdNumber(personaIdNumber);
+    }
+
+    // 회비확인
+    @Override
+    public int getGatheringPaymentAmount(int gatheringId) {
+        return paymentMapper.selectPaymentAmount(gatheringId);
+    }
+
+    // 회비납입
+    @Transactional
+    @Override
+    public void paymentTransfer(AccountTransferDto accountTransferDto, int gatheringId, int memberId) {
+        int gatheringMemberId = gatheringMemberMapper.selectGatheringMemberId(memberId, gatheringId);
+        processWithdrawal(accountTransferDto, gatheringId, gatheringMemberId);  // 출금 처리
+        processDeposit(accountTransferDto, gatheringId, gatheringMemberId);     // 입금 처리
+    }
+
+    // 출금 프로세스
+    private void processWithdrawal(AccountTransferDto accountTransferDto, int gatheringId, int gatheringMemberId) {
+        accountMapper.updateAccountBalance(accountTransferDto); // 출금을 위한 잔액 업데이트
+        int balanceAfterTransaction = accountMapper.selectBalance(accountTransferDto);
+        createTransaction(accountTransferDto, TRANSACTION_TYPE_WITHDRAW, balanceAfterTransaction, gatheringId, gatheringMemberId);  // 출금 거래 기록 생성
+    }
+
+    // 입금(회비납입) 프로세스
+    private void processDeposit(AccountTransferDto accountTransferDto, int gatheringId, int gatheringMemberId) {
+        accountMapper.updateGatheringAccountBalanceDeposit(accountTransferDto); // 입금을 위한 잔액 업데이트
+        AccountTransferDto depositDto = new AccountTransferDto();
+        depositDto.setAccountNumber(accountTransferDto.getOtherAccountNumber());
+        int balanceAfterDeposit = accountMapper.selectGatheringAccountBalance(depositDto);
+        createTransaction(accountTransferDto, TRANSACTION_TYPE_DEPOSIT, balanceAfterDeposit, gatheringId, gatheringMemberId); // 입금 거래 기록 생성
+    }
+
+    // 거래내역 생성 및 모임회비 납부기록 생성
+    private void createTransaction(AccountTransferDto accountTransferDto, int transactionType, int balanceAfterTransaction
+            , int gatheringId, int gatheringMemberId) {
+        if (transactionType == TRANSACTION_TYPE_DEPOSIT) { // 입금계좌(모임계좌) 기준
+            gatheringTransactionMapper.insertGatheringTransaction(
+                    MemberTransactionDto.builder()
+                            .accountNumber(accountTransferDto.getOtherAccountNumber())
+                            .otherAccountNumber(accountTransferDto.getAccountNumber())
+                            .transactionTypeCode(transactionType)
+                            .transactionAmount(accountTransferDto.getAmount())
+                            .balanceAfterTransaction(balanceAfterTransaction)
+                            .memo(accountTransferDto.getMemo())
+                            .build());
+        } else { // 출금계좌 기준
+            transactionMapper.insertTransaction(MemberTransactionDto.builder()
+                    .accountNumber(accountTransferDto.getAccountNumber())
+                    .otherAccountNumber(accountTransferDto.getOtherAccountNumber())
+                    .transactionTypeCode(transactionType)
+                    .transactionAmount(accountTransferDto.getAmount())
+                    .balanceAfterTransaction(balanceAfterTransaction)
+                    .memo(accountTransferDto.getMemo())
+                    .build());
+
+            createPaymentRecord(gatheringId, gatheringMemberId);
+        }
+    }
+
+    public void createPaymentRecord(int gatheringId, int gatheringMemberId) {
+        // 1. 모임회비규칙 조회
+        GatheringPaymentRuleDto rule = paymentMapper.selectPaymentRule(gatheringId);
+        LocalDateTime startDate = LocalDateTime.parse(rule.getStartDate(), FORMATTER);
+
+        // 2. 회비납부기한 및 회차 계산
+        LocalDate paymentDueDate = calculatePaymentDueDate(startDate.toLocalDate(), rule.getPaymentCycleCode(), rule.getPaymentDay());
+        int round = calculateTermNumber(startDate.toLocalDate(), rule.getPaymentCycleCode());
+        System.out.println("paymentDueDate " + paymentDueDate);
+        System.out.println("termNumber " + round);
+
+        paymentMapper.insertGatheringPaymentRecord(GatheringPaymentRecordDto.builder()
+                .gatheringId(gatheringId)
+                .gatheringMemberId(gatheringMemberId)
+                .gatheringPaymentRuleId(rule.getGatheringPaymentRuleId())
+                .paymentAmount(rule.getPaymentAmount())
+                .paymentDueDate(paymentDueDate.format(SECOND_FORMATTER))
+                .round(round)
+                .build());
+    }
+
+    private LocalDate calculatePaymentDueDate(LocalDate startDate, int paymentCycleCode, int paymentDay) {
+        switch (paymentCycleCode) {
+            case PAYMENT_CYCLE_YEARLY: // 연
+                return startDate.plusYears(1).withDayOfMonth(paymentDay);
+            case PAYMENT_CYCLE_QUARTERLY: // 분기
+                return startDate.plusMonths(3).withDayOfMonth(paymentDay);
+            case PAYMENT_CYCLE_MONTHLY: // 월
+                return startDate.plusMonths(1).withDayOfMonth(paymentDay);
+            default:
+                throw new IllegalArgumentException("Invalid paymentCycleCode: " + paymentCycleCode);
+        }
+    }
+
+    private int calculateTermNumber(LocalDate startDate, int paymentCycleCode) {
+        long daysBetween = ChronoUnit.DAYS.between(startDate, LocalDate.now());
+        switch (paymentCycleCode) {
+            case PAYMENT_CYCLE_YEARLY: // 연
+                return (int) (daysBetween / 365) + 1;
+            case PAYMENT_CYCLE_QUARTERLY: // 분기
+                return (int) (daysBetween / 90) + 1;
+            case PAYMENT_CYCLE_MONTHLY: // 월
+                return (int) (daysBetween / 30) + 1;
+            default:
+                throw new IllegalArgumentException("Invalid paymentCycleCode: " + paymentCycleCode);
+        }
     }
 }

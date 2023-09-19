@@ -50,6 +50,15 @@
     font-size: 22px;
 
     padding-left: 50px;
+
+    margin-bottom: 12px;
+}
+
+.content-description{
+    padding-left: 50px;
+    font-family: Hana2-Bold, sans-serif;
+    font-size: 14px;
+    color: #999999;
 }
 
 .sub-content-name{
