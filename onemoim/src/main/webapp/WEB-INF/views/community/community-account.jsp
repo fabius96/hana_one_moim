@@ -21,7 +21,12 @@
             <div class="page-name-wrapper">
                 <p class="page-name">${gathering.gatheringName} 계좌조회</p>
                 <div class="page-name-right">
-                    <button class="withdraw-button" id="withdraw-button">출금하기</button>
+                    <c:if test="${loggedInMemberId == gatheringLeaderId }">
+                        <button class="withdraw-button" id="withdraw-button"
+                                onclick="location.href='${pageContext.request.contextPath}/community/${gatheringId}/withdrawal-hana'">
+                            출금하기
+                        </button>
+                    </c:if>
                     <c:choose>
                         <c:when test="${isPaid}">
                             <button class="deposit-button" id="deposit-button"

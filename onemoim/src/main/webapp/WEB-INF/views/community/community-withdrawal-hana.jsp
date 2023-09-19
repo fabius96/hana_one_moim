@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt" %>
 <% MemberDto loggedInMember = (MemberDto) session.getAttribute("loggedInMember");%>
 
 
@@ -9,7 +10,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>입금하기</title>
+    <title>출금하기하기</title>
     <link rel="stylesheet" href="/css/common.css">
     <link rel="stylesheet" href="/css/account-transfer-hana.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -25,13 +26,13 @@
     <div class="main-container">
         <div class="outer-content-wrapper">
             <div class="header-container">
-                <p class="page-name">입금하기</p>
+                <p class="page-name">출금하기</p>
                 <a href="${pageContext.request.contextPath}/account/account-transfer-hana" class="chosen-page">하나은행</a>
                 <a href="${pageContext.request.contextPath}/account/account-transfer-other"
                    class="unchosen-page">다른은행</a>
             </div>
 
-            <form action="/community/${gatheringId}/payment-hana" method="post">
+            <form action="/community/${gatheringId}/withdrawal-hana" method="post">
 
                 <div class="content-wrapper">
 
@@ -39,32 +40,24 @@
                     <div><p class="sub-content-name">하나은행에서 출금</p></div>
 
                     <div class="dropdown-container" data-dropdown="account">
-                        <input type="hidden" name="accountNumber" id="selectedAccountNumber" value="">
-                        <span class="dropdown-title">계좌를 선택하세요</span>
-                        <img src="${pageContext.request.contextPath}/img/arrow_under.png" class="dropdown-arrow"
-                             alt="화살표">
-                        <div class="dropdown-menu">
-                            <c:forEach var="account" items="${accounts}">
-                                <c:choose>
-                                    <c:when test="${account.accountNumber == param.accountNumber}">
-                                        <div class="dropdown-item selected-account" data-balance="${account.balance}">
-                                            <span class="account-nickname">${account.accountNickname}</span>
-                                            <span class="account-number">${account.accountNumber}</span>
-                                        </div>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <div class="dropdown-item" data-balance="${account.balance}">
-                                            <span class="account-nickname">${account.accountNickname}</span>
-                                            <span class="account-number">${account.accountNumber}</span>
-                                        </div>
-                                    </c:otherwise>
-                                </c:choose>
-                            </c:forEach>
-                        </div>
+                        <input type="hidden" name="accountNumber" id="selectedAccountNumber" value="${accountNumber}">
+                        <span class="dropdown-title">
+                        <c:set var="accountNumberStr" value="${accountNumber}"/>
+                        <c:choose>
+                            <c:when test="${not empty accountNumberStr}">
+                                <c:out value="${accountNumberStr.substring(0, 3)}"/> -
+                                <c:out value="${accountNumberStr.substring(3, 9)}"/> -
+                                <c:out value="${accountNumberStr.substring(9)}"/>
+                            </c:when>
+                            <c:otherwise>
+                                <c:out value=""/>
+                            </c:otherwise>
+                        </c:choose>
+                        </span>
                     </div>
 
                     <div><p class="sub-content-name">출금가능금액</p></div>
-                    <div><p class="money">0원</p></div>
+                    <div><p class="money"><fmt:formatNumber value="${balance}" type="number" pattern="#,###"/>원</p></div>
                     <div class="input-container">
                         <input class="password-input" type="password" maxlength="6" name="accountPassword"
                                placeholder="오픈뱅킹 비밀번호 6자리 입력">
@@ -81,7 +74,7 @@
                     <div class="bank-account-wrapper">
 
                         <div class="dropdown-container bank-dropdown" data-dropdown="bank">
-                            <span class="dropdown-title">${not empty param.bankName ? param.bankName : '하나은행'}</span>
+                            <span class="dropdown-title">은행을 선택하세요</span>
                             <img src="${pageContext.request.contextPath}/img/arrow_under.png" class="dropdown-arrow"
                                  alt="화살표">
                             <div class="dropdown-menu">
@@ -108,7 +101,7 @@
 
                         <div class="input-container account-input-container account-box">
                             <input class="password-input" type="text" maxlength="14" placeholder="계좌번호 입력"
-                                   name="otherAccountNumber" value="${accountNumber}">
+                                   name="otherAccountNumber">
                         </div>
                     </div>
 
@@ -128,6 +121,6 @@
 
 
 <jsp:include page="../includes/footer.jsp"/>
-<script src="/js/account-transfer-hana.js"></script>
+<script src="/js/community-withdrawal-hana.js"></script>
 </body>
 </html>

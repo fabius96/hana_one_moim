@@ -81,8 +81,8 @@ public class CommunityRequestController {
     // 모임회비납부
     @PostMapping("/community/{gatheringId}/payment-hana")
     public ModelAndView gatheringAccountTransfer(@PathVariable int gatheringId,
-                                        HttpSession httpSession,
-                                        @ModelAttribute AccountTransferDto accountTransferDto) {
+                                                 HttpSession httpSession,
+                                                 @ModelAttribute AccountTransferDto accountTransferDto) {
         ModelAndView modelAndView = new ModelAndView("/signin");
         MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
         if (memberDto == null) {
@@ -90,6 +90,21 @@ public class CommunityRequestController {
         }
         modelAndView.setViewName("/community/payment-ok");
         communityService.paymentTransfer(accountTransferDto, gatheringId, memberDto.getMemberId());
+        return modelAndView;
+    }
+
+    // 출금하기
+    @PostMapping("/community/{gatheringId}/withdrawal-hana")
+    public ModelAndView gatheringAccountWithdrawal(@PathVariable int gatheringId,
+                                                 HttpSession httpSession,
+                                                 @ModelAttribute AccountTransferDto accountTransferDto) {
+        ModelAndView modelAndView = new ModelAndView("/signin");
+        MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
+        if (memberDto == null) {
+            return modelAndView;
+        }
+        modelAndView.setViewName("/community/withdrawal-ok");
+        communityService.gatheringTransfer(accountTransferDto);
         return modelAndView;
     }
 }

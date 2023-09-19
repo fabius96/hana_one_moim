@@ -74,4 +74,10 @@ public interface CommunityService {
 
     // 회비납부여부 확인
     boolean isPaymentMade(int gatheringId, int memberId);
+
+    // 모임계좌 잔액 조회
+    int getGatheringBalance(int gatheringId);
+
+    // 모임계좌 출금(계좌이체)
+    void gatheringTransfer(AccountTransferDto accountTransferDto);
 }

@@ -397,8 +397,6 @@ public class CommunityServiceImpl implements CommunityService {
         // 2. 회비납부기한 및 회차 계산
         LocalDate paymentDueDate = calculatePaymentDueDate(startDate.toLocalDate(), rule.getPaymentCycleCode(), rule.getPaymentDay());
         int round = calculateTermNumber(startDate.toLocalDate(), rule.getPaymentCycleCode());
-        System.out.println("paymentDueDate " + paymentDueDate);
-        System.out.println("termNumber " + round);
 
         paymentMapper.insertGatheringPaymentRecord(GatheringPaymentRecordDto.builder()
                 .gatheringId(gatheringId)
@@ -456,5 +454,58 @@ public class CommunityServiceImpl implements CommunityService {
 
         int count = paymentMapper.selectPaymentRecord(params);
         return count > 0;
+    }
+
+    // 모임계좌 잔액 조회
+    @Override
+    public int getGatheringBalance(int gatheringId) {
+        return accountMapper.selectGatheringBalance(gatheringId);
+    }
+
+    // 모임계좌 출금(계좌이체)
+    @Transactional
+    @Override
+    public void gatheringTransfer(AccountTransferDto accountTransferDto) {
+        processWithdrawalForGatheringTransfer(accountTransferDto);  // 출금 처리
+        processDepositForGatheringTransfer(accountTransferDto);     // 입금 처리
+    }
+
+    // 출금 프로세스
+    private void processWithdrawalForGatheringTransfer(AccountTransferDto accountTransferDto) {
+        System.out.println(accountTransferDto.getAccountNumber());
+        accountMapper.updateGatheringAccountBalance(accountTransferDto); // 출금을 위한 잔액 업데이트
+        int balanceAfterDeposit = accountMapper.selectGatheringAccountBalance(accountTransferDto);
+        createTransactionForWithdrawal(accountTransferDto, TRANSACTION_TYPE_WITHDRAW, balanceAfterDeposit);  // 출금 거래 기록 생성
+    }
+
+    // 입금(회비납입) 프로세스
+    private void processDepositForGatheringTransfer(AccountTransferDto accountTransferDto) {
+        accountMapper.updateAccountBalanceDeposit(accountTransferDto); // 입금을 위한 잔액 업데이트
+        int balanceAfterDeposit = accountMapper.selectBalanceForGatheringAccountWithdrawal(accountTransferDto);
+        createTransactionForWithdrawal(accountTransferDto, TRANSACTION_TYPE_DEPOSIT, balanceAfterDeposit); // 입금 거래 기록 생성
+    }
+
+    // 거래내역 생성
+    private void createTransactionForWithdrawal(AccountTransferDto accountTransferDto, int transactionType, int balanceAfterTransaction) {
+        if (transactionType == TRANSACTION_TYPE_DEPOSIT) { // 입금계좌(개인계좌) 기준
+           transactionMapper.insertTransaction(
+                    MemberTransactionDto.builder()
+                            .accountNumber(accountTransferDto.getOtherAccountNumber())
+                            .otherAccountNumber(accountTransferDto.getAccountNumber())
+                            .transactionTypeCode(transactionType)
+                            .transactionAmount(accountTransferDto.getAmount())
+                            .balanceAfterTransaction(balanceAfterTransaction)
+                            .memo(accountTransferDto.getMemo())
+                            .build());
+        } else { // 출금계좌(모임계좌) 기준
+            gatheringTransactionMapper.insertGatheringTransaction(MemberTransactionDto.builder()
+                    .accountNumber(accountTransferDto.getAccountNumber())
+                    .otherAccountNumber(accountTransferDto.getOtherAccountNumber())
+                    .transactionTypeCode(transactionType)
+                    .transactionAmount(accountTransferDto.getAmount())
+                    .balanceAfterTransaction(balanceAfterTransaction)
+                    .memo(accountTransferDto.getMemo())
+                    .build());
+        }
     }
 }

@@ -72,11 +72,11 @@ public class CommunityResponseController {
             return modelAndView;
         }
         modelAndView.setViewName("/community/community-info");
-        modelAndView.addObject("loggedInMemberId", memberDto.getMemberId());
 
         CommunityInfoDto communityInfoDto = communityService.getCommunityInfo(gatheringId);
         modelAndView.addObject("gathering", communityInfoDto.getGatheringDto());
         modelAndView.addObject("gatheringId", communityInfoDto.getGatheringDto().getGatheringId());
+        modelAndView.addObject("loggedInMemberId", memberDto.getMemberId());
         modelAndView.addObject("gatheringLeaderId", communityInfoDto.getGatheringLeaderId());
         modelAndView.addObject("gatheringMembers", communityInfoDto.getGatheringMemberDtoList());
         return modelAndView;
@@ -170,6 +170,8 @@ public class CommunityResponseController {
         modelAndView.addObject("accountNumber", communityService.getGatheringAccountNumber(gatheringId));
         modelAndView.addObject("gathering", communityInfoDto.getGatheringDto());
         modelAndView.addObject("gatheringMemberId", communityService.getGatheringMemberId(memberDto.getMemberId(), gatheringId));
+        modelAndView.addObject("loggedInMemberId", memberDto.getMemberId());
+        modelAndView.addObject("gatheringLeaderId", communityInfoDto.getGatheringLeaderId());
         return modelAndView;
     }
 
@@ -218,10 +220,34 @@ public class CommunityResponseController {
         }
 
         List<AccountDto> accountDtoList = communityService.getAllAccountByPersonalIdNumber(memberDto.getPersonalIdNumber());
-
         modelAndView.setViewName("/community/community-transfer-hana");
         modelAndView.addObject("gatheringId", gatheringId);
         modelAndView.addObject("accounts", accountDtoList);
+        modelAndView.addObject("paymentAmount", communityService.getGatheringPaymentAmount(gatheringId));
+        modelAndView.addObject("accountNumber", communityService.getGatheringAccountNumber(gatheringId));
+        modelAndView.addObject("gatheringMemberId", communityService.getGatheringMemberId(memberDto.getMemberId(), gatheringId));
+        return modelAndView;
+    }
+
+    // 커뮤니티 계좌 출금 페이지 조회(하나은행)
+    @GetMapping("/community/{gatheringId}/withdrawal-hana")
+    public ModelAndView showWithdrawalHana(HttpSession httpSession,
+                                         HttpServletRequest httpServletRequest,
+                                         @PathVariable int gatheringId) {
+        MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
+        ModelAndView modelAndView = new ModelAndView("/signin");
+
+        if (memberDto == null) {
+            httpSession.setAttribute("destination", httpServletRequest.getRequestURI());
+            return modelAndView;
+        }
+
+        List<AccountDto> accountDtoList = communityService.getAllAccountByPersonalIdNumber(memberDto.getPersonalIdNumber());
+
+        modelAndView.setViewName("/community/community-withdrawal-hana");
+        modelAndView.addObject("gatheringId", gatheringId);
+        modelAndView.addObject("accounts", accountDtoList);
+        modelAndView.addObject("balance", communityService.getGatheringBalance(gatheringId));
         modelAndView.addObject("paymentAmount", communityService.getGatheringPaymentAmount(gatheringId));
         modelAndView.addObject("accountNumber", communityService.getGatheringAccountNumber(gatheringId));
         modelAndView.addObject("gatheringMemberId", communityService.getGatheringMemberId(memberDto.getMemberId(), gatheringId));

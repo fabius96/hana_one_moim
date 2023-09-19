@@ -22,6 +22,9 @@ public interface AccountMapper {
     // 출금
     void updateAccountBalance(AccountTransferDto accountTransferDto);
 
+    // 모임계좌 출금
+    void updateGatheringAccountBalance(AccountTransferDto accountTransferDto);
+
     // 입금
     void updateAccountBalanceDeposit(AccountTransferDto accountTransferDto);
 
@@ -30,6 +33,12 @@ public interface AccountMapper {
 
     // 잔액조회
     int selectBalance(AccountTransferDto accountTransferDto);
+
+    // 잔액조회
+    int selectGatheringBalance(int gatheringId);
+
+    // 잔액조회
+    int selectBalanceForGatheringAccountWithdrawal(AccountTransferDto accountTransferDto);
 
     // 모임계좌 잔액조회
     int selectGatheringAccountBalance(AccountTransferDto accountTransferDto);
