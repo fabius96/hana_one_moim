@@ -88,7 +88,7 @@ public class CommunityRequestController {
         if (memberDto == null) {
             return modelAndView;
         }
-        modelAndView.setViewName("/account/account-transfer-ok");
+        modelAndView.setViewName("/community/payment-ok");
         communityService.paymentTransfer(accountTransferDto, gatheringId, memberDto.getMemberId());
         return modelAndView;
     }

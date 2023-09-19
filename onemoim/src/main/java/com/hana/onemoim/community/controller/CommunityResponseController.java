@@ -165,7 +165,7 @@ public class CommunityResponseController {
 
         CommunityInfoDto communityInfoDto = communityService.getCommunityInfo(gatheringId);
         modelAndView.setViewName("/community/community-account");
-        modelAndView.addObject("isPaid",communityService.isPaymentMade(gatheringId, memberDto.getMemberId()));
+        modelAndView.addObject("isPaid", communityService.isPaymentMade(gatheringId, memberDto.getMemberId()));
         modelAndView.addObject("gatheringId", gatheringId);
         modelAndView.addObject("accountNumber", communityService.getGatheringAccountNumber(gatheringId));
         modelAndView.addObject("gathering", communityInfoDto.getGatheringDto());
@@ -183,8 +183,8 @@ public class CommunityResponseController {
     // 커뮤니티 계좌 이체 페이지 조회(하나은행)
     @GetMapping("/community/{gatheringId}/transfer-hana")
     public ModelAndView showTransferHana(HttpSession httpSession,
-                                             HttpServletRequest httpServletRequest,
-                                             @PathVariable int gatheringId) {
+                                         HttpServletRequest httpServletRequest,
+                                         @PathVariable int gatheringId) {
         MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
         ModelAndView modelAndView = new ModelAndView("/signin");
 
@@ -201,6 +201,21 @@ public class CommunityResponseController {
         modelAndView.addObject("paymentAmount", communityService.getGatheringPaymentAmount(gatheringId));
         modelAndView.addObject("accountNumber", communityService.getGatheringAccountNumber(gatheringId));
         modelAndView.addObject("gatheringMemberId", communityService.getGatheringMemberId(memberDto.getMemberId(), gatheringId));
+        return modelAndView;
+    }
+
+    // 회비납부 완료 페이지 조회(로그인 O)
+    @GetMapping("/community/{gatheringId}/payment-ok")
+    public ModelAndView showAccountTransferOk(HttpSession httpSession,
+                                              @PathVariable int gatheringId) {
+        ModelAndView modelAndView = new ModelAndView("/signin");
+        MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
+
+        if (memberDto == null) {
+            return modelAndView;
+        }
+        modelAndView.addObject("gatheringId", gatheringId);
+        modelAndView.setViewName("/community/payment-ok");
         return modelAndView;
     }
 }
