@@ -26,9 +26,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -437,5 +435,26 @@ public class CommunityServiceImpl implements CommunityService {
             default:
                 throw new IllegalArgumentException("Invalid paymentCycleCode: " + paymentCycleCode);
         }
+    }
+
+    // 모임회비 납부 여부 확인
+    @Override
+    public boolean isPaymentMade(int gatheringId, int memberId) {
+        int gatheringMemberId = gatheringMemberMapper.selectGatheringMemberId(memberId, gatheringId);
+
+        // 모임회비규칙 조회
+        GatheringPaymentRuleDto rule = paymentMapper.selectPaymentRule(gatheringId);
+        LocalDateTime startDate = LocalDateTime.parse(rule.getStartDate(), FORMATTER);
+
+        // 회비납부기한 계산
+        LocalDate paymentDueDate = calculatePaymentDueDate(startDate.toLocalDate(), rule.getPaymentCycleCode(), rule.getPaymentDay());
+
+        Map<String, Object> params = new HashMap<>();
+        params.put("gatheringId", gatheringId);
+        params.put("gatheringMemberId", gatheringMemberId);
+        params.put("paymentDueDate", paymentDueDate.format(SECOND_FORMATTER));
+
+        int count = paymentMapper.selectPaymentRecord(params);
+        return count > 0;
     }
 }

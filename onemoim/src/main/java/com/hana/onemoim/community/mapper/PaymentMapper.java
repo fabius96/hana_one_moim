@@ -4,6 +4,8 @@ import com.hana.onemoim.community.dto.GatheringPaymentRecordDto;
 import com.hana.onemoim.community.dto.GatheringPaymentRuleDto;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.Map;
+
 @Mapper
 public interface PaymentMapper {
 
@@ -15,4 +17,7 @@ public interface PaymentMapper {
 
     // 모임회비납부기록 생성
     void insertGatheringPaymentRecord(GatheringPaymentRecordDto gatheringPaymentRecordDto);
+
+    // 모임회비납부여부 확인
+    int selectPaymentRecord(Map<String, Object> params);
 }

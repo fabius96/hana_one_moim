@@ -164,8 +164,8 @@ public class CommunityResponseController {
         }
 
         CommunityInfoDto communityInfoDto = communityService.getCommunityInfo(gatheringId);
-
         modelAndView.setViewName("/community/community-account");
+        modelAndView.addObject("isPaid",communityService.isPaymentMade(gatheringId, memberDto.getMemberId()));
         modelAndView.addObject("gatheringId", gatheringId);
         modelAndView.addObject("accountNumber", communityService.getGatheringAccountNumber(gatheringId));
         modelAndView.addObject("gathering", communityInfoDto.getGatheringDto());

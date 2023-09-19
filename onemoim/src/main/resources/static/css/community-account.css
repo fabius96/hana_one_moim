@@ -46,6 +46,18 @@
     font-size: 16px;
 }
 
+.deposit-button {
+    width: 90px;
+    height: 35px;
+    background-color: transparent;
+    color: #008375;
+    border: 1px solid #008375;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: Hana2-Bold, sans-serif;
+    font-size: 16px;
+}
+
 .withdraw-button {
     width: 90px;
     height: 35px;

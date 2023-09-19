@@ -38,4 +38,13 @@
         values (#{gatheringId}, #{gatheringMemberId}, #{gatheringPaymentRuleId}, #{paymentAmount},
                 TO_DATE(#{paymentDueDate}, 'YYMMDD'), #{round})
     </insert>
+
+    <!-- 모임회비 납부 여부 확인 -->
+    <select id="selectPaymentRecord" parameterType="map" resultType="int">
+        SELECT COUNT(*)
+        FROM gathering_payment_record
+        WHERE gathering_id = #{gatheringId}
+          AND gathering_member_id = #{gatheringMemberId}
+          AND payment_due_date = #{paymentDueDate}
+    </select>
 </mapper>

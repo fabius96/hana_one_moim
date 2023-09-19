@@ -71,4 +71,7 @@ public interface CommunityService {
 
     // 화비납입
     void paymentTransfer(AccountTransferDto accountTransferDto, int gatheringId, int memberId);
+
+    // 회비납부여부 확인
+    boolean isPaymentMade(int gatheringId, int memberId);
 }
