@@ -180,6 +180,30 @@ public class CommunityResponseController {
         return communityService.getGatheringTransaction(accountNumber);
     }
 
+    // 커뮤니티 회비 납입 페이지 조회(하나은행)
+    @GetMapping("/community/{gatheringId}/payment-hana")
+    public ModelAndView showPaymentHana(HttpSession httpSession,
+                                         HttpServletRequest httpServletRequest,
+                                         @PathVariable int gatheringId) {
+        MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
+        ModelAndView modelAndView = new ModelAndView("/signin");
+
+        if (memberDto == null) {
+            httpSession.setAttribute("destination", httpServletRequest.getRequestURI());
+            return modelAndView;
+        }
+
+        List<AccountDto> accountDtoList = communityService.getAllAccountByPersonalIdNumber(memberDto.getPersonalIdNumber());
+
+        modelAndView.setViewName("/community/community-payment-hana");
+        modelAndView.addObject("gatheringId", gatheringId);
+        modelAndView.addObject("accounts", accountDtoList);
+        modelAndView.addObject("paymentAmount", communityService.getGatheringPaymentAmount(gatheringId));
+        modelAndView.addObject("accountNumber", communityService.getGatheringAccountNumber(gatheringId));
+        modelAndView.addObject("gatheringMemberId", communityService.getGatheringMemberId(memberDto.getMemberId(), gatheringId));
+        return modelAndView;
+    }
+
     // 커뮤니티 계좌 이체 페이지 조회(하나은행)
     @GetMapping("/community/{gatheringId}/transfer-hana")
     public ModelAndView showTransferHana(HttpSession httpSession,

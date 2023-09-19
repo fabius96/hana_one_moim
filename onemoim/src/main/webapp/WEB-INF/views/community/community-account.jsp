@@ -31,7 +31,7 @@
                         </c:when>
                         <c:otherwise>
                             <button class="payment-button" id="payment-button"
-                                    onclick="location.href='${pageContext.request.contextPath}/community/${gatheringId}/transfer-hana'">
+                                    onclick="location.href='${pageContext.request.contextPath}/community/${gatheringId}/payment-hana'">
                                 회비납입
                             </button>
                         </c:otherwise>

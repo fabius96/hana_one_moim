@@ -79,7 +79,7 @@ public class CommunityRequestController {
     }
 
     // 모임회비납부
-    @PostMapping("/community/{gatheringId}/transfer-hana")
+    @PostMapping("/community/{gatheringId}/payment-hana")
     public ModelAndView gatheringAccountTransfer(@PathVariable int gatheringId,
                                         HttpSession httpSession,
                                         @ModelAttribute AccountTransferDto accountTransferDto) {

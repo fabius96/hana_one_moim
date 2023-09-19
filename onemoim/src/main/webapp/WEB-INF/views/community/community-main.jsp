@@ -66,7 +66,10 @@
                         </div>
 
                         <div class="big-link-button" id="link-button-payment">
-                            <button type="submit" class="link-button-text" id="link-button-text-payment">회비납부</button>
+                            <button type="submit" class="link-button-text" id="link-button-text-payment"
+                                    onclick="location.href='${pageContext.request.contextPath}/community/${gatheringId}/account'">
+                                회비납부
+                            </button>
                         </div>
                     </div>
                     <div class="notice-container">
