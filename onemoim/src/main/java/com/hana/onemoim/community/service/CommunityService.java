@@ -3,6 +3,7 @@ package com.hana.onemoim.community.service;
 import com.hana.onemoim.account.dto.AccountDto;
 import com.hana.onemoim.account.dto.AccountTransferDto;
 import com.hana.onemoim.community.dto.*;
+import com.hana.onemoim.gathering.dto.CardBenefitDto;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -80,4 +81,7 @@ public interface CommunityService {
 
     // 모임계좌 출금(계좌이체)
     void gatheringTransfer(AccountTransferDto accountTransferDto);
+
+    // 카드혜택조회
+    List<CardBenefitDto> getCardBenefit(int gatheringId);
 }

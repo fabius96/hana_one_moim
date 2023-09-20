@@ -10,7 +10,9 @@ import com.hana.onemoim.common.mapper.ImageMapper;
 import com.hana.onemoim.common.mapper.InterestMapper;
 import com.hana.onemoim.community.dto.*;
 import com.hana.onemoim.community.mapper.*;
+import com.hana.onemoim.gathering.dto.CardBenefitDto;
 import com.hana.onemoim.gathering.dto.GatheringDto;
+import com.hana.onemoim.gathering.mapper.CardMapper;
 import com.hana.onemoim.gathering.mapper.GatheringMapper;
 import com.hana.onemoim.member.mapper.MemberMapper;
 import com.hana.onemoim.util.S3uploader;
@@ -51,6 +53,7 @@ public class CommunityServiceImpl implements CommunityService {
     private final PaymentMapper paymentMapper;
     private final GatheringTransactionMapper gatheringTransactionMapper;
     private final TransactionMapper transactionMapper;
+    private final CardMapper cardMapper;
     private final S3uploader s3uploader;
 
     // 모임원 찾기
@@ -488,7 +491,7 @@ public class CommunityServiceImpl implements CommunityService {
     // 거래내역 생성
     private void createTransactionForWithdrawal(AccountTransferDto accountTransferDto, int transactionType, int balanceAfterTransaction) {
         if (transactionType == TRANSACTION_TYPE_DEPOSIT) { // 입금계좌(개인계좌) 기준
-           transactionMapper.insertTransaction(
+            transactionMapper.insertTransaction(
                     MemberTransactionDto.builder()
                             .accountNumber(accountTransferDto.getOtherAccountNumber())
                             .otherAccountNumber(accountTransferDto.getAccountNumber())
@@ -507,5 +510,17 @@ public class CommunityServiceImpl implements CommunityService {
                     .memo(accountTransferDto.getMemo())
                     .build());
         }
+    }
+
+    // 카드혜택조회
+    @Override
+    public List<CardBenefitDto> getCardBenefit(int gatheringId) {
+        List<CardBenefitDto> cardBenefitDtoList = cardMapper.selectCardBenefitByGatheringId(gatheringId);
+        for (CardBenefitDto cardBenefitDto : cardBenefitDtoList) {
+            CardBenefitDto benefit = cardMapper.selectBenefit(cardBenefitDto.getBenefitId());
+            cardBenefitDto.setBenefitName(benefit.getBenefitName());
+            cardBenefitDto.setBenefitDescription(benefit.getBenefitDescription());
+        }
+        return cardBenefitDtoList;
     }
 }

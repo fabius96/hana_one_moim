@@ -185,8 +185,8 @@ public class CommunityResponseController {
     // 커뮤니티 회비 납입 페이지 조회(하나은행)
     @GetMapping("/community/{gatheringId}/payment-hana")
     public ModelAndView showPaymentHana(HttpSession httpSession,
-                                         HttpServletRequest httpServletRequest,
-                                         @PathVariable int gatheringId) {
+                                        HttpServletRequest httpServletRequest,
+                                        @PathVariable int gatheringId) {
         MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
         ModelAndView modelAndView = new ModelAndView("/signin");
 
@@ -232,8 +232,8 @@ public class CommunityResponseController {
     // 커뮤니티 계좌 출금 페이지 조회(하나은행)
     @GetMapping("/community/{gatheringId}/withdrawal-hana")
     public ModelAndView showWithdrawalHana(HttpSession httpSession,
-                                         HttpServletRequest httpServletRequest,
-                                         @PathVariable int gatheringId) {
+                                           HttpServletRequest httpServletRequest,
+                                           @PathVariable int gatheringId) {
         MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
         ModelAndView modelAndView = new ModelAndView("/signin");
 
@@ -274,8 +274,8 @@ public class CommunityResponseController {
     // 커뮤니티 갤러리 페이지 조회
     @GetMapping("/community/{gatheringId}/card")
     public ModelAndView showCommunityCard(HttpSession httpSession,
-                                             HttpServletRequest httpServletRequest,
-                                             @PathVariable int gatheringId) {
+                                          HttpServletRequest httpServletRequest,
+                                          @PathVariable int gatheringId) {
         MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
         ModelAndView modelAndView = new ModelAndView("/signin");
 
@@ -283,11 +283,12 @@ public class CommunityResponseController {
             httpSession.setAttribute("destination", httpServletRequest.getRequestURI());
             return modelAndView;
         }
-
+        communityService.getCardBenefit(gatheringId);
         CommunityInfoDto communityInfoDto = communityService.getCommunityInfo(gatheringId);
 
         modelAndView.setViewName("/community/community-card");
         modelAndView.addObject("gathering", communityInfoDto.getGatheringDto());
+        modelAndView.addObject("cardBenefit", communityService.getCardBenefit(gatheringId));
         modelAndView.addObject("gatheringId", gatheringId);
         modelAndView.addObject("gatheringMemberId", communityService.getGatheringMemberId(memberDto.getMemberId(), gatheringId));
         return modelAndView;

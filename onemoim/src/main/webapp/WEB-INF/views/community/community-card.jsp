@@ -1,3 +1,4 @@
+<%@ page import="java.util.Calendar" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -24,7 +25,9 @@
             <div class="page-name-wrapper">
                 <p class="page-name">모임카드</p>
                 <div class="page-name-right">
-                    <button class="benefit-button" id="benefit-button">카드혜택 변경하기</button>
+                    <button class="benefit-button" id="benefit-button"
+                            onclick="location.href='${pageContext.request.contextPath}/gathering/card-opening-setting'">
+                        카드혜택 변경하기</button>
                 </div>
             </div>
             <div class="card-container">
@@ -32,9 +35,40 @@
                     <img src="<%= request.getContextPath() %>/img/card.png" alt="원모임카드" class="card-image">
                 </div>
                 <div class="card-container-right">
-                    ${gathering.gatheringName} 카드
+                    ${gathering.gatheringName} 모임카드
+                    <div class="card-benefit-area">
+                        <c:forEach var="benefit" items="${cardBenefit}">
+                            <div class="benefit-row">
+                                <div class="benefit-image-area">
+                                    <c:set var="imgSrc">
+                                        <c:choose>
+                                            <c:when test="${benefit.benefitName == '마트'}">benefit_mart.png</c:when>
+                                            <c:when test="${benefit.benefitName == '베이커리'}">benefit_bakery.png</c:when>
+                                            <c:when test="${benefit.benefitName == '하나페이 맛집'}">benefit_resturant.png</c:when>
+                                            <c:when test="${benefit.benefitName == '대중교통'}">benefit_transport.png</c:when>
+                                            <c:when test="${benefit.benefitName == '주유/LPG 충전'}">benefit_oil.png</c:when>
+                                            <c:when test="${benefit.benefitName == '커피'}">benefit_coffee.png</c:when>
+                                            <c:when test="${benefit.benefitName == '편의점'}">benefit_conbin.png</c:when>
+                                            <c:when test="${benefit.benefitName == '딜리버리'}">benefit_delivery.png</c:when>
+                                            <c:when test="${benefit.benefitName == '병원/약국'}">benefit_hospital.png</c:when>
+                                            <c:when test="${benefit.benefitName == '온라인식품&쇼핑'}">benefit_shopping.png</c:when>
+                                            <c:otherwise>card.png</c:otherwise>
+                                        </c:choose>
+                                    </c:set>
+                                    <img src="<%= request.getContextPath() %>/img/${imgSrc}" alt="카드혜택"
+                                         class="benefit-image">
+                                </div>
+                                <div class="benefit-item">
+                                    <p class="benefit-item-p">${benefit.benefitName} 할인 ${benefit.benefitRate}%</p>
+                                        ${benefit.benefitDescription} <br>
+                                </div>
+                            </div>
+                        </c:forEach>
+
+                    </div>
                 </div>
             </div>
+            <p class="page-name"><%= Calendar.getInstance().get(Calendar.MONTH) %>월 지출분석</p>
             <div class="chart-area">
                 <div class="canvas-container">
                     <canvas id="myDoughnutChart"></canvas>

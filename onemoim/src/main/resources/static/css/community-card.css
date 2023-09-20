@@ -51,21 +51,53 @@
     display: flex;
     justify-content: start;
     width: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
     gap: 50px;
 }
 
-.card-container-left{
+.card-container-left {
     display: flex;
 }
 
-.card-container-right{
+.card-container-right {
     display: flex;
+    flex-direction: column;
     font-family: Hana2-Bold, sans-serif;
     font-size: 22px;
 }
 
-.card-image{
+.card-benefit-area {
+    font-family: Hana2-Medium, sans-serif;
+    font-size: 16px;
+}
+
+.benefit-image-area {
+    display: flex;
+    flex-direction: row;
+}
+
+.benefit-image {
+    width: 40px;
+}
+
+.benefit-row {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* 이미지와 항목 사이의 간격 */
+    margin-top: 20px;
+}
+
+.benefit-item-p {
+    font-family: Hana2-Medium, sans-serif;
+    font-size: 17px;
+    margin: 0;
+}
+
+.benefit-item {
+    flex-grow: 1;
+}
+
+.card-image {
     width: 400px;
 }
 
@@ -73,6 +105,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    border-top: 0.5px solid #cccccc;
     width: 100%;
 }
 

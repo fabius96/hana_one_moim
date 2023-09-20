@@ -2,6 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hana.onemoim.gathering.mapper.CardMapper">
 
+    <resultMap id="cardBenefitDto" type="com.hana.onemoim.gathering.dto.CardBenefitDto">
+        <result column="card_benefit_id" property="cardBenefitId"/>
+        <result column="card_id" property="cardId"/>
+        <result column="benefit_id" property="benefitId"/>
+        <result column="benefit_rate" property="benefitRate"/>
+        <result column="benefit_name" property="benefitName"/>
+        <result column="benefit_description" property="benefitDescription"/>
+    </resultMap>
+
     <!-- gathering_card_id 가져오기 -->
     <select id="getNextCardSeq" resultType="int">
         SELECT gathering_card_seq.NEXTVAL
@@ -21,4 +30,28 @@
             (card_id, benefit_id, benefit_rate)
         values (#{cardId}, #{benefitId}, #{benefitRate})
     </insert>
+
+    <!-- 모임카드 혜택설정 확인하기 -->
+    <select id="selectCardBenefitByGatheringId" parameterType="int" resultMap="cardBenefitDto">
+        SELECT cb.card_benefit_id,
+               cb.card_id,
+               cb.benefit_id,
+               cb.benefit_rate
+        FROM gathering_account_info gai
+                 JOIN
+             gathering_card gc ON gai.account_number = gc.account_number
+                 JOIN
+             card_benefit cb ON gc.card_id = cb.card_id
+        WHERE gai.gathering_id = #{gathering_id}
+          AND cb.benefit_rate != 0
+        ORDER BY cb.benefit_rate DESC
+    </select>
+
+    <!-- 혜택명 및 설명 확인 -->
+    <select id="selectBenefit" parameterType="int" resultMap="cardBenefitDto">
+        SELECT benefit_name, benefit_description
+        FROM benefit
+        WHERE benefit_id = #{benefitId}
+    </select>
+
 </mapper>

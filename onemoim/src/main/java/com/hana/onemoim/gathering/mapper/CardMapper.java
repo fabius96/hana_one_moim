@@ -4,6 +4,8 @@ import com.hana.onemoim.gathering.dto.CardBenefitDto;
 import com.hana.onemoim.gathering.dto.GatheringCardDto;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface CardMapper {
 
@@ -15,4 +17,10 @@ public interface CardMapper {
 
     // 카드혜택설정
     void insertCardBenefit(CardBenefitDto cardBenefitDto);
+
+    // 카드혜택조회
+    List<CardBenefitDto> selectCardBenefitByGatheringId(int gatheringId);
+
+    // 혜택명 및 설명 조회
+    CardBenefitDto selectBenefit(int benefitId);
 }
