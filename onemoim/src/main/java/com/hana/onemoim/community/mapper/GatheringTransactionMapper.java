@@ -12,6 +12,9 @@ public interface GatheringTransactionMapper {
     // 모임계좌 거래내역 조회
     List<GatheringTransactionDto> selectTransactionByAccountNumber(String accountNumber);
 
+    // 지출분석용 데이터 조회
+    List<GatheringTransactionDto> selectTransactionForCard(String accountNumber);
+
     // 모임 거래내역 생성
     void insertGatheringTransaction(MemberTransactionDto memberTransactionDto);
 }

@@ -21,6 +21,11 @@
     font-size: 24px;
 }
 
+.area-name {
+    font-family: Hana2-Bold, sans-serif;
+    font-size: 22px;
+}
+
 .page-name-wrapper {
     display: flex;
     justify-content: space-between;

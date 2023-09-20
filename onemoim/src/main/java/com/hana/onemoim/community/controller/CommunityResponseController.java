@@ -271,7 +271,7 @@ public class CommunityResponseController {
         return modelAndView;
     }
 
-    // 커뮤니티 갤러리 페이지 조회
+    // 커뮤니티 카드 페이지 조회
     @GetMapping("/community/{gatheringId}/card")
     public ModelAndView showCommunityCard(HttpSession httpSession,
                                           HttpServletRequest httpServletRequest,
@@ -289,6 +289,7 @@ public class CommunityResponseController {
         modelAndView.setViewName("/community/community-card");
         modelAndView.addObject("gathering", communityInfoDto.getGatheringDto());
         modelAndView.addObject("cardBenefit", communityService.getCardBenefit(gatheringId));
+        modelAndView.addObject("cardTransactionMap", communityService.getCardTransactionData(gatheringId));
         modelAndView.addObject("gatheringId", gatheringId);
         modelAndView.addObject("gatheringMemberId", communityService.getGatheringMemberId(memberDto.getMemberId(), gatheringId));
         return modelAndView;

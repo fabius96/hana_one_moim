@@ -51,7 +51,7 @@
                                             <c:when test="${benefit.benefitName == '편의점'}">benefit_conbin.png</c:when>
                                             <c:when test="${benefit.benefitName == '딜리버리'}">benefit_delivery.png</c:when>
                                             <c:when test="${benefit.benefitName == '병원/약국'}">benefit_hospital.png</c:when>
-                                            <c:when test="${benefit.benefitName == '온라인식품&쇼핑'}">benefit_shopping.png</c:when>
+                                            <c:when test="${benefit.benefitName == '온라인식품/쇼핑'}">benefit_shopping.png</c:when>
                                             <c:otherwise>card.png</c:otherwise>
                                         </c:choose>
                                     </c:set>
@@ -68,7 +68,7 @@
                     </div>
                 </div>
             </div>
-            <p class="page-name"><%= Calendar.getInstance().get(Calendar.MONTH) %>월 지출분석</p>
+            <p class="area-name"><%= Calendar.getInstance().get(Calendar.MONTH) %>월 지출분석</p>
             <div class="chart-area">
                 <div class="canvas-container">
                     <canvas id="myDoughnutChart"></canvas>

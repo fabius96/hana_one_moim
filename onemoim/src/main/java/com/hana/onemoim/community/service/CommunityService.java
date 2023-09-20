@@ -7,6 +7,7 @@ import com.hana.onemoim.gathering.dto.CardBenefitDto;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Map;
 
 public interface CommunityService {
 
@@ -84,4 +85,7 @@ public interface CommunityService {
 
     // 카드혜택조회
     List<CardBenefitDto> getCardBenefit(int gatheringId);
+
+    // 지출분석용데이터 조회
+    Map<String, Integer> getCardTransactionData(int gatheringId);
 }

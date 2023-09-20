@@ -328,6 +328,28 @@ public class CommunityServiceImpl implements CommunityService {
         return gatheringTransactionMapper.selectTransactionByAccountNumber(accountNumber);
     }
 
+    // 지출분석용 데이터 조회
+    @Override
+    public Map<String, Integer> getCardTransactionData(int gatheringId) {
+        String accountNumber = getGatheringAccountNumber(gatheringId);
+        List<GatheringTransactionDto> gatheringTransactionDtos = gatheringTransactionMapper.selectTransactionForCard(accountNumber);
+        Map<String, Integer> cardTransaction = new HashMap<>();
+
+        for (GatheringTransactionDto gatheringTransactionDto : gatheringTransactionDtos) {
+            CardBenefitDto benefit = cardMapper.selectBenefit(gatheringTransactionDto.getTransactionCategoryCode());
+            if (cardTransaction.containsKey(benefit.getBenefitName())) {
+                cardTransaction.put(benefit.getBenefitName(), cardTransaction.get(benefit.getBenefitName()) + gatheringTransactionDto.getTransactionAmount());
+            } else {
+                cardTransaction.put(benefit.getBenefitName(), gatheringTransactionDto.getTransactionAmount());
+            }
+        }
+        System.out.println(cardTransaction.size());
+        for(String key : cardTransaction.keySet()){
+            System.out.println(key);
+        }
+        return cardTransaction;
+    }
+
     // 사용자 전체 계좌 조회
     @Override
     public List<AccountDto> getAllAccountByPersonalIdNumber(String personaIdNumber) {
@@ -475,7 +497,6 @@ public class CommunityServiceImpl implements CommunityService {
 
     // 출금 프로세스
     private void processWithdrawalForGatheringTransfer(AccountTransferDto accountTransferDto) {
-        System.out.println(accountTransferDto.getAccountNumber());
         accountMapper.updateGatheringAccountBalance(accountTransferDto); // 출금을 위한 잔액 업데이트
         int balanceAfterDeposit = accountMapper.selectGatheringAccountBalance(accountTransferDto);
         createTransactionForWithdrawal(accountTransferDto, TRANSACTION_TYPE_WITHDRAW, balanceAfterDeposit);  // 출금 거래 기록 생성
