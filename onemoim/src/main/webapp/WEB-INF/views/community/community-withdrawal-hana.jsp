@@ -27,9 +27,6 @@
         <div class="outer-content-wrapper">
             <div class="header-container">
                 <p class="page-name">출금하기</p>
-                <a href="${pageContext.request.contextPath}/account/account-transfer-hana" class="chosen-page">하나은행</a>
-                <a href="${pageContext.request.contextPath}/account/account-transfer-other"
-                   class="unchosen-page">다른은행</a>
             </div>
 
             <form action="/community/${gatheringId}/withdrawal-hana" method="post">
@@ -37,7 +34,7 @@
                 <div class="content-wrapper">
 
                     <div><p class="content-name">출금정보</p></div>
-                    <div><p class="sub-content-name">하나은행에서 출금</p></div>
+                    <div><p class="sub-content-name">${gathering.gatheringName} 계좌에서 출금</p></div>
 
                     <div class="dropdown-container" data-dropdown="account">
                         <input type="hidden" name="accountNumber" id="selectedAccountNumber" value="${accountNumber}">

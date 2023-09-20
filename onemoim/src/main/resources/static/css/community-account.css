@@ -131,12 +131,12 @@
 }
 
 .transaction-table th:nth-child(4), .transaction-table td:nth-child(4) {
-    width: 20%; /* 적요 */
+    width: 29%; /* 적요 */
     text-align: center;
 }
 
 .transaction-table th:nth-child(5), .transaction-table td:nth-child(5) {
-    width: 15%; /* 출금액 */
+    width: 13%; /* 출금액 */
 }
 
 .transaction-table td:nth-child(5) {
@@ -146,7 +146,7 @@
 
 
 .transaction-table th:nth-child(6), .transaction-table td:nth-child(6) {
-    width: 15%; /* 입금액 */
+    width: 13%; /* 입금액 */
 }
 
 .transaction-table td:nth-child(6) {
@@ -155,7 +155,7 @@
 }
 
 .transaction-table th:nth-child(7), .transaction-table td:nth-child(7) {
-    width: 15%; /* 잔액 */
+    width: 10%; /* 잔액 */
 }
 
 .transaction-table td:nth-child(7) {

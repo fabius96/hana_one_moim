@@ -27,7 +27,7 @@
         <a data-gathering-id="${gatheringId}" onclick="goToAccount(this)">계좌</a>
     </p>
     <p class="second-menu-link" id="card">
-        <a href="/account/account-product-list">카드</a>
+        <a data-gathering-id="${gatheringId}" onclick="goToCard(this)">카드</a>
     </p>
     <p class="second-menu-link" id="gathering">
         <a data-gathering-id="${gatheringId}" onclick="goToInfo(this)">모임관리</a>

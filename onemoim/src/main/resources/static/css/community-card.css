@@ -1,0 +1,152 @@
+.main-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #fff;
+    padding: 20px;
+}
+
+.outer-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 1000px;
+}
+
+.page-name {
+    display: flex;
+    font-family: Hana2-Bold, sans-serif;
+    font-size: 24px;
+}
+
+.page-name-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    border-bottom: 0.5px solid #cccccc;
+    margin-bottom: 10px;
+}
+
+.page-name-right {
+    display: flex;
+    gap: 10px;
+}
+
+.benefit-button {
+    width: 170px;
+    height: 38px;
+    border: none;
+    background-color: #008375;
+    color: #FFFFFF;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: Hana2-Bold, sans-serif;
+    font-size: 16px;
+}
+
+.card-container {
+    display: flex;
+    justify-content: start;
+    width: 100%;
+    margin-bottom: 10px;
+    gap: 50px;
+}
+
+.card-container-left{
+    display: flex;
+}
+
+.card-container-right{
+    display: flex;
+    font-family: Hana2-Bold, sans-serif;
+    font-size: 22px;
+}
+
+.card-image{
+    width: 400px;
+}
+
+.chart-area {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.canvas-container {
+    flex: 1;
+    max-width: 60%;
+}
+
+
+.legend-table {
+    margin-left: 20px; /* 테이블과 차트 사이의 간격 조절 */
+    min-width: 600px;
+    border-collapse: collapse;
+}
+
+.legend-table td {
+    padding: 5px;
+}
+
+.legend-color {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.legend-table th, .legend-table td {
+    font-family: Hana2-Bold, sans-serif;
+    font-size: 13px;
+    padding: 7px;
+}
+
+.legend-table th {
+    border-bottom: 1px solid #cccccc;
+    font-size: 14px;
+}
+
+.legend-table th:nth-child(1), .legend-table td:nth-child(1) {
+    width: 15%; /* 색상 */
+    text-align: center;
+}
+
+.legend-table th:nth-child(2), .legend-table td:nth-child(2) {
+    width: 20%; /* 영역 */
+}
+
+.legend-table th:nth-child(2) {
+    text-align: center;
+}
+
+.legend-table td:nth-child(2) {
+    text-align: left;
+}
+
+.legend-table th:nth-child(3), .legend-table td:nth-child(3) {
+    width: 45%; /* 금액 */
+}
+
+.legend-table th:nth-child(3) {
+    text-align: center;
+}
+
+.legend-table td:nth-child(3) {
+    text-align: right;
+}
+
+.legend-table th:nth-child(4), .legend-table td:nth-child(4) {
+    width: 35%; /* 비율 */
+}
+
+.legend-table th:nth-child(4) {
+    text-align: center;
+}
+
+.legend-table td:nth-child(4) {
+    text-align: right;
+}

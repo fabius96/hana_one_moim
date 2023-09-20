@@ -27,3 +27,9 @@ function goToAccount(gatheringIdParam) {
     var gatheringId = gatheringIdParam.getAttribute('data-gathering-id');
     window.location.href = `/community/${gatheringId}/account`;
 }
+
+// 커뮤니티 계좌 페이지로 이동
+function goToCard(gatheringIdParam) {
+    var gatheringId = gatheringIdParam.getAttribute('data-gathering-id');
+    window.location.href = `/community/${gatheringId}/card`;
+}
