@@ -29,6 +29,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -36,6 +37,10 @@ public class CommunityServiceImpl implements CommunityService {
 
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     private static final DateTimeFormatter SECOND_FORMATTER = DateTimeFormatter.ofPattern("yyMMdd");
+    private static final List<String> TRANSACTION_CATEGORIES = Arrays.asList(
+            "마트", "베이커리", "하나페이 맛집", "대중교통", "주유/LPG 충전", "커피", "편의점",
+            "딜리버리", "병원/약국", "온라인식품/쇼핑"
+    );
     private static final int TRANSACTION_TYPE_WITHDRAW = 51;  // 출금 거래 코드
     private static final int TRANSACTION_TYPE_DEPOSIT = 50;   // 입금 거래 코드
     private static final int PAYMENT_CYCLE_YEARLY = 60;   // 납부 주기 코드 - 연
@@ -335,19 +340,34 @@ public class CommunityServiceImpl implements CommunityService {
         List<GatheringTransactionDto> gatheringTransactionDtos = gatheringTransactionMapper.selectTransactionForCard(accountNumber);
         Map<String, Integer> cardTransaction = new HashMap<>();
 
+        processTransactions(gatheringTransactionDtos, cardTransaction);
+        ensureAllTransactionCategoriesExist(cardTransaction);
+
+        // cardTransaction Map을 value 기준으로 내림차순 정렬
+        cardTransaction = cardTransaction.entrySet()
+                .stream()
+                .sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        Map.Entry::getValue,
+                        (e1, e2) -> e1,
+                        LinkedHashMap::new
+                ));
+
+        return cardTransaction;
+    }
+
+    private void processTransactions(List<GatheringTransactionDto> gatheringTransactionDtos, Map<String, Integer> cardTransaction) {
         for (GatheringTransactionDto gatheringTransactionDto : gatheringTransactionDtos) {
             CardBenefitDto benefit = cardMapper.selectBenefit(gatheringTransactionDto.getTransactionCategoryCode());
-            if (cardTransaction.containsKey(benefit.getBenefitName())) {
-                cardTransaction.put(benefit.getBenefitName(), cardTransaction.get(benefit.getBenefitName()) + gatheringTransactionDto.getTransactionAmount());
-            } else {
-                cardTransaction.put(benefit.getBenefitName(), gatheringTransactionDto.getTransactionAmount());
-            }
+            cardTransaction.merge(benefit.getBenefitName(), gatheringTransactionDto.getTransactionAmount(), Integer::sum);
         }
-        System.out.println(cardTransaction.size());
-        for(String key : cardTransaction.keySet()){
-            System.out.println(key);
+    }
+
+    private void ensureAllTransactionCategoriesExist(Map<String, Integer> cardTransaction) {
+        for (String category : TRANSACTION_CATEGORIES) {
+            cardTransaction.putIfAbsent(category, 0);
         }
-        return cardTransaction;
     }
 
     // 사용자 전체 계좌 조회

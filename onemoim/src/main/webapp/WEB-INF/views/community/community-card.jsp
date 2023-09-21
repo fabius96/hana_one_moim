@@ -15,7 +15,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
 </head>
 
-<body data-context-path="${pageContext.request.contextPath}">
+<body data-context-path="${pageContext.request.contextPath}" data-card-transactions="${cardTransactionMap}">
 
 <div class="except-footer">
     <jsp:include page="../includes/header_after_login.jsp"/>
@@ -35,7 +35,7 @@
                     <img src="<%= request.getContextPath() %>/img/card.png" alt="원모임카드" class="card-image">
                 </div>
                 <div class="card-container-right">
-                    ${gathering.gatheringName} 모임카드
+                    <P class="card-title"> ${gathering.gatheringName} 모임카드</P>
                     <div class="card-benefit-area">
                         <c:forEach var="benefit" items="${cardBenefit}">
                             <div class="benefit-row">

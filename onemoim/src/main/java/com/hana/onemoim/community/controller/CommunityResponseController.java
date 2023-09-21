@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -289,9 +290,16 @@ public class CommunityResponseController {
         modelAndView.setViewName("/community/community-card");
         modelAndView.addObject("gathering", communityInfoDto.getGatheringDto());
         modelAndView.addObject("cardBenefit", communityService.getCardBenefit(gatheringId));
-        modelAndView.addObject("cardTransactionMap", communityService.getCardTransactionData(gatheringId));
         modelAndView.addObject("gatheringId", gatheringId);
         modelAndView.addObject("gatheringMemberId", communityService.getGatheringMemberId(memberDto.getMemberId(), gatheringId));
         return modelAndView;
+    }
+
+    // 카드 소비 데이터 호출
+    @GetMapping("/community/{gatheringId}/card-transaction")
+    public ResponseEntity<?> getCardTransactionData(@PathVariable int gatheringId) {
+
+        Map<String, Integer> cardTransactionData = communityService.getCardTransactionData(gatheringId);
+        return ResponseEntity.ok().body(cardTransactionData);
     }
 }

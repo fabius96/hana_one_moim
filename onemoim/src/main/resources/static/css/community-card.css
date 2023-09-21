@@ -57,7 +57,11 @@
     justify-content: start;
     width: 100%;
     margin-bottom: 30px;
-    gap: 50px;
+    gap: 80px;
+}
+
+.card-title{
+    margin: 0;
 }
 
 .card-container-left {
@@ -115,6 +119,7 @@
 }
 
 .canvas-container {
+    margin-top: 30px;
     flex: 1;
     max-width: 60%;
 }
