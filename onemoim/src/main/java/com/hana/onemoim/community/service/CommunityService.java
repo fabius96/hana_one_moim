@@ -65,6 +65,9 @@ public interface CommunityService {
     // 모임계좌거래내역 조회
     List<GatheringTransactionDto> getGatheringTransaction(String accountNumber);
 
+    // 모임거래내역 지출 TOP 5 조회
+    List<GatheringTransactionDto> getAccountTransactionTop5(int gatheringId, int month);
+
     // 사용자 전체 계좌 조회
     List<AccountDto> getAllAccountByPersonalIdNumber(String personaIdNumber);
 
@@ -87,5 +90,5 @@ public interface CommunityService {
     List<CardBenefitDto> getCardBenefit(int gatheringId);
 
     // 지출분석용데이터 조회
-    Map<String, Integer> getCardTransactionData(int gatheringId);
+    Map<String, Integer> getCardTransactionData(int gatheringId, int month);
 }

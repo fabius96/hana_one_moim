@@ -27,7 +27,8 @@
                 <div class="page-name-right">
                     <button class="benefit-button" id="benefit-button"
                             onclick="location.href='${pageContext.request.contextPath}/gathering/card-opening-setting'">
-                        카드혜택 변경하기</button>
+                        카드혜택 변경하기
+                    </button>
                 </div>
             </div>
             <div class="card-container">
@@ -68,7 +69,17 @@
                     </div>
                 </div>
             </div>
-            <p class="area-name"><%= Calendar.getInstance().get(Calendar.MONTH) %>월 지출분석</p>
+            <div class="area-name">
+                <img src="<%= request.getContextPath() %>/img/arrow-button-left.png" alt="좌측화살표"
+                     class="arrow-button-img">
+                <span class="text-span">2023년 10월 지출분석</span>
+                <img src="<%= request.getContextPath() %>/img/arrow-button-right.png" alt="우측화살표"
+                     class="arrow-button-img">
+            </div>
+            <div class="chart-name-area">
+                <p class="chart-name"></p>
+                <p class="chart-total">1000000</p>
+            </div>
             <div class="chart-area">
                 <div class="canvas-container">
                     <canvas id="myDoughnutChart"></canvas>
@@ -83,10 +94,26 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <!-- 이 부분은 자바스크립트에서 동적으로 채워집니다. -->
                     </tbody>
                 </table>
 
+            </div>
+
+            <span class="transaction-text-span">2023년 9월 지출 TOP 5</span>
+            <div class="transaction-area">
+                <table class="transaction-table">
+                    <thead>
+                    <tr>
+                        <th class="left-title">거래일시</th>
+                        <th>유형</th>
+                        <th>영역</th>
+                        <th>적요</th>
+                        <th>지출액</th>
+                    </tr>
+                    </thead>
+                    <tbody class="transaction-content">
+                    </tbody>
+                </table>
             </div>
 
         </div>

@@ -335,11 +335,10 @@ public class CommunityServiceImpl implements CommunityService {
 
     // 지출분석용 데이터 조회
     @Override
-    public Map<String, Integer> getCardTransactionData(int gatheringId) {
+    public Map<String, Integer> getCardTransactionData(int gatheringId, int month) {
         String accountNumber = getGatheringAccountNumber(gatheringId);
-        List<GatheringTransactionDto> gatheringTransactionDtos = gatheringTransactionMapper.selectTransactionForCard(accountNumber);
+        List<GatheringTransactionDto> gatheringTransactionDtos = gatheringTransactionMapper.selectTransactionForCard(accountNumber, month);
         Map<String, Integer> cardTransaction = new HashMap<>();
-
         processTransactions(gatheringTransactionDtos, cardTransaction);
         ensureAllTransactionCategoriesExist(cardTransaction);
 
@@ -353,7 +352,6 @@ public class CommunityServiceImpl implements CommunityService {
                         (e1, e2) -> e1,
                         LinkedHashMap::new
                 ));
-
         return cardTransaction;
     }
 
@@ -368,6 +366,13 @@ public class CommunityServiceImpl implements CommunityService {
         for (String category : TRANSACTION_CATEGORIES) {
             cardTransaction.putIfAbsent(category, 0);
         }
+    }
+
+    // 모임거래내역 지출 TOP 5 조회
+    @Override
+    public List<GatheringTransactionDto> getAccountTransactionTop5(int gatheringId, int month) {
+        String accountNumber = getGatheringAccountNumber(gatheringId);
+        return gatheringTransactionMapper.selectTransactionTop5ByAccountNumber(accountNumber, month);
     }
 
     // 사용자 전체 계좌 조회

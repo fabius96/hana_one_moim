@@ -37,16 +37,33 @@
         ORDER BY transaction_time desc
     </select>
 
-    <!-- 모임거래내역 조회 -->
-    <select id="selectTransactionForCard" parameterType="String"
-            resultMap="gatheringTransactionDto">
+    <!-- 카드지출분석용 데이터 조회 -->
+    <select id="selectTransactionForCard" parameterType="map" resultMap="gatheringTransactionDto">
         SELECT transaction_category_code, transaction_amount
         FROM gathering_transaction
         WHERE account_number = #{accountNumber}
           AND transaction_category_code is not null
-          AND EXTRACT(MONTH FROM transaction_time) = EXTRACT(MONTH FROM ADD_MONTHS(SYSDATE, -1))
-          AND EXTRACT(YEAR FROM transaction_time) = EXTRACT(YEAR FROM ADD_MONTHS(SYSDATE, -1))
+          AND EXTRACT(MONTH FROM transaction_time) = #{month}
+          AND EXTRACT(YEAR FROM transaction_time) = EXTRACT(YEAR FROM SYSDATE)
         ORDER BY transaction_time desc
+    </select>
+
+    <!-- 모임거래내역 지출 TOP 5 조회 -->
+    <select id="selectTransactionTop5ByAccountNumber" parameterType="map"
+            resultMap="gatheringTransactionDto">
+        SELECT TO_CHAR(transaction_time, 'YY-MM-DD HH24:MI:SS') as transaction_time,
+               transaction_type_code,
+               transaction_category_code,
+               memo,
+               transaction_amount,
+               balance_after_transaction
+        FROM gathering_transaction
+        WHERE account_number = #{accountNumber}
+          AND transaction_category_code is not null
+          AND EXTRACT(MONTH FROM transaction_time) = #{month}
+          AND EXTRACT(YEAR FROM transaction_time) = EXTRACT(YEAR FROM SYSDATE)
+        ORDER BY transaction_amount desc, transaction_time desc
+        FETCH FIRST 5 ROWS ONLY
     </select>
 
 </mapper>

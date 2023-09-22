@@ -183,6 +183,13 @@ public class CommunityResponseController {
         return communityService.getGatheringTransaction(accountNumber);
     }
 
+    // 계좌이체 내역 조회 메서드
+    @GetMapping("/api/community/{gatheringId}/get-account-transaction-top5")
+    @ResponseBody
+    public List<GatheringTransactionDto> getAccountTransactionTop5(@PathVariable int gatheringId, int month) {
+        return communityService.getAccountTransactionTop5(gatheringId, month);
+    }
+
     // 커뮤니티 회비 납입 페이지 조회(하나은행)
     @GetMapping("/community/{gatheringId}/payment-hana")
     public ModelAndView showPaymentHana(HttpSession httpSession,
@@ -297,9 +304,8 @@ public class CommunityResponseController {
 
     // 카드 소비 데이터 호출
     @GetMapping("/community/{gatheringId}/card-transaction")
-    public ResponseEntity<?> getCardTransactionData(@PathVariable int gatheringId) {
-
-        Map<String, Integer> cardTransactionData = communityService.getCardTransactionData(gatheringId);
+    public ResponseEntity<?> getCardTransactionData(@PathVariable int gatheringId, @RequestParam int month) {
+        Map<String, Integer> cardTransactionData = communityService.getCardTransactionData(gatheringId, month);
         return ResponseEntity.ok().body(cardTransactionData);
     }
 }
