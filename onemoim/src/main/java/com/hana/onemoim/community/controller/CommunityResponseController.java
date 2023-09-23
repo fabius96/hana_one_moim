@@ -308,4 +308,27 @@ public class CommunityResponseController {
         Map<String, Integer> cardTransactionData = communityService.getCardTransactionData(gatheringId, month);
         return ResponseEntity.ok().body(cardTransactionData);
     }
+
+    // 커뮤니티 카드혜택 변경하기 페이지 조회
+    @GetMapping("/community/{gatheringId}/card-benefit")
+    public ModelAndView showCommunityCardBenefit(HttpSession httpSession,
+                                          HttpServletRequest httpServletRequest,
+                                          @PathVariable int gatheringId) {
+        MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
+        ModelAndView modelAndView = new ModelAndView("/signin");
+
+        if (memberDto == null) {
+            httpSession.setAttribute("destination", httpServletRequest.getRequestURI());
+            return modelAndView;
+        }
+        communityService.getCardBenefit(gatheringId);
+        CommunityInfoDto communityInfoDto = communityService.getCommunityInfo(gatheringId);
+
+        modelAndView.setViewName("/community/community-card-benefit");
+        modelAndView.addObject("gathering", communityInfoDto.getGatheringDto());
+        modelAndView.addObject("cardBenefit", communityService.getCardBenefit(gatheringId));
+        modelAndView.addObject("gatheringId", gatheringId);
+        modelAndView.addObject("gatheringMemberId", communityService.getGatheringMemberId(memberDto.getMemberId(), gatheringId));
+        return modelAndView;
+    }
 }

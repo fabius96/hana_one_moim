@@ -26,7 +26,7 @@
                 <p class="page-name">모임카드</p>
                 <div class="page-name-right">
                     <button class="benefit-button" id="benefit-button"
-                            onclick="location.href='${pageContext.request.contextPath}/gathering/card-opening-setting'">
+                            onclick="location.href='${pageContext.request.contextPath}/community/${gatheringId}/card-benefit'">
                         카드혜택 변경하기
                     </button>
                 </div>
