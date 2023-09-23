@@ -44,6 +44,27 @@
                 </div>
             </div>
 
+            <div class="period-container">
+                <div class="area-name">
+                    <img src="<%= request.getContextPath() %>/img/arrow-button-left.png" alt="좌측화살표"
+                         class="arrow-button-img">
+                    <span class="text-span"></span>
+                    <img src="<%= request.getContextPath() %>/img/arrow-button-right.png" alt="우측화살표"
+                         class="arrow-button-img">
+                </div>
+                <div class="calendar-area">
+                    <span class="period-span">조회기간</span>
+                    <div class="calendar-input">
+                        <input type="date" id="start-date" class="date-input">
+                        -
+                        <input type="date" id="end-date" class="date-input">
+                    </div>
+                    <button class="inquiry-button" id="inquiry-button">
+                        조회하기
+                    </button>
+                </div>
+            </div>
+
             <table class="transaction-table">
                 <thead>
                 <tr>

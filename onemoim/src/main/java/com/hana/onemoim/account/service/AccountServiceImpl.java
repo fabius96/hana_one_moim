@@ -107,8 +107,8 @@ public class AccountServiceImpl implements AccountService {
 
     // 거래내역조회
     @Override
-    public List<MemberTransactionDto> findTransactionByAccountNumber(AccountDto accountDto) {
-        return transactionMapper.selectTransactionByAccountNumber(accountDto);
+    public List<MemberTransactionDto> findTransactionByAccountNumber(String accountNumber, int month) {
+        return transactionMapper.selectTransactionByAccountNumber(accountNumber, month);
     }
 
     // 모임계좌번호조회

@@ -136,7 +136,7 @@ public class AccountResponseController {
     // 계좌이체 내역 조회 메서드
     @GetMapping("/api/account/get-account-transaction")
     @ResponseBody
-    public List<MemberTransactionDto> getAccountTransaction(AccountDto accountDto) {
-        return accountService.findTransactionByAccountNumber(accountDto);
+    public List<MemberTransactionDto> getAccountTransaction(String accountNumber, @RequestParam int month) {
+        return accountService.findTransactionByAccountNumber(accountNumber, month);
     }
 }

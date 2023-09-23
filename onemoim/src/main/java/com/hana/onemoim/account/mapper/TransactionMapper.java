@@ -1,8 +1,8 @@
 package com.hana.onemoim.account.mapper;
 
-import com.hana.onemoim.account.dto.AccountDto;
 import com.hana.onemoim.account.dto.MemberTransactionDto;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -12,5 +12,6 @@ public interface TransactionMapper {
     void insertTransaction(MemberTransactionDto memberTransactionDto);
 
     // 거래내역 조회
-    List<MemberTransactionDto> selectTransactionByAccountNumber(AccountDto accountDto);
+    List<MemberTransactionDto> selectTransactionByAccountNumber(@Param("accountNumber") String accountNumber,
+                                                                @Param("month") int month);
 }

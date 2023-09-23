@@ -22,11 +22,18 @@
                 #{balanceAfterTransaction}, #{memo})
     </insert>
 
-    <select id="selectTransactionByAccountNumber" parameterType="com.hana.onemoim.account.dto.AccountDto"
+    <!-- 거래내역조회 -->
+    <select id="selectTransactionByAccountNumber" parameterType="map"
             resultMap="memberTransactionDto">
-        SELECT TO_CHAR(transaction_time, 'YY-MM-DD HH24:MI:SS') as transaction_time, transaction_type_code, memo, transaction_amount, balance_after_transaction
+        SELECT TO_CHAR(transaction_time, 'YY-MM-DD HH24:MI:SS') as transaction_time,
+               transaction_type_code,
+               memo,
+               transaction_amount,
+               balance_after_transaction
         FROM member_transaction
         WHERE account_number = #{accountNumber}
+          AND EXTRACT(MONTH FROM transaction_time) = #{month}
+          AND EXTRACT(YEAR FROM transaction_time) = EXTRACT(YEAR FROM SYSDATE)
         ORDER BY transaction_time desc
     </select>
 

@@ -174,3 +174,62 @@
 .transaction-table tr:not(:first-child):hover {
     background-color: #f5f5f5;
 }
+
+
+.arrow-button-img {
+    width: 25px;
+}
+
+.text-span {
+    margin: 0 10px;
+}
+
+.area-name {
+    font-family: Hana2-Bold, sans-serif;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.period-container{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.inquiry-button{
+    width: 90px;
+    height: 35px;
+    border: none;
+    background-color: #008375;
+    color: #FFFFFF;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: Hana2-Bold, sans-serif;
+    font-size: 16px;
+}
+.period-span{
+    font-family: Hana2-Bold,sans-serif;
+    font-size: 13px;
+    color: #666666;
+    margin-top: 10px;
+}
+
+.calendar-area{
+    display: flex;
+    gap: 10px;
+}
+
+.calendar-input{
+    border: 1px solid black;
+    border-radius: 5px;
+    height: 35px;
+}
+
+.date-input {
+    margin: 3px 5px 0;
+    border:none;
+    padding: 5px;
+    font-family: Hana2-Bold,sans-serif;
+}

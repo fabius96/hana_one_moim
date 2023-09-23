@@ -21,7 +21,7 @@ public interface AccountService {
     void accountTransfer(AccountTransferDto accountTransferDto);
 
     // 거래내역 조회
-    List<MemberTransactionDto> findTransactionByAccountNumber(AccountDto accountDto);
+    List<MemberTransactionDto> findTransactionByAccountNumber(String accountNumber, int month);
 
     // 모임계좌번호조회
     String findAccountNumberByGatheringId(int gatheringId);

@@ -1,9 +1,37 @@
+// 현재 월과 연도 변수
+let currentMonth = new Date().getMonth() + 1; // 현재 월 (0-11, 그래서 +1)
+let currentYear = new Date().getFullYear();  // 현재 연도
+let selectedAccountNumberGlobal = null;  // 선택된 계좌번호 저장용 전역 변수
+
+
 $(document).ready(function () {
     // 초기 설정
     initializeDropdown();
+    $('.text-span').text(`${currentYear}년 ${currentMonth}월 지출분석`);
 
     // 드롭다운 클릭 이벤트 연결
     bindDropdownEvents();
+
+    // 화살표 클릭 이벤트
+    $('.arrow-button-img').on('click', function () {
+        if ($(this).attr('alt') === '좌측화살표') {
+            currentMonth--; // 이전 월
+            if (currentMonth === 0) { // 연도를 변경해야 하는 경우
+                currentMonth = 12;
+                currentYear--;
+            }
+        } else {
+            currentMonth++; // 다음 월
+            if (currentMonth === 13) { // 연도를 변경해야 하는 경우
+                currentMonth = 1;
+                currentYear++;
+            }
+        }
+        // 변경된 월로 데이터 로딩
+        if (selectedAccountNumberGlobal) {
+            fetchAccountTransactions(selectedAccountNumberGlobal, currentMonth);
+        }
+    });
 });
 
 // 초기 설정: 선택된 계좌 값이 있다면 해당 값을 설정
@@ -16,7 +44,7 @@ function initializeDropdown() {
         // 선택된 계좌 번호로 거래 내역 가져오기
         const rawAccountNumber = selectedAccount.find('.account-number').text().trim();
         const selectedAccountNumber = cleanAccountNumber(rawAccountNumber);
-        fetchAccountTransactions(selectedAccountNumber);
+        fetchAccountTransactions(selectedAccountNumber, currentMonth);
     }
 }
 
@@ -46,12 +74,14 @@ function handleDropdownItemClick() {
     const selectedAccountNumber = cleanAccountNumber(rawAccountNumber);
     $('#selectedAccountNumber').val(selectedAccountNumber);
 
+    // 선택된 계좌 번호를 전역 변수에 저장
+    selectedAccountNumberGlobal = selectedAccountNumber;
 
     const dropdownType = $(this).closest('.dropdown-container').data('dropdown');
     updateDropdownValue(this, dropdownType);
 
     // 선택된 계좌 번호로 거래 내역 가져오기
-    fetchAccountTransactions(selectedAccountNumber);
+    fetchAccountTransactions(selectedAccountNumber, currentMonth);
 }
 
 // 드롭다운 값을 업데이트하는 함수
@@ -66,17 +96,22 @@ function updateDropdownValue(element, dropdownType) {
     }
 }
 
-function fetchAccountTransactions(accountNumber) {
+function fetchAccountTransactions(accountNumber, month) {
     const contextPath = document.body.getAttribute('data-context-path');
     const url = contextPath + "/api/account/get-account-transaction";
 
     $.ajax({
         type: "GET",
         url: url,
-        data: {accountNumber: accountNumber},
+        data: {
+            accountNumber: accountNumber,
+            month: month
+        },
         success: function (transactions) {
             // 결과를 화면에 표시하는 함수
             displayTransactions(transactions);
+            // 변경된 월로 문구 변경
+            $('.text-span').text(`${currentYear}년 ${currentMonth}월 지출분석`);
         }
     });
 }
@@ -132,4 +167,5 @@ function displayTransactions(transactions) {
         container.append(transactionRow);
     });
 }
+
 
