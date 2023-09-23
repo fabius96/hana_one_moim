@@ -63,7 +63,7 @@ public interface CommunityService {
     String getGatheringAccountNumber(int gatheringId);
 
     // 모임계좌거래내역 조회
-    List<GatheringTransactionDto> getGatheringTransaction(String accountNumber);
+    List<GatheringTransactionDto> getGatheringTransaction(String accountNumber, int month);
 
     // 모임거래내역 지출 TOP 5 조회
     List<GatheringTransactionDto> getAccountTransactionTop5(int gatheringId, int month);

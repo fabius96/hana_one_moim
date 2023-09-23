@@ -1,20 +1,50 @@
+// 현재 월과 연도 변수
+let currentYear = new Date().getFullYear();  // 현재 연도
+let currentMonth = new Date().getMonth() + 1; // 현재 월 (0-11, 그래서 +1)
+
 $(document).ready(function () {
     // community-transaction 페이지 로딩 시 거래 내역 로딩
     const communityAccountNumber = document.body.getAttribute('data-account-number');
-    fetchAccountTransactions(communityAccountNumber);
+
+    // 초기 화면 로딩
+    fetchAccountTransactions(communityAccountNumber, currentMonth);
+
+    // 화살표 클릭 이벤트
+    $('.arrow-button-img').on('click', function() {
+        if ($(this).attr('alt') === '좌측화살표') {
+            currentMonth--; // 이전 월
+            if (currentMonth === 0) { // 연도를 변경해야 하는 경우
+                currentMonth = 12;
+                currentYear--;
+            }
+        } else {
+            currentMonth++; // 다음 월
+            if (currentMonth === 13) { // 연도를 변경해야 하는 경우
+                currentMonth = 1;
+                currentYear++;
+            }
+        }
+        // 변경된 월로 데이터 로딩
+        fetchAccountTransactions(communityAccountNumber, currentMonth);
+    });
 });
 
-function fetchAccountTransactions(accountNumber) {
+function fetchAccountTransactions(accountNumber, month) {
     const contextPath = document.body.getAttribute('data-context-path');
     const url = contextPath + "/api/community/get-account-transaction";
 
     $.ajax({
         type: "GET",
         url: url,
-        data: {accountNumber: accountNumber},
+        data: {
+            accountNumber: accountNumber,
+            month: month
+        },
         success: function (transactions) {
             // 결과를 화면에 표시하는 함수
             displayTransactions(transactions);
+            // 변경된 월로 문구 변경
+            $('.text-span').text(`${currentYear}년 ${currentMonth}월 거래내역조회`);
         }
     });
 }

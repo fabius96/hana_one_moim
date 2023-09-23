@@ -11,7 +11,8 @@ import java.util.List;
 public interface GatheringTransactionMapper {
 
     // 모임계좌 거래내역 조회
-    List<GatheringTransactionDto> selectTransactionByAccountNumber(String accountNumber);
+    List<GatheringTransactionDto> selectTransactionByAccountNumber(@Param("accountNumber") String accountNumber,
+                                                                   @Param("month") int month);
 
     // 지출분석용 데이터 조회
     List<GatheringTransactionDto> selectTransactionForCard(@Param("accountNumber") String accountNumber,

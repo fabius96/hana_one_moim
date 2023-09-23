@@ -24,7 +24,7 @@
     </insert>
 
     <!-- 모임거래내역 조회 -->
-    <select id="selectTransactionByAccountNumber" parameterType="String"
+    <select id="selectTransactionByAccountNumber" parameterType="map"
             resultMap="gatheringTransactionDto">
         SELECT TO_CHAR(transaction_time, 'YY-MM-DD HH24:MI:SS') as transaction_time,
                transaction_type_code,
@@ -34,6 +34,8 @@
                balance_after_transaction
         FROM gathering_transaction
         WHERE account_number = #{accountNumber}
+          AND EXTRACT(MONTH FROM transaction_time) = #{month}
+          AND EXTRACT(YEAR FROM transaction_time) = EXTRACT(YEAR FROM SYSDATE)
         ORDER BY transaction_time desc
     </select>
 

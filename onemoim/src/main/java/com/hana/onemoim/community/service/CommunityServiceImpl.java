@@ -329,8 +329,8 @@ public class CommunityServiceImpl implements CommunityService {
 
     // 모임계좌거래내역 조회
     @Override
-    public List<GatheringTransactionDto> getGatheringTransaction(String accountNumber) {
-        return gatheringTransactionMapper.selectTransactionByAccountNumber(accountNumber);
+    public List<GatheringTransactionDto> getGatheringTransaction(String accountNumber, int month) {
+        return gatheringTransactionMapper.selectTransactionByAccountNumber(accountNumber, month);
     }
 
     // 지출분석용 데이터 조회

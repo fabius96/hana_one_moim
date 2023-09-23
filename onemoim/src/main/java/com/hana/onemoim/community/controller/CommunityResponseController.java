@@ -179,8 +179,8 @@ public class CommunityResponseController {
     // 계좌이체 내역 조회 메서드
     @GetMapping("/api/community/get-account-transaction")
     @ResponseBody
-    public List<GatheringTransactionDto> getAccountTransaction(String accountNumber) {
-        return communityService.getGatheringTransaction(accountNumber);
+    public List<GatheringTransactionDto> getAccountTransaction(String accountNumber, @RequestParam int month) {
+        return communityService.getGatheringTransaction(accountNumber, month);
     }
 
     // 계좌이체 내역 조회 메서드
