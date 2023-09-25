@@ -4,6 +4,7 @@ import com.hana.onemoim.account.dto.AccountTransferDto;
 import com.hana.onemoim.community.dto.CalendarEventDto;
 import com.hana.onemoim.community.dto.GalleryPostDto;
 import com.hana.onemoim.community.service.CommunityService;
+import com.hana.onemoim.gathering.dto.CardBenefitWrapper;
 import com.hana.onemoim.member.dto.MemberDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -105,6 +106,22 @@ public class CommunityRequestController {
         }
         modelAndView.setViewName("/community/withdrawal-ok");
         communityService.gatheringTransfer(accountTransferDto);
+        return modelAndView;
+    }
+
+    // 카드 혜택 변경
+    @PostMapping("/community/{gatheringId}/card-benefit")
+    public ModelAndView editCardBenefit(@ModelAttribute CardBenefitWrapper cardBenefitWrapper,
+                                           @PathVariable int gatheringId,
+                                           HttpSession httpSession) {
+
+        ModelAndView modelAndView = new ModelAndView("/signin");
+        MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
+        if (memberDto == null) {
+            return modelAndView;
+        }
+        modelAndView.setViewName("/community/edit-benefit-ok");
+        communityService.editCardBenefit(gatheringId, cardBenefitWrapper);
         return modelAndView;
     }
 }

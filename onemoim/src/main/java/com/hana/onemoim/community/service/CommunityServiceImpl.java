@@ -11,6 +11,7 @@ import com.hana.onemoim.common.mapper.InterestMapper;
 import com.hana.onemoim.community.dto.*;
 import com.hana.onemoim.community.mapper.*;
 import com.hana.onemoim.gathering.dto.CardBenefitDto;
+import com.hana.onemoim.gathering.dto.CardBenefitWrapper;
 import com.hana.onemoim.gathering.dto.GatheringDto;
 import com.hana.onemoim.gathering.mapper.CardMapper;
 import com.hana.onemoim.gathering.mapper.GatheringMapper;
@@ -568,5 +569,20 @@ public class CommunityServiceImpl implements CommunityService {
             cardBenefitDto.setBenefitDescription(benefit.getBenefitDescription());
         }
         return cardBenefitDtoList;
+    }
+
+    // 카드혜택변경
+    @Override
+    public void editCardBenefit(int gatheringId, CardBenefitWrapper cardBenefitWrapper) {
+        List<CardBenefitDto> cardBenefitDtoList = cardBenefitWrapper.getCardBenefitDtoList();
+        List<CardBenefitDto> originalCardBenefitDtos = cardMapper.selectCardBenefitByGatheringId(gatheringId);
+        int gatheringCardId = originalCardBenefitDtos.get(0).getCardId();
+
+        for (CardBenefitDto cardBenefitDto : cardBenefitDtoList) {
+            System.out.println("benefit_id  " + cardBenefitDto.getBenefitId());
+            System.out.println("benefit_rate  " + cardBenefitDto.getBenefitRate());
+            cardBenefitDto.setCardId(gatheringCardId);
+            cardMapper.updateCardBenefit(cardBenefitDto);
+        }
     }
 }

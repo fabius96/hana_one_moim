@@ -18,6 +18,9 @@ public interface CardMapper {
     // 카드혜택설정
     void insertCardBenefit(CardBenefitDto cardBenefitDto);
 
+    // 모임 카드 혜택 변경
+    void updateCardBenefit(CardBenefitDto cardBenefitDto);
+
     // 카드혜택조회
     List<CardBenefitDto> selectCardBenefitByGatheringId(int gatheringId);
 

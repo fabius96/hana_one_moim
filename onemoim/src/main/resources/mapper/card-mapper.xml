@@ -54,4 +54,12 @@
         WHERE benefit_id = #{benefitId}
     </select>
 
+    <!-- 모임카드혜택변경 -->
+    <update id="updateCardBenefit" parameterType="com.hana.onemoim.gathering.dto.CardBenefitDto">
+        UPDATE card_benefit
+        SET benefit_rate = #{benefitRate}
+        WHERE card_id = #{cardId}
+          AND benefit_id = #{benefitId}
+    </update>
+
 </mapper>

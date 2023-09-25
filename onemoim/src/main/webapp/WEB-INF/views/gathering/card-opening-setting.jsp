@@ -31,8 +31,8 @@
                     </p>
                     <p class="sub-text">
                         카드 혜택을 설정해주세요. <br/>
-                        총 10개 영역에서 선택 영역 할인율이 총합 10%가 되도록 설정해주세요.<br/>
-                        선택 영역에는 제한이 없지만(최대 10개까지 가능), 1개 영역에 대한 할인율은 1~5% 사이로 지정해주셔야 합니다.
+                        총 10개 영역에서 선택 영역 할인율이 총합 10%가 되도록 설정해 주세요.<br/>
+                        선택 영역에는 제한이 없지만 1개 영역에 대한 할인율은 1~5% 사이로 지정해 주셔야 합니다.
                     </p>
                     <div class="select-area">
                         <div class="select-area-line">
@@ -69,7 +69,7 @@
                                 <p class="benefit-description">데이터기반 맛집 서비스</p>
                                 <p class="benefit-description">하나페이 맛집 가맹점 청구할인</p>
                                 <div class="slider-area">
-                                    <input type="hidden" name="cardBenefitDtoList[2].benefitId" value="83">
+                                    <input type="hidden" name="cardBenefitDtoList[2].benefitId" value="82">
                                     <input type="hidden" name=cardBenefitDtoList[2].benefitRate" id="hiddenSliderValue3" value="0">
                                     <input type="range" min="0" max="5" value="0" class="slider" id="slider3">
                                     <p><span id="sliderValue3">0</span>&nbsp;%</p>

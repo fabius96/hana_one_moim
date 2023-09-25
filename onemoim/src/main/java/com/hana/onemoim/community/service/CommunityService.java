@@ -4,6 +4,7 @@ import com.hana.onemoim.account.dto.AccountDto;
 import com.hana.onemoim.account.dto.AccountTransferDto;
 import com.hana.onemoim.community.dto.*;
 import com.hana.onemoim.gathering.dto.CardBenefitDto;
+import com.hana.onemoim.gathering.dto.CardBenefitWrapper;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -91,4 +92,7 @@ public interface CommunityService {
 
     // 지출분석용데이터 조회
     Map<String, Integer> getCardTransactionData(int gatheringId, int month);
+
+    // 모임카드혜택변경
+    void editCardBenefit(int gatheringId, CardBenefitWrapper cardBenefitWrapper);
 }

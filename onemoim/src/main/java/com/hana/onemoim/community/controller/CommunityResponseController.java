@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hana.onemoim.account.dto.AccountDto;
 import com.hana.onemoim.community.dto.*;
 import com.hana.onemoim.community.service.CommunityService;
+import com.hana.onemoim.gathering.dto.CardBenefitDto;
 import com.hana.onemoim.member.dto.MemberDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -312,8 +313,8 @@ public class CommunityResponseController {
     // 커뮤니티 카드혜택 변경하기 페이지 조회
     @GetMapping("/community/{gatheringId}/card-benefit")
     public ModelAndView showCommunityCardBenefit(HttpSession httpSession,
-                                          HttpServletRequest httpServletRequest,
-                                          @PathVariable int gatheringId) {
+                                                 HttpServletRequest httpServletRequest,
+                                                 @PathVariable int gatheringId) {
         MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
         ModelAndView modelAndView = new ModelAndView("/signin");
 
@@ -329,6 +330,28 @@ public class CommunityResponseController {
         modelAndView.addObject("cardBenefit", communityService.getCardBenefit(gatheringId));
         modelAndView.addObject("gatheringId", gatheringId);
         modelAndView.addObject("gatheringMemberId", communityService.getGatheringMemberId(memberDto.getMemberId(), gatheringId));
+        return modelAndView;
+    }
+
+    // 카드 혜택 가져오기 메서드
+    @GetMapping("/community/{gatheringId}/card-benefit/data")
+    @ResponseBody
+    public List<CardBenefitDto> getCardBenefitData(@PathVariable int gatheringId) {
+        return communityService.getCardBenefit(gatheringId);
+    }
+
+    // 카드혜택변경 완료 페이지 조회(로그인 O)
+    @GetMapping("/community/{gatheringId}/edit-benefit-ok")
+    public ModelAndView showEditBenefitOk(HttpSession httpSession,
+                                          @PathVariable int gatheringId) {
+        ModelAndView modelAndView = new ModelAndView("/signin");
+        MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
+
+        if (memberDto == null) {
+            return modelAndView;
+        }
+        modelAndView.addObject("gatheringId", gatheringId);
+        modelAndView.setViewName("/community/edit-benefit-ok");
         return modelAndView;
     }
 }
