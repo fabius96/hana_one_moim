@@ -95,4 +95,7 @@ public interface CommunityService {
 
     // 모임카드혜택변경
     void editCardBenefit(int gatheringId, CardBenefitWrapper cardBenefitWrapper);
+
+    // 카드혜택추천 모달용 데이터 조회
+    CardBenefitRecommendDto getDataForCardBenefitRecommend(int gatheringId);
 }

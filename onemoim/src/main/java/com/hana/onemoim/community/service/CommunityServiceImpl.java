@@ -585,4 +585,48 @@ public class CommunityServiceImpl implements CommunityService {
             cardMapper.updateCardBenefit(cardBenefitDto);
         }
     }
+
+    // 카드혜택추천 모달용 데이터 조회
+    @Override
+    public CardBenefitRecommendDto getDataForCardBenefitRecommend(int gatheringId) {
+        String accountNumber = accountMapper.selectAccountNumberByGatheringId(gatheringId);
+        List<GatheringTransactionDto> transactionDtoList = gatheringTransactionMapper.selectDataForCardBenefitRecommend(accountNumber);
+
+        Map<Integer, Integer> amountConsumed = new HashMap<>();
+        int spendTotal = 0;
+        for (GatheringTransactionDto gatheringTransactionDto : transactionDtoList) {
+            int transactionCategoryCode = gatheringTransactionDto.getTransactionCategoryCode();
+            if (amountConsumed.containsKey(transactionCategoryCode)) {
+                amountConsumed.put(transactionCategoryCode, amountConsumed.get(transactionCategoryCode) + gatheringTransactionDto.getTransactionAmount());
+            } else {
+                amountConsumed.put(transactionCategoryCode, gatheringTransactionDto.getTransactionAmount());
+            }
+            spendTotal += gatheringTransactionDto.getTransactionAmount();
+        }
+
+        List<Map.Entry<Integer, Integer>> sortedList = amountConsumed.entrySet()
+                .stream()
+                .sorted(Map.Entry.<Integer, Integer>comparingByValue().reversed())
+                .collect(Collectors.toList());
+
+        return CardBenefitRecommendDto.builder()
+                .firstArea(cardMapper.selectBenefit(sortedList.get(0).getKey()).getBenefitName())
+                .firstSum(sortedList.get(0).getValue())
+                .firstPercent((int) (((double) sortedList.get(0).getValue() / spendTotal) * 100))
+                .secondArea(cardMapper.selectBenefit(sortedList.get(1).getKey()).getBenefitName())
+                .secondSum(sortedList.get(1).getValue())
+                .secondPercent((int) (((double) sortedList.get(1).getValue() / spendTotal) * 100))
+                .thirdArea(cardMapper.selectBenefit(sortedList.get(3).getKey()).getBenefitName())
+                .thirdSum(sortedList.get(3).getValue())
+                .thirdPercent((int) (((double) sortedList.get(2).getValue() / spendTotal) * 100))
+                .total(spendTotal)
+                .discountTotal((int) (
+                        ((double) sortedList.get(0).getValue() / 6) * 0.05 +
+                                ((double) sortedList.get(0).getValue() / 6) * 0.03 +
+                                ((double) sortedList.get(0).getValue() / 6) * 0.02
+                ))
+                .build();
+
+
+    }
 }

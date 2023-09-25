@@ -22,6 +22,9 @@ public interface GatheringTransactionMapper {
     List<GatheringTransactionDto> selectTransactionTop5ByAccountNumber(@Param("accountNumber") String accountNumber,
                                                                        @Param("month") int month);
 
+    // 카드혜택추천 모달용 데이터 조회
+    List<GatheringTransactionDto> selectDataForCardBenefitRecommend(String accountNumber);
+
     // 모임 거래내역 생성
     void insertGatheringTransaction(MemberTransactionDto memberTransactionDto);
 }

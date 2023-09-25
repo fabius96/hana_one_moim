@@ -68,4 +68,14 @@
         FETCH FIRST 5 ROWS ONLY
     </select>
 
+    <!-- 카드혜택추천 모달용 데이터 조회 -->
+    <select id="selectDataForCardBenefitRecommend" parameterType="String" resultMap="gatheringTransactionDto">
+        SELECT transaction_category_code, transaction_amount
+        FROM gathering_transaction
+        WHERE account_number = #{accountNumber}
+          AND transaction_category_code is not null
+          AND transaction_time >= ADD_MONTHS(SYSDATE, -6)
+        ORDER BY transaction_time DESC
+    </select>
+
 </mapper>

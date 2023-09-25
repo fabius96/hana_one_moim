@@ -143,3 +143,19 @@
     margin: 0;
     font-size: 13px;
 }
+
+.benefit-rate{
+    font-family: Hana2-Bold, sans-serif;
+    font-size: 20px;
+    color: #008375;
+}
+
+.no-margin{
+    margin : 0;
+}
+
+.strong-span{
+    font-family: Hana2-Bold, sans-serif;
+    font-size: 18px;
+    color: #008375;
+}

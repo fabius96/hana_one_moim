@@ -328,6 +328,7 @@ public class CommunityResponseController {
         modelAndView.setViewName("/community/community-card-benefit");
         modelAndView.addObject("gathering", communityInfoDto.getGatheringDto());
         modelAndView.addObject("cardBenefit", communityService.getCardBenefit(gatheringId));
+        modelAndView.addObject("recommendData", communityService.getDataForCardBenefitRecommend(gatheringId));
         modelAndView.addObject("gatheringId", gatheringId);
         modelAndView.addObject("gatheringMemberId", communityService.getGatheringMemberId(memberDto.getMemberId(), gatheringId));
         return modelAndView;
