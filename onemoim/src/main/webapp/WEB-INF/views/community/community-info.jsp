@@ -11,6 +11,13 @@
     <link rel="stylesheet" href="/css/common.css">
     <link rel="stylesheet" href="/css/community-info.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.4.0/kakao.min.js"
+            integrity="sha384-mXVrIX2T/Kszp6Z0aEWaA8Nm7J6/ZeWXbL8UpGRjKwWe56Srd/iyNmWMBhcItAjH"
+            crossorigin="anonymous"></script>
+    <script>
+        Kakao.init('ddb0b651f55ab377144ac1691a28206c');
+    </script>
+
 </head>
 
 <body data-context-path="${pageContext.request.contextPath}" data-gathering-id="${gathering.gatheringId}">
@@ -24,7 +31,7 @@
                 <p class="page-name">모임관리</p>
                 <div class="page-name-right">
                     <c:if test="${loggedInMemberId == gatheringLeaderId }">
-                        <button class="invite-button">모임원 초대</button>
+                        <button class="invite-button" id="kakaotalk-sharing-btn">모임원 초대</button>
                         <button class="edit-button">모임 정보 수정</button>
                     </c:if>
                 </div>
