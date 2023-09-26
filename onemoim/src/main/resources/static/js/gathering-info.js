@@ -50,3 +50,22 @@ function applicationGathering(gatheringId) {
         }
     });
 }
+
+// 가입신청 버튼(community-application용)
+function applicationCommunity(gatheringId) {
+    const contextPath = document.body.getAttribute('data-context-path');
+    const url = "/gathering/gathering-application";
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: { gatheringId: gatheringId },
+        success: function() {
+            alert("가입신청이 성공적으로 처리되었습니다.");
+            window.location.href = '/gathering/gathering-info';
+        },
+        error: function() {
+            console.log(url)
+            alert("가입신청에 실패했습니다.");
+        }
+    });
+}

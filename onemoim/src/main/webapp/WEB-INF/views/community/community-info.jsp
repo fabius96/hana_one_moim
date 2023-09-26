@@ -20,7 +20,10 @@
 
 </head>
 
-<body data-context-path="${pageContext.request.contextPath}" data-gathering-id="${gathering.gatheringId}">
+<body data-context-path="${pageContext.request.contextPath}"
+      data-gathering-id="${gathering.gatheringId}"
+      data-gathering-name="${gathering.gatheringName}"
+      data-member-name="${name}">
 
 <div class="except-footer">
     <jsp:include page="../includes/header_after_login.jsp"/>

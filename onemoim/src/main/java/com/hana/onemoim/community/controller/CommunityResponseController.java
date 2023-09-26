@@ -74,13 +74,33 @@ public class CommunityResponseController {
             return modelAndView;
         }
         modelAndView.setViewName("/community/community-info");
-
         CommunityInfoDto communityInfoDto = communityService.getCommunityInfo(gatheringId);
         modelAndView.addObject("gathering", communityInfoDto.getGatheringDto());
         modelAndView.addObject("gatheringId", communityInfoDto.getGatheringDto().getGatheringId());
         modelAndView.addObject("loggedInMemberId", memberDto.getMemberId());
+        modelAndView.addObject("name", memberDto.getName());
         modelAndView.addObject("gatheringLeaderId", communityInfoDto.getGatheringLeaderId());
         modelAndView.addObject("gatheringMembers", communityInfoDto.getGatheringMemberDtoList());
+        return modelAndView;
+    }
+
+    // 커뮤니티 가입신청 페이지 조회(카카오톡 공유로 접근 시)
+    @GetMapping("/community/{gatheringId}/application")
+    public ModelAndView showCommunityApgatheringIdplication(HttpSession httpSession,
+                                          HttpServletRequest httpServletRequest,
+                                          @PathVariable int gatheringId) {
+        ModelAndView modelAndView = new ModelAndView("/signin");
+
+        MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
+
+        if (memberDto == null) {
+            httpSession.setAttribute("destination", httpServletRequest.getRequestURI());
+            return modelAndView;
+        }
+        modelAndView.setViewName("/community/application");
+        CommunityInfoDto communityInfoDto = communityService.getCommunityInfo(gatheringId);
+        modelAndView.addObject("gathering", communityInfoDto.getGatheringDto());
+        modelAndView.addObject("gatheringId", communityInfoDto.getGatheringDto().getGatheringId());
         return modelAndView;
     }
 

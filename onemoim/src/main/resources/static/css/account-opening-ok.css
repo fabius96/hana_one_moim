@@ -17,6 +17,10 @@
     margin-bottom: 30px;
 }
 
+.application-text-container{
+    text-align: center;
+}
+
 .signup_ok_title {
     font-family: Hana2-Bold, sans-serif;
     font-size: 24px;

@@ -107,8 +107,11 @@ public class CommunityServiceImpl implements CommunityService {
     // 개별 커뮤니티 정보 조회
     @Override
     public CommunityInfoDto getCommunityInfo(int gatheringId) {
+        GatheringDto gatheringDto = gatheringMapper.selectGatheringByGatheringId(false, gatheringId);
+        gatheringDto.setGatheringCoverImageUrl(gatheringMapper.selectGatheringCoverImage(gatheringId));
+        gatheringDto.setGatheringLeaderName(memberMapper.selectNameByLeaderId(gatheringDto.getGatheringLeaderId()));
         return CommunityInfoDto.builder()
-                .gatheringDto(gatheringMapper.selectGatheringByGatheringId(false, gatheringId))
+                .gatheringDto(gatheringDto)
                 .gatheringLeaderId(gatheringMapper.selectGatheringLeaderId(gatheringId))
                 .gatheringMemberDtoList(findGatheringMemberByGatheringId(gatheringId))
                 .build();
