@@ -1,0 +1,41 @@
+.main-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #fff;
+    padding: 20px;
+}
+
+.outer-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 1000px;
+}
+
+.page-name {
+    display: flex;
+    font-family: Hana2-Bold, sans-serif;
+    font-size: 24px;
+}
+
+#calendar {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.fc-day-sat a {
+    color: blue;
+    text-decoration: none;
+}
+
+.fc-day-sun a {
+    color: red;
+    text-decoration: none;
+}
+
+.fc-daygrid-day-frame {
+    height: 115px !important;  /* 원하는 높이값으로 조절 */
+}

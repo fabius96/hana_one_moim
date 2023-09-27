@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hana.onemoim.member.mapper.MemberMapper">
+
+    <resultMap id="memberDto" type="com.hana.onemoim.member.dto.MemberDto">
+        <result column="member_id" property="memberId"/>
+        <result column="login_id" property="loginId"/>
+        <result column="gender_code" property="genderCode"/>
+        <result column="name" property="name"/>
+        <result column="email" property="email"/>
+        <result column="date_of_birth" property="dateOfBirth"/>
+        <result column="phone_number" property="phoneNumber"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="modified_at" property="modifiedAt"/>
+        <result column="password" property="password"/>
+        <result column="simple_password" property="simplePassword"/>
+        <result column="personal_id_number" property="personalIdNumber"/>
+        <result column="zip_code" property="zipCode"/>
+        <result column="address" property="address"/>
+        <result column="detail_address" property="detailAddress"/>
+    </resultMap>
+
+    <!-- 아이디 중복 확인 -->
+    <select id="countMemberByLoginId" resultType="int">
+        SELECT COUNT(*)
+        FROM member
+        WHERE login_id = #{loginId}
+    </select>
+
+    <!-- 회원가입  -->
+    <insert id="insertMember" parameterType="com.hana.onemoim.member.dto.SignupMemberDto">
+        INSERT INTO member
+        (login_id, gender_code, name, email, date_of_birth,
+         phone_number, password, simple_password, personal_id_number,
+         address, detail_address, zip_code)
+        values (#{loginId}, #{genderCode}, #{name}, #{email}, TO_DATE(#{dateOfBirth}, 'YYMMDD'),
+                #{phoneNumber}, #{password}, #{simplePassword}, #{personalIdNumber},
+                #{address}, #{detailAddress}, #{zipCode})
+    </insert>
+
+    <select id="findMemberByLoginIdAndPassword" resultMap="memberDto">
+        SELECT *
+        FROM member
+        WHERE login_id = #{loginId}
+          AND password = #{password}
+    </select>
+
+    <!-- 모임장 이름 조회 -->
+    <select id="selectNameByLeaderId" parameterType="int" resultType="String">
+        SELECT name
+        FROM member
+        WHERE member_id = #{gatheringLeaderID}
+    </select>
+
+    <!-- member_id 가져오기 -->
+    <select id="getNextMemberSeq" resultType="int">
+        SELECT member_seq.NEXTVAL
+        FROM DUAL
+    </select>
+
+</mapper>

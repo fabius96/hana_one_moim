@@ -1,0 +1,172 @@
+.main-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #fff;
+    padding: 20px;
+}
+
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 1000px;
+}
+
+.header-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 30px; /* 항목 간의 간격 */
+}
+
+.page-name {
+    font-family: Hana2-Bold, sans-serif;
+    font-size: 24px;
+}
+
+.chosen-page {
+    color: #008375;
+    font-size: 16px;
+}
+
+.unchosen-page {
+    color: #777777;
+    font-size: 16px;
+}
+
+.custom-accordion {
+    width: 100%;
+    max-width: 1000px;
+    margin: 10px auto;
+}
+
+.accordion-item {
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.accordion-header {
+    border-radius: 5px 5px 0 0;
+    margin: 0;
+}
+
+.accordion-button {
+    height: 45px;
+    font-family: Hana2-Medium, sans-serif;
+    font-size: 14px;
+    border-radius: 5px;
+    width: 100%;
+    text-align: left;
+    padding: 10px 15px;
+    border: none;
+    background-color: #2e374f;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.2s;
+    color: #ffffff;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 30px;
+}
+
+.account-nickname-text {
+    flex: 1; /* 남은 공간을 모두 차지하도록 설정 */
+    display: inline-block;
+}
+
+.button-img {
+    width: 15px;
+    height: 10px;
+    object-fit: cover;
+
+    margin-right: 10px;
+    margin-top: 1px;
+}
+
+
+.accordion-button:hover {
+    background-color: #2e354f;
+    color: #ffffff;
+}
+
+.accordion-button:focus {
+    box-shadow: none;
+}
+
+.accordion-collapse {
+    border-radius: 5px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+    border-top: 1px solid #ccc;
+}
+
+.accordion-body {
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    font-family: Hana2-Regular, sans-serif;
+    border-radius: 0 0 5px 5px;
+    padding: 10px 15px;
+    background-color: #fff;
+}
+
+.accordion-body-right {
+    display: flex;
+    justify-content: right;
+
+    gap: 10px;
+}
+
+.money {
+    font-family: Hana2-Medium, sans-serif;
+    font-size: 16px;;
+
+    padding-right: 10px;
+}
+
+.transaction-button, .history-button {
+    margin-top: 7px;
+    width: 70px;
+    height: 35px;
+    overflow: hidden;
+}
+
+.transaction-button {
+    background-color: #008375;
+    border: none;
+    color: #ffffff;
+    border-radius: 2px;
+}
+
+.history-button {
+    background-color: #ffffff;
+    border: 1px solid #008375;
+    color: #008375;
+    border-radius: 2px
+}
+
+.button-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-family: Hana2-Regular, sans-serif;
+
+    border: none;
+    background: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    -webkit-appearance: none; /* 웹킷 기반 브라우저(예: Chrome, Safari)에서 기본 스타일 제거 */
+    -moz-appearance: none; /* 파이어폭스에서 기본 스타일 제거 */
+    appearance: none; /* 표준 속성 */
+    width: 100%;
+    height: 100%;
+}

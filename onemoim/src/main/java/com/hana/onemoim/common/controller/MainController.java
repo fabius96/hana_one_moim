@@ -6,6 +6,7 @@ import com.hana.onemoim.member.dto.MemberDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
@@ -24,7 +25,7 @@ public class MainController {
 
     @GetMapping({"/after-login-main","/"})
     public ModelAndView showAfterLoginMain(HttpSession httpSession) {
-        ModelAndView modelAndView = new ModelAndView("/after-login-main");
+        ModelAndView modelAndView = new ModelAndView("after-login-main");
         MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
         List<GatheringDto> gatheringDtoList;
         if (memberDto == null) {
@@ -34,5 +35,13 @@ public class MainController {
         }
         modelAndView.addObject("gatherings", gatheringDtoList);
         return modelAndView;
+    }
+
+    @GetMapping("/test")
+    public String testApi() {
+        RestTemplate restTemplate = new RestTemplate();
+        String result = restTemplate.getForObject("http://localhost:8081/api", String.class);
+        System.out.println(result);
+        return "API 응답: " + result;
     }
 }

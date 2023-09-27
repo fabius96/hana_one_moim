@@ -2,8 +2,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-left: 100px;
-    padding-right: 130px;
+    padding-left: 200px;
+    padding-right: 200px;
     background: #fff;
     border-bottom: 1px solid #008375;
     color: #000;
@@ -13,7 +13,8 @@
 .logo-container {
     display: flex;
     align-items: center;
-    gap: 10px; /* 로고와 텍스트 사이의 간격 */
+    gap: 10px;
+    margin-top: 7px;
 }
 
 .header img {
@@ -23,10 +24,10 @@
 }
 
 p, a {
-    font-family: Hana2-Regular, sans-serif;
+    font-family: Hana2-Medium, sans-serif;
 }
 
-.title {
+.service-title {
     font-family: Hana2-Bold, sans-serif;
     font-size: 20px;
 }
@@ -35,31 +36,49 @@ p, a {
     width: 120px;
     height: 36px;
     position: absolute;
-    top: 30px;
     font-size: 16px;
+    top: 17px;
 }
 
-.menu-view {
-    left: 745px;
-}
-
-.menu-transfer {
+#menu-introduce {
     left: 865px;
 }
 
-.menu-products {
-    left: 985px;
+#menu-view {
+    left: 1025px;
 }
 
-.menu-moim {
-    left: 1125px;
+#menu-transfer {
+    left: 1145px;
+}
+
+#menu-products {
+    left: 1265px;
+}
+
+#menu-moim {
+    left: 1405px;
 }
 
 .logout-text {
+    font-family: Hana2CM, sans-serif;
     width: 120px;
-    height: 36px;
+    height: 10px;
     position: absolute;
-    left: 1225px;
-    top: 24px;
+    left: 1315px;
     font-size: 12px;
+    bottom: 48px;
+    text-align: end;
+}
+
+.member-name {
+    text-decoration: underline;
+    font-family: Hana2CM, sans-serif;
+    width: 120px;
+    height: 10px;
+    position: absolute;
+    left: 1265px;
+    font-size: 12px;
+    bottom: 48px;
+    text-align: end;
 }

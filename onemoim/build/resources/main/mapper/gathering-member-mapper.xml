@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hana.onemoim.community.mapper.GatheringMemberMapper">
+
+    <resultMap id="gatheringMemberDto" type="com.hana.onemoim.community.dto.GatheringMemberDto">
+        <result column="gathering_member_id" property="gatheringMemberId"/>
+        <result column="gathering_id" property="gatheringId"/>
+        <result column="member_id" property="memberId"/>
+        <result column="member_status_code" property="memberStatusCode"/>
+        <result column="member_name" property="memberName"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="modified_at" property="modifiedAt"/>
+    </resultMap>
+
+    <!-- 모임원 조회 -->
+    <select id="selectGatheringMemberByGatheringId" parameterType="int" resultMap="gatheringMemberDto">
+        SELECT *
+        FROM gathering_member
+        WHERE gathering_id = #{gathering_id}
+        ORDER BY created_at DESC
+    </select>
+
+    <!-- 모임원 상태 코드 확인 -->
+    <select id="isMemberStatusCodeActive" parameterType="int" resultType="int">
+        SELECT member_status_code
+        FROM gathering_member
+        WHERE gathering_id = #{gatheringId}
+          AND member_id = #{memberId}
+    </select>
+
+    <!-- 모임원 상태 코드 변경 -->
+    <update id="updateMemberStatusCode" parameterType="int">
+        UPDATE gathering_member
+        SET member_status_code = #{memberStatusCode},
+            modified_at        = SYSDATE
+        WHERE member_id = #{memberId}
+          AND gathering_id = #{gatheringId}
+    </update>
+
+    <!-- 모임원 이름 조회 -->
+    <select id="selectGatheringMemberName" parameterType="int" resultType="String">
+        SELECT member_name
+        FROM gathering_member
+        WHERE gathering_member_id = #{gatheringMemberId}
+    </select>
+
+    <!-- member_id 조회 -->
+    <select id="selectGatheringMemberId" parameterType="int" resultType="int">
+        SELECT gathering_member_id
+        FROM gathering_member
+        WHERE member_id = #{memberId}
+          AND gathering_id = #{gatheringId}
+    </select>
+
+    <!-- 모임원 수 확인 -->
+    <select id="countGatheringMemberByGatheringId" parameterType="int" resultType="int">
+        SELECT COUNT(gathering_member_id)
+        FROM gathering_member
+        WHERE gathering_id = #{gatheringId}
+    </select>
+
+</mapper>

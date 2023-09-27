@@ -1,0 +1,95 @@
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #fff;
+    padding: 60px;
+}
+
+.content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    width: 40%;
+    border-bottom: 1px solid #e5e5e5;
+
+    margin-bottom: 30px;
+}
+
+.application-text-container{
+    text-align: center;
+}
+
+.signup_ok_title {
+    font-family: Hana2-Bold, sans-serif;
+    font-size: 24px;
+    text-align: center; /* 좌우 중앙 정렬 */
+    margin-bottom: 20px;
+}
+
+.signup_ok_content {
+    font-size: 16px;
+    margin-bottom: 20px;
+    background-color: #f5f5f5; /* 연한 회색 */
+    padding: 20px 40px; /* 안쪽 여백 */
+    border-radius: 5px; /* 둥근 모서리 */
+}
+
+.button-container {
+    display: flex;
+    gap: 20px;
+}
+
+.inquiry-button {
+    width: 100px;
+    height: 40px;
+    background-color: #008375;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.transaction-button {
+    width: 100px;
+    height: 40px;
+    background-color: #2E354F;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-button {
+    width: 100px;
+    height: 40px;
+    background-color: #ffffff;
+    border: 1px solid #008375;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 100%;
+    width: 100%;
+    color: #fff;
+    font-size: 14px;
+    font-family: Hana2-Medium, sans-serif;
+    border: none;
+    background: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    appearance: none;
+    text-decoration: none;
+}
+
+.main-button .button-text {
+    color: #008375;
+}

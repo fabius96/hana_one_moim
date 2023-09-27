@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hana.onemoim.common.mapper.InterestMapper">
+
+    <!-- 관심사 등록 동적 쿼리 -->
+    <insert id="insertInterest" parameterType="com.hana.onemoim.common.dto.InterestDto">
+        INSERT INTO interest
+        <choose>
+            <!-- 회원 ID가 존재하면 회원 관심사로 인식 -->
+            <when test="memberId > 0">
+                (member_id, interest_name)
+                values (#{memberId}, #{interestName})
+            </when>
+            <!-- 모임 ID가 존재하면 모임 관심사로 인식 -->
+            <when test="gatheringId > 0">
+                (gathering_id, interest_name)
+                values (#{gatheringId}, #{interestName})
+            </when>
+        </choose>
+    </insert>
+
+    <!-- 모임 분류 조회 -->
+    <select id="selectGatheringIdFromInterest" parameterType="String" resultType="Integer">
+        SELECT gathering_id
+        FROM interest
+        WHERE interest_name = #{interest}
+          AND gathering_id IS NOT NULL
+    </select>
+
+    <!-- 모임 추천 -->
+    <select id="selectGatheringIdByMemberInterest" parameterType="int" resultType="Integer">
+        SELECT DISTINCT i.gathering_id
+        FROM interest i
+        <if test="memberId != 0">
+            WHERE i.interest_name IN (
+            SELECT interest_name
+            FROM interest
+            WHERE member_id = #{memberId}
+            )
+            AND i.gathering_id IS NOT NULL
+            AND i.gathering_id NOT IN (
+            SELECT gathering_id
+            FROM gathering_member
+            WHERE member_id = #{memberId}
+            )
+        </if>
+    </select>
+
+    <!-- 모임 분류 조회(GatheringId) -->
+    <select id="selectInterestNameByGatheringId" parameterType="int" resultType="String">
+        SELECT interest_name
+        FROM interest
+        WHERE gathering_id IS NOT NULL
+          AND gathering_id = #{gathering_id}
+    </select>
+</mapper>

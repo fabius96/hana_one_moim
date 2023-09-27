@@ -1,0 +1,175 @@
+.main-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.content-wrapper {
+    position: relative;
+    width: 1010px;
+}
+
+.page-name {
+    position: absolute;
+    font-family: Hana2-Bold, sans-serif;
+    font-size: 24px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.box-container {
+    width: 100%;
+    height: auto;
+    position: relative;
+    overflow: hidden;
+    margin-top: 80px;
+    margin-bottom: 20px;
+    flex-direction: column;
+    align-items: start;
+
+    border: 0.5px solid #cccccc;
+}
+
+.header-text {
+    font-family: Hana2-Bold, sans-serif;
+    font-size: 20px;
+    text-align: left;
+    color: #000;
+
+    padding-left: 20px;
+}
+
+.sub-text {
+    font-family: Hana2-Medium, sans-serif;
+    font-size: 16px;
+    text-align: left;
+    color: #000;
+
+    padding-left: 20px
+}
+
+.select-area-line {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.benefit-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 0.5px solid transparent;
+    width: 250px;
+    height: 250px;
+    border-radius: 3px;
+    margin: 1px;
+}
+
+.benefit-image {
+    width: 80px;
+    height: 80px;
+}
+
+.benefit-title {
+    font-family: Hana2-Bold, sans-serif;
+    font-size: 20px;
+    margin: 10px;
+}
+
+.benefit-description {
+    margin: 0;
+    font-size: 15px;
+}
+
+.slider-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    width: 100%;
+}
+
+/* 기본 슬라이더 디자인 */
+.slider {
+    -webkit-appearance: none; /* 웹킷 기반 브라우저 디자인 제거 */
+    appearance: none; /* 기본 디자인 제거 */
+    width: 70%; /* 너비 */
+    height: 5px; /* 높이 */
+    background: #ddd; /* 배경색 */
+    outline: none; /* 아웃라인 제거 */
+    cursor: pointer; /* 마우스 아이콘 설정 */
+}
+
+/* 슬라이더 핸들 디자인 (웹킷 기반 브라우저) */
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background: #7DEDF3;
+    border: 1px #FFFFFF;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background .2s ease-in-out;
+}
+
+#sliderValue1, #sliderValue2, #sliderValue3, #sliderValue4, #sliderValue5
+,#sliderValue6 ,#sliderValue7 ,#sliderValue8 ,#sliderValue9 ,#sliderValue10{
+    font-family: Hana2-Bold, sans-serif;
+    font-size: 20px;
+}
+
+.card-setting-button {
+    margin-top: 7px;
+    width: 200px;
+    height: 50px;
+    overflow: hidden;
+    background-color: #008375;
+    border: none;
+    color: #ffffff;
+    border-radius: 2px;
+
+    margin-left: 400px;
+    margin-bottom: 50px;
+}
+
+.button-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-family: Hana2-Bold, sans-serif;
+
+    border: none;
+    background: none;
+    border-radius: 3px;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    -webkit-appearance: none; /* 웹킷 기반 브라우저(예: Chrome, Safari)에서 기본 스타일 제거 */
+    appearance: none; /* 표준 속성 */
+    width: 100%;
+    height: 100%;
+}
+
+.progress-bar{
+    width: 170px;
+    position: absolute;
+    top: 55px;
+    left: 835px;
+}
+
+.progress-text{
+    font-family: Hana2-Bold, sans-serif;
+    font-size: 12px;
+    position: absolute;
+    left: 800px;
+    top: 55px;
+    margin: 0;
+    color: #00A296;
+}

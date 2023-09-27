@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hana.onemoim.account.mapper.TransactionMapper">
+
+    <resultMap id="memberTransactionDto" type="com.hana.onemoim.account.dto.MemberTransactionDto">
+        <result column="transaction_identification_number" property="id"/>
+        <result column="account_number" property="accountNumber"/>
+        <result column="other_accountNumber" property="otherAccountNumber"/>
+        <result column="transaction_type_code" property="transactionTypeCode"/>
+        <result column="transaction_amount" property="transactionAmount"/>
+        <result column="balance_after_transaction" property="balanceAfterTransaction"/>
+        <result column="transaction_time" property="transactionTime"/>
+        <result column="memo" property="memo"/>
+    </resultMap>
+
+    <!-- 거레내역생성  -->
+    <insert id="insertTransaction" parameterType="com.hana.onemoim.account.dto.MemberTransactionDto">
+        INSERT INTO member_transaction
+        (account_number, other_account_number, transaction_type_code, transaction_amount, balance_after_transaction,
+         memo)
+        values (#{accountNumber}, #{otherAccountNumber}, #{transactionTypeCode}, #{transactionAmount},
+                #{balanceAfterTransaction}, #{memo})
+    </insert>
+
+    <!-- 거래내역조회 -->
+    <select id="selectTransactionByAccountNumber" parameterType="map"
+            resultMap="memberTransactionDto">
+        SELECT TO_CHAR(transaction_time, 'YY-MM-DD HH24:MI:SS') as transaction_time,
+               transaction_type_code,
+               memo,
+               transaction_amount,
+               balance_after_transaction
+        FROM member_transaction
+        WHERE account_number = #{accountNumber}
+          AND EXTRACT(MONTH FROM transaction_time) = #{month}
+          AND EXTRACT(YEAR FROM transaction_time) = EXTRACT(YEAR FROM SYSDATE)
+        ORDER BY transaction_time desc
+    </select>
+
+</mapper>

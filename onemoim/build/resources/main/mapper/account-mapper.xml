@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hana.onemoim.account.mapper.AccountMapper">
+
+    <resultMap id="accountDto" type="com.hana.onemoim.account.dto.AccountDto">
+        <result column="account_number" property="accountNumber"/>
+        <result column="bank_code" property="bankCode"/>
+        <result column="account_status_code" property="accountStatusCode"/>
+        <result column="account_type_code" property="accountTypeCode"/>
+        <result column="balance" property="balance"/>
+        <result column="openbankig_registered" property="openbankingRegistered"/>
+        <result column="account_nickname" property="accountNickname"/>
+    </resultMap>
+
+    <!-- 계좌개설  -->
+    <insert id="insertAccount" parameterType="com.hana.onemoim.account.dto.AccountDto">
+        INSERT INTO member_account_info
+        (account_number, member_id, bank_code, account_status_code, account_type_code,
+         account_password, account_nickname)
+        values (#{accountNumber}, #{memberId}, #{bankCode}, #{accountStatusCode},
+                #{accountTypeCode}, #{accountPassword}, #{accountNickname})
+    </insert>
+
+    <!-- 전체계좌조회 -->
+    <select id="selectAccountByPersonalIdNumber" parameterType="String" resultMap="accountDto">
+        SELECT *
+        FROM member_account_info
+        WHERE member_id IN (SELECT member_id
+                            FROM member
+                            WHERE personal_id_number = #{personalIdNumber})
+    </select>
+
+    <!-- 계좌이체(출금) -->
+    <update id="updateAccountBalance" parameterType="com.hana.onemoim.account.dto.AccountTransferDto">
+        UPDATE member_account_info
+        SET balance = balance - #{amount}
+        WHERE account_number = #{accountNumber}
+    </update>
+
+    <!-- 모임계좌 계좌이체(출금) -->
+    <update id="updateGatheringAccountBalance" parameterType="com.hana.onemoim.account.dto.AccountTransferDto">
+        UPDATE gathering_account_info
+        SET balance = balance - #{amount}
+        WHERE account_number = #{accountNumber}
+    </update>
+
+    <!-- 계좌이체(입금) -->
+    <update id="updateAccountBalanceDeposit" parameterType="com.hana.onemoim.account.dto.AccountTransferDto">
+        UPDATE member_account_info
+        SET balance = balance + #{amount}
+        WHERE account_number = #{otherAccountNumber}
+    </update>
+
+    <!-- 모임회비납부(입금) -->
+    <update id="updateGatheringAccountBalanceDeposit" parameterType="com.hana.onemoim.account.dto.AccountTransferDto">
+        UPDATE gathering_account_info
+        SET balance = balance + #{amount}
+        WHERE account_number = #{otherAccountNumber}
+    </update>
+
+    <!-- 잔액조회 -->
+    <select id="selectBalance" parameterType="com.hana.onemoim.account.dto.AccountTransferDto" resultType="int">
+        SELECT balance
+        FROM member_account_info
+        WHERE account_number = #{accountNumber}
+    </select>
+
+    <!-- 잔액조회 -->
+    <select id="selectBalanceForGatheringAccountWithdrawal" parameterType="com.hana.onemoim.account.dto.AccountTransferDto" resultType="int">
+        SELECT balance
+        FROM member_account_info
+        WHERE account_number = #{otherAccountNumber}
+    </select>
+
+    <!-- 모임계좌 잔액조회 -->
+    <select id="selectGatheringBalance" parameterType="int" resultType="int">
+        SELECT balance
+        FROM gathering_account_info
+        WHERE gathering_id = #{gatheringId}
+    </select>
+
+    <!-- 모임계좌 잔액조회 -->
+    <select id="selectGatheringAccountBalance" parameterType="com.hana.onemoim.account.dto.AccountTransferDto" resultType="int">
+        SELECT balance
+        FROM gathering_account_info
+        WHERE account_number = #{accountNumber}
+    </select>
+
+    <!-- 모임계좌개설  -->
+    <insert id="insertGatheringAccount" parameterType="com.hana.onemoim.account.dto.GatheringAccountDto">
+        INSERT INTO gathering_account_info
+            (account_number, gathering_id, account_password, account_nickname)
+        values (#{accountNumber}, #{gatheringId}, #{accountPassword}, #{accountNickname})
+    </insert>
+
+    <!-- 모임계좌번호조회 -->
+    <select id="selectAccountNumberByGatheringId" parameterType="int" resultType="String">
+        SELECT account_number
+        FROM gathering_account_info
+        WHERE gathering_id = #{gatheringId}
+    </select>
+</mapper>

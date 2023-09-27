@@ -39,7 +39,7 @@ dependencies {
 
 	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
 
-	implementation 'com.oracle.ojdbc:ucp'
+	implementation 'com.oracle.ojdbc:ucp:19.3.0.0'
 	implementation 'com.oracle.database.security:osdt_cert'
 	implementation 'com.oracle.database.security:oraclepki'
 	implementation 'com.oracle.database.security:osdt_core'
@@ -48,7 +48,8 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
 	// JSP
-	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+//	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+	providedCompile 'org.apache.tomcat.embed:tomcat-embed-jasper'
 	implementation 'javax.servlet:jstl:1.2'
 
 	// SMTP
