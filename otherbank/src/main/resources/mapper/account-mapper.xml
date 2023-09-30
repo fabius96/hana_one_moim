@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bank.shinhan.mapper.AccountMapper">
+
+    <resultMap id="accountDto" type="com.bank.shinhan.dto.AccountDto">
+        <result column="account_number" property="accountNumber"/>
+        <result column="bank_code" property="bankCode"/>
+        <result column="account_status_code" property="accountStatusCode"/>
+        <result column="account_type_code" property="accountTypeCode"/>
+        <result column="balance" property="balance"/>
+        <result column="openbanking_registered" property="openbankingRegistered"/>
+        <result column="account_nickname" property="accountNickname"/>
+    </resultMap>
+
+    <!--전체계좌조회-->
+    <select id="selectAccountByPersonalIdNumber" parameterType="String" resultMap="accountDto">
+        SELECT *
+        FROM outer_member_account_info
+        WHERE member_id IN (SELECT member_id
+                            FROM member
+                            WHERE personal_id_number = #{personalIdNumber})
+        AND openbanking_registered ='Y'
+    </select>
+
+</mapper>

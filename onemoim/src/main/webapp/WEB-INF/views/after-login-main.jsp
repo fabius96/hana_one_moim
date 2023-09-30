@@ -56,7 +56,9 @@
                     </div>
 
                     <div class="big-link-button" id="link-button-openbanking">
-                        <button type="submit" class="link-button-text" id="link-button-text-openbanking">오픈뱅킹</button>
+                        <button type="submit" class="link-button-text" id="link-button-text-openbanking"
+                                onclick="location.href='${pageContext.request.contextPath}/openbanking'">오픈뱅킹
+                        </button>
                     </div>
                 </div>
                 <div class="gathering-container">
@@ -166,7 +168,7 @@
     <div class="second-recommend-area">
         <div class="second-recommend-area-title">
             <p class="second-area-title">이런 모임은 어때요?</p>
-            <p class="second-area-link"> <a href="/gathering/gathering-recommend">모두보기 ></a></p>
+            <p class="second-area-link"><a href="/gathering/gathering-recommend">모두보기 ></a></p>
         </div>
         <c:forEach var="gatherings" items="${gatherings}">
             <div class="second-area-item">
@@ -180,7 +182,7 @@
                             ${gatherings.gatheringDescription}
                     </div>
                     <button class="button-container" data-gathering-id="${gatherings.gatheringId}"
-                         onclick="applicationGathering('${gatherings.gatheringId}')">
+                            onclick="applicationGathering('${gatherings.gatheringId}')">
                         <a class="area-button-text">가입신청</a>
                     </button>
                 </div>
