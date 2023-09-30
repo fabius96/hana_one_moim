@@ -11,10 +11,33 @@ $(document).ready(function () {
             <tr class="account-item">
                 <td>${accountDto.accountNickname}</td>
                 <td>${bankName}</td> 
-                <td>${formatAccountNumber(accountDto.accountNumber)}</td>
-                <td><input type="checkbox" ${accountDto.openbankingRegistered === 'Y' ? 'checked' : ''} /></td>
+                <td class="account-number" data-raw-number="${accountDto.accountNumber}">
+                    ${formatAccountNumber(accountDto.accountNumber)}
+                </td>
+                <td><input type="checkbox" class="account-checkbox" /></td>
             </tr>`;
         $('.account-content').append(accountRow);
+    });
+
+    // 연결해제 버튼 클릭 이벤트
+    $('.delete-button').click(function () {
+        // 모든 선택된 체크박스를 찾아서 반복
+        $('.account-checkbox:checked').each(function () {
+            // 계좌번호를 가져옴
+            const accountNumber = $(this).closest('tr').find('.account-number').data('raw-number');
+
+            // PUT 요청을 보냄
+            $.ajax({
+                url: 'http://localhost:8081/openbanking/disconnect-account?accountNumber=' + accountNumber,
+                type: 'PUT',
+                success: function (response) {
+                    alert('계좌 연결이 해제되었습니다.');
+                },
+                error: function (error) {
+                    alert('계좌 연결 해제에 실패했습니다.');
+                }
+            });
+        });
     });
 });
 

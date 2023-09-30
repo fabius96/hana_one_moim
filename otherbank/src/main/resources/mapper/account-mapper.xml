@@ -22,4 +22,11 @@
         AND openbanking_registered ='Y'
     </select>
 
+    <!-- 오픈뱅킹연결해제 -->
+    <update id="updateOpenbankingRegistered" parameterType="String">
+        UPDATE outer_member_account_info
+        SET openbanking_registered = 'N'
+        WHERE account_number = #{accountNumber}
+    </update>
+
 </mapper>

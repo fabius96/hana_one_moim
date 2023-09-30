@@ -8,7 +8,6 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,9 +19,9 @@ import java.util.List;
 @RestController
 public class OpenBankingController {
 
-    // 오픈뱅킹 페이지 조회(로그인 O)
+    // 오픈뱅킹 연동계좌 조회 페이지 조회(로그인 O)
     @GetMapping("/openbanking")
-    public ModelAndView openAccount(HttpSession httpSession,
+    public ModelAndView showOpenbanking(HttpSession httpSession,
                                     HttpServletRequest httpServletRequest) throws JsonProcessingException {
         ModelAndView modelAndView = new ModelAndView("/signin");
         MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
@@ -47,12 +46,31 @@ public class OpenBankingController {
         return modelAndView;
     }
 
-    // 오픈뱅킹 계좌조회 메서드
-    @GetMapping("/openbanking/get-account-list")
-    public List<AccountDto> handleApiRequest(@RequestParam String personalIdNumber) {
-        RestTemplate restTemplate = new RestTemplate();
-        String url = "http://localhost:8081/openbanking/get-account-list?personalIdNumber=" + personalIdNumber;
-        List<AccountDto> accountDtoList = restTemplate.getForObject(url, List.class);
-        return accountDtoList;
+    // 오픈뱅킹 어카운트인포 페이지 조회(로그인 O)
+    @GetMapping("/openbanking/account-info")
+    public ModelAndView showAccountInfo(HttpSession httpSession,
+                                    HttpServletRequest httpServletRequest) throws JsonProcessingException {
+        ModelAndView modelAndView = new ModelAndView("/signin");
+        MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
+
+        if (memberDto == null) {
+            httpSession.setAttribute("destination", httpServletRequest.getRequestURI());
+            return modelAndView;
+        }
+//        RestTemplate restTemplate = new RestTemplate();
+//        String url = "http://localhost:8081/openbanking/get-account-list?personalIdNumber=" + memberDto.getPersonalIdNumber();
+//        ResponseEntity<List<AccountDto>> response = restTemplate.exchange(
+//                url,
+//                HttpMethod.GET,
+//                null,
+//                new ParameterizedTypeReference<List<AccountDto>>() {}
+//        );
+//        List<AccountDto> accountDtoList = response.getBody();
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        String accountDtoListAsJson = objectMapper.writeValueAsString(accountDtoList);
+//        modelAndView.addObject("accountDtoList", accountDtoListAsJson);
+        modelAndView.setViewName("/account/account-info");
+        return modelAndView;
     }
+
 }

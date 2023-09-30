@@ -17,4 +17,10 @@ public class OpenBankingServiceImpl implements OpenBankingService{
     public List<AccountDto> getAllAccount(String personalIdNumber) {
         return accountMapper.selectAccountByPersonalIdNumber(personalIdNumber);
     }
+
+    // 오픈뱅킹 연결해제 메서드
+    @Override
+    public void updateOpenbankingRegistered(String accountNumber) {
+        accountMapper.updateOpenbankingRegistered(accountNumber);
+    }
 }

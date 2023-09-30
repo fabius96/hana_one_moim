@@ -19,7 +19,7 @@
     <div class="main-container">
 
         <div class="header-container">
-            <p class="page-name">오픈뱅킹</p>
+            <p class="page-name">어카운트인포</p>
         </div>
         <div class="content-container">
             <div class="content-header">
@@ -32,6 +32,7 @@
                     <th class="left-title">상품명</th>
                     <th>금융기관</th>
                     <th>계좌번호</th>
+                    <th>잔액</th>
                     <th class="right-title">선택</th>
                 </tr>
                 </thead>
@@ -41,10 +42,10 @@
 
             <div class="button-wrapper">
                 <div class="button-container">
-                    <button class="delete-button">연결해제</button>
                     <button class="registration-button"
-                            onclick="location.href='${pageContext.request.contextPath}/openbanking/account-info'">계좌추가
+                            onclick="location.href='${pageContext.request.contextPath}/openbanking/account-info'">계좌등록
                     </button>
+                    <button class="delete-button">이전으로</button>
                 </div>
             </div>
 
