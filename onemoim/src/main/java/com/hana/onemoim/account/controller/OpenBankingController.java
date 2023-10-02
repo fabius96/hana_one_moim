@@ -73,4 +73,28 @@ public class OpenBankingController {
         return modelAndView;
     }
 
+
+    // 계좌조회(오픈뱅킹-타행) 페이지 조회(로그인 O)
+    @GetMapping("/account/account-info-other")
+    public ModelAndView showAccountInfoOther(HttpSession httpSession, HttpServletRequest httpServletRequest) throws JsonProcessingException {
+        ModelAndView modelAndView = new ModelAndView("signin");
+        MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
+
+        if (memberDto == null) {
+            httpSession.setAttribute("destination", httpServletRequest.getRequestURI());
+            return modelAndView;
+        }
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "http://localhost:8081/openbanking/get-registered-account-list?personalIdNumber=" + memberDto.getPersonalIdNumber();
+        ResponseEntity<List<AccountDto>> response = restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<AccountDto>>() {}
+        );
+        List<AccountDto> accountDtoList = response.getBody();
+        modelAndView.addObject("accounts", accountDtoList);
+        modelAndView.setViewName("/account/account-info-other");
+        return modelAndView;
+    }
 }
