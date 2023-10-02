@@ -76,9 +76,14 @@
     text-align: center;
 }
 
-.account-table th:nth-child(4), .account-table td:nth-child(4) {
+.account-table th:nth-child(4) {
     width: 25%; /* 잔액 */
-    text-align: center;
+
+}
+
+.account-table td:nth-child(4) {
+    color: #008375;
+    text-align: right; /* 잔액 */
 }
 
 .account-table th:nth-child(5), .account-table td:nth-child(5) {

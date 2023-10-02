@@ -31,7 +31,7 @@ public class OpenBankingController {
             return modelAndView;
         }
         RestTemplate restTemplate = new RestTemplate();
-        String url = "http://localhost:8081/openbanking/get-account-list?personalIdNumber=" + memberDto.getPersonalIdNumber();
+        String url = "http://localhost:8081/openbanking/get-registered-account-list?personalIdNumber=" + memberDto.getPersonalIdNumber();
         ResponseEntity<List<AccountDto>> response = restTemplate.exchange(
                 url,
                 HttpMethod.GET,
@@ -57,18 +57,18 @@ public class OpenBankingController {
             httpSession.setAttribute("destination", httpServletRequest.getRequestURI());
             return modelAndView;
         }
-//        RestTemplate restTemplate = new RestTemplate();
-//        String url = "http://localhost:8081/openbanking/get-account-list?personalIdNumber=" + memberDto.getPersonalIdNumber();
-//        ResponseEntity<List<AccountDto>> response = restTemplate.exchange(
-//                url,
-//                HttpMethod.GET,
-//                null,
-//                new ParameterizedTypeReference<List<AccountDto>>() {}
-//        );
-//        List<AccountDto> accountDtoList = response.getBody();
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        String accountDtoListAsJson = objectMapper.writeValueAsString(accountDtoList);
-//        modelAndView.addObject("accountDtoList", accountDtoListAsJson);
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "http://localhost:8081/openbanking/get-account-list?personalIdNumber=" + memberDto.getPersonalIdNumber();
+        ResponseEntity<List<AccountDto>> response = restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<AccountDto>>() {}
+        );
+        List<AccountDto> accountDtoList = response.getBody();
+        ObjectMapper objectMapper = new ObjectMapper();
+        String accountDtoListAsJson = objectMapper.writeValueAsString(accountDtoList);
+        modelAndView.addObject("accountDtoList", accountDtoListAsJson);
         modelAndView.setViewName("/account/openbanking-account-info");
         return modelAndView;
     }

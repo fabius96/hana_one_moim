@@ -61,3 +61,7 @@ a {
 .except-footer {
     flex: 1 0 auto;
 }
+
+input[type=checkbox], input[type=radio]  {
+    accent-color: #008375;
+}

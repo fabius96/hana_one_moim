@@ -42,10 +42,11 @@
 
             <div class="button-wrapper">
                 <div class="button-container">
-                    <button class="registration-button"
-                            onclick="location.href='${pageContext.request.contextPath}/openbanking/account-info'">계좌등록
+                    <button class="delete-button"
+                            onclick="location.href='${pageContext.request.contextPath}/openbanking'">이전으로</button>
+                    <button class="registration-button">계좌등록
                     </button>
-                    <button class="delete-button">이전으로</button>
+
                 </div>
             </div>
 
@@ -56,6 +57,6 @@
 </div>
 
 <jsp:include page="../includes/footer.jsp"/>
-<script src="/js/openbanking.js"></script>
+<script src="/js/openbanking-account-info.js"></script>
 </body>
 </html>

@@ -14,20 +14,22 @@ $(document).ready(function () {
                 <td class="account-number" data-raw-number="${accountDto.accountNumber}">
                     ${formatAccountNumber(accountDto.accountNumber)}
                 </td>
-                <td><input type="checkbox" class="account-checkbox" /></td>
+                <td class="money">${formatNumberWithCommas(accountDto.balance)}원</td>
+                </td>
+                 <td><input type="checkbox" ${accountDto.openbankingRegistered === 'Y' ? 'checked disabled' : ''} class="account-info-checkbox"/></td>
             </tr>`;
         $('.account-content').append(accountRow);
     });
 
     // 연결해제 버튼 클릭 이벤트
-    $('.delete-button').click(async function () {
-        const checkboxes = $('.account-checkbox:checked');
+    $('.registration-button').click(async function () {
+        const checkboxes = $('.account-info-checkbox:checked');
         const promises = [];
 
         checkboxes.each(function () {
             const accountNumber = $(this).closest('tr').find('.account-number').data('raw-number');
             const promise = $.ajax({
-                url: 'http://localhost:8081/openbanking/disconnect-account?accountNumber=' + accountNumber,
+                url: 'http://localhost:8081/openbanking/registration-account?accountNumber=' + accountNumber,
                 type: 'PUT'
             });
             promises.push(promise);
@@ -35,14 +37,13 @@ $(document).ready(function () {
 
         try {
             await Promise.all(promises);
-            alert('계좌 연결이 성공적으로 해제되었습니다.');
+            alert('계좌 연결이 성공적으로 완료되었습니다.');
         } catch (error) {
-            alert('계좌 연결 해제에 실패했습니다.');
+            alert('계좌 연결에 실패했습니다.');
         } finally {
             location.reload();
         }
     });
-
 });
 
 // bankCode를 기반으로 은행 이름을 반환하는 함수
@@ -59,6 +60,11 @@ function getBankName(bankCode) {
         default:
             return '알 수 없는 은행';
     }
+}
+
+// 숫자 포맷 함수
+function formatNumberWithCommas(number) {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 // 계좌번호 format 함수

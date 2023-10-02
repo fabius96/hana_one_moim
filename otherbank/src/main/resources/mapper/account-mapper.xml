@@ -12,8 +12,8 @@
         <result column="account_nickname" property="accountNickname"/>
     </resultMap>
 
-    <!--전체계좌조회-->
-    <select id="selectAccountByPersonalIdNumber" parameterType="String" resultMap="accountDto">
+    <!--오픈뱅킹 연결된 타행계좌조회-->
+    <select id="selectRegisteredAccountByPersonalIdNumber" parameterType="String" resultMap="accountDto">
         SELECT *
         FROM outer_member_account_info
         WHERE member_id IN (SELECT member_id
@@ -22,10 +22,26 @@
         AND openbanking_registered ='Y'
     </select>
 
+    <!--전체계좌조회-->
+    <select id="selectAccountByPersonalIdNumber" parameterType="String" resultMap="accountDto">
+        SELECT *
+        FROM outer_member_account_info
+        WHERE member_id IN (SELECT member_id
+                            FROM member
+                            WHERE personal_id_number = #{personalIdNumber})
+    </select>
+
     <!-- 오픈뱅킹연결해제 -->
     <update id="updateOpenbankingRegistered" parameterType="String">
         UPDATE outer_member_account_info
         SET openbanking_registered = 'N'
+        WHERE account_number = #{accountNumber}
+    </update>
+
+    <!-- 오픈뱅킹연결 -->
+    <update id="updateOpenbankingRegisteredTrue" parameterType="String">
+        UPDATE outer_member_account_info
+        SET openbanking_registered = 'Y'
         WHERE account_number = #{accountNumber}
     </update>
 

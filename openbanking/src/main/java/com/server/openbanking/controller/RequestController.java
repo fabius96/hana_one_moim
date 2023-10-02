@@ -13,6 +13,21 @@ import java.util.Map;
 @RestController
 public class RequestController {
 
+    // 오픈뱅킹 연결된 타행계좌조회 메서드
+    @GetMapping("/openbanking/get-registered-account-list")
+    public List<Map<String, Object>> getRegisteredAccountList(@RequestParam String personalIdNumber) {
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "http://localhost:8082/openbanking/get-registered-account-list?personalIdNumber=" + personalIdNumber;
+        ResponseEntity<List<Map<String, Object>>> response = restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<Map<String, Object>>>() {
+                }
+        );
+        return response.getBody();
+    }
+
     // 오픈뱅킹 계좌조회 메서드
     @GetMapping("/openbanking/get-account-list")
     public List<Map<String, Object>> getAccountList(@RequestParam String personalIdNumber) {
@@ -22,7 +37,8 @@ public class RequestController {
                 url,
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<List<Map<String, Object>>>() {}
+                new ParameterizedTypeReference<List<Map<String, Object>>>() {
+                }
         );
         return response.getBody();
     }
@@ -33,6 +49,25 @@ public class RequestController {
     public ResponseEntity<String> putOpenbankingRegistered(@RequestParam String accountNumber) {
         RestTemplate restTemplate = new RestTemplate();
         String url = "http://localhost:8082/openbanking/disconnect-account?accountNumber=" + accountNumber;
+
+        HttpEntity<String> entity = new HttpEntity<>(null);
+
+        ResponseEntity<String> response = restTemplate.exchange(
+                url,
+                HttpMethod.PUT,
+                entity,
+                String.class
+        );
+
+        return new ResponseEntity<>(response.getBody(), response.getStatusCode());
+    }
+
+    // 오픈뱅킹 연결 메서드
+    @CrossOrigin(origins = "http://localhost:8080")
+    @PutMapping("/openbanking/registration-account")
+    public ResponseEntity<String> putOpenbankingRegisteredTrue(@RequestParam String accountNumber) {
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "http://localhost:8082/openbanking/registration-account?accountNumber=" + accountNumber;
 
         HttpEntity<String> entity = new HttpEntity<>(null);
 

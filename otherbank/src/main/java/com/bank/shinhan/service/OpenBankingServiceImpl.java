@@ -9,10 +9,16 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class OpenBankingServiceImpl implements OpenBankingService{
+public class OpenBankingServiceImpl implements OpenBankingService {
     private final AccountMapper accountMapper;
 
     // 오픈뱅킹 계좌조회 메서드
+    @Override
+    public List<AccountDto> getAllRegisteredAccount(String personalIdNumber) {
+        return accountMapper.selectRegisteredAccountByPersonalIdNumber(personalIdNumber);
+    }
+
+    // 전체계좌조회 메서드
     @Override
     public List<AccountDto> getAllAccount(String personalIdNumber) {
         return accountMapper.selectAccountByPersonalIdNumber(personalIdNumber);
@@ -22,5 +28,11 @@ public class OpenBankingServiceImpl implements OpenBankingService{
     @Override
     public void updateOpenbankingRegistered(String accountNumber) {
         accountMapper.updateOpenbankingRegistered(accountNumber);
+    }
+
+    // 오픈뱅킹 연결 메서드
+    @Override
+    public void updateOpenbankingRegisteredTrue(String accountNumber) {
+        accountMapper.updateOpenbankingRegisteredTrue(accountNumber);
     }
 }
