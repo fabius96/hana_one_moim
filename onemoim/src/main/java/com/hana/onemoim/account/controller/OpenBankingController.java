@@ -69,7 +69,7 @@ public class OpenBankingController {
 //        ObjectMapper objectMapper = new ObjectMapper();
 //        String accountDtoListAsJson = objectMapper.writeValueAsString(accountDtoList);
 //        modelAndView.addObject("accountDtoList", accountDtoListAsJson);
-        modelAndView.setViewName("/account/account-info");
+        modelAndView.setViewName("/account/openbanking-account-info");
         return modelAndView;
     }
 

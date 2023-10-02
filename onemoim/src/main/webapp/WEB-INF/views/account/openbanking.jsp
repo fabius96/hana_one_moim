@@ -42,8 +42,7 @@
             <div class="button-wrapper">
                 <div class="button-container">
                     <button class="delete-button">연결해제</button>
-                    <button class="registration-button"
-                            onclick="location.href='${pageContext.request.contextPath}/openbanking/account-info'">계좌추가
+                    <button class="registration-button">계좌추가
                     </button>
                 </div>
             </div>
@@ -53,7 +52,7 @@
 
 
 </div>
-
+<jsp:include page="../includes/openbanking-modal.jsp"/>
 <jsp:include page="../includes/footer.jsp"/>
 <script src="/js/openbanking.js"></script>
 </body>

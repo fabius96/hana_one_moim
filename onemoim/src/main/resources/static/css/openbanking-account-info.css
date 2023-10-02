@@ -1,0 +1,142 @@
+.main-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #fff;
+    padding: 20px;
+}
+
+.header-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 1000px;
+    border-bottom: 0.5px solid #cccccc;
+}
+
+.page-name {
+    font-family: Hana2-Bold, sans-serif;
+    font-size: 24px;
+}
+
+.content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 1000px;
+}
+
+.content-name {
+    font-family: Hana2-Bold, sans-serif;
+    font-size: 20px;
+}
+
+.account-table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+}
+
+.account-table thead {
+    background-color: #eeeeee;
+}
+
+.account-table th {
+    text-align: center;
+    font-size: 14px;
+}
+
+.account-table td {
+    font-size: 13px;
+}
+
+.account-table th, .account-table td {
+    font-family: Hana2-Bold, sans-serif;
+    padding: 10px;
+    border-top: 1px solid #777777;
+}
+
+/* 각 th에 대해 원하는 너비를 지정 */
+.account-table th:nth-child(1), .account-table td:nth-child(1) {
+    width: 25%; /* 상품명 */
+    text-align: center;
+}
+
+.account-table th:nth-child(2), .account-table td:nth-child(2) {
+    width: 25%; /* 금융기관 */
+    text-align: center;
+}
+
+.account-table th:nth-child(3), .account-table td:nth-child(3) {
+    width: 25%; /* 계좌번호 */
+    text-align: center;
+}
+
+.account-table th:nth-child(4), .account-table td:nth-child(4) {
+    width: 25%; /* 잔액 */
+    text-align: center;
+}
+
+.account-table th:nth-child(5), .account-table td:nth-child(5) {
+    width: 25%; /* 선택 */
+    text-align: center;
+}
+
+.account-table .account-item td {
+    border-top: none;
+    border-bottom: 1px solid #777777;
+}
+
+/* 테이블 row에 hover 효과 추가 */
+.account-table tr:not(:first-child):hover {
+    background-color: #f5f5f5;
+}
+
+.button-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.button-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.registration-button {
+    font-family: Hana2-Medium, sans-serif;
+
+    cursor: pointer;
+    width: 80px;
+    height: 40px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    background: #008375;
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    top: 30%;
+}
+
+.delete-button {
+    font-family: Hana2-Medium, sans-serif;
+    cursor: pointer;
+    width: 80px;
+    height: 40px;
+    border: 1px solid #008375;
+    outline: none;
+    border-radius: 5px;
+    background: transparent;
+    color: #008375;
+    font-size: 16px;
+    text-align: center;
+    top: 30%;
+}
+

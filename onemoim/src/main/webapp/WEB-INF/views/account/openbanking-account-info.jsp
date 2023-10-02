@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <title>오픈뱅킹</title>
     <link rel="stylesheet" href="/css/common.css">
-    <link rel="stylesheet" href="/css/openbanking.css">
+    <link rel="stylesheet" href="/css/openbanking-account-info.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
@@ -19,11 +19,11 @@
     <div class="main-container">
 
         <div class="header-container">
-            <p class="page-name">어카운트인포</p>
+            <p class="page-name">오픈뱅킹</p>
         </div>
         <div class="content-container">
             <div class="content-header">
-                <p class="content-name">등록계좌</p>
+                <p class="content-name">계좌목록(어카운트 인포)</p>
             </div>
 
             <table class="account-table">
