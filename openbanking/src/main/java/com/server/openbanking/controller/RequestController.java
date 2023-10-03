@@ -1,6 +1,7 @@
 package com.server.openbanking.controller;
 
 import com.server.openbanking.dto.AccountTransferDto;
+import com.server.openbanking.dto.PaymentTransferWrapper;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -84,10 +85,10 @@ public class RequestController {
 
     // 커뮤니티 - 오픈뱅킹 회비납부 메서드
     @PostMapping("/openbanking/payment-other")
-    public ResponseEntity<Boolean> transferData(@RequestBody AccountTransferDto accountTransferDto) {
+    public ResponseEntity<Boolean> transferData(@RequestBody PaymentTransferWrapper paymentTransferWrapper) {
         RestTemplate restTemplate = new RestTemplate();
         String targetBankUrl = "http://localhost:8082/openbanking/payment-other";
-        ResponseEntity<Boolean> response = restTemplate.postForEntity(targetBankUrl, accountTransferDto, Boolean.class);
+        ResponseEntity<Boolean> response = restTemplate.postForEntity(targetBankUrl, paymentTransferWrapper, Boolean.class);
         boolean transferSuccess = Boolean.TRUE.equals(response.getBody());
         return ResponseEntity.ok(transferSuccess);
     }

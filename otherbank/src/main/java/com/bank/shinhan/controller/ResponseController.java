@@ -1,13 +1,12 @@
 package com.bank.shinhan.controller;
 
 import com.bank.shinhan.dto.AccountDto;
+import com.bank.shinhan.dto.AccountTransferDto;
+import com.bank.shinhan.dto.PaymentTransferWrapper;
 import com.bank.shinhan.service.OpenBankingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -41,5 +40,15 @@ public class ResponseController {
     public ResponseEntity<?> updateOpenbankingRegisteredTrue(@RequestParam String accountNumber) {
         openBankingService.updateOpenbankingRegisteredTrue(accountNumber);
         return ResponseEntity.ok().body("update success");
+    }
+
+    // 커뮤니티 - 오픈뱅킹 회비납부
+    @PostMapping("/openbanking/payment-other")
+    public ResponseEntity<Boolean> processTransfer(@RequestBody PaymentTransferWrapper paymentTransferWrapper) {
+        AccountTransferDto accountTransferDto = paymentTransferWrapper.getAccountTransferDto();
+        int gatheringId = paymentTransferWrapper.getGatheringId();
+        int gatheringMemberId = paymentTransferWrapper.getGatheringMemberId();;
+        boolean transferSuccess = openBankingService.paymentTransfer(accountTransferDto, gatheringId, gatheringMemberId);
+        return ResponseEntity.ok(transferSuccess);
     }
 }

@@ -45,4 +45,18 @@
         WHERE account_number = #{accountNumber}
     </update>
 
+    <!-- 계좌이체(출금) -->
+    <update id="updateAccountBalance" parameterType="com.bank.shinhan.dto.AccountTransferDto">
+        UPDATE outer_member_account_info
+        SET balance = balance - #{amount}
+        WHERE account_number = #{accountNumber}
+    </update>
+
+    <!-- 잔액조회 -->
+    <select id="selectBalance" parameterType="com.bank.shinhan.dto.AccountTransferDto" resultType="int">
+        SELECT balance
+        FROM outer_member_account_info
+        WHERE account_number = #{accountNumber}
+    </select>
+
 </mapper>

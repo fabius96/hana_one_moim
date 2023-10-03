@@ -31,7 +31,7 @@
                    class="chosen-page">다른은행</a>
             </div>
 
-            <form action="/community/${gatheringId}/payment-hana" method="post">
+            <form action="/community/${gatheringId}/payment-other" method="post">
 
                 <div class="content-wrapper">
 

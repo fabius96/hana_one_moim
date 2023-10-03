@@ -1,6 +1,7 @@
 package com.bank.shinhan.service;
 
 import com.bank.shinhan.dto.AccountDto;
+import com.bank.shinhan.dto.AccountTransferDto;
 
 import java.util.List;
 
@@ -17,4 +18,7 @@ public interface OpenBankingService {
 
     // 오픈뱅킹 연결 메서드
     void updateOpenbankingRegisteredTrue(String accountNumber);
+
+    // 커뮤니티 - 오픈뱅킹 화비납입
+    boolean paymentTransfer(AccountTransferDto accountTransferDto, int gatheringId, int memberId);
 }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hana.onemoim.account.dto.AccountDto;
 import com.hana.onemoim.account.dto.AccountTransferDto;
+import com.hana.onemoim.account.dto.PaymentTransferWrapper;
 import com.hana.onemoim.community.service.CommunityService;
 import com.hana.onemoim.member.dto.MemberDto;
 import lombok.RequiredArgsConstructor;
@@ -150,13 +151,20 @@ public class OpenBankingController {
             return modelAndView;
         }
 
-        // 오픈뱅킹으로 데이터 전송
+        PaymentTransferWrapper paymentTransferWrapper = PaymentTransferWrapper.builder()
+                .accountTransferDto(accountTransferDto)
+                .gatheringId(gatheringId)
+                .gatheringMemberId(communityService.getGatheringMemberId(memberDto.getMemberId(), gatheringId))
+                .build();
+
+        // 오픈뱅킹으로 데이터 전송(오픈뱅킹을 통한 타행계좌 출금)
         RestTemplate restTemplate = new RestTemplate();
         String openBankingUrl = "http://localhost:8081/openbanking/payment-other";
-        ResponseEntity<Boolean> response = restTemplate.postForEntity(openBankingUrl, accountTransferDto, Boolean.class);
+        ResponseEntity<Boolean> response = restTemplate.postForEntity(openBankingUrl, paymentTransferWrapper, Boolean.class);
         boolean transferSuccess = Boolean.TRUE.equals(response.getBody());
 
         if (transferSuccess) {
+            communityService.paymentTransferOpenbanking(accountTransferDto, gatheringId, memberDto.getMemberId()); // 모임계좌 입금처리
             modelAndView.setViewName("/community/payment-ok");
         } else {
             modelAndView.setViewName("/community/payment-fail");

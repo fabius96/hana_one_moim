@@ -391,6 +391,16 @@ public class CommunityServiceImpl implements CommunityService {
         return paymentMapper.selectPaymentAmount(gatheringId);
     }
 
+    // 오픈뱅킹 회비납입(입금하기)
+    @Transactional
+    @Override
+    public void paymentTransferOpenbanking(AccountTransferDto accountTransferDto, int gatheringId, int memberId) {
+        int gatheringMemberId = gatheringMemberMapper.selectGatheringMemberId(memberId, gatheringId);
+        processDeposit(accountTransferDto, gatheringId, gatheringMemberId);     // 입금 처리
+        createPaymentRecord(gatheringId, gatheringMemberId); // 회비 납부 기록 생성
+    }
+
+
     // 회비납입
     @Transactional
     @Override
@@ -429,15 +439,16 @@ public class CommunityServiceImpl implements CommunityService {
                             .balanceAfterTransaction(balanceAfterTransaction)
                             .memo(accountTransferDto.getMemo())
                             .build());
-        } else { // 출금계좌 기준
-            transactionMapper.insertTransaction(MemberTransactionDto.builder()
-                    .accountNumber(accountTransferDto.getAccountNumber())
-                    .otherAccountNumber(accountTransferDto.getOtherAccountNumber())
-                    .transactionTypeCode(transactionType)
-                    .transactionAmount(accountTransferDto.getAmount())
-                    .balanceAfterTransaction(balanceAfterTransaction)
-                    .memo(accountTransferDto.getMemo())
-                    .build());
+        } else {
+            transactionMapper.insertTransaction( // 출금계좌(회원계좌) 기준
+                    MemberTransactionDto.builder()
+                            .accountNumber(accountTransferDto.getAccountNumber())
+                            .otherAccountNumber(accountTransferDto.getOtherAccountNumber())
+                            .transactionTypeCode(transactionType)
+                            .transactionAmount(accountTransferDto.getAmount())
+                            .balanceAfterTransaction(balanceAfterTransaction)
+                            .memo(accountTransferDto.getMemo())
+                            .build());
 
             createPaymentRecord(gatheringId, gatheringMemberId);
         }
@@ -540,7 +551,7 @@ public class CommunityServiceImpl implements CommunityService {
 
     // 거래내역 생성
     private void createTransactionForWithdrawal(AccountTransferDto accountTransferDto, int transactionType, int balanceAfterTransaction) {
-        if (transactionType == TRANSACTION_TYPE_DEPOSIT) { // 입금계좌(개인계좌) 기준
+        if (transactionType == TRANSACTION_TYPE_DEPOSIT) { // 입금계좌 기준
             transactionMapper.insertTransaction(
                     MemberTransactionDto.builder()
                             .accountNumber(accountTransferDto.getOtherAccountNumber())
@@ -550,7 +561,7 @@ public class CommunityServiceImpl implements CommunityService {
                             .balanceAfterTransaction(balanceAfterTransaction)
                             .memo(accountTransferDto.getMemo())
                             .build());
-        } else { // 출금계좌(모임계좌) 기준
+        } else { // 출금계좌 기준
             gatheringTransactionMapper.insertGatheringTransaction(MemberTransactionDto.builder()
                     .accountNumber(accountTransferDto.getAccountNumber())
                     .otherAccountNumber(accountTransferDto.getOtherAccountNumber())

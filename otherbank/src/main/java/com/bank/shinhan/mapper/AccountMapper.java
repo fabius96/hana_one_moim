@@ -1,6 +1,7 @@
 package com.bank.shinhan.mapper;
 
 import com.bank.shinhan.dto.AccountDto;
+import com.bank.shinhan.dto.AccountTransferDto;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -20,5 +21,11 @@ public interface AccountMapper {
 
     // 오픈뱅킹 연결
     void updateOpenbankingRegisteredTrue(String accountNumber);
+
+    // 출금
+    void updateAccountBalance(AccountTransferDto accountTransferDto);
+
+    // 잔액조회
+    int selectBalance(AccountTransferDto accountTransferDto);
 
 }

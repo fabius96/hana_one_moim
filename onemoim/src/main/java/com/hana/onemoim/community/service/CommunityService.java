@@ -75,6 +75,9 @@ public interface CommunityService {
     // 회비확인
     int getGatheringPaymentAmount(int gatheringId);
 
+    // 오픈뱅킹 회비납입(입금하기)
+    void paymentTransferOpenbanking(AccountTransferDto accountTransferDto, int gatheringId, int memberId);
+
     // 화비납입
     void paymentTransfer(AccountTransferDto accountTransferDto, int gatheringId, int memberId);
 
