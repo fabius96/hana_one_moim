@@ -1,5 +1,6 @@
 package com.server.openbanking.controller;
 
+import com.server.openbanking.dto.AccountTransferDto;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -17,9 +18,9 @@ public class RequestController {
     @GetMapping("/openbanking/get-registered-account-list")
     public List<Map<String, Object>> getRegisteredAccountList(@RequestParam String personalIdNumber) {
         RestTemplate restTemplate = new RestTemplate();
-        String url = "http://localhost:8082/openbanking/get-registered-account-list?personalIdNumber=" + personalIdNumber;
+        String targetBankUrl = "http://localhost:8082/openbanking/get-registered-account-list?personalIdNumber=" + personalIdNumber;
         ResponseEntity<List<Map<String, Object>>> response = restTemplate.exchange(
-                url,
+                targetBankUrl,
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<List<Map<String, Object>>>() {
@@ -32,9 +33,9 @@ public class RequestController {
     @GetMapping("/openbanking/get-account-list")
     public List<Map<String, Object>> getAccountList(@RequestParam String personalIdNumber) {
         RestTemplate restTemplate = new RestTemplate();
-        String url = "http://localhost:8082/openbanking/get-account-list?personalIdNumber=" + personalIdNumber;
+        String targetBankUrl = "http://localhost:8082/openbanking/get-account-list?personalIdNumber=" + personalIdNumber;
         ResponseEntity<List<Map<String, Object>>> response = restTemplate.exchange(
-                url,
+                targetBankUrl,
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<List<Map<String, Object>>>() {
@@ -48,12 +49,12 @@ public class RequestController {
     @PutMapping("/openbanking/disconnect-account")
     public ResponseEntity<String> putOpenbankingRegistered(@RequestParam String accountNumber) {
         RestTemplate restTemplate = new RestTemplate();
-        String url = "http://localhost:8082/openbanking/disconnect-account?accountNumber=" + accountNumber;
+        String targetBankUrl = "http://localhost:8082/openbanking/disconnect-account?accountNumber=" + accountNumber;
 
         HttpEntity<String> entity = new HttpEntity<>(null);
 
         ResponseEntity<String> response = restTemplate.exchange(
-                url,
+                targetBankUrl,
                 HttpMethod.PUT,
                 entity,
                 String.class
@@ -67,17 +68,27 @@ public class RequestController {
     @PutMapping("/openbanking/registration-account")
     public ResponseEntity<String> putOpenbankingRegisteredTrue(@RequestParam String accountNumber) {
         RestTemplate restTemplate = new RestTemplate();
-        String url = "http://localhost:8082/openbanking/registration-account?accountNumber=" + accountNumber;
+        String targetBankUrl = "http://localhost:8082/openbanking/registration-account?accountNumber=" + accountNumber;
 
         HttpEntity<String> entity = new HttpEntity<>(null);
 
         ResponseEntity<String> response = restTemplate.exchange(
-                url,
+                targetBankUrl,
                 HttpMethod.PUT,
                 entity,
                 String.class
         );
 
         return new ResponseEntity<>(response.getBody(), response.getStatusCode());
+    }
+
+    // 커뮤니티 - 오픈뱅킹 회비납부 메서드
+    @PostMapping("/openbanking/payment-other")
+    public ResponseEntity<Boolean> transferData(@RequestBody AccountTransferDto accountTransferDto) {
+        RestTemplate restTemplate = new RestTemplate();
+        String targetBankUrl = "http://localhost:8082/openbanking/payment-other";
+        ResponseEntity<Boolean> response = restTemplate.postForEntity(targetBankUrl, accountTransferDto, Boolean.class);
+        boolean transferSuccess = Boolean.TRUE.equals(response.getBody());
+        return ResponseEntity.ok(transferSuccess);
     }
 }

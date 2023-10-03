@@ -300,6 +300,22 @@ public class CommunityResponseController {
         return modelAndView;
     }
 
+    // 회비납부 실패 페이지 조회(로그인 O)
+    @GetMapping("/community/{gatheringId}/payment-fail")
+    public ModelAndView showAccountTransferFail(HttpSession httpSession,
+                                              @PathVariable int gatheringId) {
+        ModelAndView modelAndView = new ModelAndView("/signin");
+        MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
+
+        if (memberDto == null) {
+            return modelAndView;
+        }
+
+        modelAndView.addObject("gatheringId", gatheringId);
+        modelAndView.setViewName("/community/payment-fail");
+        return modelAndView;
+    }
+
     // 커뮤니티 카드 페이지 조회
     @GetMapping("/community/{gatheringId}/card")
     public ModelAndView showCommunityCard(HttpSession httpSession,
