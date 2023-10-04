@@ -18,7 +18,8 @@
     <div class="main-container">
         <div class="content-container">
             <div class="application-text-container">
-                <p class="signup_ok_title">${gathering.gatheringLeaderName}님께서 ${gathering.gatheringName} 모임에 초대하셨습니다.</p>
+                <p class="signup_ok_title">${gathering.gatheringLeaderName}님께서 <br/>
+                    ${gathering.gatheringName} 모임에 초대하셨습니다.</p>
                 <p class="signup_ok_content">
                     모임 가입을 희망하신다면 가입신청 버튼을 눌러주세요.
                 </p>

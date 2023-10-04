@@ -197,18 +197,21 @@ public class GatheringServiceImpl implements GatheringService {
     // 모임 ID로 모임 조회
     @Override
     public GatheringDto findGatheringByGatheringId(boolean onlyPublic, int gatheringId) {
-        GatheringDto gatheringDto = gatheringMapper.selectGatheringByGatheringId(onlyPublic, gatheringId);
-        return gatheringDto;
+        return gatheringMapper.selectGatheringByGatheringId(onlyPublic, gatheringId);
     }
 
     // 모임 ID로 모임 조회(+모달용)
     @Override
     public GatheringDto getGatheringInfoForModal(boolean onlyPublic, int gatheringId, int memberId) {
+        Integer memberStatusCode = gatheringMemberMapper.isMemberStatusCodeActive(gatheringId, memberId);
         GatheringDto gatheringDto = findGatheringByGatheringId(onlyPublic, gatheringId);
         gatheringDto.setInterestList(interestMapper.selectInterestNameByGatheringId(gatheringId));
         gatheringDto.setGatheringCoverImageUrl(gatheringMapper.selectGatheringCoverImage(gatheringDto.getGatheringId()));
         gatheringDto.setGatheringLeaderName(memberMapper.selectNameByLeaderId(gatheringDto.getGatheringLeaderId()));
-        gatheringDto.setMemberStatusCode(gatheringMemberMapper.isMemberStatusCodeActive(gatheringId, memberId));
+        if(memberStatusCode != null){
+            gatheringDto.setMemberStatusCode(memberStatusCode);
+        }
+
         boolean isJoined = gatheringMapper.isMemberJoined(gatheringId, memberId);
         gatheringDto.setJoined(isJoined);
 

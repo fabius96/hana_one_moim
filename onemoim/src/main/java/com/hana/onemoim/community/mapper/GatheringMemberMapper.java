@@ -13,7 +13,7 @@ public interface GatheringMemberMapper {
     List<GatheringMemberDto> selectGatheringMemberByGatheringId(int gatheringId);
 
     // 모임원 상태 코드 확인
-    int isMemberStatusCodeActive(@Param("gatheringId") int gatheringId,
+    Integer isMemberStatusCodeActive(@Param("gatheringId") int gatheringId,
                                  @Param("memberId") int memberId);
 
     // 모임원 상태 코드 변경

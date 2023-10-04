@@ -57,15 +57,13 @@ function setupActionButton(joined, memberStatusCode, gatheringId) {
     let contextPath = "${pageContext.request.contextPath}";
     if (memberStatusCode === 71) {
         $agreeBtn.text("승인대기").off("click").on("click", function () {
-            applicationGathering(gatheringId);
         });
         $agreeBtn.css('background-color', '#999999');
     }else if (memberStatusCode === 72) {
         $agreeBtn.text("활동정지").off("click").on("click", function () {
-            applicationGathering(gatheringId);
         });
         $agreeBtn.css('background-color', '#999999');
-    } else if (joined) {
+    } else if (memberStatusCode === 70) {
         $agreeBtn.text("이동하기").off("click").on("click", function () {
             window.location.href = `/community/${gatheringId}`;
         });

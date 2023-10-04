@@ -101,19 +101,20 @@
                         </div>
                     </div>
                     <div class="image-container">
-                        <c:forEach var="imageInfo" items="${galleryImageData}">
-                            <img src="${imageInfo.imageUrl}" alt="갤러리이미지" class="image-item"
-                                 data-post-id="${imageInfo.postId}" data-gathering-id="${gatheringId}"
-                                 data-member-id="${memberId}" data-gathering-member-id="${gatheringMemberId}">
-                        </c:forEach>
-                        <img src="<%= request.getContextPath() %>/img/sample.jpg" alt="갤러리이미지" class="image-item">
-                        <img src="<%= request.getContextPath() %>/img/sample.jpg" alt="갤러리이미지" class="image-item">
-                        <img src="<%= request.getContextPath() %>/img/sample.jpg" alt="갤러리이미지" class="image-item">
-                        <img src="<%= request.getContextPath() %>/img/sample.jpg" alt="갤러리이미지" class="image-item">
-                        <img src="<%= request.getContextPath() %>/img/sample.jpg" alt="갤러리이미지" class="image-item">
-                        <img src="<%= request.getContextPath() %>/img/sample.jpg" alt="갤러리이미지" class="image-item">
-                        <img src="<%= request.getContextPath() %>/img/sample.jpg" alt="갤러리이미지" class="image-item">
-                        <img src="<%= request.getContextPath() %>/img/sample.jpg" alt="갤러리이미지" class="image-item">
+                        <c:choose>
+                            <c:when test="${not empty galleryImageData}">
+                                <c:forEach var="imageInfo" items="${galleryImageData}">
+                                    <img src="${imageInfo.imageUrl}" alt="갤러리이미지" class="image-item"
+                                         data-post-id="${imageInfo.postId}" data-gathering-id="${gatheringId}"
+                                         data-member-id="${memberId}" data-gathering-member-id="${gatheringMemberId}">
+                                </c:forEach>
+                            </c:when>
+                            <c:otherwise>
+                                <div class="no-post">
+                                    <p>등록된 게시글이 없습니다.</p>
+                                </div>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                 </div>
             </div>

@@ -39,7 +39,7 @@ $('#save-event').on('click', function() {
         data: JSON.stringify(eventData),
         contentType: 'application/json',
         success: function(response) {
-            alert(response.message);
+            // alert(response.message);
             $('#eventModal').hide();
 
             location.reload();
@@ -103,7 +103,7 @@ $('#update-event').on('click', function() {
         data: JSON.stringify(eventData),
         contentType: 'application/json',
         success: function(response) {
-            alert(response.message);
+            // alert(response.message);
             $('#eventModal').hide();
 
             location.reload();

@@ -25,7 +25,9 @@ $(document).ready(function () {
             if (data) {
                 alert("이미 사용중인 아이디입니다.");
             } else {
-                alert("사용 가능한 아이디입니다.");
+                // alert("사용 가능한 아이디입니다.");
+                $(this).css('background-color', '#999999');
+                $(this).css('border', 'none');
             }
         });
     });
