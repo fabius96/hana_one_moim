@@ -9,7 +9,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>입금하기</title>
+    <title>회비납부(하나은행)</title>
     <link rel="stylesheet" href="/css/common.css">
     <link rel="stylesheet" href="/css/account-transfer-hana.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -25,14 +25,13 @@
     <div class="main-container">
         <div class="outer-content-wrapper">
             <div class="header-container">
-                <p class="page-name">입금하기</p>
-                <a href="${pageContext.request.contextPath}/community/${gatheringId}/transfer-hana" class="chosen-page">하나은행</a>
-                <a href="${pageContext.request.contextPath}/community/${gatheringId}/transfer-other"
-                   class="unchosen-page">다른은행</a>
+                <p class="page-name">회비납입</p>
+                <a href="${pageContext.request.contextPath}/community/${gatheringId}/payment-hana" class="unchosen-page">하나은행</a>
+                <a href="${pageContext.request.contextPath}/community/${gatheringId}/payment-other"
+                   class="chosen-page">다른은행</a>
             </div>
 
-            <form action="/community/${gatheringId}/payment-hana" method="post">
-
+            <form action="/community/${gatheringId}/payment-other" method="post">
                 <div class="content-wrapper">
 
                     <div><p class="content-name">출금정보</p></div>
@@ -73,8 +72,10 @@
                 </div>
                 <div class="second-content-wrapper">
                     <div><p class="content-name">입금정보</p></div>
+                    <div class="content-description">우리 모임의 기본 회비 정보로 우선 설정됩니다.</div>
                     <div class="input-container">
-                        <input class="password-input" type="text" placeholder="입금금액" name="amount">
+                        <input class="password-input" type="text" placeholder="입금금액" name="amount"
+                               value="${paymentAmount}">
                         <span class="input-currency">원</span>
                     </div>
 

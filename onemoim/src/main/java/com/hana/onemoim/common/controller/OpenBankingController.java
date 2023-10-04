@@ -107,7 +107,7 @@ public class OpenBankingController {
         return modelAndView;
     }
 
-    // 커뮤니티 계좌 출금 페이지 조회(오픈뱅킹 - 타행)
+    // 커뮤니티 계좌 입금하기 페이지 조회(오픈뱅킹 - 타행)
     @GetMapping("/community/{gatheringId}/transfer-other")
     public ModelAndView showTransferOther(HttpSession httpSession,
                                           HttpServletRequest httpServletRequest,
@@ -172,4 +172,36 @@ public class OpenBankingController {
         return modelAndView;
     }
 
+    // 커뮤니티 회비납입 페이지 조회(오픈뱅킹 - 타행)
+    @GetMapping("/community/{gatheringId}/payment-other")
+    public ModelAndView showPaymentOther(HttpSession httpSession,
+                                          HttpServletRequest httpServletRequest,
+                                          @PathVariable int gatheringId) {
+        MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
+        ModelAndView modelAndView = new ModelAndView("/signin");
+
+        if (memberDto == null) {
+            httpSession.setAttribute("destination", httpServletRequest.getRequestURI());
+            return modelAndView;
+        }
+
+        RestTemplate restTemplate = new RestTemplate();
+        String openBankingUrl = "http://localhost:8081/openbanking/get-registered-account-list?personalIdNumber=" + memberDto.getPersonalIdNumber();
+        ResponseEntity<List<AccountDto>> response = restTemplate.exchange(
+                openBankingUrl,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<AccountDto>>() {
+                }
+        );
+        List<AccountDto> accountDtoList = response.getBody();
+
+        modelAndView.setViewName("/community/community-payment-other");
+        modelAndView.addObject("gatheringId", gatheringId);
+        modelAndView.addObject("accounts", accountDtoList);
+        modelAndView.addObject("paymentAmount", communityService.getGatheringPaymentAmount(gatheringId));
+        modelAndView.addObject("accountNumber", communityService.getGatheringAccountNumber(gatheringId));
+        modelAndView.addObject("gatheringMemberId", communityService.getGatheringMemberId(memberDto.getMemberId(), gatheringId));
+        return modelAndView;
+    }
 }
