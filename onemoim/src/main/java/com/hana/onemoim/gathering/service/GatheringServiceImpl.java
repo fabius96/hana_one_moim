@@ -5,6 +5,7 @@ import com.hana.onemoim.common.dto.InterestDto;
 import com.hana.onemoim.common.mapper.ImageMapper;
 import com.hana.onemoim.common.mapper.InterestMapper;
 import com.hana.onemoim.community.dto.GatheringMemberDto;
+import com.hana.onemoim.community.mapper.GatheringMemberMapper;
 import com.hana.onemoim.gathering.dto.*;
 import com.hana.onemoim.gathering.mapper.CardMapper;
 import com.hana.onemoim.gathering.mapper.GatheringMapper;
@@ -31,6 +32,7 @@ public class GatheringServiceImpl implements GatheringService {
     private static final int MEMBER_STATUS_STANDBY = 72;   // 대기
 
     private final GatheringMapper gatheringMapper;
+    private final GatheringMemberMapper gatheringMemberMapper;
     private final MemberMapper memberMapper;
     private final ImageMapper imageMapper;
     private final CardMapper cardMapper;
@@ -68,6 +70,9 @@ public class GatheringServiceImpl implements GatheringService {
     @Override
     public List<GatheringDto> findAllGatheringByMemberId(int memberId) {
         List<GatheringDto> gatheringDtoList = gatheringMapper.selectGroupByMemberId(memberId);
+        for(GatheringDto dto : gatheringDtoList){
+            dto.setMemberStatusCode(gatheringMemberMapper.isMemberStatusCodeActive(dto.getGatheringId(), memberId));
+        }
         return makeGatheringDtos(gatheringDtoList);
     }
 
@@ -145,7 +150,7 @@ public class GatheringServiceImpl implements GatheringService {
         for (int gatheringId : list) {
             GatheringDto gatheringDto = findGatheringByGatheringId(true, gatheringId);
             if(gatheringDto==null){ // 비공개 모임 제외
-                break;
+                continue;
             }
             gatheringDto.setGatheringLeaderName(memberMapper.selectNameByLeaderId(gatheringDto.getGatheringLeaderId()));
 
@@ -203,6 +208,7 @@ public class GatheringServiceImpl implements GatheringService {
         gatheringDto.setInterestList(interestMapper.selectInterestNameByGatheringId(gatheringId));
         gatheringDto.setGatheringCoverImageUrl(gatheringMapper.selectGatheringCoverImage(gatheringDto.getGatheringId()));
         gatheringDto.setGatheringLeaderName(memberMapper.selectNameByLeaderId(gatheringDto.getGatheringLeaderId()));
+        gatheringDto.setMemberStatusCode(gatheringMemberMapper.isMemberStatusCodeActive(gatheringId, memberId));
         boolean isJoined = gatheringMapper.isMemberJoined(gatheringId, memberId);
         gatheringDto.setJoined(isJoined);
 

@@ -35,9 +35,9 @@ $(document).ready(function () {
 
         try {
             await Promise.all(promises);
-            alert('계좌 연결이 성공적으로 해제되었습니다.');
+            // alert('계좌 연결이 성공적으로 해제되었습니다.');
         } catch (error) {
-            alert('계좌 연결 해제에 실패했습니다.');
+            // alert('계좌 연결 해제에 실패했습니다.');
         } finally {
             location.reload();
         }

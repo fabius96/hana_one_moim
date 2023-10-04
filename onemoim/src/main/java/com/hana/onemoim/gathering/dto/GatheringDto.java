@@ -19,4 +19,6 @@ public class GatheringDto {
     private int gatheringMemberNumber; // 모임원 수
     private boolean isJoined; // 로그인 시 회원의 모임 가입 여부
     private List<String> interestList; // 모임 관심사
+
+    private int memberStatusCode; // 모임원상태코드
 }

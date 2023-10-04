@@ -47,20 +47,34 @@
                                 <div class="accordion-body-center" data-gathering-id="${gatherings.gatheringId}">
                                     <div class="gathering-leader-name-box">
                                         <p class="gathering-leader-name-content">
-                                            <img src="${pageContext.request.contextPath}/img/crown.png" alt="모임장 왕관" class="crown-img">
-                                                &nbsp
+                                            <img src="${pageContext.request.contextPath}/img/crown.png" alt="모임장 왕관"
+                                                 class="crown-img">
+                                            &nbsp
                                                 ${gatherings.gatheringLeaderName}
                                         </p>
                                     </div>
                                     <p class="gathering-name">${gatherings.gatheringName}</p>
                                     <p class="gathering-description">${gatherings.gatheringDescription}</p>
                                 </div>
-                                <img src="${pageContext.request.contextPath}/img/next-arrow.png" alt="더보기" class="next-arrow" data-gathering-id="${gatherings.gatheringId}">
+                                <img src="${pageContext.request.contextPath}/img/next-arrow.png" alt="더보기"
+                                     class="next-arrow" data-gathering-id="${gatherings.gatheringId}">
                                 <div class="accordion-body-right">
-                                    <button class="detail-button">
-                                        <a href="${pageContext.request.contextPath}/community/${gatherings.gatheringId}"
-                                           class="button-text">이동하기</a>
-                                    </button>
+                                    <div class="accordion-body-right">
+                                        <c:choose>
+                                            <c:when test="${gatherings.memberStatusCode != 70}">
+                                                <button class="detail-button" style="background-color: #999999;">
+                                                    <a class="button-text">승인대기</a>
+                                                </button>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <button class="detail-button">
+                                                    <a href="${pageContext.request.contextPath}/community/${gatherings.gatheringId}"
+                                                       class="button-text">이동하기</a>
+                                                </button>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>

@@ -96,9 +96,11 @@ $('#send-auth-mail-button').click(function () {
             "email": $email.val()
         },
         success: function (data) {
-            alert("해당 이메일로 인증번호 발송이 완료되었습니다.")
-            console.log("data : " + data);
+            // alert("해당 이메일로 인증번호 발송이 완료되었습니다.")
+            // console.log("data : " + data);
             chkEmailConfirm(data);
+            $(this).css('background-color', '#999999');
+            $(this).css('border', 'none');
         }
     });
 });
@@ -109,9 +111,11 @@ function chkEmailConfirm(data) {
         const userEnteredCode = $('#authCode').val();
 
         if (data != userEnteredCode) {
-            alert('인증번호가 일치하지 않습니다.');
+            // alert('인증번호가 일치하지 않습니다.');
         } else {
-            alert('인증번호가 확인되었습니다.');
+            // alert('인증번호가 확인되었습니다.');
+            $(this).css('background-color', '#999999');
+            $(this).css('border', 'none');
         }
     });
 }

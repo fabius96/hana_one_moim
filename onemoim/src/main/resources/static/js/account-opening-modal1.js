@@ -1,4 +1,6 @@
 $(document).ready(function() {
+    var contextPath = $("body").data("context-path");
+
     // 약관 클릭 이벤트
     $(".essential-terms-title1 p").on("click", function() {
         $("#modal-electronic-transactions1").fadeIn();
@@ -16,7 +18,7 @@ $(document).ready(function() {
 
         // 해당 모달의 연관된 체크박스 이미지를 변경
         if (modalId == "modal-electronic-transactions1") {
-            $(".essential-terms-title1 .checkbox-toggle").attr("src", "img/checkbox_full.png");
+            $(".essential-terms-title1 .checkbox-toggle").attr("src", contextPath + "/img/checkbox_full.png");
         }
 
         // 모달 닫기
