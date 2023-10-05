@@ -1,6 +1,5 @@
 package com.server.openbanking.controller;
 
-import com.server.openbanking.dto.AccountTransferDto;
 import com.server.openbanking.dto.PaymentTransferWrapper;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -20,6 +19,7 @@ public class RequestController {
     public List<Map<String, Object>> getRegisteredAccountList(@RequestParam String personalIdNumber) {
         RestTemplate restTemplate = new RestTemplate();
         String targetBankUrl = "http://localhost:8082/openbanking/get-registered-account-list?personalIdNumber=" + personalIdNumber;
+//        String targetBankUrl = "http://20.39.199.175:8082/openbanking/get-registered-account-list?personalIdNumber=" + personalIdNumber;
         ResponseEntity<List<Map<String, Object>>> response = restTemplate.exchange(
                 targetBankUrl,
                 HttpMethod.GET,
@@ -35,6 +35,7 @@ public class RequestController {
     public List<Map<String, Object>> getAccountList(@RequestParam String personalIdNumber) {
         RestTemplate restTemplate = new RestTemplate();
         String targetBankUrl = "http://localhost:8082/openbanking/get-account-list?personalIdNumber=" + personalIdNumber;
+//        String targetBankUrl = "http://20.39.199.175:8082/openbanking/get-account-list?personalIdNumber=" + personalIdNumber;
         ResponseEntity<List<Map<String, Object>>> response = restTemplate.exchange(
                 targetBankUrl,
                 HttpMethod.GET,
@@ -46,11 +47,12 @@ public class RequestController {
     }
 
     // 오픈뱅킹 연결해제 메서드
-    @CrossOrigin(origins = {"http://localhost:8080","http://20.39.199.175"})
+    @CrossOrigin(origins = {"http://localhost:8080", "http://20.39.199.175"})
     @PutMapping("/openbanking/disconnect-account")
     public ResponseEntity<String> putOpenbankingRegistered(@RequestParam String accountNumber) {
         RestTemplate restTemplate = new RestTemplate();
         String targetBankUrl = "http://localhost:8082/openbanking/disconnect-account?accountNumber=" + accountNumber;
+//        String targetBankUrl = "http://20.39.199.175:8082/openbanking/disconnect-account?accountNumber=" + accountNumber;
 
         HttpEntity<String> entity = new HttpEntity<>(null);
 
@@ -65,11 +67,12 @@ public class RequestController {
     }
 
     // 오픈뱅킹 연결 메서드
-    @CrossOrigin(origins = {"http://localhost:8080","http://20.39.199.175"})
+    @CrossOrigin(origins = {"http://localhost:8080", "http://20.39.199.175"})
     @PutMapping("/openbanking/registration-account")
     public ResponseEntity<String> putOpenbankingRegisteredTrue(@RequestParam String accountNumber) {
         RestTemplate restTemplate = new RestTemplate();
         String targetBankUrl = "http://localhost:8082/openbanking/registration-account?accountNumber=" + accountNumber;
+//        String targetBankUrl = "http://20.39.199.175:8082/openbanking/registration-account?accountNumber=" + accountNumber;
 
         HttpEntity<String> entity = new HttpEntity<>(null);
 
@@ -88,6 +91,7 @@ public class RequestController {
     public ResponseEntity<Boolean> transferData(@RequestBody PaymentTransferWrapper paymentTransferWrapper) {
         RestTemplate restTemplate = new RestTemplate();
         String targetBankUrl = "http://localhost:8082/openbanking/payment-other";
+//        String targetBankUrl = "http://20.39.199.175:8082/openbanking/payment-other";
         ResponseEntity<Boolean> response = restTemplate.postForEntity(targetBankUrl, paymentTransferWrapper, Boolean.class);
         boolean transferSuccess = Boolean.TRUE.equals(response.getBody());
         return ResponseEntity.ok(transferSuccess);

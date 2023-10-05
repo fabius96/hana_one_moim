@@ -8,7 +8,7 @@
         <result column="account_status_code" property="accountStatusCode"/>
         <result column="account_type_code" property="accountTypeCode"/>
         <result column="balance" property="balance"/>
-        <result column="openbankig_registered" property="openbankingRegistered"/>
+        <result column="openbanking_registered" property="openbankingRegistered"/>
         <result column="account_nickname" property="accountNickname"/>
     </resultMap>
 

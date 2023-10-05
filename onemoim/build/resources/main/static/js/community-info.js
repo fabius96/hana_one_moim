@@ -43,7 +43,7 @@ Kakao.Share.createDefaultButton({
     content: {
         title: '하나원모임으로 다 같이 모이자!',
         description: memberName + '님께서 ' + gatheringName + ' 모임으로 초대하셨습니다.',
-        imageUrl: 'https://springadvancedbucket.s3.ap-northeast-2.amazonaws.com/onemoim.png',
+        imageUrl: 'https://springadvancedbucket.s3.ap-northeast-2.amazonaws.com/KakaoTalk_20230927_154624467.png',
         link: {
             // [내 애플리케이션] > [플랫폼] 에서 등록한 사이트 도메인과 일치해야 함
             mobileWebUrl: 'http://localhost:8080/community/' + gatheringId + '/application',

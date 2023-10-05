@@ -1,6 +1,6 @@
-$(document).ready(function() {
+$(document).ready(function () {
     // 클릭 이벤트 등록
-    $(".accordion-body-center, .next-arrow, .second-area-item-title ,.second-area-item-description").on("click", function(event) {
+    $(".accordion-body-center, .next-arrow, .second-area-item-title ,.second-area-item-description").on("click", function (event) {
         event.stopPropagation();
 
         let gatheringId = $(this).data("gathering-id");
@@ -14,11 +14,11 @@ function fetchGatheringData(gatheringId) {
     $.ajax({
         url: `/gathering/gathering-modal-info?gatheringId=${gatheringId}`,
         type: 'GET',
-        success: function(data) {
+        success: function (data) {
             populateModalWithData(data, gatheringId);
             $("#modal-electronic-transactions").fadeIn();
         },
-        error: function() {
+        error: function () {
             alert("모임 정보를 가져오는 데 실패했습니다.");
         }
     });
@@ -36,7 +36,7 @@ function populateModalWithData(data, gatheringId) {
 
     populateInterests(data.interestList);
 
-    setupActionButton(data.joined, gatheringId);
+    setupActionButton(data.joined, data.memberStatusCode, gatheringId);
 }
 
 function populateInterests(interestList) {
@@ -52,15 +52,23 @@ function populateInterests(interestList) {
     });
 }
 
-function setupActionButton(joined, gatheringId) {
+function setupActionButton(joined, memberStatusCode, gatheringId) {
     let $agreeBtn = $(".agree-btn");
     let contextPath = "${pageContext.request.contextPath}";
-    if (joined) {
-        $agreeBtn.text("이동하기").off("click").on("click", function() {
+    if (memberStatusCode === 71) {
+        $agreeBtn.text("승인대기").off("click").on("click", function () {
+        });
+        $agreeBtn.css('background-color', '#999999');
+    }else if (memberStatusCode === 72) {
+        $agreeBtn.text("활동정지").off("click").on("click", function () {
+        });
+        $agreeBtn.css('background-color', '#999999');
+    } else if (memberStatusCode === 70) {
+        $agreeBtn.text("이동하기").off("click").on("click", function () {
             window.location.href = `/community/${gatheringId}`;
         });
     } else {
-        $agreeBtn.text("가입신청").off("click").on("click", function() {
+        $agreeBtn.text("가입신청").off("click").on("click", function () {
             applicationGathering(gatheringId);
         });
     }
@@ -72,13 +80,13 @@ function applicationGathering(gatheringId) {
     $.ajax({
         url: url,
         type: 'POST',
-        data: { gatheringId: gatheringId },
-        success: function() {
+        data: {gatheringId: gatheringId},
+        success: function () {
             alert("가입신청이 성공적으로 처리되었습니다.");
             closeCurrentModal();
             location.reload();
         },
-        error: function() {
+        error: function () {
             console.log(url)
             alert("가입신청에 실패했습니다.");
         }

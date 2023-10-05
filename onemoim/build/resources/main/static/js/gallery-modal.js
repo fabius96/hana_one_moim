@@ -28,7 +28,7 @@ $(document).ready(function () {
             processData: false,
             contentType: false,
             success: function (response) {
-                alert(response.message);
+                // alert(response.message);
                 $('#modal-electronic-transactions').hide();
                 location.reload();
             },
