@@ -46,7 +46,7 @@ public class RequestController {
     }
 
     // 오픈뱅킹 연결해제 메서드
-    @CrossOrigin(origins = {"http://localhost:8080","http://20.39.199.175/"})
+    @CrossOrigin(origins = {"http://localhost:8080","http://20.39.199.175"})
     @PutMapping("/openbanking/disconnect-account")
     public ResponseEntity<String> putOpenbankingRegistered(@RequestParam String accountNumber) {
         RestTemplate restTemplate = new RestTemplate();
@@ -65,7 +65,7 @@ public class RequestController {
     }
 
     // 오픈뱅킹 연결 메서드
-    @CrossOrigin(origins = {"http://localhost:8080","http://20.39.199.175/"})
+    @CrossOrigin(origins = {"http://localhost:8080","http://20.39.199.175"})
     @PutMapping("/openbanking/registration-account")
     public ResponseEntity<String> putOpenbankingRegisteredTrue(@RequestParam String accountNumber) {
         RestTemplate restTemplate = new RestTemplate();
