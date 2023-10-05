@@ -60,7 +60,7 @@ $('#delete-event').on('click', function() {
         url: url,
         method: 'DELETE',
         success: function(response) {
-            alert(response.message);
+            // alert(response.message);
             $('#eventModal').hide();
 
             location.reload();
