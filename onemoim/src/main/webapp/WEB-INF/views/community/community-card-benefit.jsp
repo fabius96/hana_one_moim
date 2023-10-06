@@ -173,7 +173,7 @@
                             <div class="benefit-box">
                                 <img src="${pageContext.request.contextPath}/img/benefit_shopping.png" alt="혜택_온라인식품&쇼핑"
                                      class="benefit-image">
-                                <p class="benefit-title">온라인식품&쇼핑</p>
+                                <p class="benefit-title">온라인식품/쇼핑</p>
                                 <p class="benefit-description">컬리, SSG.COM, 롯데ON,</p>
                                 <p class="benefit-description">더현대닷컴 청구할인</p>
                                 <div class="slider-area">
