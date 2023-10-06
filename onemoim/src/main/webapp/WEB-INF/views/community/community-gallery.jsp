@@ -30,9 +30,24 @@
                 <c:choose>
                     <c:when test="${not empty galleryImageData}">
                         <c:forEach var="imageInfo" items="${galleryImageData}">
-                            <img src="${imageInfo.imageUrl}" alt="갤러리이미지" class="image-item"
-                                 data-post-id="${imageInfo.postId}" data-gathering-id="${gatheringId}"
-                                 data-member-id="${memberId}" data-gathering-member-id="${gatheringMemberId}">
+                            <div class="image-wrapper">
+                                <div class="image-hover-layer" data-post-id="${imageInfo.postId}"
+                                     data-gathering-id="${gatheringId}"
+                                     data-member-id="${memberId}" data-gathering-member-id="${gatheringMemberId}">
+                                    <img src="${pageContext.request.contextPath}/img/view-white.png" alt="조회수"
+                                         class="hover-view">
+                                    &nbsp;&nbsp;&nbsp;
+                                    <span class="hover-text">${imageInfo.viewCnt}</span>
+                                    &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;
+                                    <img src="${pageContext.request.contextPath}/img/comment-white.png" alt="댓글"
+                                         class="hover-comment">
+                                    &nbsp;&nbsp;&nbsp;
+                                    <span class="hover-text">${imageInfo.commentCnt}</span>
+                                </div>
+                                <img src="${imageInfo.imageUrl}" alt="갤러리이미지" class="image-item"
+                                     data-post-id="${imageInfo.postId}" data-gathering-id="${gatheringId}"
+                                     data-member-id="${memberId}" data-gathering-member-id="${gatheringMemberId}">
+                            </div>
                         </c:forEach>
                     </c:when>
                     <c:otherwise>

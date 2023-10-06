@@ -33,6 +33,13 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: Hana2-Heavy;
+    src: url('../assets/fonts/Hana2-Heavy.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
     font-family: Hana2-Light, sans-serif;
     font-size: 12px;

@@ -11,4 +11,6 @@ public class GalleryImageResponseDto {
     private int postId; // 게시글ID
     private int gatheringMemberId; // 모임원ID
     private String imageUrl; // 이미지URL
+    private int viewCnt; // 조회수
+    private int commentCnt; // 댓글수
 }

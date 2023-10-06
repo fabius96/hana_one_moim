@@ -126,12 +126,12 @@
 }
 
 .transaction-table th:nth-child(3), .transaction-table td:nth-child(3) {
-    width: 10%; /* 영역 */
+    width: 13%; /* 영역 */
     text-align: center;
 }
 
 .transaction-table th:nth-child(4), .transaction-table td:nth-child(4) {
-    width: 29%; /* 적요 */
+    width: 26%; /* 적요 */
     text-align: center;
 }
 

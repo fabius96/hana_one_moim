@@ -210,14 +210,20 @@ public class CommunityServiceImpl implements CommunityService {
     public List<GalleryImageResponseDto> getAllImage(int gatheringId) {
         List<Integer> postIdList = galleryPostMapper.selectPostId(gatheringId);
         List<GalleryImageResponseDto> galleryImageResponseDtoList = new ArrayList<>();
+
         for (int postId : postIdList) {
             String imgUrl = imageMapper.selectImgUrlByPostId(postId);
             int writer = galleryPostMapper.selectWriter(postId);
+            List<GalleryCommentDto> galleryCommentDtoList = galleryCommentMapper.selectGalleryCommentByPostId(postId);
+            int viewCnt = galleryPostMapper.selectViewCnt(postId);
+            int commentCnt = galleryCommentDtoList.size();
             if (imgUrl != null) {
                 galleryImageResponseDtoList.add(GalleryImageResponseDto.builder()
                         .postId(postId)
                         .imageUrl(imgUrl)
                         .gatheringMemberId(writer)
+                        .commentCnt(commentCnt)
+                        .viewCnt(viewCnt)
                         .build());
             }
         }

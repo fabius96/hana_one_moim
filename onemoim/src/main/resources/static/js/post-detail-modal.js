@@ -47,7 +47,7 @@ $(document).ready(function () {
     });
 
     // 게시글 상세 조회
-    $(".image-item, .notice-content").on("click", function () {
+    $(".image-item, .notice-content, .image-hover-layer").on("click", function () {
         const postId = $(this).data('post-id');
         const gatheringId = $(this).data('gathering-id');
         const gatheringMemberId = $(this).data('gathering-member-id');
