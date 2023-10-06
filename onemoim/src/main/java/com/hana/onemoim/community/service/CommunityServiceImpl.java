@@ -630,8 +630,8 @@ public class CommunityServiceImpl implements CommunityService {
                 .secondArea(cardMapper.selectBenefit(sortedList.get(1).getKey()).getBenefitName())
                 .secondSum(sortedList.get(1).getValue())
                 .secondPercent((int) (((double) sortedList.get(1).getValue() / spendTotal) * 100))
-                .thirdArea(cardMapper.selectBenefit(sortedList.get(3).getKey()).getBenefitName())
-                .thirdSum(sortedList.get(3).getValue())
+                .thirdArea(cardMapper.selectBenefit(sortedList.get(2).getKey()).getBenefitName())
+                .thirdSum(sortedList.get(2).getValue())
                 .thirdPercent((int) (((double) sortedList.get(2).getValue() / spendTotal) * 100))
                 .total(spendTotal)
                 .discountTotal((int) (

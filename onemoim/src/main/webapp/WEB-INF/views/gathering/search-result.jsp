@@ -67,9 +67,8 @@
                                             </button>
                                         </c:when>
                                         <c:otherwise>
-                                            <button class="join-button">
-                                                <a href="${pageContext.request.contextPath}/joinGathering?gatheringId=${gatherings.gatheringId}"
-                                                   class="button-text">가입신청</a>
+                                            <button class="join-button" onclick="applicationGathering(${gatherings.gatheringId})">
+                                                <a class="button-text">가입신청</a>
                                             </button>
                                         </c:otherwise>
                                     </c:choose>
