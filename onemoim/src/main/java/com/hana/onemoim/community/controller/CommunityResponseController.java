@@ -160,7 +160,6 @@ public class CommunityResponseController {
                                              @PathVariable int gatheringId,
                                              @RequestParam int postId) {
         MemberDto memberDto = (MemberDto) httpSession.getAttribute("loggedInMember");
-
         GalleryPostResponseDto galleryPostResponseDto = communityService.getPost(postId);
         return ResponseEntity.ok().body(galleryPostResponseDto);
     }

@@ -63,12 +63,12 @@
                                         <c:choose>
                                             <c:when test="${gatherings.memberStatusCode == 71}">
                                                 <button class="detail-button" style="background-color: #999999;">
-                                                    <a class="button-text">승인대기</a>
+                                                    <a class="button-text">활동정지</a>
                                                 </button>
                                             </c:when>
                                             <c:when test="${gatherings.memberStatusCode == 72}">
                                                 <button class="detail-button" style="background-color: #999999;">
-                                                    <a class="button-text">활동정지</a>
+                                                    <a class="button-text">승인대기</a>
                                                 </button>
                                             </c:when>
                                             <c:otherwise>

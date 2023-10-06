@@ -44,6 +44,7 @@
             WHERE member_id = #{memberId}
             )
         </if>
+        ORDER BY i.gathering_id DESC
     </select>
 
     <!-- 모임 분류 조회(GatheringId) -->

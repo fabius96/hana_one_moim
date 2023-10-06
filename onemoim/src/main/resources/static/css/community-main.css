@@ -371,16 +371,17 @@
 .image-container {
     display: flex;
     flex-wrap: wrap; /* 요소들이 넘치면 다음 줄로 이동 */
-    gap: 20px; /* 이미지 사이의 간격 */
+    gap: 35px; /* 이미지 사이의 간격 */
     width: 100%;
-    max-width: 1025px;
-    align-items: flex-start;
+    max-width: 1100px;
+    align-items: center;
+    justify-content: center;
 }
 
 .image-item {
     background-color: #cccccc;
-    height: 325px;
-    width: 325px;
+    height: 340px;
+    width: 340px;
     object-fit: cover;
 }
 

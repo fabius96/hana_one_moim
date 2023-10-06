@@ -1,11 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<meta property="og:title"              content="하나원모임" />
+<meta property="og:description"        content="하나의 새로운 모임통장 서비스, 하나원모임" />
+<meta property="og:image"              content="https://springadvancedbucket.s3.ap-northeast-2.amazonaws.com/KakaoTalk_20230927_154624467.png" />
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>after_login_main</title>
+    <title>하나원모임</title>
     <link rel="stylesheet" href="/css/common.css">
     <link rel="stylesheet" href="/css/after-login-main.css">
 </head>
