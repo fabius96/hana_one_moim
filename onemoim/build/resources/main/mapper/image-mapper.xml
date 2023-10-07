@@ -19,16 +19,20 @@
     <!-- 갤러리 페이지용 이미지 조회 -->
     <select id="selectImgUrlByPostId" parameterType="int" resultType="String">
         SELECT image_url
-        FROM (SELECT image_url, ROWNUM as rn
-              FROM gallery_image
-              WHERE post_id = #{postId})
-        WHERE rn = 1
+        FROM (
+                 SELECT image_url
+                 FROM gallery_image
+                 WHERE post_id = #{postId}
+                 ORDER BY image_id ASC
+                     FETCH FIRST 1 ROWS ONLY
+             )
     </select>
 
     <select id="selectImgUrlForDetail" parameterType="int" resultType="String">
         SELECT image_url
         FROM gallery_image
         WHERE post_id = #{postId}
+        ORDER BY image_id
     </select>
 
 </mapper>

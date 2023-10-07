@@ -37,8 +37,8 @@ public class OpenBankingController {
             return modelAndView;
         }
         RestTemplate restTemplate = new RestTemplate();
-        String openBankingUrl = "http://localhost:8081/openbanking/get-registered-account-list?personalIdNumber=" + memberDto.getPersonalIdNumber();
-//        String openBankingUrl = "http://4.230.16.107/openbanking/get-registered-account-list?personalIdNumber=" + memberDto.getPersonalIdNumber();
+//        String openBankingUrl = "http://localhost:8081/openbanking/get-registered-account-list?personalIdNumber=" + memberDto.getPersonalIdNumber();
+        String openBankingUrl = "http://4.230.16.107/openbanking/get-registered-account-list?personalIdNumber=" + memberDto.getPersonalIdNumber();
         ResponseEntity<List<AccountDto>> response = restTemplate.exchange(
                 openBankingUrl,
                 HttpMethod.GET,
@@ -66,8 +66,8 @@ public class OpenBankingController {
             return modelAndView;
         }
         RestTemplate restTemplate = new RestTemplate();
-        String openBankingUrl = "http://localhost:8081/openbanking/get-account-list?personalIdNumber=" + memberDto.getPersonalIdNumber();
-//        String openBankingUrl = "http://4.230.16.107/openbanking/get-account-list?personalIdNumber=" + memberDto.getPersonalIdNumber();
+//        String openBankingUrl = "http://localhost:8081/openbanking/get-account-list?personalIdNumber=" + memberDto.getPersonalIdNumber();
+        String openBankingUrl = "http://4.230.16.107/openbanking/get-account-list?personalIdNumber=" + memberDto.getPersonalIdNumber();
         ResponseEntity<List<AccountDto>> response = restTemplate.exchange(
                 openBankingUrl,
                 HttpMethod.GET,
@@ -95,8 +95,8 @@ public class OpenBankingController {
             return modelAndView;
         }
         RestTemplate restTemplate = new RestTemplate();
-        String openBankingUrl = "http://localhost:8081/openbanking/get-registered-account-list?personalIdNumber=" + memberDto.getPersonalIdNumber();
-//        String openBankingUrl = "http://4.230.16.107/openbanking/get-registered-account-list?personalIdNumber=" + memberDto.getPersonalIdNumber();
+//        String openBankingUrl = "http://localhost:8081/openbanking/get-registered-account-list?personalIdNumber=" + memberDto.getPersonalIdNumber();
+        String openBankingUrl = "http://4.230.16.107/openbanking/get-registered-account-list?personalIdNumber=" + memberDto.getPersonalIdNumber();
         ResponseEntity<List<AccountDto>> response = restTemplate.exchange(
                 openBankingUrl,
                 HttpMethod.GET,
@@ -124,8 +124,8 @@ public class OpenBankingController {
         }
 
         RestTemplate restTemplate = new RestTemplate();
-        String openBankingUrl = "http://localhost:8081/openbanking/get-registered-account-list?personalIdNumber=" + memberDto.getPersonalIdNumber();
-//        String openBankingUrl = "http://4.230.16.107/openbanking/get-registered-account-list?personalIdNumber=" + memberDto.getPersonalIdNumber();
+//        String openBankingUrl = "http://localhost:8081/openbanking/get-registered-account-list?personalIdNumber=" + memberDto.getPersonalIdNumber();
+        String openBankingUrl = "http://4.230.16.107/openbanking/get-registered-account-list?personalIdNumber=" + memberDto.getPersonalIdNumber();
         ResponseEntity<List<AccountDto>> response = restTemplate.exchange(
                 openBankingUrl,
                 HttpMethod.GET,
@@ -163,8 +163,8 @@ public class OpenBankingController {
 
         // 오픈뱅킹으로 데이터 전송(오픈뱅킹을 통한 타행계좌 출금)
         RestTemplate restTemplate = new RestTemplate();
-        String openBankingUrl = "http://localhost:8081/openbanking/payment-other";
-//        String openBankingUrl = "http://4.230.16.107/openbanking/payment-other";
+//        String openBankingUrl = "http://localhost:8081/openbanking/payment-other";
+        String openBankingUrl = "http://4.230.16.107/openbanking/payment-other";
         ResponseEntity<Boolean> response = restTemplate.postForEntity(openBankingUrl, paymentTransferWrapper, Boolean.class);
         boolean transferSuccess = Boolean.TRUE.equals(response.getBody());
 
@@ -191,8 +191,8 @@ public class OpenBankingController {
         }
 
         RestTemplate restTemplate = new RestTemplate();
-        String openBankingUrl = "http://localhost:8081/openbanking/get-registered-account-list?personalIdNumber=" + memberDto.getPersonalIdNumber();
-//        String openBankingUrl = "http://4.230.16.107/openbanking/get-registered-account-list?personalIdNumber=" + memberDto.getPersonalIdNumber();
+//        String openBankingUrl = "http://localhost:8081/openbanking/get-registered-account-list?personalIdNumber=" + memberDto.getPersonalIdNumber();
+        String openBankingUrl = "http://4.230.16.107/openbanking/get-registered-account-list?personalIdNumber=" + memberDto.getPersonalIdNumber();
         ResponseEntity<List<AccountDto>> response = restTemplate.exchange(
                 openBankingUrl,
                 HttpMethod.GET,

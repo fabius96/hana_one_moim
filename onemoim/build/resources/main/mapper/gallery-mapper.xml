@@ -41,6 +41,13 @@
         WHERE post_id = #{postId}
     </select>
 
+    <!-- 조회수 조회 -->
+    <select id="selectViewCnt" parameterType="int" resultType="int">
+        SELECT view_cnt
+        FROM gallery_post
+        WHERE post_id = #{postId}
+    </select>
+
     <!-- 게시글 상세 조회 -->
     <select id="selectGalleryPost" resultType="int" resultMap="galleryPostDto">
         SELECT *

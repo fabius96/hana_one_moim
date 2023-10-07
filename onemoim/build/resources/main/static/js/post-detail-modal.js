@@ -4,7 +4,7 @@ $(document).ready(function () {
 
     // 댓글 등록 버튼 클릭 이벤트
     $(".comment-button").on("click", function () {
-        const postId = $(".image-item").data('post-id');
+        const postId = $('#post-detail-modal').data('current-post-id');
         const gatheringId = $(".image-item").data('gathering-id');
         const content = $(".comment-input").val();
 
@@ -47,7 +47,7 @@ $(document).ready(function () {
     });
 
     // 게시글 상세 조회
-    $(".image-item, .notice-content").on("click", function () {
+    $(".image-item, .notice-content, .image-hover-layer").on("click", function () {
         const postId = $(this).data('post-id');
         const gatheringId = $(this).data('gathering-id');
         const gatheringMemberId = $(this).data('gathering-member-id');
@@ -115,7 +115,7 @@ $(document).ready(function () {
                     commentArea.append(commentElement);
                 });
 
-                $('#post-detail-modal').show(); // 모달 보이기
+                $('#post-detail-modal').data('current-post-id', postId).show(); // 모달 보이기
             },
             error: function (error) {
                 console.error("게시글 로딩 실패", error);
