@@ -36,7 +36,7 @@
                 <div class="content-wrapper">
 
                     <div><p class="content-name">출금정보</p></div>
-                    <div><p class="sub-content-name">다른은행에서 출금</p></div>
+                    <div><p class="sub-content-name">하나은행에서 출금</p></div>
 
                     <div class="dropdown-container" data-dropdown="account">
                         <input type="hidden" name="accountNumber" id="selectedAccountNumber" value="">
