@@ -174,7 +174,6 @@ public class GatheringResponseController {
         if (memberDto != null) {
             memberId = memberDto.getMemberId();
         }
-        System.out.println(gatheringId);
         GatheringDto gatheringDto = gatheringService.getGatheringInfoForModal(false, gatheringId, memberId);
         return ResponseEntity.ok().body(gatheringDto);
     }

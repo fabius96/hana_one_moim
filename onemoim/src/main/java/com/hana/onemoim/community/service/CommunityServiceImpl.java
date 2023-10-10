@@ -599,8 +599,6 @@ public class CommunityServiceImpl implements CommunityService {
         int gatheringCardId = originalCardBenefitDtos.get(0).getCardId();
 
         for (CardBenefitDto cardBenefitDto : cardBenefitDtoList) {
-            System.out.println("benefit_id  " + cardBenefitDto.getBenefitId());
-            System.out.println("benefit_rate  " + cardBenefitDto.getBenefitRate());
             cardBenefitDto.setCardId(gatheringCardId);
             cardMapper.updateCardBenefit(cardBenefitDto);
         }
