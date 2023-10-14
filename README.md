@@ -1,5 +1,6 @@
 # 갤러리형 커뮤니티 기반 모임통장 서비스 하나원모임
 [프로젝트 홈페이지](https://hanaonemoim.site)
+<img src="hanaonemoim.png"/>
 
 # 1. 프로젝트 개요
 ## 1-1. 프로젝트 기획 배경
@@ -37,7 +38,7 @@
 [발표 PPT](/project.pdf)<br>
 
 ## 3-2. 시연 영상 
-
+[![시연영상](video.png)](https://youtu.be/pGqhaB7y1Gg)
 
 # 4. 자기 소개
 | 이름 | 김재영 | <img src="jaeyoung.jpg" width="150px"/> |
