@@ -27,7 +27,7 @@
 <img src="system_architecture.PNG"/>
 
 ## 2-4. ERD 
-<img src="erd.PNGg"/>
+<img src="erd.PNG"/>
 
 ## 2-5. 응용기술
 <img src="skill.PNG"/>
