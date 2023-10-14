@@ -13,7 +13,7 @@
 <img src="expected_effect.PNG"/>
 
 ## 1-4. 프로젝트 일정
-<img src="gantt_chart.png"/>
+<img src="gantt_chart.PNG"/>
 
 
 # 2. 프로젝트 구성 
