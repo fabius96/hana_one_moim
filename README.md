@@ -4,7 +4,7 @@
 
 # 1. 프로젝트 개요
 ## 1-1. 프로젝트 기획 배경
-<img src="about_hanaonemoim.png"/>
+<img src="about_hanaonemoim.PNG"/>
 
 ## 1-2. 타사 서비스와의 비교 분석
 <img src="comparative_analysis.png"/>
