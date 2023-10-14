@@ -41,7 +41,7 @@
 [![시연영상](video.PNG)](https://youtu.be/pGqhaB7y1Gg)
 
 # 4. 자기 소개
-| 이름 | 김재영 | <img src="jaeyoung.png" width="150px"/> |
+| 이름 | 김재영 | <img src="jaeyoung.png" width="100px"/> |
 | :--- | :--- | :--- |
 | 메일 | <jy0511_@naver.com>  |  |
 | Frontend Skill |  HTML, CSS, Javascript | |
