@@ -26,6 +26,9 @@ dependencies {
 	// Web
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 
+	// Spring security
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+
 	// MyBatis
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.3.1'
 	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:2.3.1'

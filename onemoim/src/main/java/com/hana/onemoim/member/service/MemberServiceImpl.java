@@ -15,6 +15,7 @@ import java.util.List;
 public class MemberServiceImpl implements MemberService {
     private final MemberMapper memberMapper;
     private final InterestMapper interestMapper;
+//    private final BCryptPasswordEncoder passwordEncoder;
 
     public boolean isLoginIdExist(String loginId) {
         return memberMapper.countMemberByLoginId(loginId) > 0;
