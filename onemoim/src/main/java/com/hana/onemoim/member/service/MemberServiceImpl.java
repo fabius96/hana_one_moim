@@ -34,7 +34,7 @@ public class MemberServiceImpl implements MemberService {
         signupMemberDto.setPersonalIdNumber(passwordEncoder.encode(signupMemberDto.getPersonalIdNumber()));
 
         memberMapper.insertMember(signupMemberDto);
-        return memberId;
+        return memberId; // 회원 관심사 등록 페이지에서 사용하기 위한 회원가입한 memberId 정보 넘김
     }
 
     // 성별분류
@@ -59,7 +59,6 @@ public class MemberServiceImpl implements MemberService {
     // 회원 관심사 등록
     @Override
     public void registerMemberInterest(int memberId, List<String> interestNames) {
-        System.out.println("MemberServiceImpl.registerMemberInterest");
         for(String interestName : interestNames){
             InterestDto interestDto = new InterestDto();
             interestDto.setMemberId(memberId);
