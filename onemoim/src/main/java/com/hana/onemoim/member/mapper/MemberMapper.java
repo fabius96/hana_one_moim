@@ -16,6 +16,8 @@ public interface MemberMapper {
 
     // 로그인
     MemberDto findMemberByLoginIdAndPassword(@Param("loginId") String loginId, @Param("password") String password);
+    // 로그인(Bcrypt 해싱 알고리즘 적용 ver)
+    MemberDto findMemberByLoginId(@Param("loginId") String loginId);
 
     // 모임장 이름 조회
     String selectNameByLeaderId(int gatheringLeaderId);

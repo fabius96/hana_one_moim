@@ -38,11 +38,19 @@
                 #{address}, #{detailAddress}, #{zipCode})
     </insert>
 
+    <!-- 로그인 -->
     <select id="findMemberByLoginIdAndPassword" resultMap="memberDto">
         SELECT *
         FROM member
         WHERE login_id = #{loginId}
           AND password = #{password}
+    </select>
+
+    <!-- 로그인(Bcrypt ver) -->
+    <select id="findMemberByLoginId" resultMap="memberDto">
+        SELECT *
+        FROM member
+        WHERE login_id = #{loginId}
     </select>
 
     <!-- 모임장 이름 조회 -->

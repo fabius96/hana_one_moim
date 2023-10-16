@@ -6,6 +6,7 @@ import com.hana.onemoim.member.dto.MemberDto;
 import com.hana.onemoim.member.dto.SignupMemberDto;
 import com.hana.onemoim.member.mapper.MemberMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,7 +16,7 @@ import java.util.List;
 public class MemberServiceImpl implements MemberService {
     private final MemberMapper memberMapper;
     private final InterestMapper interestMapper;
-//    private final BCryptPasswordEncoder passwordEncoder;
+    private final BCryptPasswordEncoder passwordEncoder;
 
     public boolean isLoginIdExist(String loginId) {
         return memberMapper.countMemberByLoginId(loginId) > 0;
@@ -24,8 +25,14 @@ public class MemberServiceImpl implements MemberService {
     // 회원가입
     public int signupMember(SignupMemberDto signupMemberDto) {
         int memberId = memberMapper.getNextMemberSeq()+1;
+
         // 성별분류
         signupMemberDto.setGenderCode(classifyGender(signupMemberDto.getPersonalIdNumber()));
+
+        // 비밀번호 및 주민등록번호 해싱
+        signupMemberDto.setPassword(passwordEncoder.encode(signupMemberDto.getPassword()));
+        signupMemberDto.setPersonalIdNumber(passwordEncoder.encode(signupMemberDto.getPersonalIdNumber()));
+
         memberMapper.insertMember(signupMemberDto);
         return memberId;
     }
@@ -41,8 +48,12 @@ public class MemberServiceImpl implements MemberService {
     }
 
     // 로그인
-    public MemberDto signin(String loginId, String password){
-        return memberMapper.findMemberByLoginIdAndPassword(loginId, password);
+    public MemberDto signin(String loginId, String password) {
+        MemberDto memberDto = memberMapper.findMemberByLoginId(loginId);
+        if (memberDto != null && passwordEncoder.matches(password, memberDto.getPassword())) {
+            return memberDto;
+        }
+        return null;
     }
 
     // 회원 관심사 등록
