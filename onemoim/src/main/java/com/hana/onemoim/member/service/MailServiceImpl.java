@@ -1,6 +1,6 @@
 package com.hana.onemoim.member.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
@@ -12,9 +12,9 @@ import java.io.UnsupportedEncodingException;
 import java.util.Random;
 
 @Service
+@RequiredArgsConstructor
 public class MailServiceImpl implements MailService {
-    @Autowired
-    JavaMailSender emailSender; // MailConfig에서 등록해둔 Bean을 autowired하여 사용하기
+    private final JavaMailSender emailSender;
 
     private String ePw; // 사용자가 메일로 받을 인증번호
 
